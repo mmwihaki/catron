@@ -363,7 +363,15 @@ export default function HomePage() {
                 padding: "8px",
               }}
             >
-              <div style={{ fontSize: "24px", marginBottom: "4px" }}>🛒</div>
+              <div
+                style={{
+                  fontSize: "14px",
+                  marginBottom: "4px",
+                  fontWeight: "600",
+                }}
+              >
+                □
+              </div>
               <span style={{ fontSize: "11px", color: "#bdc3c7" }}>Cart</span>
               <span
                 style={{
