@@ -228,7 +228,7 @@ export default function HomePage() {
                 boxShadow: "0 4px 15px rgba(247, 51, 18, 0.3)",
               }}
             >
-              🔧
+              B
             </div>
             <div>
               <h1
@@ -320,7 +320,7 @@ export default function HomePage() {
                 padding: "8px",
               }}
             >
-              <div style={{ fontSize: "24px", marginBottom: "4px" }}>❤️</div>
+              <div style={{ fontSize: "24px", marginBottom: "4px" }}>���️</div>
               <span style={{ fontSize: "11px", color: "#bdc3c7" }}>
                 Wishlist
               </span>
@@ -558,7 +558,7 @@ export default function HomePage() {
                 border: "1px solid rgba(247, 51, 18, 0.3)",
               }}
             >
-              �� #1 TRUSTED AUTO PARTS DEALER
+              🏆 #1 TRUSTED AUTO PARTS DEALER
             </div>
 
             <h1
