@@ -695,16 +695,15 @@ export default function HomePage() {
 
             <button
               style={{
-                background:
-                  "linear-gradient(135deg, rgb(247, 51, 18), rgb(220, 40, 15))",
-                color: "white",
+                background: "linear-gradient(135deg, #DC143C, #B22222)",
+                color: "#FFD700",
                 border: "none",
                 padding: "12px 24px",
                 borderRadius: "8px",
                 cursor: "pointer",
                 fontWeight: "600",
                 fontSize: "14px",
-                boxShadow: "0 4px 15px rgba(247, 51, 18, 0.3)",
+                boxShadow: "0 4px 15px rgba(220, 20, 60, 0.3)",
               }}
             >
               Sign In
