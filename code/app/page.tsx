@@ -60,7 +60,7 @@ export default function HomePage() {
     {
       title: "Oil Filters",
       subtitle: "RIDEX, STARK, Premium Quality",
-      icon: "🛢️",
+      icon: "OF",
       count: "63 items",
       color: "#e74c3c",
       products: ["RIDEX 7O0026", "RIDEX Plus 7O0026P", "STARK SKOF-0860025"],
@@ -68,7 +68,7 @@ export default function HomePage() {
     {
       title: "Air Filters",
       subtitle: "KAVO, JAPKO, TOPRAN, RIDEX",
-      icon: "🌬️",
+      icon: "AF",
       count: "29 items",
       color: "#3498db",
       products: ["KAVO NA-2650", "JAPKO 20148", "TOPRAN 701527"],
@@ -76,7 +76,7 @@ export default function HomePage() {
     {
       title: "Brake System",
       subtitle: "LPR, JAPKO, KAVO, Brembo",
-      icon: "🛞",
+      icon: "BS",
       count: "12 items",
       color: "#9b59b6",
       products: ["LPR 05P1686", "JAPKO 501002", "Brembo S 56 510"],
@@ -84,7 +84,7 @@ export default function HomePage() {
     {
       title: "Lighting",
       subtitle: "OSRAM Premium Range",
-      icon: "💡",
+      icon: "LT",
       count: "21 items",
       color: "#f39c12",
       products: ["OSRAM NB200H4", "OSRAM CBI100H4", "OSRAM W5W-CBI"],
@@ -92,7 +92,7 @@ export default function HomePage() {
     {
       title: "Cabin Filters",
       subtitle: "KAVO, JPN, Denkermann",
-      icon: "🍃",
+      icon: "CF",
       count: "5 items",
       color: "#2ecc71",
       products: ["KAVO NC-2037", "JPN 40F1025-JPN", "Denkermann M110850K"],
@@ -100,7 +100,7 @@ export default function HomePage() {
     {
       title: "Spark Plugs",
       subtitle: "NGK Professional Grade",
-      icon: "⚡",
+      icon: "SP",
       count: "39 items",
       color: "#e67e22",
       products: ["NGK DILKAR7E11HS", "NGK DILKAR6A11", "NGK DILZKAR6A11"],
@@ -108,7 +108,7 @@ export default function HomePage() {
     {
       title: "Belts & Chains",
       subtitle: "RIDEX, DAYCO, KAMOKA",
-      icon: "🔗",
+      icon: "BC",
       count: "10 items",
       color: "#34495e",
       products: ["RIDEX 305P0095", "DAYCO 3PK800", "KAMOKA KA07017009"],
@@ -116,7 +116,7 @@ export default function HomePage() {
     {
       title: "Wipers",
       subtitle: "STARK, BOSCH Premium",
-      icon: "🧽",
+      icon: "WP",
       count: "7 items",
       color: "#95a5a6",
       products: ["STARK SKWIB-0940152", "BOSCH 3397014128"],
