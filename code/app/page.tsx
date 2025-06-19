@@ -494,7 +494,7 @@ export default function HomePage() {
       {/* Enhanced main header */}
       <header
         style={{
-          background: "rgb(38, 38, 39)",
+          background: "#000000",
           color: "white",
           padding: "20px 0",
           boxShadow: "0 4px 20px rgba(0,0,0,0.3)",
