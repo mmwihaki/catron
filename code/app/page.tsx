@@ -126,27 +126,27 @@ export default function HomePage() {
   const brandShowcase = [
     {
       name: "RIDEX",
-      logo: "🔧",
+      logo: "RX",
       specialty: "Filters & Engine Parts",
       products: 8,
     },
-    { name: "KAVO", logo: "⚙️", specialty: "Premium OE Quality", products: 4 },
+    { name: "KAVO", logo: "KV", specialty: "Premium OE Quality", products: 4 },
     {
       name: "OSRAM",
-      logo: "💡",
+      logo: "OS",
       specialty: "Automotive Lighting",
       products: 3,
     },
-    { name: "NGK", logo: "⚡", specialty: "Ignition Systems", products: 8 },
+    { name: "NGK", logo: "NK", specialty: "Ignition Systems", products: 8 },
     {
       name: "BOSCH",
-      logo: "🔬",
+      logo: "BS",
       specialty: "Advanced Technology",
       products: 2,
     },
-    { name: "Brembo", logo: "🛞", specialty: "Brake Systems", products: 1 },
-    { name: "DAYCO", logo: "🔗", specialty: "Belt Systems", products: 1 },
-    { name: "STARK", logo: "🔨", specialty: "Quality Parts", products: 2 },
+    { name: "Brembo", logo: "BR", specialty: "Brake Systems", products: 1 },
+    { name: "DAYCO", logo: "DC", specialty: "Belt Systems", products: 1 },
+    { name: "STARK", logo: "ST", specialty: "Quality Parts", products: 2 },
   ];
 
   return (
