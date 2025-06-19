@@ -1,20 +1,30 @@
+"use client";
+
+import { useState } from "react";
+
 export default function HomePage() {
-  // Real product data from your inventory
+  // Cart state management
+  const [cart, setCart] = useState([]);
+  const [cartVisible, setCartVisible] = useState(false);
+
+  // Real product data from your inventory with actual image URLs
   const featuredProducts = [
     {
+      id: 1,
       name: "RIDEX Oil Filter",
       category: "Oil Filter",
       model: "E12/K13/N17",
       sku: "7O0026",
       brand: "RIDEX",
       stock: 30,
-      price: 130000,
+      price: 1300,
       description: "up to 10k kms",
       image:
-        "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=300&h=200&fit=crop&crop=center",
+        "https://www.autodoc.co.uk/media/catalog/product/cache/3/image/1200x/17f82f742ffe127f42dca9de82fb58b1/7/o/7o0026_ridex_oil_filter.jpg",
       badge: "BEST SELLER",
     },
     {
+      id: 2,
       name: "KAVO Air Filter",
       category: "Air Filter",
       model: "Teana L33 QR25de",
@@ -23,11 +33,11 @@ export default function HomePage() {
       stock: 4,
       price: 4500,
       description: "Aftermarket OE Quality up-to 15k kms",
-      image:
-        "https://images.unsplash.com/photo-1486575008575-26d269a73fb8?w=300&h=200&fit=crop&crop=center",
+      image: "https://images.autodoc.co.uk/images/parts/big/13863456.jpg",
       badge: "PREMIUM",
     },
     {
+      id: 3,
       name: "OSRAM Night Breaker 200",
       category: "Headlight Bulbs",
       model: "H4 models",
@@ -38,10 +48,11 @@ export default function HomePage() {
       originalPrice: 9500,
       description: "(pack of 2)",
       image:
-        "https://images.unsplash.com/photo-1544829200-ff9c4e2b7de5?w=300&h=200&fit=crop&crop=center",
+        "https://dammedia.osram.info/media/resource/hires/osram-dam-2414533/NB200_all_12V.png",
       badge: "TOP RATED",
     },
     {
+      id: 4,
       name: "NGK Spark Plugs DIG-S",
       category: "Spark Plugs",
       model: "Note E12 DIG-S",
@@ -51,106 +62,394 @@ export default function HomePage() {
       price: 4600,
       description: "High Performance",
       image:
-        "https://images.unsplash.com/photo-1558618047-3c8c76ca7d13?w=300&h=200&fit=crop&crop=center",
+        "https://cdn.sparkplugs.co.uk/images/products/large/ngk-spark-plug-dilkar7e11hs-97439.jpg",
       badge: "IN STOCK",
     },
+    {
+      id: 5,
+      name: "KAVO Cabin Filter",
+      category: "Cabin Filter",
+      model: "Teana L33 QR25de",
+      sku: "NC-2037",
+      brand: "KAVO",
+      stock: 2,
+      price: 4000,
+      description: "Aftermarket OE Quality - up-to 15k kms",
+      image: "https://images.autodoc.co.uk/images/parts/big/13863570.jpg",
+      badge: "LIMITED",
+    },
+    {
+      id: 6,
+      name: "LPR Brake Pads",
+      category: "Brake Pads",
+      model: "E12/K13/N17",
+      sku: "05P1686",
+      brand: "LPR",
+      stock: 1,
+      price: 7500,
+      description: "Aftermarket OE Quality - 15k - 30k kms",
+      image: "https://images.autodoc.co.uk/images/parts/big/15833801.jpg",
+      badge: "LAST ONE",
+    },
   ];
+
+  // Add to cart function
+  const addToCart = (product, quantity = 1) => {
+    setCart((prevCart) => {
+      const existingItem = prevCart.find((item) => item.id === product.id);
+      if (existingItem) {
+        return prevCart.map((item) =>
+          item.id === product.id
+            ? { ...item, quantity: item.quantity + quantity }
+            : item,
+        );
+      }
+      return [...prevCart, { ...product, quantity }];
+    });
+    setCartVisible(true);
+  };
+
+  // Remove from cart
+  const removeFromCart = (productId) => {
+    setCart((prevCart) => prevCart.filter((item) => item.id !== productId));
+  };
+
+  // Update quantity
+  const updateQuantity = (productId, newQuantity) => {
+    if (newQuantity <= 0) {
+      removeFromCart(productId);
+      return;
+    }
+    setCart((prevCart) =>
+      prevCart.map((item) =>
+        item.id === productId ? { ...item, quantity: newQuantity } : item,
+      ),
+    );
+  };
+
+  // Calculate total
+  const getCartTotal = () => {
+    return cart.reduce((total, item) => total + item.price * item.quantity, 0);
+  };
+
+  // WhatsApp checkout
+  const checkoutViaWhatsApp = () => {
+    if (cart.length === 0) return;
+
+    let message =
+      "Hello! I'd like to order the following items from Brator:\n\n";
+
+    cart.forEach((item, index) => {
+      message += `${index + 1}. ${item.name}\n`;
+      message += `   SKU: ${item.sku}\n`;
+      message += `   Model: ${item.model}\n`;
+      message += `   Quantity: ${item.quantity}\n`;
+      message += `   Price: KES ${item.price.toLocaleString()} each\n`;
+      message += `   Subtotal: KES ${(item.price * item.quantity).toLocaleString()}\n\n`;
+    });
+
+    message += `Total Amount: KES ${getCartTotal().toLocaleString()}\n\n`;
+    message +=
+      "Please confirm availability and provide delivery details. Thank you!";
+
+    const whatsappUrl = `https://wa.me/254XXXXXXXXX?text=${encodeURIComponent(message)}`;
+    window.open(whatsappUrl, "_blank");
+  };
 
   const categories = [
     {
       title: "Oil Filters",
       subtitle: "RIDEX, STARK, Premium Quality",
-      icon: "OF",
+      code: "OF",
       count: "63 items",
       color: "#e74c3c",
-      products: ["RIDEX 7O0026", "RIDEX Plus 7O0026P", "STARK SKOF-0860025"],
     },
     {
       title: "Air Filters",
       subtitle: "KAVO, JAPKO, TOPRAN, RIDEX",
-      icon: "AF",
+      code: "AF",
       count: "29 items",
       color: "#3498db",
-      products: ["KAVO NA-2650", "JAPKO 20148", "TOPRAN 701527"],
     },
     {
       title: "Brake System",
       subtitle: "LPR, JAPKO, KAVO, Brembo",
-      icon: "BS",
+      code: "BS",
       count: "12 items",
       color: "#9b59b6",
-      products: ["LPR 05P1686", "JAPKO 501002", "Brembo S 56 510"],
     },
     {
       title: "Lighting",
       subtitle: "OSRAM Premium Range",
-      icon: "LT",
+      code: "LT",
       count: "21 items",
       color: "#f39c12",
-      products: ["OSRAM NB200H4", "OSRAM CBI100H4", "OSRAM W5W-CBI"],
     },
     {
       title: "Cabin Filters",
       subtitle: "KAVO, JPN, Denkermann",
-      icon: "CF",
+      code: "CF",
       count: "5 items",
       color: "#2ecc71",
-      products: ["KAVO NC-2037", "JPN 40F1025-JPN", "Denkermann M110850K"],
     },
     {
       title: "Spark Plugs",
       subtitle: "NGK Professional Grade",
-      icon: "SP",
+      code: "SP",
       count: "39 items",
       color: "#e67e22",
-      products: ["NGK DILKAR7E11HS", "NGK DILKAR6A11", "NGK DILZKAR6A11"],
     },
-    {
-      title: "Belts & Chains",
-      subtitle: "RIDEX, DAYCO, KAMOKA",
-      icon: "BC",
-      count: "10 items",
-      color: "#34495e",
-      products: ["RIDEX 305P0095", "DAYCO 3PK800", "KAMOKA KA07017009"],
-    },
-    {
-      title: "Wipers",
-      subtitle: "STARK, BOSCH Premium",
-      icon: "WP",
-      count: "7 items",
-      color: "#95a5a6",
-      products: ["STARK SKWIB-0940152", "BOSCH 3397014128"],
-    },
-  ];
-
-  const brandShowcase = [
-    {
-      name: "RIDEX",
-      logo: "RX",
-      specialty: "Filters & Engine Parts",
-      products: 8,
-    },
-    { name: "KAVO", logo: "KV", specialty: "Premium OE Quality", products: 4 },
-    {
-      name: "OSRAM",
-      logo: "OS",
-      specialty: "Automotive Lighting",
-      products: 3,
-    },
-    { name: "NGK", logo: "NK", specialty: "Ignition Systems", products: 8 },
-    {
-      name: "BOSCH",
-      logo: "BS",
-      specialty: "Advanced Technology",
-      products: 2,
-    },
-    { name: "Brembo", logo: "BR", specialty: "Brake Systems", products: 1 },
-    { name: "DAYCO", logo: "DC", specialty: "Belt Systems", products: 1 },
-    { name: "STARK", logo: "ST", specialty: "Quality Parts", products: 2 },
   ];
 
   return (
     <div style={{ fontFamily: "Arial, sans-serif", lineHeight: "1.6" }}>
+      {/* Cart Sidebar */}
+      {cartVisible && (
+        <div
+          style={{
+            position: "fixed",
+            top: "0",
+            right: "0",
+            width: "400px",
+            height: "100vh",
+            background: "white",
+            boxShadow: "-4px 0 20px rgba(0,0,0,0.1)",
+            zIndex: "9999",
+            padding: "20px",
+            overflowY: "auto",
+          }}
+        >
+          <div
+            style={{
+              display: "flex",
+              justifyContent: "space-between",
+              alignItems: "center",
+              marginBottom: "20px",
+              borderBottom: "2px solid #ecf0f1",
+              paddingBottom: "15px",
+            }}
+          >
+            <h3 style={{ margin: "0", fontSize: "24px", fontWeight: "700" }}>
+              Shopping Cart
+            </h3>
+            <button
+              onClick={() => setCartVisible(false)}
+              style={{
+                background: "none",
+                border: "none",
+                fontSize: "24px",
+                cursor: "pointer",
+                color: "#95a5a6",
+              }}
+            >
+              ×
+            </button>
+          </div>
+
+          {cart.length === 0 ? (
+            <div
+              style={{
+                textAlign: "center",
+                padding: "40px 0",
+                color: "#7f8c8d",
+              }}
+            >
+              <p>Your cart is empty</p>
+            </div>
+          ) : (
+            <>
+              <div style={{ marginBottom: "20px" }}>
+                {cart.map((item) => (
+                  <div
+                    key={item.id}
+                    style={{
+                      display: "flex",
+                      gap: "15px",
+                      padding: "15px",
+                      border: "1px solid #ecf0f1",
+                      borderRadius: "8px",
+                      marginBottom: "10px",
+                    }}
+                  >
+                    <img
+                      src={item.image}
+                      alt={item.name}
+                      style={{
+                        width: "60px",
+                        height: "60px",
+                        objectFit: "cover",
+                        borderRadius: "6px",
+                      }}
+                    />
+                    <div style={{ flex: "1" }}>
+                      <h4
+                        style={{
+                          margin: "0 0 5px 0",
+                          fontSize: "14px",
+                          fontWeight: "600",
+                        }}
+                      >
+                        {item.name}
+                      </h4>
+                      <p
+                        style={{
+                          margin: "0 0 5px 0",
+                          fontSize: "12px",
+                          color: "#7f8c8d",
+                        }}
+                      >
+                        {item.sku} | {item.model}
+                      </p>
+                      <div
+                        style={{
+                          display: "flex",
+                          alignItems: "center",
+                          gap: "10px",
+                        }}
+                      >
+                        <button
+                          onClick={() =>
+                            updateQuantity(item.id, item.quantity - 1)
+                          }
+                          style={{
+                            background: "#ecf0f1",
+                            border: "none",
+                            width: "25px",
+                            height: "25px",
+                            borderRadius: "4px",
+                            cursor: "pointer",
+                          }}
+                        >
+                          -
+                        </button>
+                        <span style={{ fontSize: "14px", fontWeight: "600" }}>
+                          {item.quantity}
+                        </span>
+                        <button
+                          onClick={() =>
+                            updateQuantity(item.id, item.quantity + 1)
+                          }
+                          style={{
+                            background: "#ecf0f1",
+                            border: "none",
+                            width: "25px",
+                            height: "25px",
+                            borderRadius: "4px",
+                            cursor: "pointer",
+                          }}
+                        >
+                          +
+                        </button>
+                        <button
+                          onClick={() => removeFromCart(item.id)}
+                          style={{
+                            background: "#e74c3c",
+                            color: "white",
+                            border: "none",
+                            padding: "4px 8px",
+                            borderRadius: "4px",
+                            cursor: "pointer",
+                            fontSize: "12px",
+                            marginLeft: "auto",
+                          }}
+                        >
+                          Remove
+                        </button>
+                      </div>
+                      <p
+                        style={{
+                          margin: "5px 0 0 0",
+                          fontSize: "14px",
+                          fontWeight: "700",
+                          color: "#e74c3c",
+                        }}
+                      >
+                        KES {(item.price * item.quantity).toLocaleString()}
+                      </p>
+                    </div>
+                  </div>
+                ))}
+              </div>
+
+              <div
+                style={{
+                  borderTop: "2px solid #ecf0f1",
+                  paddingTop: "20px",
+                  marginTop: "20px",
+                }}
+              >
+                <div
+                  style={{
+                    display: "flex",
+                    justifyContent: "space-between",
+                    alignItems: "center",
+                    marginBottom: "20px",
+                  }}
+                >
+                  <span style={{ fontSize: "18px", fontWeight: "700" }}>
+                    Total:
+                  </span>
+                  <span
+                    style={{
+                      fontSize: "24px",
+                      fontWeight: "700",
+                      color: "#e74c3c",
+                    }}
+                  >
+                    KES {getCartTotal().toLocaleString()}
+                  </span>
+                </div>
+
+                <button
+                  onClick={checkoutViaWhatsApp}
+                  style={{
+                    width: "100%",
+                    background: "#25D366",
+                    color: "white",
+                    border: "none",
+                    padding: "15px",
+                    borderRadius: "8px",
+                    fontSize: "16px",
+                    fontWeight: "700",
+                    cursor: "pointer",
+                    marginBottom: "10px",
+                  }}
+                >
+                  Checkout via WhatsApp
+                </button>
+
+                <p
+                  style={{
+                    fontSize: "12px",
+                    color: "#7f8c8d",
+                    textAlign: "center",
+                    margin: "0",
+                  }}
+                >
+                  You'll be redirected to WhatsApp to complete your order
+                </p>
+              </div>
+            </>
+          )}
+        </div>
+      )}
+
+      {/* Overlay */}
+      {cartVisible && (
+        <div
+          style={{
+            position: "fixed",
+            top: "0",
+            left: "0",
+            width: "100vw",
+            height: "100vh",
+            background: "rgba(0,0,0,0.5)",
+            zIndex: "9998",
+          }}
+          onClick={() => setCartVisible(false)}
+        />
+      )}
+
       {/* Top promotional banner */}
       <div
         style={{
@@ -226,6 +525,8 @@ export default function HomePage() {
                 justifyContent: "center",
                 fontSize: "24px",
                 boxShadow: "0 4px 15px rgba(247, 51, 18, 0.3)",
+                color: "white",
+                fontWeight: "bold",
               }}
             >
               B
@@ -250,7 +551,7 @@ export default function HomePage() {
                   fontWeight: "500",
                 }}
               >
-                Premium Auto Parts
+                Premium Auto Parts Kenya
               </p>
             </div>
           </div>
@@ -354,6 +655,7 @@ export default function HomePage() {
             </div>
 
             <div
+              onClick={() => setCartVisible(true)}
               style={{
                 display: "flex",
                 flexDirection: "column",
@@ -390,7 +692,7 @@ export default function HomePage() {
                   fontWeight: "bold",
                 }}
               >
-                0
+                {cart.reduce((total, item) => total + item.quantity, 0)}
               </span>
             </div>
 
@@ -519,7 +821,7 @@ export default function HomePage() {
         </div>
       </nav>
 
-      {/* Enhanced hero section */}
+      {/* Hero section */}
       <section
         style={{
           background:
@@ -530,20 +832,6 @@ export default function HomePage() {
           overflow: "hidden",
         }}
       >
-        {/* Background pattern */}
-        <div
-          style={{
-            position: "absolute",
-            top: "0",
-            left: "0",
-            right: "0",
-            bottom: "0",
-            backgroundImage:
-              "radial-gradient(circle at 25% 25%, rgba(247, 51, 18, 0.1) 0%, transparent 50%), radial-gradient(circle at 75% 75%, rgba(247, 51, 18, 0.05) 0%, transparent 50%)",
-            opacity: "0.8",
-          }}
-        />
-
         <div
           style={{
             maxWidth: "1200px",
@@ -557,7 +845,6 @@ export default function HomePage() {
             zIndex: "1",
           }}
         >
-          {/* Enhanced hero content */}
           <div>
             <div
               style={{
@@ -574,7 +861,7 @@ export default function HomePage() {
                 border: "1px solid rgba(247, 51, 18, 0.3)",
               }}
             >
-              #1 TRUSTED AUTO PARTS DEALER
+              #1 TRUSTED AUTO PARTS DEALER IN KENYA
             </div>
 
             <h1
@@ -583,10 +870,6 @@ export default function HomePage() {
                 fontWeight: "800",
                 lineHeight: "1.1",
                 marginBottom: "25px",
-                background: "linear-gradient(45deg, #ffffff, #ecf0f1)",
-                WebkitBackgroundClip: "text",
-                WebkitTextFillColor: "transparent",
-                textShadow: "0 4px 20px rgba(0,0,0,0.3)",
               }}
             >
               Premium Car Parts
@@ -604,7 +887,7 @@ export default function HomePage() {
             >
               Genuine OEM and premium aftermarket parts from top brands like
               <strong> RIDEX, KAVO, OSRAM, NGK</strong> and more. Quality
-              guaranteed with fast shipping across UAE.
+              guaranteed with fast shipping across Kenya.
             </p>
 
             <div style={{ display: "flex", gap: "20px", marginBottom: "40px" }}>
@@ -620,9 +903,6 @@ export default function HomePage() {
                   fontWeight: "700",
                   cursor: "pointer",
                   boxShadow: "0 8px 25px rgba(247, 51, 18, 0.4)",
-                  display: "flex",
-                  alignItems: "center",
-                  gap: "10px",
                 }}
               >
                 Shop Now
@@ -638,16 +918,12 @@ export default function HomePage() {
                   fontWeight: "600",
                   cursor: "pointer",
                   backdropFilter: "blur(10px)",
-                  display: "flex",
-                  alignItems: "center",
-                  gap: "10px",
                 }}
               >
                 View Catalog
               </button>
             </div>
 
-            {/* Premium features */}
             <div style={{ display: "flex", gap: "35px" }}>
               {[
                 { text: "Free Delivery", detail: "Orders >5,000 KES" },
@@ -657,29 +933,23 @@ export default function HomePage() {
                 <div
                   key={i}
                   style={{
-                    display: "flex",
-                    alignItems: "center",
-                    gap: "12px",
                     background: "rgba(255, 255, 255, 0.05)",
                     padding: "12px 16px",
                     borderRadius: "10px",
                     backdropFilter: "blur(10px)",
                   }}
                 >
-                  <div>
-                    <div style={{ fontSize: "14px", fontWeight: "600" }}>
-                      {feature.text}
-                    </div>
-                    <div style={{ fontSize: "12px", opacity: "0.8" }}>
-                      {feature.detail}
-                    </div>
+                  <div style={{ fontSize: "14px", fontWeight: "600" }}>
+                    {feature.text}
+                  </div>
+                  <div style={{ fontSize: "12px", opacity: "0.8" }}>
+                    {feature.detail}
                   </div>
                 </div>
               ))}
             </div>
           </div>
 
-          {/* Enhanced vehicle search form */}
           <div
             style={{
               background: "white",
@@ -687,7 +957,6 @@ export default function HomePage() {
               padding: "40px",
               color: "#2c3e50",
               boxShadow: "0 25px 50px rgba(0,0,0,0.2)",
-              border: "1px solid rgba(255, 255, 255, 0.1)",
             }}
           >
             <div
@@ -696,25 +965,6 @@ export default function HomePage() {
                 marginBottom: "30px",
               }}
             >
-              <div
-                style={{
-                  background:
-                    "linear-gradient(135deg, rgb(247, 51, 18), rgb(220, 40, 15))",
-                  width: "60px",
-                  height: "60px",
-                  borderRadius: "50%",
-                  display: "flex",
-                  alignItems: "center",
-                  justifyContent: "center",
-                  fontSize: "28px",
-                  margin: "0 auto 15px auto",
-                  boxShadow: "0 8px 25px rgba(247, 51, 18, 0.3)",
-                  color: "white",
-                  fontWeight: "bold",
-                }}
-              >
-                S
-              </div>
               <h3
                 style={{
                   fontSize: "26px",
@@ -744,41 +994,17 @@ export default function HomePage() {
               {[
                 {
                   label: "Year",
-                  options: [
-                    "2024",
-                    "2023",
-                    "2022",
-                    "2021",
-                    "2020",
-                    "2019",
-                    "2018",
-                  ],
+                  options: ["2024", "2023", "2022", "2021", "2020"],
                 },
                 {
                   label: "Make",
-                  options: [
-                    "Nissan",
-                    "Toyota",
-                    "Honda",
-                    "Mazda",
-                    "Infiniti",
-                    "Lexus",
-                  ],
+                  options: ["Nissan", "Toyota", "Honda", "Mazda"],
                 },
                 {
                   label: "Model",
-                  options: [
-                    "Note E12",
-                    "Teana L33",
-                    "March K13",
-                    "Tiida C11",
-                    "X-Trail T32",
-                  ],
+                  options: ["Note E12", "Teana L33", "March K13"],
                 },
-                {
-                  label: "Engine",
-                  options: ["DIG-S", "QR25DE", "Puredrive", "CVT", "E-Power"],
-                },
+                { label: "Engine", options: ["DIG-S", "QR25DE", "Puredrive"] },
               ].map((field, i) => (
                 <select
                   key={i}
@@ -789,13 +1015,9 @@ export default function HomePage() {
                     fontSize: "15px",
                     background: "white",
                     cursor: "pointer",
-                    fontFamily: "Arial, sans-serif",
-                    fontWeight: "500",
                   }}
                 >
-                  <option style={{ color: "#bdc3c7" }}>
-                    Select {field.label}
-                  </option>
+                  <option>Select {field.label}</option>
                   {field.options.map((option, j) => (
                     <option key={j} value={option}>
                       {option}
@@ -817,10 +1039,6 @@ export default function HomePage() {
                   cursor: "pointer",
                   marginTop: "15px",
                   boxShadow: "0 8px 25px rgba(247, 51, 18, 0.3)",
-                  display: "flex",
-                  alignItems: "center",
-                  justifyContent: "center",
-                  gap: "10px",
                 }}
               >
                 Find Compatible Parts
@@ -830,7 +1048,7 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* Categories section with real data */}
+      {/* Categories section */}
       <section
         style={{
           background: "#f8f9fa",
@@ -885,88 +1103,61 @@ export default function HomePage() {
                   border: "1px solid #ecf0f1",
                   boxShadow: "0 8px 25px rgba(0,0,0,0.08)",
                   transition: "all 0.3s ease",
-                  position: "relative",
-                  overflow: "hidden",
                 }}
               >
-                {/* Background decoration */}
                 <div
                   style={{
-                    position: "absolute",
-                    top: "-20px",
-                    right: "-20px",
-                    width: "100px",
-                    height: "100px",
-                    background: `linear-gradient(135deg, ${category.color}15, ${category.color}05)`,
-                    borderRadius: "50%",
+                    background: `linear-gradient(135deg, ${category.color}, ${category.color}dd)`,
+                    color: "white",
+                    width: "70px",
+                    height: "70px",
+                    borderRadius: "16px",
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "center",
+                    fontSize: "18px",
+                    fontWeight: "bold",
+                    marginBottom: "20px",
+                    boxShadow: `0 8px 25px ${category.color}30`,
                   }}
-                />
+                >
+                  {category.code}
+                </div>
 
-                <div style={{ position: "relative", zIndex: "1" }}>
-                  <div
-                    style={{
-                      background: `linear-gradient(135deg, ${category.color}, ${category.color}dd)`,
-                      color: "white",
-                      width: "70px",
-                      height: "70px",
-                      borderRadius: "16px",
-                      display: "flex",
-                      alignItems: "center",
-                      justifyContent: "center",
-                      fontSize: "28px",
-                      marginBottom: "20px",
-                      boxShadow: `0 8px 25px ${category.color}30`,
-                    }}
-                  >
-                    {category.icon}
-                  </div>
+                <h3
+                  style={{
+                    fontSize: "22px",
+                    fontWeight: "700",
+                    marginBottom: "8px",
+                    color: "#2c3e50",
+                  }}
+                >
+                  {category.title}
+                </h3>
 
-                  <h3
-                    style={{
-                      fontSize: "22px",
-                      fontWeight: "700",
-                      marginBottom: "8px",
-                      color: "#2c3e50",
-                    }}
-                  >
-                    {category.title}
-                  </h3>
+                <p
+                  style={{
+                    fontSize: "14px",
+                    color: "#7f8c8d",
+                    marginBottom: "15px",
+                    lineHeight: "1.5",
+                  }}
+                >
+                  {category.subtitle}
+                </p>
 
-                  <p
-                    style={{
-                      fontSize: "14px",
-                      color: "#7f8c8d",
-                      marginBottom: "15px",
-                      lineHeight: "1.5",
-                    }}
-                  >
-                    {category.subtitle}
-                  </p>
-
-                  <div
-                    style={{
-                      background: category.color,
-                      color: "white",
-                      padding: "8px 16px",
-                      borderRadius: "20px",
-                      fontSize: "12px",
-                      fontWeight: "600",
-                      display: "inline-block",
-                      marginBottom: "15px",
-                    }}
-                  >
-                    {category.count}
-                  </div>
-
-                  <div
-                    style={{
-                      fontSize: "12px",
-                      color: "#95a5a6",
-                      fontWeight: "500",
-                    }}
-                  >
-                    Featured: {category.products.slice(0, 2).join(", ")}
-                  </div>
+                <div
+                  style={{
+                    background: category.color,
+                    color: "white",
+                    padding: "8px 16px",
+                    borderRadius: "20px",
+                    fontSize: "12px",
+                    fontWeight: "600",
+                    display: "inline-block",
+                  }}
+                >
+                  {category.count}
                 </div>
               </div>
             ))}
@@ -974,7 +1165,7 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* Featured Products with real inventory */}
+      {/* Featured Products with real inventory and KES pricing */}
       <section
         style={{
           background: "white",
@@ -1008,7 +1199,8 @@ export default function HomePage() {
                 Featured Products
               </h2>
               <p style={{ fontSize: "16px", color: "#7f8c8d" }}>
-                Premium quality parts from trusted brands
+                Premium quality parts from trusted brands - All prices in Kenya
+                Shillings
               </p>
             </div>
             <a
@@ -1018,9 +1210,6 @@ export default function HomePage() {
                 textDecoration: "none",
                 fontWeight: "600",
                 fontSize: "16px",
-                display: "flex",
-                alignItems: "center",
-                gap: "8px",
               }}
             >
               View All Products →
@@ -1042,7 +1231,7 @@ export default function HomePage() {
                   borderRadius: "16px",
                   overflow: "hidden",
                   boxShadow: "0 12px 30px rgba(0,0,0,0.1)",
-                  transition: "transform 0.3s ease, box-shadow 0.3s ease",
+                  transition: "transform 0.3s ease",
                   position: "relative",
                   border: "1px solid #f1f2f6",
                 }}
@@ -1060,7 +1249,11 @@ export default function HomePage() {
                           ? "#f39c12"
                           : product.badge === "PREMIUM"
                             ? "#9b59b6"
-                            : "#27ae60",
+                            : product.badge === "LIMITED"
+                              ? "#e67e22"
+                              : product.badge === "LAST ONE"
+                                ? "#c0392b"
+                                : "#27ae60",
                     color: "white",
                     padding: "6px 12px",
                     borderRadius: "20px",
@@ -1103,12 +1296,13 @@ export default function HomePage() {
                   style={{
                     height: "240px",
                     backgroundImage: `url(${product.image})`,
-                    backgroundSize: "cover",
+                    backgroundSize: "contain",
                     backgroundPosition: "center",
+                    backgroundRepeat: "no-repeat",
+                    backgroundColor: "#f8f9fa",
                     position: "relative",
                   }}
                 >
-                  {/* Wishlist Button */}
                   <button
                     style={{
                       position: "absolute",
@@ -1122,12 +1316,9 @@ export default function HomePage() {
                       cursor: "pointer",
                       boxShadow: "0 4px 15px rgba(0,0,0,0.2)",
                       fontSize: "18px",
-                      display: "flex",
-                      alignItems: "center",
-                      justifyContent: "center",
                     }}
                   >
-                    🤍
+                    ♡
                   </button>
                 </div>
 
@@ -1186,7 +1377,7 @@ export default function HomePage() {
                       justifyContent: "space-between",
                     }}
                   >
-                    <span>🚗 {product.model}</span>
+                    <span>Model: {product.model}</span>
                     <span style={{ fontWeight: "600", color: "#2c3e50" }}>
                       {product.brand}
                     </span>
@@ -1203,7 +1394,7 @@ export default function HomePage() {
                     {product.description}
                   </p>
 
-                  {/* Price */}
+                  {/* Price in KES */}
                   <div
                     style={{
                       display: "flex",
@@ -1219,7 +1410,7 @@ export default function HomePage() {
                         color: "rgb(247, 51, 18)",
                       }}
                     >
-                      {product.price.toLocaleString()} AED
+                      KES {product.price.toLocaleString()}
                     </span>
                     {product.originalPrice && (
                       <span
@@ -1229,13 +1420,15 @@ export default function HomePage() {
                           textDecoration: "line-through",
                         }}
                       >
-                        {product.originalPrice.toLocaleString()} AED
+                        KES {product.originalPrice.toLocaleString()}
                       </span>
                     )}
                   </div>
 
                   {/* Add to Cart Button */}
                   <button
+                    onClick={() => addToCart(product)}
+                    disabled={product.stock === 0}
                     style={{
                       width: "100%",
                       background:
@@ -1253,109 +1446,10 @@ export default function HomePage() {
                         product.stock > 0
                           ? "0 4px 15px rgba(247, 51, 18, 0.3)"
                           : "none",
-                      display: "flex",
-                      alignItems: "center",
-                      justifyContent: "center",
-                      gap: "8px",
                     }}
                   >
-                    {product.stock > 0 ? "🛒 Add to Cart" : "❌ Out of Stock"}
+                    {product.stock > 0 ? "Add to Cart" : "Out of Stock"}
                   </button>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Brand showcase */}
-      <section
-        style={{
-          background: "linear-gradient(135deg, #2c3e50 0%, #34495e 100%)",
-          color: "white",
-          padding: "80px 0",
-        }}
-      >
-        <div
-          style={{
-            maxWidth: "1200px",
-            margin: "0 auto",
-            padding: "0 20px",
-          }}
-        >
-          <div style={{ textAlign: "center", marginBottom: "60px" }}>
-            <h2
-              style={{
-                fontSize: "42px",
-                fontWeight: "800",
-                marginBottom: "15px",
-              }}
-            >
-              Trusted Brands
-            </h2>
-            <p style={{ fontSize: "18px", opacity: "0.9" }}>
-              We partner with industry-leading manufacturers
-            </p>
-          </div>
-
-          <div
-            style={{
-              display: "grid",
-              gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))",
-              gap: "25px",
-            }}
-          >
-            {brandShowcase.map((brand, index) => (
-              <div
-                key={index}
-                style={{
-                  background: "rgba(255, 255, 255, 0.05)",
-                  borderRadius: "16px",
-                  padding: "30px",
-                  textAlign: "center",
-                  backdropFilter: "blur(10px)",
-                  border: "1px solid rgba(255, 255, 255, 0.1)",
-                }}
-              >
-                <div
-                  style={{
-                    fontSize: "48px",
-                    marginBottom: "20px",
-                  }}
-                >
-                  {brand.logo}
-                </div>
-                <h3
-                  style={{
-                    fontSize: "24px",
-                    fontWeight: "700",
-                    marginBottom: "10px",
-                    color: "rgb(247, 51, 18)",
-                  }}
-                >
-                  {brand.name}
-                </h3>
-                <p
-                  style={{
-                    fontSize: "14px",
-                    opacity: "0.8",
-                    marginBottom: "15px",
-                  }}
-                >
-                  {brand.specialty}
-                </p>
-                <div
-                  style={{
-                    background: "rgba(247, 51, 18, 0.2)",
-                    color: "rgb(247, 51, 18)",
-                    padding: "8px 16px",
-                    borderRadius: "20px",
-                    fontSize: "12px",
-                    fontWeight: "600",
-                    display: "inline-block",
-                  }}
-                >
-                  {brand.products} Products Available
                 </div>
               </div>
             ))}
@@ -1387,7 +1481,7 @@ export default function HomePage() {
               marginBottom: "15px",
             }}
           >
-            Stay Updated with Brator
+            Stay Updated with Brator Kenya
           </h3>
           <p
             style={{
@@ -1430,7 +1524,6 @@ export default function HomePage() {
                 fontSize: "16px",
                 fontWeight: "700",
                 cursor: "pointer",
-                whiteSpace: "nowrap",
               }}
             >
               Subscribe
@@ -1439,7 +1532,7 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* Premium footer */}
+      {/* Footer */}
       <footer
         style={{
           background: "#1a1a1a",
@@ -1462,7 +1555,6 @@ export default function HomePage() {
               marginBottom: "50px",
             }}
           >
-            {/* Company Info */}
             <div>
               <div
                 style={{
@@ -1483,9 +1575,11 @@ export default function HomePage() {
                     justifyContent: "center",
                     fontSize: "24px",
                     marginRight: "15px",
+                    color: "white",
+                    fontWeight: "bold",
                   }}
                 >
-                  🔧
+                  B
                 </div>
                 <div>
                   <h3
@@ -1496,7 +1590,7 @@ export default function HomePage() {
                       color: "rgb(247, 51, 18)",
                     }}
                   >
-                    Brator
+                    Brator Kenya
                   </h3>
                   <p
                     style={{ fontSize: "12px", margin: "0", color: "#bdc3c7" }}
@@ -1512,7 +1606,7 @@ export default function HomePage() {
                   marginBottom: "25px",
                 }}
               >
-                Your trusted source for premium auto parts in UAE. We provide
+                Your trusted source for premium auto parts in Kenya. We provide
                 authentic OEM and high-quality aftermarket components from top
                 brands worldwide.
               </p>
@@ -1521,7 +1615,6 @@ export default function HomePage() {
                   background: "#2c3e50",
                   padding: "20px",
                   borderRadius: "12px",
-                  marginBottom: "25px",
                 }}
               >
                 <div
@@ -1532,15 +1625,17 @@ export default function HomePage() {
                     marginBottom: "8px",
                   }}
                 >
-                  📞 24/7 Customer Support
+                  24/7 Customer Support
                 </div>
                 <div style={{ fontSize: "20px", fontWeight: "700" }}>
-                  +971-XXX-XXXX
+                  +254-XXX-XXXX
+                </div>
+                <div style={{ fontSize: "14px", marginTop: "8px" }}>
+                  WhatsApp: +254-XXX-XXXX
                 </div>
               </div>
             </div>
 
-            {/* Quick Links */}
             <div>
               <h4
                 style={{
@@ -1570,7 +1665,6 @@ export default function HomePage() {
                     color: "rgba(255,255,255,0.8)",
                     textDecoration: "none",
                     marginBottom: "12px",
-                    transition: "color 0.3s",
                     fontSize: "14px",
                   }}
                 >
@@ -1579,7 +1673,6 @@ export default function HomePage() {
               ))}
             </div>
 
-            {/* Product Categories */}
             <div>
               <h4
                 style={{
@@ -1609,7 +1702,6 @@ export default function HomePage() {
                     color: "rgba(255,255,255,0.8)",
                     textDecoration: "none",
                     marginBottom: "12px",
-                    transition: "color 0.3s",
                     fontSize: "14px",
                   }}
                 >
@@ -1618,7 +1710,6 @@ export default function HomePage() {
               ))}
             </div>
 
-            {/* Contact & Trust */}
             <div>
               <h4
                 style={{
@@ -1628,7 +1719,7 @@ export default function HomePage() {
                   color: "rgb(247, 51, 18)",
                 }}
               >
-                Get In Touch
+                Contact Information
               </h4>
               <div style={{ marginBottom: "20px" }}>
                 <div
@@ -1639,9 +1730,8 @@ export default function HomePage() {
                     marginBottom: "12px",
                   }}
                 >
-                  <span style={{ fontSize: "16px" }}>📍</span>
-                  <span style={{ opacity: "0.8", fontSize: "14px" }}>
-                    Dubai Auto Parts Market, UAE
+                  <span style={{ fontSize: "14px", opacity: "0.8" }}>
+                    Nairobi Auto Parts Market, Kenya
                   </span>
                 </div>
                 <div
@@ -1652,9 +1742,8 @@ export default function HomePage() {
                     marginBottom: "12px",
                   }}
                 >
-                  <span style={{ fontSize: "16px" }}>📧</span>
-                  <span style={{ opacity: "0.8", fontSize: "14px" }}>
-                    info@brator.com
+                  <span style={{ fontSize: "14px", opacity: "0.8" }}>
+                    info@brator.co.ke
                   </span>
                 </div>
                 <div
@@ -1665,9 +1754,8 @@ export default function HomePage() {
                     marginBottom: "20px",
                   }}
                 >
-                  <span style={{ fontSize: "16px" }}>⏰</span>
-                  <span style={{ opacity: "0.8", fontSize: "14px" }}>
-                    Mon-Sat: 8AM-8PM
+                  <span style={{ fontSize: "14px", opacity: "0.8" }}>
+                    Mon-Sat: 8AM-6PM EAT
                   </span>
                 </div>
               </div>
@@ -1680,10 +1768,10 @@ export default function HomePage() {
                 }}
               >
                 {[
-                  { icon: "🔒", text: "Secure Payments" },
-                  { icon: "🚚", text: "Fast Delivery" },
-                  { icon: "🛡️", text: "Authentic Parts" },
-                  { icon: "💯", text: "Quality Assured" },
+                  { text: "Secure Payments" },
+                  { text: "Fast Delivery" },
+                  { text: "Authentic Parts" },
+                  { text: "Quality Assured" },
                 ].map((trust, i) => (
                   <div
                     key={i}
@@ -1694,9 +1782,6 @@ export default function HomePage() {
                       textAlign: "center",
                     }}
                   >
-                    <div style={{ fontSize: "20px", marginBottom: "5px" }}>
-                      {trust.icon}
-                    </div>
                     <div style={{ fontSize: "11px", fontWeight: "600" }}>
                       {trust.text}
                     </div>
@@ -1706,7 +1791,6 @@ export default function HomePage() {
             </div>
           </div>
 
-          {/* Bottom Footer */}
           <div
             style={{
               borderTop: "1px solid #333",
@@ -1719,27 +1803,13 @@ export default function HomePage() {
             }}
           >
             <div style={{ opacity: "0.8", fontSize: "14px" }}>
-              © 2024 Brator Premium Auto Parts. All rights reserved.
+              © 2024 Brator Kenya. All rights reserved. | All prices in Kenya
+              Shillings (KES)
             </div>
             <div style={{ display: "flex", gap: "25px", alignItems: "center" }}>
               <span style={{ fontSize: "14px", opacity: "0.8" }}>
-                Trusted by 10,000+ customers
+                Trusted by 5,000+ customers in Kenya
               </span>
-              <div style={{ display: "flex", gap: "10px" }}>
-                {["💳", "🏦", "📱"].map((payment, i) => (
-                  <div
-                    key={i}
-                    style={{
-                      background: "#333",
-                      padding: "8px",
-                      borderRadius: "6px",
-                      fontSize: "16px",
-                    }}
-                  >
-                    {payment}
-                  </div>
-                ))}
-              </div>
             </div>
           </div>
         </div>
