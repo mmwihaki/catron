@@ -650,13 +650,9 @@ export default function HomePage() {
             {/* Premium features */}
             <div style={{ display: "flex", gap: "35px" }}>
               {[
-                {
-                  icon: "🚚",
-                  text: "Free Delivery",
-                  detail: "Orders >500 AED",
-                },
-                { icon: "🛡️", text: "2 Year Warranty", detail: "All Products" },
-                { icon: "🔄", text: "Easy Returns", detail: "30 Day Policy" },
+                { text: "Free Delivery", detail: "Orders >5,000 KES" },
+                { text: "2 Year Warranty", detail: "All Products" },
+                { text: "Easy Returns", detail: "30 Day Policy" },
               ].map((feature, i) => (
                 <div
                   key={i}
@@ -670,7 +666,6 @@ export default function HomePage() {
                     backdropFilter: "blur(10px)",
                   }}
                 >
-                  <span style={{ fontSize: "24px" }}>{feature.icon}</span>
                   <div>
                     <div style={{ fontSize: "14px", fontWeight: "600" }}>
                       {feature.text}
