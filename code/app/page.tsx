@@ -202,7 +202,7 @@ export default function HomePage() {
   ];
 
   return (
-    <div style={{ fontFamily: "Arial, sans-serif", lineHeight: "1.6" }}>
+    <div style={{ fontFamily: '"DM Sans", sans-serif', lineHeight: "1.6" }}>
       {/* Cart Sidebar */}
       {cartVisible && (
         <div
