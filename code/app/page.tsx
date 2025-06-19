@@ -821,7 +821,7 @@ export default function HomePage() {
       <section
         style={{
           background:
-            "linear-gradient(135deg, #2c3e50 0%, #34495e 50%, #2c3e50 100%)",
+            "linear-gradient(135deg, #000000 0%, #1a1a1a 50%, #000000 100%)",
           color: "white",
           padding: "100px 0",
           position: "relative",
