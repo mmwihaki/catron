@@ -625,7 +625,7 @@ export default function HomePage() {
                   gap: "10px",
                 }}
               >
-                🛒 Shop Now
+                Shop Now
               </button>
               <button
                 style={{
@@ -643,7 +643,7 @@ export default function HomePage() {
                   gap: "10px",
                 }}
               >
-                📋 View Catalog
+                View Catalog
               </button>
             </div>
 
@@ -1668,7 +1668,7 @@ export default function HomePage() {
                     marginBottom: "20px",
                   }}
                 >
-                  <span style={{ fontSize: "16px" }}>��</span>
+                  <span style={{ fontSize: "16px" }}>⏰</span>
                   <span style={{ opacity: "0.8", fontSize: "14px" }}>
                     Mon-Sat: 8AM-8PM
                   </span>
