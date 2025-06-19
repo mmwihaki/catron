@@ -514,8 +514,7 @@ export default function HomePage() {
           <div style={{ display: "flex", alignItems: "center", gap: "15px" }}>
             <div
               style={{
-                background:
-                  "linear-gradient(135deg, rgb(247, 51, 18), rgb(220, 40, 15))",
+                background: "linear-gradient(135deg, #DC143C, #B22222)",
                 width: "50px",
                 height: "50px",
                 borderRadius: "12px",
@@ -523,8 +522,8 @@ export default function HomePage() {
                 alignItems: "center",
                 justifyContent: "center",
                 fontSize: "24px",
-                boxShadow: "0 4px 15px rgba(247, 51, 18, 0.3)",
-                color: "white",
+                boxShadow: "0 4px 15px rgba(220, 20, 60, 0.3)",
+                color: "#FFD700",
                 fontWeight: "bold",
               }}
             >
