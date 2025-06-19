@@ -776,7 +776,7 @@ export default function HomePage() {
                   padding: "8px 0",
                   borderBottom:
                     item === "Home"
-                      ? "2px solid rgb(247, 51, 18)"
+                      ? "2px solid #DC143C"
                       : "2px solid transparent",
                   transition: "all 0.3s ease",
                 }}
