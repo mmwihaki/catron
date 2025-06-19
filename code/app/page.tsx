@@ -501,7 +501,7 @@ export default function HomePage() {
                 gap: "8px",
               }}
             >
-              📍 Track Your Order
+              Track Your Order
             </a>
             <span
               style={{
@@ -513,7 +513,7 @@ export default function HomePage() {
                 fontWeight: "600",
               }}
             >
-              🟢 Live Support
+              Live Support
             </span>
           </div>
         </div>
