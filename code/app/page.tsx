@@ -803,8 +803,8 @@ export default function HomePage() {
             </a>
             <span
               style={{
-                background: "#27ae60",
-                color: "white",
+                background: "#FFD700",
+                color: "#000000",
                 padding: "4px 12px",
                 borderRadius: "12px",
                 fontSize: "12px",
