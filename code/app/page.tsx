@@ -709,9 +709,11 @@ export default function HomePage() {
                   fontSize: "28px",
                   margin: "0 auto 15px auto",
                   boxShadow: "0 8px 25px rgba(247, 51, 18, 0.3)",
+                  color: "white",
+                  fontWeight: "bold",
                 }}
               >
-                🔍
+                S
               </div>
               <h3
                 style={{
