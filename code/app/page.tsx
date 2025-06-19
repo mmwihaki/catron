@@ -574,7 +574,7 @@ export default function HomePage() {
                 border: "1px solid rgba(247, 51, 18, 0.3)",
               }}
             >
-              🏆 #1 TRUSTED AUTO PARTS DEALER
+              #1 TRUSTED AUTO PARTS DEALER
             </div>
 
             <h1
@@ -1668,7 +1668,7 @@ export default function HomePage() {
                     marginBottom: "20px",
                   }}
                 >
-                  <span style={{ fontSize: "16px" }}>⏰</span>
+                  <span style={{ fontSize: "16px" }}>��</span>
                   <span style={{ opacity: "0.8", fontSize: "14px" }}>
                     Mon-Sat: 8AM-8PM
                   </span>
