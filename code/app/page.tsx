@@ -790,7 +790,7 @@ export default function HomePage() {
             <a
               href="#"
               style={{
-                color: "rgb(247, 51, 18)",
+                color: "#DC143C",
                 textDecoration: "none",
                 fontWeight: "600",
                 fontSize: "14px",
