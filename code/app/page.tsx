@@ -453,9 +453,8 @@ export default function HomePage() {
       {/* Top promotional banner */}
       <div
         style={{
-          background:
-            "linear-gradient(90deg, rgb(30, 30, 31) 0%, rgb(247, 51, 18) 100%)",
-          color: "white",
+          background: "#000000",
+          color: "#FFD700",
           padding: "12px 0",
           fontSize: "14px",
           fontWeight: "600",
