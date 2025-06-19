@@ -532,7 +532,7 @@ export default function HomePage() {
             <div>
               <h1
                 style={{
-                  color: "rgb(247, 51, 18)",
+                  color: "#DC143C",
                   fontSize: "32px",
                   fontWeight: "800",
                   margin: "0",
