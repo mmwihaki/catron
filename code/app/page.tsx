@@ -297,7 +297,7 @@ export default function HomePage() {
                   fontWeight: "bold",
                 }}
               >
-                🔍
+                Search
               </button>
             </div>
           </div>
@@ -320,7 +320,7 @@ export default function HomePage() {
                 padding: "8px",
               }}
             >
-              <div style={{ fontSize: "24px", marginBottom: "4px" }}>���️</div>
+              <div style={{ fontSize: "24px", marginBottom: "4px" }}>❤️</div>
               <span style={{ fontSize: "11px", color: "#bdc3c7" }}>
                 Wishlist
               </span>
