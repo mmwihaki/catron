@@ -823,7 +823,7 @@ export default function HomePage() {
                   gap: "10px",
                 }}
               >
-                🔍 Find Compatible Parts
+                Find Compatible Parts
               </button>
             </div>
           </div>
