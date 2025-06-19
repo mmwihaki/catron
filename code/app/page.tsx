@@ -173,8 +173,8 @@ export default function HomePage() {
           }}
         >
           <div style={{ display: "flex", alignItems: "center", gap: "20px" }}>
-            <span>🔥 BLACK FRIDAY 50% OFF - Use Code: BRATOR50</span>
-            <span>📞 24/7 Support: +971-XXX-XXXX</span>
+            <span>BLACK FRIDAY 50% OFF - Use Code: BRATOR50</span>
+            <span>24/7 Support: +254-XXX-XXXX</span>
           </div>
           <select
             style={{
@@ -186,9 +186,9 @@ export default function HomePage() {
               fontSize: "12px",
             }}
           >
-            <option>🇦🇪 UAE</option>
-            <option>🇸🇦 KSA</option>
-            <option>🇰🇼 Kuwait</option>
+            <option>Kenya</option>
+            <option>Uganda</option>
+            <option>Tanzania</option>
           </select>
         </div>
       </div>
@@ -558,7 +558,7 @@ export default function HomePage() {
                 border: "1px solid rgba(247, 51, 18, 0.3)",
               }}
             >
-              🏆 #1 TRUSTED AUTO PARTS DEALER
+              �� #1 TRUSTED AUTO PARTS DEALER
             </div>
 
             <h1
