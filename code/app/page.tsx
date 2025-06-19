@@ -449,7 +449,7 @@ export default function HomePage() {
               boxShadow: "0 4px 15px rgba(247, 51, 18, 0.2)",
             }}
           >
-            ☰ All Categories
+            All Categories
           </button>
 
           <div
