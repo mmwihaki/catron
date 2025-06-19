@@ -8,7 +8,7 @@ export default function HomePage() {
       sku: "7O0026",
       brand: "RIDEX",
       stock: 30,
-      price: 1300,
+      price: 130000,
       description: "up to 10k kms",
       image:
         "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=300&h=200&fit=crop&crop=center",
