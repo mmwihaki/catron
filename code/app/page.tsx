@@ -736,15 +736,15 @@ export default function HomePage() {
               display: "flex",
               alignItems: "center",
               gap: "12px",
-              background: "rgb(247, 51, 18)",
-              color: "white",
+              background: "#DC143C",
+              color: "#FFD700",
               border: "none",
               padding: "12px 24px",
               borderRadius: "8px",
               fontWeight: "600",
               cursor: "pointer",
               fontSize: "15px",
-              boxShadow: "0 4px 15px rgba(247, 51, 18, 0.2)",
+              boxShadow: "0 4px 15px rgba(220, 20, 60, 0.2)",
             }}
           >
             All Categories
