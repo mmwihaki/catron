@@ -844,8 +844,8 @@ export default function HomePage() {
           <div>
             <div
               style={{
-                background: "rgba(247, 51, 18, 0.2)",
-                color: "rgb(247, 51, 18)",
+                background: "rgba(255, 215, 0, 0.2)",
+                color: "#FFD700",
                 display: "inline-flex",
                 alignItems: "center",
                 gap: "8px",
@@ -854,7 +854,7 @@ export default function HomePage() {
                 fontSize: "14px",
                 fontWeight: "700",
                 marginBottom: "25px",
-                border: "1px solid rgba(247, 51, 18, 0.3)",
+                border: "1px solid rgba(255, 215, 0, 0.3)",
               }}
             >
               #1 TRUSTED AUTO PARTS DEALER IN KENYA
