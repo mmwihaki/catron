@@ -2113,7 +2113,7 @@ export default function HomePage() {
                     fontWeight: "bold",
                   }}
                 >
-                  B
+                  C
                 </div>
                 <div>
                   <h3
@@ -2124,12 +2124,12 @@ export default function HomePage() {
                       color: "rgb(247, 51, 18)",
                     }}
                   >
-                    Brator Kenya
+                    Catron Kenya
                   </h3>
                   <p
                     style={{ fontSize: "12px", margin: "0", color: "#bdc3c7" }}
                   >
-                    Premium Auto Parts
+                    Premium Nissan Parts
                   </p>
                 </div>
               </div>
@@ -2140,34 +2140,10 @@ export default function HomePage() {
                   marginBottom: "25px",
                 }}
               >
-                Your trusted source for premium auto parts in Kenya. We provide
-                authentic OEM and high-quality aftermarket components from top
-                brands worldwide.
+                Your trusted source for premium Nissan parts in Kenya. We
+                specialize in authentic OEM and high-quality aftermarket
+                components specifically for Nissan vehicles.
               </p>
-              <div
-                style={{
-                  background: "#2c3e50",
-                  padding: "20px",
-                  borderRadius: "12px",
-                }}
-              >
-                <div
-                  style={{
-                    fontSize: "14px",
-                    color: "rgb(247, 51, 18)",
-                    fontWeight: "600",
-                    marginBottom: "8px",
-                  }}
-                >
-                  24/7 Customer Support
-                </div>
-                <div style={{ fontSize: "20px", fontWeight: "700" }}>
-                  +254-XXX-XXXX
-                </div>
-                <div style={{ fontSize: "14px", marginTop: "8px" }}>
-                  WhatsApp: +254-XXX-XXXX
-                </div>
-              </div>
             </div>
 
             <div>
