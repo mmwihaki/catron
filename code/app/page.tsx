@@ -2621,6 +2621,81 @@ export default function HomePage() {
         </div>
       </section>
 
+      {/* Newsletter */}
+      <section
+        style={{
+          background:
+            "linear-gradient(135deg, rgb(247, 51, 18), rgb(220, 40, 15))",
+          color: "white",
+          padding: "80px 0",
+        }}
+      >
+        <div
+          style={{
+            maxWidth: "800px",
+            margin: "0 auto",
+            padding: "0 20px",
+            textAlign: "center",
+          }}
+        >
+          <h3
+            style={{
+              fontSize: "36px",
+              fontWeight: "800",
+              marginBottom: "15px",
+            }}
+          >
+            Stay Updated with Catron Kenya
+          </h3>
+          <p
+            style={{
+              fontSize: "18px",
+              marginBottom: "40px",
+              opacity: "0.95",
+            }}
+          >
+            Get exclusive deals on Nissan parts, new arrivals, and Nissan tips
+            delivered to your inbox
+          </p>
+          <div
+            style={{
+              display: "flex",
+              justifyContent: "center",
+              gap: "15px",
+              maxWidth: "500px",
+              margin: "0 auto",
+            }}
+          >
+            <input
+              type="email"
+              placeholder="Enter your email address"
+              style={{
+                flex: "1",
+                padding: "18px 24px",
+                border: "none",
+                borderRadius: "12px",
+                fontSize: "16px",
+                outline: "none",
+              }}
+            />
+            <button
+              style={{
+                background: "#2c3e50",
+                color: "white",
+                border: "none",
+                padding: "18px 30px",
+                borderRadius: "12px",
+                fontSize: "16px",
+                fontWeight: "700",
+                cursor: "pointer",
+              }}
+            >
+              Subscribe
+            </button>
+          </div>
+        </div>
+      </section>
+
       {/* Footer */}
       <footer
         style={{
