@@ -2515,10 +2515,12 @@ export default function HomePage() {
                       height: "44px",
                       cursor: "pointer",
                       boxShadow: "0 4px 15px rgba(0,0,0,0.2)",
-                      fontSize: "18px",
+                      fontSize: "12px",
+                      fontWeight: "600",
+                      color: "#DC143C",
                     }}
                   >
-                    ♡
+                    SAVE
                   </button>
                 </div>
 
