@@ -684,7 +684,7 @@ export default function HomePage() {
             <button
               style={{
                 background: "linear-gradient(135deg, #DC143C, #B22222)",
-                color: "#FFD700",
+                color: "white",
                 border: "none",
                 padding: "12px 24px",
                 borderRadius: "8px",
@@ -725,7 +725,7 @@ export default function HomePage() {
               alignItems: "center",
               gap: "12px",
               background: "#DC143C",
-              color: "#FFD700",
+              color: "white",
               border: "none",
               padding: "12px 24px",
               borderRadius: "8px",
