@@ -4,7 +4,7 @@ import { useState } from "react";
 
 export default function HomePage() {
   // Cart state management
-  const [cart, setCart] = useState([]);
+  const [cart, setCart] = useState<any[]>([]);
   const [cartVisible, setCartVisible] = useState(false);
 
   // Real product data from your inventory with actual image URLs
