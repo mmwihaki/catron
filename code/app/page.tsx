@@ -657,7 +657,7 @@ export default function HomePage() {
                   fontWeight: "600",
                 }}
               >
-                □
+                ���
               </div>
               <span style={{ fontSize: "11px", color: "#bdc3c7" }}>Cart</span>
               <span
@@ -2262,6 +2262,297 @@ export default function HomePage() {
                     }}
                   >
                     Read More
+                  </button>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Featured Products with real inventory and KES pricing */}
+      <section
+        style={{
+          background: "white",
+          padding: "80px 0",
+        }}
+      >
+        <div
+          style={{
+            maxWidth: "1200px",
+            margin: "0 auto",
+            padding: "0 20px",
+          }}
+        >
+          <div
+            style={{
+              display: "flex",
+              justifyContent: "space-between",
+              alignItems: "center",
+              marginBottom: "50px",
+            }}
+          >
+            <div>
+              <h2
+                style={{
+                  fontSize: "42px",
+                  fontWeight: "800",
+                  marginBottom: "10px",
+                  color: "#2c3e50",
+                }}
+              >
+                Featured Products
+              </h2>
+              <p style={{ fontSize: "16px", color: "#7f8c8d" }}>
+                Premium quality Nissan parts from trusted brands
+              </p>
+            </div>
+            <a
+              href="#"
+              style={{
+                color: "rgb(247, 51, 18)",
+                textDecoration: "none",
+                fontWeight: "600",
+                fontSize: "16px",
+              }}
+            >
+              View All Products →
+            </a>
+          </div>
+
+          <div
+            style={{
+              display: "grid",
+              gridTemplateColumns: "repeat(auto-fit, minmax(300px, 1fr))",
+              gap: "30px",
+            }}
+          >
+            {featuredProducts.map((product, index) => (
+              <div
+                key={index}
+                style={{
+                  background: "white",
+                  borderRadius: "16px",
+                  overflow: "hidden",
+                  boxShadow: "0 12px 30px rgba(0,0,0,0.1)",
+                  transition: "transform 0.3s ease",
+                  position: "relative",
+                  border: "1px solid #f1f2f6",
+                }}
+              >
+                {/* Badge */}
+                <div
+                  style={{
+                    position: "absolute",
+                    top: "15px",
+                    left: "15px",
+                    background:
+                      product.badge === "BEST SELLER"
+                        ? "#e74c3c"
+                        : product.badge === "TOP RATED"
+                          ? "#f39c12"
+                          : product.badge === "PREMIUM"
+                            ? "#9b59b6"
+                            : product.badge === "LIMITED"
+                              ? "#e67e22"
+                              : product.badge === "LAST ONE"
+                                ? "#c0392b"
+                                : "#27ae60",
+                    color: "white",
+                    padding: "6px 12px",
+                    borderRadius: "20px",
+                    fontSize: "11px",
+                    fontWeight: "700",
+                    zIndex: "2",
+                    textTransform: "uppercase",
+                  }}
+                >
+                  {product.badge}
+                </div>
+
+                {/* Stock indicator */}
+                <div
+                  style={{
+                    position: "absolute",
+                    top: "15px",
+                    right: "15px",
+                    background:
+                      product.stock > 10
+                        ? "#27ae60"
+                        : product.stock > 0
+                          ? "#f39c12"
+                          : "#e74c3c",
+                    color: "white",
+                    padding: "4px 8px",
+                    borderRadius: "12px",
+                    fontSize: "10px",
+                    fontWeight: "600",
+                    zIndex: "2",
+                  }}
+                >
+                  {product.stock > 0
+                    ? `${product.stock} in stock`
+                    : "Out of stock"}
+                </div>
+
+                {/* Product Image */}
+                <div
+                  style={{
+                    height: "240px",
+                    backgroundImage: `url(${product.image})`,
+                    backgroundSize: "contain",
+                    backgroundPosition: "center",
+                    backgroundRepeat: "no-repeat",
+                    backgroundColor: "#f8f9fa",
+                    position: "relative",
+                  }}
+                >
+                  <button
+                    style={{
+                      position: "absolute",
+                      bottom: "15px",
+                      right: "15px",
+                      background: "white",
+                      border: "none",
+                      borderRadius: "50%",
+                      width: "44px",
+                      height: "44px",
+                      cursor: "pointer",
+                      boxShadow: "0 4px 15px rgba(0,0,0,0.2)",
+                      fontSize: "18px",
+                    }}
+                  >
+                    ♡
+                  </button>
+                </div>
+
+                {/* Product Info */}
+                <div style={{ padding: "25px" }}>
+                  <div
+                    style={{
+                      display: "flex",
+                      justifyContent: "space-between",
+                      alignItems: "center",
+                      marginBottom: "12px",
+                    }}
+                  >
+                    <div
+                      style={{
+                        color: "#7f8c8d",
+                        fontSize: "12px",
+                        textTransform: "uppercase",
+                        fontWeight: "600",
+                        background: "#f8f9fa",
+                        padding: "4px 8px",
+                        borderRadius: "6px",
+                      }}
+                    >
+                      {product.category}
+                    </div>
+                    <div
+                      style={{
+                        fontSize: "12px",
+                        color: "#95a5a6",
+                        fontWeight: "600",
+                      }}
+                    >
+                      {product.sku}
+                    </div>
+                  </div>
+
+                  <h3
+                    style={{
+                      fontSize: "18px",
+                      fontWeight: "700",
+                      color: "#2c3e50",
+                      marginBottom: "8px",
+                      lineHeight: "1.4",
+                    }}
+                  >
+                    {product.name}
+                  </h3>
+
+                  <div
+                    style={{
+                      fontSize: "13px",
+                      color: "#7f8c8d",
+                      marginBottom: "12px",
+                      display: "flex",
+                      justifyContent: "space-between",
+                    }}
+                  >
+                    <span>Model: {product.model}</span>
+                    <span style={{ fontWeight: "600", color: "#2c3e50" }}>
+                      {product.brand}
+                    </span>
+                  </div>
+
+                  <p
+                    style={{
+                      fontSize: "13px",
+                      color: "#95a5a6",
+                      marginBottom: "15px",
+                      lineHeight: "1.4",
+                    }}
+                  >
+                    {product.description}
+                  </p>
+
+                  {/* Price in KES */}
+                  <div
+                    style={{
+                      display: "flex",
+                      alignItems: "center",
+                      gap: "12px",
+                      marginBottom: "20px",
+                    }}
+                  >
+                    <span
+                      style={{
+                        fontSize: "24px",
+                        fontWeight: "700",
+                        color: "rgb(247, 51, 18)",
+                      }}
+                    >
+                      KES {product.price.toLocaleString()}
+                    </span>
+                    {product.originalPrice && (
+                      <span
+                        style={{
+                          fontSize: "16px",
+                          color: "#95a5a6",
+                          textDecoration: "line-through",
+                        }}
+                      >
+                        KES {product.originalPrice.toLocaleString()}
+                      </span>
+                    )}
+                  </div>
+
+                  {/* Add to Cart Button */}
+                  <button
+                    onClick={() => addToCart(product)}
+                    disabled={product.stock === 0}
+                    style={{
+                      width: "100%",
+                      background:
+                        product.stock > 0
+                          ? "linear-gradient(135deg, rgb(247, 51, 18), rgb(220, 40, 15))"
+                          : "#95a5a6",
+                      color: "white",
+                      border: "none",
+                      padding: "15px",
+                      borderRadius: "10px",
+                      fontSize: "16px",
+                      fontWeight: "600",
+                      cursor: product.stock > 0 ? "pointer" : "not-allowed",
+                      boxShadow:
+                        product.stock > 0
+                          ? "0 4px 15px rgba(247, 51, 18, 0.3)"
+                          : "none",
+                    }}
+                  >
+                    {product.stock > 0 ? "Add to Cart" : "Out of Stock"}
                   </button>
                 </div>
               </div>
