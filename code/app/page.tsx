@@ -3121,48 +3121,6 @@ export default function HomePage() {
                 </a>
               ))}
             </div>
-
-            <div>
-              <h4
-                style={{
-                  fontSize: "20px",
-                  fontWeight: "700",
-                  marginBottom: "25px",
-                  color: "rgb(247, 51, 18)",
-                }}
-              >
-                Quality Promise
-              </h4>
-
-              <div
-                style={{
-                  display: "grid",
-                  gridTemplateColumns: "repeat(2, 1fr)",
-                  gap: "15px",
-                }}
-              >
-                {[
-                  { text: "Authentic Nissan Parts" },
-                  { text: "Fast Delivery" },
-                  { text: "Genuine OEM" },
-                  { text: "Quality Assured" },
-                ].map((trust, i) => (
-                  <div
-                    key={i}
-                    style={{
-                      background: "#2c3e50",
-                      padding: "12px",
-                      borderRadius: "8px",
-                      textAlign: "center",
-                    }}
-                  >
-                    <div style={{ fontSize: "11px", fontWeight: "600" }}>
-                      {trust.text}
-                    </div>
-                  </div>
-                ))}
-              </div>
-            </div>
           </div>
 
           <div
