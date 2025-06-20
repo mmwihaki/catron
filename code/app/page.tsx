@@ -1190,6 +1190,7 @@ export default function HomePage() {
                     >
                       <a
                         href="#"
+                        className="category-title"
                         style={{
                           cursor: "pointer",
                           display: "inline-block",
