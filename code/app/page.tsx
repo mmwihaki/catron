@@ -869,7 +869,8 @@ export default function HomePage() {
                 fontWeight: "400",
               }}
             >
-              Genuine OEM and premium aftermarket parts from top brands like
+              Genuine OEM and premium aftermarket parts specifically for Nissan
+              vehicles from top brands like
               <strong> RIDEX, KAVO, OSRAM, NGK</strong> and more. Quality
               guaranteed with fast shipping across Kenya.
             </p>
