@@ -1927,16 +1927,15 @@ export default function HomePage() {
                 <div
                   style={{
                     height: "200px",
-                    background: "#f8f9fa",
+                    backgroundImage:
+                      "url(https://images.unsplash.com/photo-1486262715619-67b85e0b08d3?w=400&h=200&fit=crop&crop=center)",
+                    backgroundSize: "cover",
+                    backgroundPosition: "center",
                     display: "flex",
                     alignItems: "center",
                     justifyContent: "center",
-                    fontSize: "48px",
-                    color: "#DC143C",
                   }}
-                >
-                  🔧
-                </div>
+                ></div>
                 <div style={{ padding: "25px" }}>
                   <h3
                     style={{
@@ -2075,18 +2074,15 @@ export default function HomePage() {
                   style={{
                     width: "80px",
                     height: "80px",
-                    background: "#DC143C",
+                    backgroundImage:
+                      "url(https://images.unsplash.com/photo-1486262715619-67b85e0b08d3?w=80&h=80&fit=crop&crop=center)",
+                    backgroundSize: "cover",
+                    backgroundPosition: "center",
                     borderRadius: "50%",
                     margin: "0 auto 20px",
-                    display: "flex",
-                    alignItems: "center",
-                    justifyContent: "center",
-                    fontSize: "30px",
-                    color: "white",
+                    border: "3px solid #DC143C",
                   }}
-                >
-                  ⚡
-                </div>
+                ></div>
                 <h3
                   style={{
                     fontSize: "18px",
@@ -2202,18 +2198,15 @@ export default function HomePage() {
                   style={{
                     width: "60px",
                     height: "60px",
-                    background: "#DC143C",
+                    backgroundImage:
+                      "url(https://images.unsplash.com/photo-1481627834876-b7833e8f5570?w=60&h=60&fit=crop&crop=center)",
+                    backgroundSize: "cover",
+                    backgroundPosition: "center",
                     borderRadius: "50%",
-                    display: "flex",
-                    alignItems: "center",
-                    justifyContent: "center",
-                    fontSize: "24px",
-                    color: "white",
+                    border: "3px solid #DC143C",
                     marginBottom: "20px",
                   }}
-                >
-                  📖
-                </div>
+                ></div>
                 <h3
                   style={{
                     fontSize: "20px",
