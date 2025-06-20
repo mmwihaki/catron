@@ -511,7 +511,7 @@ export default function HomePage() {
                 justifyContent: "center",
                 fontSize: "24px",
                 boxShadow: "0 4px 15px rgba(220, 20, 60, 0.3)",
-                color: "#FFD700",
+                color: "white",
                 fontWeight: "bold",
               }}
             >
@@ -577,7 +577,7 @@ export default function HomePage() {
                   background: "linear-gradient(135deg, #DC143C, #B22222)",
                   border: "none",
                   padding: "15px 25px",
-                  color: "#FFD700",
+                  color: "white",
                   cursor: "pointer",
                   fontSize: "18px",
                   fontWeight: "bold",
@@ -624,7 +624,7 @@ export default function HomePage() {
                   top: "0",
                   right: "0",
                   background: "#DC143C",
-                  color: "#FFD700",
+                  color: "white",
                   borderRadius: "50%",
                   fontSize: "10px",
                   minWidth: "18px",
@@ -666,7 +666,7 @@ export default function HomePage() {
                   top: "0",
                   right: "0",
                   background: "#DC143C",
-                  color: "#FFD700",
+                  color: "white",
                   borderRadius: "50%",
                   fontSize: "10px",
                   minWidth: "18px",
@@ -791,8 +791,8 @@ export default function HomePage() {
             </a>
             <span
               style={{
-                background: "#FFD700",
-                color: "#000000",
+                background: "#DC143C",
+                color: "white",
                 padding: "4px 12px",
                 borderRadius: "12px",
                 fontSize: "12px",
