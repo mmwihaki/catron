@@ -94,7 +94,7 @@ export default function HomePage() {
   ];
 
   // Add to cart function
-  const addToCart = (product, quantity = 1) => {
+  const addToCart = (product: any, quantity = 1) => {
     setCart((prevCart) => {
       const existingItem = prevCart.find((item) => item.id === product.id);
       if (existingItem) {
