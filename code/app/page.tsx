@@ -808,8 +808,11 @@ export default function HomePage() {
       {/* Hero section */}
       <section
         style={{
-          background:
-            "linear-gradient(135deg, #000000 0%, #1a1a1a 50%, #000000 100%)",
+          backgroundImage:
+            "linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url(https://images.unsplash.com/photo-1486262715619-67b85e0b08d3?w=1600&h=900&fit=crop&crop=center)",
+          backgroundSize: "cover",
+          backgroundPosition: "center",
+          backgroundRepeat: "no-repeat",
           color: "white",
           padding: "100px 0",
           position: "relative",
