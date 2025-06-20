@@ -1771,6 +1771,7 @@ export default function HomePage() {
                 }}
               >
                 <button
+                  className="load-more-btn"
                   style={{
                     backgroundColor: "white",
                     border: "1px solid #DC143C",
