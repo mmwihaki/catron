@@ -2621,6 +2621,135 @@ export default function HomePage() {
         </div>
       </section>
 
+      {/* Featured Brands */}
+      <section
+        style={{
+          background: "#f8f9fa",
+          padding: "80px 0",
+        }}
+      >
+        <div
+          style={{
+            maxWidth: "1200px",
+            margin: "0 auto",
+            padding: "0 20px",
+          }}
+        >
+          <h2
+            style={{
+              fontSize: "42px",
+              fontWeight: "800",
+              marginBottom: "20px",
+              color: "#2c3e50",
+              textAlign: "center",
+            }}
+          >
+            Featured Brands
+          </h2>
+          <p
+            style={{
+              fontSize: "18px",
+              color: "#7f8c8d",
+              textAlign: "center",
+              marginBottom: "50px",
+            }}
+          >
+            Trusted brands for your Nissan vehicle
+          </p>
+          <div
+            style={{
+              display: "flex",
+              justifyContent: "center",
+              alignItems: "center",
+              flexWrap: "wrap",
+              gap: "60px",
+            }}
+          >
+            {[
+              {
+                name: "RIDEX",
+                logo: "https://logos-world.net/wp-content/uploads/2021/02/Ridex-Logo.png",
+              },
+              {
+                name: "KAVO",
+                logo: "https://www.kavo.de/wp-content/uploads/2019/06/kavo-logo.png",
+              },
+              {
+                name: "OSRAM",
+                logo: "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3e/Osram_logo.svg/2560px-Osram_logo.svg.png",
+              },
+              {
+                name: "NGK",
+                logo: "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a6/NGK_Spark_Plugs_logo.svg/2560px-NGK_Spark_Plugs_logo.svg.png",
+              },
+              {
+                name: "BOSCH",
+                logo: "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d9/Robert_Bosch_GmbH_logo.svg/2560px-Robert_Bosch_GmbH_logo.svg.png",
+              },
+              {
+                name: "MANN",
+                logo: "https://www.mann-filter.com/fileadmin/user_upload/images/logos/mann-filter-logo.png",
+              },
+            ].map((brand, index) => (
+              <div
+                key={index}
+                style={{
+                  background: "white",
+                  borderRadius: "15px",
+                  padding: "30px 20px",
+                  boxShadow: "0 10px 30px rgba(0,0,0,0.1)",
+                  textAlign: "center",
+                  transition: "transform 0.3s ease, box-shadow 0.3s ease",
+                  cursor: "pointer",
+                  minWidth: "200px",
+                  border: "1px solid #f1f2f6",
+                }}
+                onMouseEnter={(e) => {
+                  e.currentTarget.style.transform = "translateY(-10px)";
+                  e.currentTarget.style.boxShadow =
+                    "0 20px 40px rgba(0,0,0,0.15)";
+                }}
+                onMouseLeave={(e) => {
+                  e.currentTarget.style.transform = "translateY(0px)";
+                  e.currentTarget.style.boxShadow =
+                    "0 10px 30px rgba(0,0,0,0.1)";
+                }}
+              >
+                <div
+                  style={{
+                    width: "120px",
+                    height: "80px",
+                    backgroundImage: `url(${brand.logo})`,
+                    backgroundSize: "contain",
+                    backgroundPosition: "center",
+                    backgroundRepeat: "no-repeat",
+                    margin: "0 auto 20px",
+                    filter: "grayscale(100%)",
+                    transition: "filter 0.3s ease",
+                  }}
+                  onMouseEnter={(e) => {
+                    e.currentTarget.style.filter = "grayscale(0%)";
+                  }}
+                  onMouseLeave={(e) => {
+                    e.currentTarget.style.filter = "grayscale(100%)";
+                  }}
+                ></div>
+                <h3
+                  style={{
+                    fontSize: "20px",
+                    fontWeight: "700",
+                    color: "#2c3e50",
+                    margin: "0",
+                  }}
+                >
+                  {brand.name}
+                </h3>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
       {/* Newsletter */}
       <section
         style={{
