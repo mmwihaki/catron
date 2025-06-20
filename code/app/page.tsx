@@ -2182,8 +2182,7 @@ export default function HomePage() {
                 Quick Links
               </h4>
               {[
-                "About Brator",
-                "Contact Us",
+                "About Catron",
                 "Shipping & Delivery",
                 "Returns & Exchanges",
                 "Warranty Information",
@@ -2253,46 +2252,8 @@ export default function HomePage() {
                   color: "rgb(247, 51, 18)",
                 }}
               >
-                Contact Information
+                Quality Promise
               </h4>
-              <div style={{ marginBottom: "20px" }}>
-                <div
-                  style={{
-                    display: "flex",
-                    alignItems: "center",
-                    gap: "12px",
-                    marginBottom: "12px",
-                  }}
-                >
-                  <span style={{ fontSize: "14px", opacity: "0.8" }}>
-                    Nairobi Auto Parts Market, Kenya
-                  </span>
-                </div>
-                <div
-                  style={{
-                    display: "flex",
-                    alignItems: "center",
-                    gap: "12px",
-                    marginBottom: "12px",
-                  }}
-                >
-                  <span style={{ fontSize: "14px", opacity: "0.8" }}>
-                    info@brator.co.ke
-                  </span>
-                </div>
-                <div
-                  style={{
-                    display: "flex",
-                    alignItems: "center",
-                    gap: "12px",
-                    marginBottom: "20px",
-                  }}
-                >
-                  <span style={{ fontSize: "14px", opacity: "0.8" }}>
-                    Mon-Sat: 8AM-6PM EAT
-                  </span>
-                </div>
-              </div>
 
               <div
                 style={{
@@ -2302,9 +2263,9 @@ export default function HomePage() {
                 }}
               >
                 {[
-                  { text: "Secure Payments" },
+                  { text: "Authentic Nissan Parts" },
                   { text: "Fast Delivery" },
-                  { text: "Authentic Parts" },
+                  { text: "Genuine OEM" },
                   { text: "Quality Assured" },
                 ].map((trust, i) => (
                   <div
@@ -2337,8 +2298,7 @@ export default function HomePage() {
             }}
           >
             <div style={{ opacity: "0.8", fontSize: "14px" }}>
-              © 2024 Brator Kenya. All rights reserved. | All prices in Kenya
-              Shillings (KES)
+              © 2024 Catron Kenya. All rights reserved.
             </div>
             <div style={{ display: "flex", gap: "25px", alignItems: "center" }}>
               <span style={{ fontSize: "14px", opacity: "0.8" }}>
