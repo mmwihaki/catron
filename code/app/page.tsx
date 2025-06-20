@@ -2024,8 +2024,8 @@ export default function HomePage() {
               opacity: "0.95",
             }}
           >
-            Get exclusive deals, new arrivals, and automotive tips delivered to
-            your inbox
+            Get exclusive deals on Nissan parts, new arrivals, and Nissan tips
+            delivered to your inbox
           </p>
           <div
             style={{
