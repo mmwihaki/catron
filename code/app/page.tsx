@@ -1218,6 +1218,7 @@ export default function HomePage() {
 
                 {/* Car Care */}
                 <div
+                  className="category-card"
                   style={{
                     backgroundColor: "white",
                     borderRadius: "5px",
