@@ -438,47 +438,6 @@ export default function HomePage() {
         />
       )}
 
-      {/* Top promotional banner */}
-      <div
-        style={{
-          background: "#000000",
-          color: "#FFD700",
-          padding: "12px 0",
-          fontSize: "14px",
-          fontWeight: "600",
-        }}
-      >
-        <div
-          style={{
-            maxWidth: "1200px",
-            margin: "0 auto",
-            padding: "0 20px",
-            display: "flex",
-            justifyContent: "space-between",
-            alignItems: "center",
-          }}
-        >
-          <div style={{ display: "flex", alignItems: "center", gap: "20px" }}>
-            <span>BLACK FRIDAY 50% OFF - Use Code: BRATOR50</span>
-            <span>24/7 Support: +254-XXX-XXXX</span>
-          </div>
-          <select
-            style={{
-              background: "rgba(255, 255, 255, 0.2)",
-              border: "1px solid rgba(255, 255, 255, 0.3)",
-              color: "white",
-              padding: "6px 12px",
-              borderRadius: "4px",
-              fontSize: "12px",
-            }}
-          >
-            <option>Kenya</option>
-            <option>Uganda</option>
-            <option>Tanzania</option>
-          </select>
-        </div>
-      </div>
-
       {/* Enhanced main header */}
       <header
         style={{
