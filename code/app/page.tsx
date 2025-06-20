@@ -110,12 +110,12 @@ export default function HomePage() {
   };
 
   // Remove from cart
-  const removeFromCart = (productId) => {
+  const removeFromCart = (productId: number) => {
     setCart((prevCart) => prevCart.filter((item) => item.id !== productId));
   };
 
   // Update quantity
-  const updateQuantity = (productId, newQuantity) => {
+  const updateQuantity = (productId: number, newQuantity: number) => {
     if (newQuantity <= 0) {
       removeFromCart(productId);
       return;
