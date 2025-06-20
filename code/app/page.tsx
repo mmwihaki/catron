@@ -137,8 +137,7 @@ export default function HomePage() {
     if (cart.length === 0) return;
 
     let message =
-      "Hello! I'd like to order the following items from Brator:\n\n";
-
+      "Hello! I'd like to order the following items from Catron:\n\n";
     cart.forEach((item, index) => {
       message += `${index + 1}. ${item.name}\n`;
       message += `   SKU: ${item.sku}\n`;
@@ -2016,7 +2015,7 @@ export default function HomePage() {
               marginBottom: "15px",
             }}
           >
-            Stay Updated with Brator Kenya
+            Stay Updated with Catron Kenya
           </h3>
           <p
             style={{
