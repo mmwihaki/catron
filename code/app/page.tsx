@@ -1699,6 +1699,672 @@ export default function HomePage() {
         </div>
       </section>
 
+      {/* Essential Items for New Car */}
+      <section
+        style={{
+          background: "#f8f9fa",
+          padding: "80px 0",
+        }}
+      >
+        <div
+          style={{
+            maxWidth: "1200px",
+            margin: "0 auto",
+            padding: "0 20px",
+          }}
+        >
+          <h2
+            style={{
+              fontSize: "42px",
+              fontWeight: "800",
+              marginBottom: "20px",
+              color: "#2c3e50",
+              textAlign: "center",
+            }}
+          >
+            Essential Items for New Nissan
+          </h2>
+          <p
+            style={{
+              fontSize: "18px",
+              color: "#7f8c8d",
+              textAlign: "center",
+              marginBottom: "50px",
+            }}
+          >
+            Get your new Nissan ready with these essential maintenance items
+          </p>
+          <div
+            style={{
+              display: "grid",
+              gridTemplateColumns: "repeat(auto-fit, minmax(250px, 1fr))",
+              gap: "30px",
+            }}
+          >
+            {[
+              {
+                name: "Oil Filter Kit",
+                price: 2500,
+                image:
+                  "https://images.autodoc.de/categorypictures/oil-filter-1.jpg",
+              },
+              {
+                name: "Air Filter Set",
+                price: 3200,
+                image:
+                  "https://images.autodoc.de/categorypictures/air-filter-1.jpg",
+              },
+              {
+                name: "Brake Pads",
+                price: 5500,
+                image:
+                  "https://images.autodoc.de/categorypictures/brake-pads-1.jpg",
+              },
+              {
+                name: "Spark Plugs",
+                price: 4000,
+                image:
+                  "https://images.autodoc.de/categorypictures/spark-plugs-1.jpg",
+              },
+            ].map((item, index) => (
+              <div
+                key={index}
+                style={{
+                  background: "white",
+                  borderRadius: "12px",
+                  padding: "25px",
+                  boxShadow: "0 8px 25px rgba(0,0,0,0.1)",
+                  textAlign: "center",
+                }}
+              >
+                <div
+                  style={{
+                    width: "80px",
+                    height: "80px",
+                    background: `url(${item.image})`,
+                    backgroundSize: "cover",
+                    backgroundPosition: "center",
+                    borderRadius: "50%",
+                    margin: "0 auto 20px",
+                  }}
+                ></div>
+                <h3
+                  style={{
+                    fontSize: "18px",
+                    fontWeight: "700",
+                    marginBottom: "10px",
+                    color: "#2c3e50",
+                  }}
+                >
+                  {item.name}
+                </h3>
+                <p
+                  style={{
+                    fontSize: "20px",
+                    fontWeight: "700",
+                    color: "#DC143C",
+                    marginBottom: "15px",
+                  }}
+                >
+                  KES {item.price.toLocaleString()}
+                </p>
+                <button
+                  style={{
+                    background: "#DC143C",
+                    color: "white",
+                    border: "none",
+                    padding: "12px 24px",
+                    borderRadius: "8px",
+                    fontSize: "14px",
+                    fontWeight: "600",
+                    cursor: "pointer",
+                  }}
+                >
+                  Add to Cart
+                </button>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Best Seller */}
+      <section
+        style={{
+          background: "white",
+          padding: "80px 0",
+        }}
+      >
+        <div
+          style={{
+            maxWidth: "1200px",
+            margin: "0 auto",
+            padding: "0 20px",
+          }}
+        >
+          <h2
+            style={{
+              fontSize: "42px",
+              fontWeight: "800",
+              marginBottom: "20px",
+              color: "#2c3e50",
+              textAlign: "center",
+            }}
+          >
+            Best Sellers
+          </h2>
+          <p
+            style={{
+              fontSize: "18px",
+              color: "#7f8c8d",
+              textAlign: "center",
+              marginBottom: "50px",
+            }}
+          >
+            Most popular Nissan parts chosen by our customers
+          </p>
+          <div
+            style={{
+              display: "grid",
+              gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))",
+              gap: "30px",
+            }}
+          >
+            {[
+              {
+                name: "RIDEX Oil Filter",
+                bestseller: true,
+                price: 1300,
+                originalPrice: 1500,
+              },
+              {
+                name: "NGK Spark Plugs",
+                bestseller: true,
+                price: 4600,
+                originalPrice: 5200,
+              },
+              {
+                name: "OSRAM Headlights",
+                bestseller: true,
+                price: 7500,
+                originalPrice: 8500,
+              },
+            ].map((item, index) => (
+              <div
+                key={index}
+                style={{
+                  background: "white",
+                  borderRadius: "16px",
+                  overflow: "hidden",
+                  boxShadow: "0 12px 30px rgba(0,0,0,0.1)",
+                  position: "relative",
+                  border: "1px solid #f1f2f6",
+                }}
+              >
+                <div
+                  style={{
+                    position: "absolute",
+                    top: "15px",
+                    left: "15px",
+                    background: "#e74c3c",
+                    color: "white",
+                    padding: "6px 12px",
+                    borderRadius: "20px",
+                    fontSize: "11px",
+                    fontWeight: "700",
+                  }}
+                >
+                  BEST SELLER
+                </div>
+                <div
+                  style={{
+                    height: "200px",
+                    background: "#f8f9fa",
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "center",
+                    fontSize: "48px",
+                    color: "#DC143C",
+                  }}
+                >
+                  🔧
+                </div>
+                <div style={{ padding: "25px" }}>
+                  <h3
+                    style={{
+                      fontSize: "18px",
+                      fontWeight: "700",
+                      color: "#2c3e50",
+                      marginBottom: "15px",
+                    }}
+                  >
+                    {item.name}
+                  </h3>
+                  <div
+                    style={{
+                      display: "flex",
+                      alignItems: "center",
+                      gap: "12px",
+                      marginBottom: "20px",
+                    }}
+                  >
+                    <span
+                      style={{
+                        fontSize: "24px",
+                        fontWeight: "700",
+                        color: "#DC143C",
+                      }}
+                    >
+                      KES {item.price.toLocaleString()}
+                    </span>
+                    <span
+                      style={{
+                        fontSize: "16px",
+                        color: "#95a5a6",
+                        textDecoration: "line-through",
+                      }}
+                    >
+                      KES {item.originalPrice.toLocaleString()}
+                    </span>
+                  </div>
+                  <button
+                    style={{
+                      width: "100%",
+                      background: "#DC143C",
+                      color: "white",
+                      border: "none",
+                      padding: "15px",
+                      borderRadius: "10px",
+                      fontSize: "16px",
+                      fontWeight: "600",
+                      cursor: "pointer",
+                    }}
+                  >
+                    Add to Cart
+                  </button>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* New Arrivals */}
+      <section
+        style={{
+          background: "#f8f9fa",
+          padding: "80px 0",
+        }}
+      >
+        <div
+          style={{
+            maxWidth: "1200px",
+            margin: "0 auto",
+            padding: "0 20px",
+          }}
+        >
+          <h2
+            style={{
+              fontSize: "42px",
+              fontWeight: "800",
+              marginBottom: "20px",
+              color: "#2c3e50",
+              textAlign: "center",
+            }}
+          >
+            New Arrivals
+          </h2>
+          <p
+            style={{
+              fontSize: "18px",
+              color: "#7f8c8d",
+              textAlign: "center",
+              marginBottom: "50px",
+            }}
+          >
+            Latest Nissan parts and accessories just arrived
+          </p>
+          <div
+            style={{
+              display: "grid",
+              gridTemplateColumns: "repeat(auto-fit, minmax(250px, 1fr))",
+              gap: "30px",
+            }}
+          >
+            {[
+              { name: "LED Headlight Kit", isNew: true, price: 12500 },
+              { name: "Performance Air Filter", isNew: true, price: 5800 },
+              { name: "Brake Disc Set", isNew: true, price: 9200 },
+              { name: "Cabin Filter", isNew: true, price: 2800 },
+            ].map((item, index) => (
+              <div
+                key={index}
+                style={{
+                  background: "white",
+                  borderRadius: "12px",
+                  padding: "25px",
+                  boxShadow: "0 8px 25px rgba(0,0,0,0.1)",
+                  textAlign: "center",
+                  position: "relative",
+                }}
+              >
+                <div
+                  style={{
+                    position: "absolute",
+                    top: "15px",
+                    right: "15px",
+                    background: "#27ae60",
+                    color: "white",
+                    padding: "4px 8px",
+                    borderRadius: "12px",
+                    fontSize: "10px",
+                    fontWeight: "600",
+                  }}
+                >
+                  NEW
+                </div>
+                <div
+                  style={{
+                    width: "80px",
+                    height: "80px",
+                    background: "#DC143C",
+                    borderRadius: "50%",
+                    margin: "0 auto 20px",
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "center",
+                    fontSize: "30px",
+                    color: "white",
+                  }}
+                >
+                  ⚡
+                </div>
+                <h3
+                  style={{
+                    fontSize: "18px",
+                    fontWeight: "700",
+                    marginBottom: "10px",
+                    color: "#2c3e50",
+                  }}
+                >
+                  {item.name}
+                </h3>
+                <p
+                  style={{
+                    fontSize: "20px",
+                    fontWeight: "700",
+                    color: "#DC143C",
+                    marginBottom: "15px",
+                  }}
+                >
+                  KES {item.price.toLocaleString()}
+                </p>
+                <button
+                  style={{
+                    background: "#DC143C",
+                    color: "white",
+                    border: "none",
+                    padding: "12px 24px",
+                    borderRadius: "8px",
+                    fontSize: "14px",
+                    fontWeight: "600",
+                    cursor: "pointer",
+                  }}
+                >
+                  Add to Cart
+                </button>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Tips and Guides */}
+      <section
+        style={{
+          background: "white",
+          padding: "80px 0",
+        }}
+      >
+        <div
+          style={{
+            maxWidth: "1200px",
+            margin: "0 auto",
+            padding: "0 20px",
+          }}
+        >
+          <h2
+            style={{
+              fontSize: "42px",
+              fontWeight: "800",
+              marginBottom: "20px",
+              color: "#2c3e50",
+              textAlign: "center",
+            }}
+          >
+            Tips and Guides
+          </h2>
+          <p
+            style={{
+              fontSize: "18px",
+              color: "#7f8c8d",
+              textAlign: "center",
+              marginBottom: "50px",
+            }}
+          >
+            Expert advice for maintaining your Nissan vehicle
+          </p>
+          <div
+            style={{
+              display: "grid",
+              gridTemplateColumns: "repeat(auto-fit, minmax(300px, 1fr))",
+              gap: "30px",
+            }}
+          >
+            {[
+              {
+                title: "Oil Change Guide",
+                description:
+                  "Learn how to change your Nissan engine oil properly",
+                readTime: "5 min read",
+              },
+              {
+                title: "Brake Maintenance",
+                description:
+                  "Essential brake system maintenance for your Nissan",
+                readTime: "7 min read",
+              },
+              {
+                title: "Filter Replacement",
+                description: "When and how to replace air and oil filters",
+                readTime: "4 min read",
+              },
+            ].map((guide, index) => (
+              <div
+                key={index}
+                style={{
+                  background: "white",
+                  borderRadius: "12px",
+                  padding: "30px",
+                  boxShadow: "0 8px 25px rgba(0,0,0,0.1)",
+                  border: "1px solid #f1f2f6",
+                }}
+              >
+                <div
+                  style={{
+                    width: "60px",
+                    height: "60px",
+                    background: "#DC143C",
+                    borderRadius: "50%",
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "center",
+                    fontSize: "24px",
+                    color: "white",
+                    marginBottom: "20px",
+                  }}
+                >
+                  📖
+                </div>
+                <h3
+                  style={{
+                    fontSize: "20px",
+                    fontWeight: "700",
+                    marginBottom: "15px",
+                    color: "#2c3e50",
+                  }}
+                >
+                  {guide.title}
+                </h3>
+                <p
+                  style={{
+                    fontSize: "14px",
+                    color: "#7f8c8d",
+                    lineHeight: "1.6",
+                    marginBottom: "20px",
+                  }}
+                >
+                  {guide.description}
+                </p>
+                <div
+                  style={{
+                    display: "flex",
+                    justifyContent: "space-between",
+                    alignItems: "center",
+                  }}
+                >
+                  <span
+                    style={{
+                      fontSize: "12px",
+                      color: "#95a5a6",
+                    }}
+                  >
+                    {guide.readTime}
+                  </span>
+                  <button
+                    style={{
+                      background: "transparent",
+                      color: "#DC143C",
+                      border: "1px solid #DC143C",
+                      padding: "8px 16px",
+                      borderRadius: "6px",
+                      fontSize: "14px",
+                      fontWeight: "600",
+                      cursor: "pointer",
+                    }}
+                  >
+                    Read More
+                  </button>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Featured Brands */}
+      <section
+        style={{
+          background: "#f8f9fa",
+          padding: "80px 0",
+        }}
+      >
+        <div
+          style={{
+            maxWidth: "1200px",
+            margin: "0 auto",
+            padding: "0 20px",
+          }}
+        >
+          <h2
+            style={{
+              fontSize: "42px",
+              fontWeight: "800",
+              marginBottom: "20px",
+              color: "#2c3e50",
+              textAlign: "center",
+            }}
+          >
+            Featured Brands
+          </h2>
+          <p
+            style={{
+              fontSize: "18px",
+              color: "#7f8c8d",
+              textAlign: "center",
+              marginBottom: "50px",
+            }}
+          >
+            Trusted brands for your Nissan vehicle
+          </p>
+          <div
+            style={{
+              display: "grid",
+              gridTemplateColumns: "repeat(auto-fit, minmax(200px, 1fr))",
+              gap: "30px",
+            }}
+          >
+            {[
+              { name: "RIDEX", description: "Premium oil filters" },
+              { name: "KAVO", description: "Air filtration systems" },
+              { name: "OSRAM", description: "Lighting solutions" },
+              { name: "NGK", description: "Spark plugs & ignition" },
+              { name: "BOSCH", description: "Engine components" },
+              { name: "MANN", description: "Filter technology" },
+            ].map((brand, index) => (
+              <div
+                key={index}
+                style={{
+                  background: "white",
+                  borderRadius: "12px",
+                  padding: "30px",
+                  boxShadow: "0 8px 25px rgba(0,0,0,0.1)",
+                  textAlign: "center",
+                  transition: "transform 0.3s ease",
+                  cursor: "pointer",
+                }}
+              >
+                <div
+                  style={{
+                    width: "80px",
+                    height: "80px",
+                    background: "#DC143C",
+                    borderRadius: "50%",
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "center",
+                    fontSize: "20px",
+                    fontWeight: "700",
+                    color: "white",
+                    margin: "0 auto 20px",
+                  }}
+                >
+                  {brand.name.substring(0, 2)}
+                </div>
+                <h3
+                  style={{
+                    fontSize: "18px",
+                    fontWeight: "700",
+                    marginBottom: "10px",
+                    color: "#2c3e50",
+                  }}
+                >
+                  {brand.name}
+                </h3>
+                <p
+                  style={{
+                    fontSize: "14px",
+                    color: "#7f8c8d",
+                  }}
+                >
+                  {brand.description}
+                </p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
       {/* Featured Products with real inventory and KES pricing */}
       <section
         style={{
