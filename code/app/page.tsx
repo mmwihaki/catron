@@ -845,7 +845,7 @@ export default function HomePage() {
                 border: "1px solid rgba(255, 215, 0, 0.3)",
               }}
             >
-              #1 TRUSTED AUTO PARTS DEALER IN KENYA
+              #1 TRUSTED NISSAN PARTS DEALER IN KENYA
             </div>
 
             <h1
@@ -856,7 +856,7 @@ export default function HomePage() {
                 marginBottom: "25px",
               }}
             >
-              Premium Car Parts
+              Premium Nissan Parts
               <span style={{ color: "rgb(247, 51, 18)" }}> & Accessories</span>
             </h1>
 
