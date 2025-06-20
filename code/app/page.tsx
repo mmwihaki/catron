@@ -1126,6 +1126,7 @@ export default function HomePage() {
               >
                 {/* Auto Parts */}
                 <div
+                  className="category-card"
                   style={{
                     backgroundColor: "white",
                     borderRadius: "5px",
