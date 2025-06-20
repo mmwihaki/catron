@@ -1047,116 +1047,753 @@ export default function HomePage() {
       {/* Categories section */}
       <section
         style={{
-          background: "#f8f9fa",
-          padding: "80px 0",
+          position: "relative",
+          backgroundColor: "rgb(242, 242, 247)",
+          paddingTop: "75px",
+          paddingBottom: "75px",
         }}
       >
         <div
           style={{
-            maxWidth: "1200px",
+            maxWidth: "1520px",
             margin: "0 auto",
-            padding: "0 20px",
+            paddingLeft: "12px",
+            paddingRight: "12px",
+            width: "100%",
           }}
         >
-          <div style={{ textAlign: "center", marginBottom: "60px" }}>
-            <h2
-              style={{
-                fontSize: "42px",
-                fontWeight: "800",
-                marginBottom: "15px",
-                color: "#2c3e50",
-              }}
-            >
-              Shop by Category
-            </h2>
-            <p
-              style={{
-                fontSize: "18px",
-                color: "#7f8c8d",
-                maxWidth: "600px",
-                margin: "0 auto",
-              }}
-            >
-              Browse our premium selection of authentic auto parts by category
-            </p>
-          </div>
-
           <div
             style={{
-              display: "grid",
-              gridTemplateColumns: "repeat(auto-fit, minmax(300px, 1fr))",
-              gap: "25px",
+              display: "flex",
+              flexWrap: "wrap",
+              marginLeft: "-12px",
+              marginRight: "-12px",
             }}
           >
-            {categories.map((category, index) => (
+            <div
+              style={{
+                flexShrink: 0,
+                maxWidth: "100%",
+                paddingLeft: "12px",
+                paddingRight: "12px",
+                width: "100%",
+              }}
+            >
               <div
-                key={index}
                 style={{
-                  background: "white",
-                  borderRadius: "16px",
-                  padding: "30px",
-                  cursor: "pointer",
-                  border: "1px solid #ecf0f1",
-                  boxShadow: "0 8px 25px rgba(0,0,0,0.08)",
-                  transition: "all 0.3s ease",
+                  alignItems: "center",
+                  display: "flex",
+                  justifyContent: "center",
+                  marginBottom: "35px",
+                  width: "100%",
                 }}
               >
-                <div
-                  style={{
-                    background: `linear-gradient(135deg, ${category.color}, ${category.color}dd)`,
-                    color: "white",
-                    width: "70px",
-                    height: "70px",
-                    borderRadius: "16px",
-                    display: "flex",
-                    alignItems: "center",
-                    justifyContent: "center",
-                    fontSize: "18px",
-                    fontWeight: "bold",
-                    marginBottom: "20px",
-                    boxShadow: `0 8px 25px ${category.color}30`,
-                  }}
-                >
-                  {category.code}
-                </div>
-
-                <h3
-                  style={{
-                    fontSize: "22px",
-                    fontWeight: "700",
-                    marginBottom: "8px",
-                    color: "#2c3e50",
-                  }}
-                >
-                  {category.title}
-                </h3>
-
-                <p
-                  style={{
-                    fontSize: "14px",
-                    color: "#7f8c8d",
-                    marginBottom: "15px",
-                    lineHeight: "1.5",
-                  }}
-                >
-                  {category.subtitle}
-                </p>
-
-                <div
-                  style={{
-                    background: category.color,
-                    color: "white",
-                    padding: "8px 16px",
-                    borderRadius: "20px",
-                    fontSize: "12px",
-                    fontWeight: "600",
-                    display: "inline-block",
-                  }}
-                >
-                  {category.count}
+                <div>
+                  <h2
+                    style={{
+                      fontSize: "42px",
+                      fontWeight: "800",
+                      lineHeight: "1.2",
+                      marginRight: "35px",
+                      position: "relative",
+                      color: "#000000",
+                      textAlign: "center",
+                    }}
+                  >
+                    Shop by Categories
+                  </h2>
                 </div>
               </div>
-            ))}
+            </div>
+
+            <div
+              style={{
+                flexShrink: 0,
+                maxWidth: "100%",
+                paddingLeft: "12px",
+                paddingRight: "12px",
+                width: "100%",
+              }}
+            >
+              <div
+                style={{
+                  alignItems: "flex-start",
+                  display: "flex",
+                  flexWrap: "wrap",
+                  gap: "30px",
+                  justifyContent: "center",
+                }}
+              >
+                {/* Auto Parts */}
+                <div
+                  style={{
+                    backgroundColor: "white",
+                    borderRadius: "5px",
+                    display: "flex",
+                    flexDirection: "column",
+                    marginBottom: "30px",
+                    maxWidth: "calc(14.2857% - 30px)",
+                    minWidth: "200px",
+                    paddingBottom: "25px",
+                    paddingLeft: "17px",
+                    paddingRight: "17px",
+                    paddingTop: "60px",
+                    textAlign: "center",
+                    transition: "all 0.3s ease",
+                    width: "100%",
+                    cursor: "pointer",
+                    border: "2px solid transparent",
+                  }}
+                >
+                  <div
+                    style={{
+                      alignItems: "center",
+                      display: "flex",
+                      height: "60px",
+                      justifyContent: "center",
+                      marginBottom: "30px",
+                    }}
+                  >
+                    <a
+                      href="#"
+                      style={{
+                        cursor: "pointer",
+                        display: "grid",
+                        textAlign: "center",
+                      }}
+                    >
+                      <img
+                        src="https://brator-main.smartdemowp.com/wp-content/uploads/2021/12/categories-30.png"
+                        alt="Auto Parts"
+                        width="107"
+                        height="71"
+                        style={{
+                          cursor: "pointer",
+                          marginLeft: "auto",
+                          marginRight: "auto",
+                          maxWidth: "114px",
+                          textAlign: "center",
+                          width: "107px",
+                        }}
+                      />
+                    </a>
+                  </div>
+                  <div style={{ marginTop: "auto", textAlign: "center" }}>
+                    <p
+                      style={{
+                        color: "#000000",
+                        fontSize: "14px",
+                        lineHeight: "1.7",
+                        textAlign: "center",
+                      }}
+                    >
+                      <a
+                        href="#"
+                        style={{
+                          cursor: "pointer",
+                          display: "inline-block",
+                          fontSize: "14px",
+                          fontWeight: "700",
+                          lineHeight: "1.7",
+                          textAlign: "center",
+                          color: "#000000",
+                          textDecoration: "none",
+                        }}
+                      >
+                        Auto Parts
+                      </a>
+                    </p>
+                  </div>
+                  <div
+                    style={{
+                      color: "#666666",
+                      fontSize: "12px",
+                      textAlign: "center",
+                    }}
+                  >
+                    Mesh, Billet, CNC
+                  </div>
+                </div>
+
+                {/* Car Care */}
+                <div
+                  style={{
+                    backgroundColor: "white",
+                    borderRadius: "5px",
+                    display: "flex",
+                    flexDirection: "column",
+                    marginBottom: "30px",
+                    maxWidth: "calc(14.2857% - 30px)",
+                    minWidth: "200px",
+                    paddingBottom: "25px",
+                    paddingLeft: "17px",
+                    paddingRight: "17px",
+                    paddingTop: "60px",
+                    textAlign: "center",
+                    transition: "all 0.3s ease",
+                    width: "100%",
+                    cursor: "pointer",
+                    border: "2px solid transparent",
+                  }}
+                >
+                  <div
+                    style={{
+                      alignItems: "center",
+                      display: "flex",
+                      height: "60px",
+                      justifyContent: "center",
+                      marginBottom: "30px",
+                    }}
+                  >
+                    <a
+                      href="#"
+                      style={{
+                        cursor: "pointer",
+                        display: "grid",
+                        textAlign: "center",
+                      }}
+                    >
+                      <img
+                        src="https://brator-main.smartdemowp.com/wp-content/uploads/categories-29.png"
+                        alt="Car Care"
+                        width="108"
+                        height="71"
+                        style={{
+                          cursor: "pointer",
+                          marginLeft: "auto",
+                          marginRight: "auto",
+                          maxWidth: "114px",
+                          textAlign: "center",
+                          width: "108px",
+                        }}
+                      />
+                    </a>
+                  </div>
+                  <div style={{ marginTop: "auto", textAlign: "center" }}>
+                    <p
+                      style={{
+                        color: "#000000",
+                        fontSize: "14px",
+                        lineHeight: "1.7",
+                        textAlign: "center",
+                      }}
+                    >
+                      <a
+                        href="#"
+                        style={{
+                          cursor: "pointer",
+                          display: "inline-block",
+                          fontSize: "14px",
+                          fontWeight: "700",
+                          lineHeight: "1.7",
+                          textAlign: "center",
+                          color: "#000000",
+                          textDecoration: "none",
+                        }}
+                      >
+                        Car Care
+                      </a>
+                    </p>
+                  </div>
+                  <div
+                    style={{
+                      color: "#666666",
+                      fontSize: "12px",
+                      textAlign: "center",
+                    }}
+                  >
+                    Polishes, Cleaners
+                  </div>
+                </div>
+
+                {/* Performance */}
+                <div
+                  style={{
+                    backgroundColor: "white",
+                    borderRadius: "5px",
+                    display: "flex",
+                    flexDirection: "column",
+                    marginBottom: "30px",
+                    maxWidth: "calc(14.2857% - 30px)",
+                    minWidth: "200px",
+                    paddingBottom: "25px",
+                    paddingLeft: "17px",
+                    paddingRight: "17px",
+                    paddingTop: "60px",
+                    textAlign: "center",
+                    transition: "all 0.3s ease",
+                    width: "100%",
+                    cursor: "pointer",
+                    border: "2px solid transparent",
+                  }}
+                >
+                  <div
+                    style={{
+                      alignItems: "center",
+                      display: "flex",
+                      height: "60px",
+                      justifyContent: "center",
+                      marginBottom: "30px",
+                    }}
+                  >
+                    <a
+                      href="#"
+                      style={{
+                        cursor: "pointer",
+                        display: "grid",
+                        textAlign: "center",
+                      }}
+                    >
+                      <img
+                        src="https://brator-main.smartdemowp.com/wp-content/uploads/categories-28.png"
+                        alt="Performance"
+                        width="116"
+                        height="76"
+                        style={{
+                          cursor: "pointer",
+                          marginLeft: "auto",
+                          marginRight: "auto",
+                          maxWidth: "114px",
+                          textAlign: "center",
+                          width: "116px",
+                        }}
+                      />
+                    </a>
+                  </div>
+                  <div style={{ marginTop: "auto", textAlign: "center" }}>
+                    <p
+                      style={{
+                        color: "#000000",
+                        fontSize: "14px",
+                        lineHeight: "1.7",
+                        textAlign: "center",
+                      }}
+                    >
+                      <a
+                        href="#"
+                        style={{
+                          cursor: "pointer",
+                          display: "inline-block",
+                          fontSize: "14px",
+                          fontWeight: "700",
+                          lineHeight: "1.7",
+                          textAlign: "center",
+                          color: "#000000",
+                          textDecoration: "none",
+                        }}
+                      >
+                        Performance
+                      </a>
+                    </p>
+                  </div>
+                  <div
+                    style={{
+                      color: "#666666",
+                      fontSize: "12px",
+                      textAlign: "center",
+                    }}
+                  >
+                    Brakes, Batteries, Turbo
+                  </div>
+                </div>
+
+                {/* Wheels & Tires */}
+                <div
+                  style={{
+                    backgroundColor: "white",
+                    borderRadius: "5px",
+                    display: "flex",
+                    flexDirection: "column",
+                    marginBottom: "30px",
+                    maxWidth: "calc(14.2857% - 30px)",
+                    minWidth: "200px",
+                    paddingBottom: "25px",
+                    paddingLeft: "17px",
+                    paddingRight: "17px",
+                    paddingTop: "60px",
+                    textAlign: "center",
+                    transition: "all 0.3s ease",
+                    width: "100%",
+                    cursor: "pointer",
+                    border: "2px solid transparent",
+                  }}
+                >
+                  <div
+                    style={{
+                      alignItems: "center",
+                      display: "flex",
+                      height: "60px",
+                      justifyContent: "center",
+                      marginBottom: "30px",
+                    }}
+                  >
+                    <a
+                      href="#"
+                      style={{
+                        cursor: "pointer",
+                        display: "grid",
+                        textAlign: "center",
+                      }}
+                    >
+                      <img
+                        src="https://brator-main.smartdemowp.com/wp-content/uploads/2021/11/categories-09.png"
+                        alt="Wheels & Tires"
+                        width="101"
+                        height="81"
+                        style={{
+                          cursor: "pointer",
+                          marginLeft: "auto",
+                          marginRight: "auto",
+                          maxWidth: "114px",
+                          textAlign: "center",
+                          width: "101px",
+                        }}
+                      />
+                    </a>
+                  </div>
+                  <div style={{ marginTop: "auto", textAlign: "center" }}>
+                    <p
+                      style={{
+                        color: "#000000",
+                        fontSize: "14px",
+                        lineHeight: "1.7",
+                        textAlign: "center",
+                      }}
+                    >
+                      <a
+                        href="#"
+                        style={{
+                          cursor: "pointer",
+                          display: "inline-block",
+                          fontSize: "14px",
+                          fontWeight: "700",
+                          lineHeight: "1.7",
+                          textAlign: "center",
+                          color: "#000000",
+                          textDecoration: "none",
+                        }}
+                      >
+                        Wheels & Tires
+                      </a>
+                    </p>
+                  </div>
+                  <div
+                    style={{
+                      color: "#666666",
+                      fontSize: "12px",
+                      textAlign: "center",
+                    }}
+                  >
+                    Tires, TMPS Sensor
+                  </div>
+                </div>
+
+                {/* Exteriors */}
+                <div
+                  style={{
+                    backgroundColor: "white",
+                    borderRadius: "5px",
+                    display: "flex",
+                    flexDirection: "column",
+                    marginBottom: "30px",
+                    maxWidth: "calc(14.2857% - 30px)",
+                    minWidth: "200px",
+                    paddingBottom: "25px",
+                    paddingLeft: "17px",
+                    paddingRight: "17px",
+                    paddingTop: "60px",
+                    textAlign: "center",
+                    transition: "all 0.3s ease",
+                    width: "100%",
+                    cursor: "pointer",
+                    border: "2px solid transparent",
+                  }}
+                >
+                  <div
+                    style={{
+                      alignItems: "center",
+                      display: "flex",
+                      height: "60px",
+                      justifyContent: "center",
+                      marginBottom: "30px",
+                    }}
+                  >
+                    <a
+                      href="#"
+                      style={{
+                        cursor: "pointer",
+                        display: "grid",
+                        textAlign: "center",
+                      }}
+                    >
+                      <img
+                        src="https://brator-main.smartdemowp.com/wp-content/uploads/categories-27.png"
+                        alt="Exteriors"
+                        width="122"
+                        height="80"
+                        style={{
+                          cursor: "pointer",
+                          marginLeft: "auto",
+                          marginRight: "auto",
+                          maxWidth: "114px",
+                          textAlign: "center",
+                          width: "122px",
+                        }}
+                      />
+                    </a>
+                  </div>
+                  <div style={{ marginTop: "auto", textAlign: "center" }}>
+                    <p
+                      style={{
+                        color: "#000000",
+                        fontSize: "14px",
+                        lineHeight: "1.7",
+                        textAlign: "center",
+                      }}
+                    >
+                      <a
+                        href="#"
+                        style={{
+                          cursor: "pointer",
+                          display: "inline-block",
+                          fontSize: "14px",
+                          fontWeight: "700",
+                          lineHeight: "1.7",
+                          textAlign: "center",
+                          color: "#000000",
+                          textDecoration: "none",
+                        }}
+                      >
+                        Exteriors
+                      </a>
+                    </p>
+                  </div>
+                  <div
+                    style={{
+                      color: "#666666",
+                      fontSize: "12px",
+                      textAlign: "center",
+                    }}
+                  >
+                    Lighting, Body, Wipers
+                  </div>
+                </div>
+
+                {/* Interiors */}
+                <div
+                  style={{
+                    backgroundColor: "white",
+                    borderRadius: "5px",
+                    display: "flex",
+                    flexDirection: "column",
+                    marginBottom: "30px",
+                    maxWidth: "calc(14.2857% - 30px)",
+                    minWidth: "200px",
+                    paddingBottom: "25px",
+                    paddingLeft: "17px",
+                    paddingRight: "17px",
+                    paddingTop: "60px",
+                    textAlign: "center",
+                    transition: "all 0.3s ease",
+                    width: "100%",
+                    cursor: "pointer",
+                    border: "2px solid transparent",
+                  }}
+                >
+                  <div
+                    style={{
+                      alignItems: "center",
+                      display: "flex",
+                      height: "60px",
+                      justifyContent: "center",
+                      marginBottom: "30px",
+                    }}
+                  >
+                    <a
+                      href="#"
+                      style={{
+                        cursor: "pointer",
+                        display: "grid",
+                        textAlign: "center",
+                      }}
+                    >
+                      <img
+                        src="https://brator-main.smartdemowp.com/wp-content/uploads/categories-26.png"
+                        alt="Interiors"
+                        width="128"
+                        height="84"
+                        style={{
+                          cursor: "pointer",
+                          marginLeft: "auto",
+                          marginRight: "auto",
+                          maxWidth: "114px",
+                          textAlign: "center",
+                          width: "128px",
+                        }}
+                      />
+                    </a>
+                  </div>
+                  <div style={{ marginTop: "auto", textAlign: "center" }}>
+                    <p
+                      style={{
+                        color: "#000000",
+                        fontSize: "14px",
+                        lineHeight: "1.7",
+                        textAlign: "center",
+                      }}
+                    >
+                      <a
+                        href="#"
+                        style={{
+                          cursor: "pointer",
+                          display: "inline-block",
+                          fontSize: "14px",
+                          fontWeight: "700",
+                          lineHeight: "1.7",
+                          textAlign: "center",
+                          color: "#000000",
+                          textDecoration: "none",
+                        }}
+                      >
+                        Interiors
+                      </a>
+                    </p>
+                  </div>
+                  <div
+                    style={{
+                      color: "#666666",
+                      fontSize: "12px",
+                      textAlign: "center",
+                    }}
+                  >
+                    Steering Wheels, Seats
+                  </div>
+                </div>
+
+                {/* Air Filters */}
+                <div
+                  style={{
+                    backgroundColor: "white",
+                    borderRadius: "5px",
+                    display: "flex",
+                    flexDirection: "column",
+                    marginBottom: "30px",
+                    maxWidth: "calc(14.2857% - 30px)",
+                    minWidth: "200px",
+                    paddingBottom: "25px",
+                    paddingLeft: "17px",
+                    paddingRight: "17px",
+                    paddingTop: "60px",
+                    textAlign: "center",
+                    transition: "all 0.3s ease",
+                    width: "100%",
+                    cursor: "pointer",
+                    border: "2px solid transparent",
+                  }}
+                >
+                  <div
+                    style={{
+                      alignItems: "center",
+                      display: "flex",
+                      height: "60px",
+                      justifyContent: "center",
+                      marginBottom: "30px",
+                    }}
+                  >
+                    <a
+                      href="#"
+                      style={{
+                        cursor: "pointer",
+                        display: "grid",
+                        textAlign: "center",
+                      }}
+                    >
+                      <img
+                        src="https://brator-main.smartdemowp.com/wp-content/uploads/categories-23.png"
+                        alt="Air Filters"
+                        width="116"
+                        height="76"
+                        style={{
+                          cursor: "pointer",
+                          marginLeft: "auto",
+                          marginRight: "auto",
+                          maxWidth: "114px",
+                          textAlign: "center",
+                          width: "116px",
+                        }}
+                      />
+                    </a>
+                  </div>
+                  <div style={{ marginTop: "auto", textAlign: "center" }}>
+                    <p
+                      style={{
+                        color: "#000000",
+                        fontSize: "14px",
+                        lineHeight: "1.7",
+                        textAlign: "center",
+                      }}
+                    >
+                      <a
+                        href="#"
+                        style={{
+                          cursor: "pointer",
+                          display: "inline-block",
+                          fontSize: "14px",
+                          fontWeight: "700",
+                          lineHeight: "1.7",
+                          textAlign: "center",
+                          color: "#000000",
+                          textDecoration: "none",
+                        }}
+                      >
+                        Air Filters
+                      </a>
+                    </p>
+                  </div>
+                  <div
+                    style={{
+                      color: "#666666",
+                      fontSize: "12px",
+                      textAlign: "center",
+                    }}
+                  >
+                    Air intake, filters
+                  </div>
+                </div>
+              </div>
+
+              {/* Load More Button */}
+              <div
+                style={{
+                  marginTop: "50px",
+                  textAlign: "center",
+                }}
+              >
+                <button
+                  style={{
+                    backgroundColor: "white",
+                    border: "1px solid #DC143C",
+                    borderRadius: "4px",
+                    color: "#DC143C",
+                    cursor: "pointer",
+                    display: "inline-block",
+                    fontFamily: '"DM Sans", sans-serif',
+                    fontWeight: "700",
+                    height: "52px",
+                    lineHeight: "16px",
+                    paddingBottom: "15px",
+                    paddingLeft: "53px",
+                    paddingRight: "53px",
+                    paddingTop: "15px",
+                    textAlign: "center",
+                    textTransform: "capitalize",
+                    transition: "all 0.3s ease",
+                  }}
+                >
+                  Load More
+                </button>
+              </div>
+            </div>
           </div>
         </div>
       </section>
