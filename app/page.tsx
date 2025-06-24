@@ -755,7 +755,7 @@ export default function BratorHomePage() {
 
           <div className="products-static-grid">
             <div className="products-grid-container">
-              {essentialProducts.slice(0, 5).map((product) => (
+              {essentialProducts.slice(0, 4).map((product) => (
                 <div key={product.id} className="product-card">
                   <div className="product-card-inner">
                     {product.discount && (
