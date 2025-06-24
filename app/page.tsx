@@ -852,6 +852,154 @@ export default function BratorHomePage() {
         </div>
       </section>
 
+      {/* Essential Items for New Car Section */}
+      <section className="essential-items-section">
+        <div className="essential-items-container">
+          <div className="essential-items-header">
+            <div className="header-content">
+              <h2 className="essential-items-title">
+                Essential Items for New Car
+              </h2>
+              <a href="#all-products" className="see-all-link">
+                <span>See All Products</span>
+                <i className="fas fa-chevron-right"></i>
+              </a>
+            </div>
+          </div>
+
+          <div className="products-carousel-wrapper">
+            <button
+              className="products-nav products-prev"
+              onClick={prevProductSlide}
+              onMouseEnter={() => setIsProductAutoPlaying(false)}
+              onMouseLeave={() => setIsProductAutoPlaying(true)}
+            >
+              <i className="fas fa-chevron-left"></i>
+            </button>
+
+            <button
+              className="products-nav products-next"
+              onClick={nextProductSlide}
+              onMouseEnter={() => setIsProductAutoPlaying(false)}
+              onMouseLeave={() => setIsProductAutoPlaying(true)}
+            >
+              <i className="fas fa-chevron-right"></i>
+            </button>
+
+            <div className="products-carousel-container">
+              <div
+                className="products-carousel-track"
+                style={{
+                  transform: `translateX(-${currentProductSlide * 25}%)`,
+                }}
+              >
+                {essentialProducts.map((product) => (
+                  <div key={product.id} className="product-card">
+                    <div className="product-card-inner">
+                      {product.discount && (
+                        <div className="product-discount-badge">
+                          {product.discount}
+                        </div>
+                      )}
+
+                      <div className="product-image-container">
+                        <a href={product.link} className="product-image-link">
+                          <img
+                            src={product.image}
+                            alt={product.name}
+                            className="product-image"
+                            loading="lazy"
+                            width="225"
+                            height="225"
+                          />
+                        </a>
+                      </div>
+
+                      <div className="product-info">
+                        <div className="product-category">
+                          <a
+                            href={`#category-${product.category.toLowerCase().replace(/\s+/g, "-")}`}
+                            className="category-link"
+                          >
+                            {product.category}
+                          </a>
+                        </div>
+
+                        <div className="product-name">
+                          <h5>
+                            <a
+                              href={product.link}
+                              className="product-name-link"
+                            >
+                              {product.name}
+                            </a>
+                          </h5>
+                        </div>
+
+                        <div className="product-rating">
+                          <div className="rating-stars">
+                            <div
+                              className="stars"
+                              title={`Rated ${product.rating} out of 5`}
+                            >
+                              <span className="star-display">
+                                {renderStars(product.rating)}
+                              </span>
+                              <span className="rating-text">
+                                Rated{" "}
+                                <strong>{product.rating.toFixed(2)}</strong> out
+                                of 5
+                              </span>
+                            </div>
+                          </div>
+                          <div className="reviews-count">
+                            <p>
+                              {product.reviews} Review
+                              {product.reviews !== 1 ? "s" : ""}
+                            </p>
+                          </div>
+                        </div>
+
+                        <div className="product-price">
+                          <p className="price-container">
+                            {product.originalPrice && (
+                              <del className="original-price">
+                                <span>
+                                  <span className="currency">$</span>
+                                  <span>
+                                    {product.originalPrice.toFixed(2)}
+                                  </span>
+                                </span>
+                              </del>
+                            )}
+                            <span
+                              className={
+                                product.originalPrice
+                                  ? "sale-price"
+                                  : "regular-price"
+                              }
+                            >
+                              <span className="currency">$</span>
+                              <span>{product.price.toFixed(2)}</span>
+                            </span>
+                          </p>
+                        </div>
+
+                        <div className="product-actions">
+                          <a href={product.link} className="add-to-cart-btn">
+                            Add to cart
+                          </a>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
       <style jsx>{`
         .homepage {
           font-family: "Source Sans Pro", sans-serif;
