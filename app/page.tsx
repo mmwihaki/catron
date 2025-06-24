@@ -197,32 +197,32 @@ export default function BratorHomePage() {
 
   const whatHotProducts = [
     {
-      title: "Helix Engine Oils",
-      subtitle: "Premium Quality Lubricants",
+      title: "RIDEX Oil Filters",
+      subtitle: "Premium Quality Filtration",
       image:
         "https://images.pexels.com/photos/9666306/pexels-photo-9666306.jpeg?auto=compress&cs=tinysrgb&w=600",
-      link: "#helix-oils",
+      link: "https://en.ridex.eu/product/18743865",
     },
     {
-      title: "Dunlop Tires & Wheels",
-      subtitle: "Performance and Safety Combined",
+      title: "NGK Spark Plugs",
+      subtitle: "Performance and Reliability",
       image:
-        "https://images.pexels.com/photos/3642618/pexels-photo-3642618.jpeg?auto=compress&cs=tinysrgb&w=600",
-      link: "#dunlop-tires",
+        "https://images.pexels.com/photos/190570/pexels-photo-190570.jpeg?auto=compress&cs=tinysrgb&w=600",
+      link: "https://www.sparkplugs.co.uk/ngk-spark-plug-dilkar7e11hs-97439",
     },
     {
-      title: "35% OFF",
-      subtitle: "Super Saver",
+      title: "OSRAM Headlights",
+      subtitle: "Bright & Long Lasting",
       image:
-        "https://images.pexels.com/photos/13065690/pexels-photo-13065690.jpeg?auto=compress&cs=tinysrgb&w=600",
-      link: "#sale-items",
+        "https://images.pexels.com/photos/162553/keys-workshop-mechanic-tools-162553.jpeg?auto=compress&cs=tinysrgb&w=600",
+      link: "https://www.osram.com/ecat/NIGHT%20BREAKER%20200-Halogen%20headlight%20lamps-Car%20lighting-Automotive/com/en/GPS01_3495633/ZMP_4062357/",
     },
     {
-      title: "Professional Tools",
-      subtitle: "Quality Equipment for Every Job",
+      title: "Brake Components",
+      subtitle: "Safety First Priority",
       image:
         "https://images.pexels.com/photos/18497064/pexels-photo-18497064.jpeg?auto=compress&cs=tinysrgb&w=600",
-      link: "#tools",
+      link: "https://www.autodoc.co.uk/lpr/15833801",
     },
   ];
 
