@@ -2754,6 +2754,10 @@ export default function BratorHomePage() {
             grid-template-columns: 1fr;
           }
 
+          .categories-grid {
+            grid-template-columns: repeat(2, 1fr);
+          }
+
           .best-seller-product-card {
             width: 100%;
           }
