@@ -14,6 +14,7 @@ export default function BratorHomePage() {
   const [activeTab, setActiveTab] = useState("models");
   const [showMoreMakes, setShowMoreMakes] = useState(false);
   const [showMoreModels, setShowMoreModels] = useState(false);
+  const [showMoreCategories, setShowMoreCategories] = useState(false);
 
   const nissanMakes = ["Nissan", "Infiniti", "Datsun", "Nismo"];
 
