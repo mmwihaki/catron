@@ -1287,7 +1287,7 @@ export default function BratorHomePage() {
         }
 
         .deal-subtitle {
-          font-family: "Inter", sans-serif;
+          font-family: "Source Sans Pro", sans-serif;
           font-size: 18px;
           line-height: 28px;
           margin-bottom: 15px;
