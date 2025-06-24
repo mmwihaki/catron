@@ -1135,57 +1135,13 @@ export default function BratorHomePage() {
           position: relative;
         }
 
-        .carousel-wrapper {
-          position: relative;
-        }
-
-        .carousel-nav {
-          position: absolute;
-          top: 50%;
-          transform: translateY(-50%);
-          width: 50px;
-          height: 50px;
-          border-radius: 50%;
-          border: none;
-          background-color: rgba(0, 0, 0, 0.8);
-          color: white;
-          cursor: pointer;
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          z-index: 2;
-          transition: all 0.3s ease;
-          font-size: 16px;
-        }
-
-        .carousel-nav:hover {
-          background-color: #ff4444;
-          transform: translateY(-50%) scale(1.1);
-        }
-
-        .carousel-prev {
-          left: -25px;
-        }
-
-        .carousel-next {
-          right: -25px;
-        }
-
-        .carousel-container {
-          overflow: hidden;
-          position: relative;
-          border-radius: 8px;
-        }
-
-        .carousel-track {
-          display: flex;
-          width: calc(100% * 4 / 3);
-          transition: transform 0.5s ease-in-out;
+        .hot-deals-grid {
+          display: grid;
+          grid-template-columns: repeat(4, 1fr);
+          gap: 15px;
         }
 
         .hot-deal-card {
-          flex: 0 0 calc(100% / 4 * 3);
-          margin-right: 15px;
           position: relative;
         }
 
