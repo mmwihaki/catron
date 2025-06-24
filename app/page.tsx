@@ -1070,6 +1070,25 @@ export default function BratorHomePage() {
           .action-btn span {
             display: none;
           }
+
+          .categories-section {
+            padding: 40px 0;
+          }
+
+          .categories-title {
+            font-size: 24px;
+          }
+
+          .categories-grid {
+            gap: 15px;
+          }
+
+          .category-card {
+            width: calc(50% - 7.5px);
+            max-width: calc(50% - 7.5px);
+            min-width: 150px;
+            padding: 40px 15px 20px;
+          }
         }
 
         @media (max-width: 480px) {
