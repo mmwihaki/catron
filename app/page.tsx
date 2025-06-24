@@ -1160,6 +1160,256 @@ export default function BratorHomePage() {
           border-color: #ff4444;
         }
 
+        /* What's Hot Section */
+        .whats-hot-section {
+          background-color: white;
+          padding: 90px 0;
+        }
+
+        .whats-hot-container {
+          max-width: 1320px;
+          margin: 0 auto;
+          padding: 0 12px;
+        }
+
+        .whats-hot-header {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          margin-bottom: 35px;
+          width: 100%;
+        }
+
+        .whats-hot-title {
+          font-family: "Playfair Display", serif;
+          font-size: 30px;
+          font-weight: 600;
+          line-height: 36px;
+          margin: 0;
+          color: #333;
+          position: relative;
+        }
+
+        .carousel-wrapper {
+          position: relative;
+        }
+
+        .carousel-nav {
+          position: absolute;
+          top: 50%;
+          transform: translateY(-50%);
+          width: 50px;
+          height: 50px;
+          border-radius: 50%;
+          border: none;
+          background-color: rgba(0, 0, 0, 0.8);
+          color: white;
+          cursor: pointer;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          z-index: 2;
+          transition: all 0.3s ease;
+          font-size: 16px;
+        }
+
+        .carousel-nav:hover {
+          background-color: #ff4444;
+          transform: translateY(-50%) scale(1.1);
+        }
+
+        .carousel-prev {
+          left: -25px;
+        }
+
+        .carousel-next {
+          right: -25px;
+        }
+
+        .carousel-container {
+          overflow: hidden;
+          position: relative;
+          border-radius: 8px;
+        }
+
+        .carousel-track {
+          display: flex;
+          width: calc(100% * 4 / 3);
+          transition: transform 0.5s ease-in-out;
+        }
+
+        .hot-deal-card {
+          flex: 0 0 calc(100% / 4 * 3);
+          margin-right: 15px;
+          position: relative;
+        }
+
+        .deal-background {
+          background-position: center;
+          background-repeat: no-repeat;
+          background-size: cover;
+          border-radius: 4px;
+          height: 450px;
+          padding: 40px;
+          position: relative;
+          display: flex;
+          flex-direction: column;
+          justify-content: space-between;
+          color: white;
+        }
+
+        .deal-content {
+          display: flex;
+          flex-direction: column;
+          height: 100%;
+          justify-content: space-between;
+          position: relative;
+          z-index: 2;
+        }
+
+        .deal-subtitle {
+          font-family: "Inter", sans-serif;
+          font-size: 18px;
+          line-height: 28px;
+          margin-bottom: 15px;
+          font-weight: 300;
+          letter-spacing: 0.5px;
+        }
+
+        .deal-title {
+          font-family: "Playfair Display", serif;
+          position: relative;
+          transition: all 0.6s ease;
+          margin: 0;
+          line-height: 1.1;
+        }
+
+        .helix-title {
+          font-size: 35px;
+          font-weight: 300;
+          text-transform: uppercase;
+          letter-spacing: 1px;
+        }
+
+        .dunlop-title {
+          font-size: 30px;
+          font-weight: 700;
+          line-height: 36px;
+        }
+
+        .sale-title {
+          font-size: 60px;
+          font-weight: 700;
+          line-height: 72px;
+          color: #f73312;
+          text-transform: uppercase;
+          margin-bottom: 11px;
+        }
+
+        .super-saver-title {
+          font-size: 32px;
+          font-style: italic;
+          font-weight: 800;
+          line-height: 38px;
+          margin-bottom: 12px;
+          text-transform: uppercase;
+        }
+
+        .deal-description {
+          font-family: "Inter", sans-serif;
+          font-size: 14px;
+          line-height: 18px;
+          text-transform: uppercase;
+          font-weight: 400;
+          letter-spacing: 0.5px;
+          margin: 8px 0;
+        }
+
+        .deal-badge {
+          display: inline-flex;
+          border-radius: 3px;
+          margin: 20px 0 8px 0;
+          padding: 0 10px;
+          align-items: center;
+        }
+
+        .deal-badge span {
+          color: white;
+          font-size: 12px;
+          font-weight: 600;
+          line-height: 22px;
+          text-transform: uppercase;
+          font-family: "Inter", sans-serif;
+          letter-spacing: 0.5px;
+        }
+
+        .promo-code-badge {
+          display: inline-flex;
+          border-radius: 3px;
+          margin: 5px 0 8px 0;
+          padding: 0 10px;
+        }
+
+        .promo-content {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+        }
+
+        .promo-text {
+          color: white;
+          font-size: 12px;
+          font-weight: 300;
+          line-height: 22px;
+          text-transform: uppercase;
+          font-family: "Inter", sans-serif;
+        }
+
+        .promo-divider {
+          color: white;
+          font-size: 12px;
+          font-weight: 300;
+          line-height: 22px;
+          opacity: 0.5;
+          padding: 0 8px;
+        }
+
+        .promo-code {
+          color: white;
+          font-size: 12px;
+          font-weight: 700;
+          line-height: 22px;
+          text-transform: uppercase;
+          font-family: "Inter", sans-serif;
+          letter-spacing: 1px;
+        }
+
+        .deal-button {
+          background-color: #f73312;
+          border: 1.6px solid #f73312;
+          border-radius: 4px;
+          color: white;
+          cursor: pointer;
+          display: inline-block;
+          font-size: 14px;
+          font-weight: 700;
+          height: 40px;
+          line-height: 15px;
+          padding: 10px 25px;
+          text-decoration: none;
+          text-transform: capitalize;
+          transition: all 0.3s ease;
+          font-family: "Inter", sans-serif;
+          letter-spacing: 0.5px;
+        }
+
+        .deal-button:hover {
+          background-color: #d62912;
+          border-color: #d62912;
+          transform: translateY(-2px);
+          box-shadow: 0 4px 12px rgba(247, 51, 18, 0.3);
+        }
+
         /* Responsive Design */
         @media (max-width: 1024px) {
           .header-container {
