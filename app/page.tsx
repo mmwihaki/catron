@@ -1381,7 +1381,7 @@ export default function BratorHomePage() {
           font-weight: 300;
           line-height: 22px;
           text-transform: uppercase;
-          font-family: "Inter", sans-serif;
+          font-family: "Source Sans Pro", sans-serif;
         }
 
         .promo-divider {
@@ -1399,7 +1399,7 @@ export default function BratorHomePage() {
           font-weight: 700;
           line-height: 22px;
           text-transform: uppercase;
-          font-family: "Inter", sans-serif;
+          font-family: "Source Sans Pro", sans-serif;
           letter-spacing: 1px;
         }
 
