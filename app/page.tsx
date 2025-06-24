@@ -1511,10 +1511,6 @@ export default function BratorHomePage() {
             padding: 0 15px;
           }
 
-          .carousel-nav {
-            display: none;
-          }
-
           .deal-background {
             height: 300px;
             padding: 20px;
