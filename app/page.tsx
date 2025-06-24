@@ -1155,8 +1155,8 @@ export default function BratorHomePage() {
                                     : "regular-price"
                                 }
                               >
-                                <span className="currency">$</span>
-                                <span>{product.price.toFixed(2)}</span>
+                                <span className="currency">₹</span>
+                                <span>{product.price.toLocaleString()}</span>
                               </span>
                             </p>
                           </div>
