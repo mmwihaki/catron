@@ -1685,6 +1685,27 @@ export default function BratorHomePage() {
           margin: 0;
         }
 
+        .load-more-container {
+          text-align: center;
+          margin-top: 30px;
+        }
+
+        .load-more-button {
+          background-color: #ff4444;
+          color: white;
+          border: none;
+          padding: 12px 30px;
+          border-radius: 6px;
+          cursor: pointer;
+          font-weight: 600;
+          font-size: 14px;
+          transition: background-color 0.3s ease;
+        }
+
+        .load-more-button:hover {
+          background-color: #dd3333;
+        }
+
         /* Featured Models Section */
         .featured-models-section {
           background-color: #f8f8f8;
