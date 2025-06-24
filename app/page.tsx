@@ -12,6 +12,135 @@ export default function BratorHomePage() {
   const [vehicleFuelType, setVehicleFuelType] = useState("");
   const [cartItems, setCartItems] = useState(0);
 
+  const categoriesData = [
+    {
+      title: "Auto Parts",
+      description: "Mesh, Billet, CNC",
+      image:
+        "https://brator-main.smartdemowp.com/wp-content/uploads/2021/12/categories-30.png",
+      link: "#auto-parts",
+      width: 107,
+      height: 71,
+    },
+    {
+      title: "Car Care",
+      description: "Polishes, Cleaners",
+      image:
+        "https://brator-main.smartdemowp.com/wp-content/uploads/categories-29.png",
+      link: "#car-care",
+      width: 108,
+      height: 71,
+    },
+    {
+      title: "Performance",
+      description: "Brakes, Batteries, Turbo",
+      image:
+        "https://brator-main.smartdemowp.com/wp-content/uploads/categories-28.png",
+      link: "#performance",
+      width: 116,
+      height: 76,
+    },
+    {
+      title: "Wheels & Tires",
+      description: "Tires, TMPS Sensor",
+      image:
+        "https://brator-main.smartdemowp.com/wp-content/uploads/2021/11/categories-09.png",
+      link: "#wheels-tires",
+      width: 101,
+      height: 81,
+    },
+    {
+      title: "Exteriors",
+      description: "Lighting, Body, Wipers",
+      image:
+        "https://brator-main.smartdemowp.com/wp-content/uploads/categories-27.png",
+      link: "#exteriors",
+      width: 122,
+      height: 80,
+    },
+    {
+      title: "Interiors",
+      description: "Steering Wheels, Seats",
+      image:
+        "https://brator-main.smartdemowp.com/wp-content/uploads/categories-26.png",
+      link: "#interiors",
+      width: 128,
+      height: 84,
+    },
+    {
+      title: "Entertainment",
+      description: "Audios, Videos, GPS",
+      image:
+        "https://brator-main.smartdemowp.com/wp-content/uploads/categories-25.png",
+      link: "#entertainment",
+      width: 121,
+      height: 79,
+    },
+    {
+      title: "Exhaust System",
+      description: "Headers, Mufflers",
+      image:
+        "https://brator-main.smartdemowp.com/wp-content/uploads/categories-24.png",
+      link: "#exhaust-system",
+      width: 118,
+      height: 77,
+    },
+    {
+      title: "Wheels & Tires",
+      description: "Custom, Alloy, Forged",
+      image:
+        "https://brator-main.smartdemowp.com/wp-content/uploads/2021/11/categories-14.png",
+      link: "#wheels-tires-custom",
+      width: 114,
+      height: 74,
+    },
+    {
+      title: "Air Filters",
+      description: "Air intake, filters",
+      image:
+        "https://brator-main.smartdemowp.com/wp-content/uploads/categories-23.png",
+      link: "#air-filters",
+      width: 116,
+      height: 76,
+    },
+    {
+      title: "Starting & Charging",
+      description: "Batteries, Starters",
+      image:
+        "https://brator-main.smartdemowp.com/wp-content/uploads/categories-22.png",
+      link: "#starting-charging",
+      width: 113,
+      height: 75,
+    },
+    {
+      title: "Wipers & Washers",
+      description: "Wiper Blades, Cleaners",
+      image:
+        "https://brator-main.smartdemowp.com/wp-content/uploads/categories-21.png",
+      link: "#wipers-washers",
+      width: 114,
+      height: 75,
+    },
+    {
+      title: "Fluids & Chemicals",
+      description: "Soap, Shampoo, Brushes",
+      image:
+        "https://brator-main.smartdemowp.com/wp-content/uploads/categories-20.png",
+      link: "#fluids-chemicals",
+      width: 126,
+      height: 82,
+    },
+    {
+      title: "Tools & Supplies",
+      description: "Caliper Tools, Bleeders",
+      image:
+        "https://brator-main.smartdemowp.com/wp-content/uploads/categories-19.png",
+      link: "#tools-supplies",
+      width: 127,
+      height: 83,
+    },
+  ];
+
   const categories = [
     "All Categories",
     "Auto Parts",
