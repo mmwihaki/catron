@@ -44,6 +44,9 @@ export default function BratorHomePage() {
     "Sunny",
   ];
 
+  const [currentProductSlide, setCurrentProductSlide] = useState(0);
+  const [isProductAutoPlaying, setIsProductAutoPlaying] = useState(true);
+
   const essentialProducts = [
     {
       id: 1,
@@ -110,6 +113,45 @@ export default function BratorHomePage() {
       discount: "25% OFF",
       link: "#product-5",
     },
+    {
+      id: 6,
+      name: "High Performance Oil",
+      category: "Fluids & Chemicals",
+      price: 38.0,
+      originalPrice: 45.0,
+      rating: 4.6,
+      reviews: 20,
+      image:
+        "https://images.pexels.com/photos/9666306/pexels-photo-9666306.jpeg?auto=compress&cs=tinysrgb&w=400",
+      discount: "15% OFF",
+      link: "#product-6",
+    },
+    {
+      id: 7,
+      name: "Carbon Fiber Spoiler",
+      category: "Exteriors",
+      price: 125.0,
+      originalPrice: null,
+      rating: 4.9,
+      reviews: 7,
+      image:
+        "https://images.pexels.com/photos/3642618/pexels-photo-3642618.jpeg?auto=compress&cs=tinysrgb&w=400",
+      discount: null,
+      link: "#product-7",
+    },
+    {
+      id: 8,
+      name: "LED Light Bar",
+      category: "Clearance",
+      price: 55.0,
+      originalPrice: 75.0,
+      rating: 4.3,
+      reviews: 11,
+      image:
+        "https://images.pexels.com/photos/18497064/pexels-photo-18497064.jpeg?auto=compress&cs=tinysrgb&w=400",
+      discount: "26% OFF",
+      link: "#product-8",
+    },
   ];
 
   const whatHotProducts = [
@@ -155,6 +197,32 @@ export default function BratorHomePage() {
 
     return () => clearInterval(interval);
   }, [isAutoPlaying, whatHotProducts.length]);
+
+  useEffect(() => {
+    if (!isProductAutoPlaying) return;
+
+    const interval = setInterval(() => {
+      setCurrentProductSlide((prev) => {
+        const itemsPerView = 4;
+        const maxSlide = Math.max(0, essentialProducts.length - itemsPerView);
+        return prev >= maxSlide ? 0 : prev + 1;
+      });
+    }, 5000);
+
+    return () => clearInterval(interval);
+  }, [isProductAutoPlaying, essentialProducts.length]);
+
+  const nextProductSlide = () => {
+    const itemsPerView = 4;
+    const maxSlide = Math.max(0, essentialProducts.length - itemsPerView);
+    setCurrentProductSlide((prev) => (prev >= maxSlide ? 0 : prev + 1));
+  };
+
+  const prevProductSlide = () => {
+    const itemsPerView = 4;
+    const maxSlide = Math.max(0, essentialProducts.length - itemsPerView);
+    setCurrentProductSlide((prev) => (prev <= 0 ? maxSlide : prev - 1));
+  };
 
   const renderStars = (rating) => {
     const stars = [];
@@ -687,7 +755,7 @@ export default function BratorHomePage() {
 
           <div className="products-static-grid">
             <div className="products-grid-container">
-              {essentialProducts.map((product) => (
+              {essentialProducts.slice(0, 5).map((product) => (
                 <div key={product.id} className="product-card">
                   <div className="product-card-inner">
                     {product.discount && (
