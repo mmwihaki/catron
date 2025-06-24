@@ -1623,6 +1623,24 @@ export default function BratorHomePage() {
             font-size: 28px;
             line-height: 34px;
           }
+
+          .featured-models-section {
+            padding: 60px 0 0 0;
+          }
+
+          .featured-models-tabs {
+            flex-direction: column;
+            gap: 15px;
+          }
+
+          .tab-button {
+            font-size: 26px;
+            margin: 0 15px;
+          }
+
+          .model-card {
+            width: calc(25% - 12px);
+          }
         }
 
         @media (max-width: 768px) {
