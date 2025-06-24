@@ -1020,6 +1020,16 @@ export default function BratorHomePage() {
             flex-basis: 100%;
             margin-top: 15px;
           }
+
+          .categories-grid {
+            gap: 20px;
+          }
+
+          .category-card {
+            width: calc(25% - 15px);
+            max-width: calc(25% - 15px);
+            min-width: 180px;
+          }
         }
 
         @media (max-width: 768px) {
