@@ -615,6 +615,89 @@ export default function BratorHomePage() {
         </div>
       </section>
 
+      {/* Featured Nissan Models Section */}
+      <section className="featured-models-section">
+        <div className="featured-models-container">
+          <div className="featured-models-tabs">
+            <button
+              className={`tab-button ${activeTab === "makes" ? "inactive" : ""}`}
+              onClick={() => setActiveTab("makes")}
+            >
+              Featured Makes
+            </button>
+            <button
+              className={`tab-button ${activeTab === "models" ? "active" : ""}`}
+              onClick={() => setActiveTab("models")}
+            >
+              Featured Models
+            </button>
+          </div>
+
+          {activeTab === "makes" && (
+            <div className="featured-content">
+              <div className="models-grid">
+                {nissanMakes
+                  .slice(0, showMoreMakes ? nissanMakes.length : 20)
+                  .map((make, index) => (
+                    <div key={index} className="model-card">
+                      <a href={`#${make.toLowerCase()}`} className="model-link">
+                        <span>{make}</span>
+                      </a>
+                    </div>
+                  ))}
+              </div>
+              <div className="view-more-container">
+                <button
+                  className="view-more-button"
+                  onClick={() => setShowMoreMakes(!showMoreMakes)}
+                >
+                  <span className="view-more-text">
+                    <strong>{showMoreMakes ? "VIEW LESS" : "VIEW MORE"}</strong>
+                    <i
+                      className={`fas ${showMoreMakes ? "fa-chevron-up" : "fa-chevron-down"}`}
+                    ></i>
+                  </span>
+                </button>
+              </div>
+            </div>
+          )}
+
+          {activeTab === "models" && (
+            <div className="featured-content">
+              <div className="models-grid">
+                {nissanModels
+                  .slice(0, showMoreModels ? nissanModels.length : 20)
+                  .map((model, index) => (
+                    <div key={index} className="model-card">
+                      <a
+                        href={`#${model.toLowerCase()}`}
+                        className="model-link"
+                      >
+                        <span>{model}</span>
+                      </a>
+                    </div>
+                  ))}
+              </div>
+              <div className="view-more-container">
+                <button
+                  className="view-more-button"
+                  onClick={() => setShowMoreModels(!showMoreModels)}
+                >
+                  <span className="view-more-text">
+                    <strong>
+                      {showMoreModels ? "VIEW LESS" : "VIEW MORE"}
+                    </strong>
+                    <i
+                      className={`fas ${showMoreModels ? "fa-chevron-up" : "fa-chevron-down"}`}
+                    ></i>
+                  </span>
+                </button>
+              </div>
+            </div>
+          )}
+        </div>
+      </section>
+
       <style jsx>{`
         .homepage {
           font-family: "Arial", sans-serif;
