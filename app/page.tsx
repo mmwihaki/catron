@@ -2548,6 +2548,27 @@ export default function BratorHomePage() {
             font-size: 14px;
             line-height: 20px;
           }
+
+          .essential-items-container {
+            padding: 0 15px;
+          }
+
+          .essential-items-title {
+            font-size: 20px;
+          }
+
+          .products-nav {
+            display: none;
+          }
+
+          .product-image {
+            width: 150px;
+            height: 150px;
+          }
+
+          .product-card-inner {
+            padding: 15px;
+          }
         }
       `}</style>
     </div>
