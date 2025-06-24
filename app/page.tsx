@@ -1135,6 +1135,244 @@ export default function BratorHomePage() {
         </div>
       </section>
 
+      {/* New Arrivals Section */}
+      <section className="new-arrivals-section">
+        <div className="new-arrivals-container">
+          <div className="new-arrivals-header">
+            <div className="header-left">
+              <h2 className="new-arrivals-title">New Arrivals</h2>
+            </div>
+            <div className="header-right">
+              <a href="#shop" className="see-all-products-link">
+                <span>See All Products</span>
+                <i className="fas fa-chevron-right"></i>
+              </a>
+            </div>
+          </div>
+
+          <div className="new-arrivals-products">
+            <div className="products-carousel-wrapper">
+              <button className="carousel-nav carousel-prev disabled">
+                <i className="fas fa-chevron-left"></i>
+              </button>
+
+              <button className="carousel-nav carousel-next">
+                <i className="fas fa-chevron-right"></i>
+              </button>
+
+              <div className="products-carousel-container">
+                <div className="products-carousel-track">
+                  {[
+                    {
+                      id: 1,
+                      image:
+                        "https://images.pexels.com/photos/9666306/pexels-photo-9666306.jpeg?auto=compress&cs=tinysrgb&w=300",
+                      category: "Air Filters",
+                      name: "Sanex – RFX2 Brushed Titanium",
+                      rating: 5.0,
+                      reviews: 1,
+                      price: 32.0,
+                      link: "#product-1",
+                    },
+                    {
+                      id: 2,
+                      image:
+                        "https://images.pexels.com/photos/18497064/pexels-photo-18497064.jpeg?auto=compress&cs=tinysrgb&w=300",
+                      category: "Wipers & Washers",
+                      name: "M249 GAMMA Silver with Full Chrome",
+                      rating: 4.0,
+                      reviews: 1,
+                      price: 32.0,
+                      link: "#product-2",
+                    },
+                    {
+                      id: 3,
+                      image:
+                        "https://images.pexels.com/photos/13065690/pexels-photo-13065690.jpeg?auto=compress&cs=tinysrgb&w=300",
+                      category: "Car Care",
+                      name: "Silver with Mirror Cut Face Wheels",
+                      rating: 5.0,
+                      reviews: 2,
+                      price: 11.05,
+                      link: "#product-3",
+                    },
+                    {
+                      id: 4,
+                      image:
+                        "https://images.pexels.com/photos/3642618/pexels-photo-3642618.jpeg?auto=compress&cs=tinysrgb&w=300",
+                      category: "Exhaust System",
+                      name: "M195 METHOS Black with Bronze Face",
+                      rating: 4.5,
+                      reviews: 2,
+                      priceRange: "$120.00 – $221.00",
+                      link: "#product-4",
+                    },
+                    {
+                      id: 5,
+                      image:
+                        "https://images.pexels.com/photos/5835359/pexels-photo-5835359.jpeg?auto=compress&cs=tinysrgb&w=300",
+                      discount: "10% OFF",
+                      category: "Exhaust System",
+                      name: "HF-2 Gloss Black with Brushed Face",
+                      rating: 4.33,
+                      reviews: 3,
+                      originalPrice: 20.0,
+                      price: 18.0,
+                      link: "#product-5",
+                    },
+                    {
+                      id: 6,
+                      image:
+                        "https://images.pexels.com/photos/3807277/pexels-photo-3807277.jpeg?auto=compress&cs=tinysrgb&w=300",
+                      category: "Interiors",
+                      name: "M249 GAMMA Silver with Full Chrome",
+                      rating: 5.0,
+                      reviews: 2,
+                      price: 19.0,
+                      link: "#product-6",
+                    },
+                    {
+                      id: 7,
+                      image:
+                        "https://images.pexels.com/photos/190570/pexels-photo-190570.jpeg?auto=compress&cs=tinysrgb&w=300",
+                      discount: "33% OFF",
+                      category: "Car Care",
+                      name: "Simple Leather Steering Wheel",
+                      rating: 5.0,
+                      reviews: 2,
+                      originalPrice: 3.0,
+                      price: 2.0,
+                      link: "#product-7",
+                    },
+                    {
+                      id: 8,
+                      image:
+                        "https://images.pexels.com/photos/162553/keys-workshop-mechanic-tools-162553.jpeg?auto=compress&cs=tinysrgb&w=300",
+                      category: "Car Care",
+                      name: "Simple Leather Steering Wheel",
+                      rating: 4.0,
+                      reviews: 1,
+                      price: 15.0,
+                      link: "#product-8",
+                    },
+                  ].map((product) => (
+                    <div key={product.id} className="new-arrivals-product-card">
+                      <div className="product-card-inner">
+                        {product.discount && (
+                          <div className="product-discount-badge">
+                            {product.discount}
+                          </div>
+                        )}
+
+                        <div className="product-image-container">
+                          <a href={product.link} className="product-image-link">
+                            <img
+                              src={product.image}
+                              alt={product.name}
+                              className="product-image"
+                              loading="lazy"
+                              width="225"
+                              height="225"
+                            />
+                          </a>
+                        </div>
+
+                        <div className="product-info">
+                          <div className="product-category">
+                            <a
+                              href={`#category-${product.category.toLowerCase().replace(/\s+/g, "-")}`}
+                              className="category-link"
+                            >
+                              {product.category}
+                            </a>
+                          </div>
+
+                          <div className="product-name">
+                            <h5>
+                              <a
+                                href={product.link}
+                                className="product-name-link"
+                              >
+                                {product.name}
+                              </a>
+                            </h5>
+                          </div>
+
+                          <div className="product-rating">
+                            <div className="rating-stars">
+                              <div
+                                className="stars"
+                                title={`Rated ${product.rating} out of 5`}
+                              >
+                                <span className="star-display">
+                                  {renderStars(product.rating)}
+                                </span>
+                                <span className="rating-text">
+                                  Rated{" "}
+                                  <strong>{product.rating.toFixed(2)}</strong>{" "}
+                                  out of 5
+                                </span>
+                              </div>
+                            </div>
+                            <div className="reviews-count">
+                              <p>
+                                {product.reviews} Review
+                                {product.reviews !== 1 ? "s" : ""}
+                              </p>
+                            </div>
+                          </div>
+
+                          <div className="product-price">
+                            <p className="price-container">
+                              {product.priceRange ? (
+                                <span className="price-range">
+                                  {product.priceRange}
+                                </span>
+                              ) : (
+                                <>
+                                  {product.originalPrice && (
+                                    <del className="original-price">
+                                      <span>
+                                        <span className="currency">$</span>
+                                        <span>
+                                          {product.originalPrice.toFixed(2)}
+                                        </span>
+                                      </span>
+                                    </del>
+                                  )}
+                                  <span
+                                    className={
+                                      product.originalPrice
+                                        ? "sale-price"
+                                        : "regular-price"
+                                    }
+                                  >
+                                    <span className="currency">$</span>
+                                    <span>{product.price.toFixed(2)}</span>
+                                  </span>
+                                </>
+                              )}
+                            </p>
+                          </div>
+
+                          <div className="product-actions">
+                            <a href={product.link} className="add-to-cart-btn">
+                              {product.priceRange
+                                ? "Select options"
+                                : "Add to cart"}
+                            </a>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
       <style jsx>{`
         .homepage {
           font-family: "Source Sans Pro", sans-serif;
