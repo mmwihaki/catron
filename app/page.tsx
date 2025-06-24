@@ -2685,6 +2685,10 @@ export default function BratorHomePage() {
           }
 
           .products-grid-container {
+            grid-template-columns: repeat(2, 1fr);
+          }
+
+          .categories-grid {
             grid-template-columns: repeat(3, 1fr);
           }
 
