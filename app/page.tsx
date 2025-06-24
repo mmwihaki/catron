@@ -145,9 +145,9 @@ export default function BratorHomePage() {
     {
       id: 1,
       backgroundImage:
-        "https://brator-main.smartdemowp.com/wp-content/uploads/2021/12/hot-1.png",
+        "https://images.pexels.com/photos/13065690/pexels-photo-13065690.jpeg?auto=compress&cs=tinysrgb&w=800",
       subtitle: "Keep things running smoothly",
-      title: "Helix Engine Oils",
+      title: "Premium Engine Oils",
       titleClass: "helix-title",
       buttonText: "Shop Now",
       link: "#helix-oils",
@@ -155,8 +155,8 @@ export default function BratorHomePage() {
     {
       id: 2,
       backgroundImage:
-        "https://brator-main.smartdemowp.com/wp-content/uploads/2021/12/hot-2.png",
-      title: "Dunlop Tires & Wheels",
+        "https://images.pexels.com/photos/8986137/pexels-photo-8986137.jpeg?auto=compress&cs=tinysrgb&w=800",
+      title: "Wheels & Tires",
       titleClass: "dunlop-title",
       badge: "Best Choice",
       badgeColor: "#fbab00",
@@ -166,18 +166,18 @@ export default function BratorHomePage() {
     {
       id: 3,
       backgroundImage:
-        "https://brator-main.smartdemowp.com/wp-content/uploads/2021/12/hot-3.png",
+        "https://images.pexels.com/photos/10912797/pexels-photo-10912797.jpeg?auto=compress&cs=tinysrgb&w=800",
       subtitle: "Big Season Sale Of The Year",
       title: "35% OFF",
       titleClass: "sale-title",
-      description: "Sport Gas Shock Absorbers",
+      description: "Shock Absorbers & Springs",
       buttonText: "Shop Now",
       link: "#shock-absorbers",
     },
     {
       id: 4,
       backgroundImage:
-        "https://brator-main.smartdemowp.com/wp-content/uploads/2021/12/hot-4.png",
+        "https://images.pexels.com/photos/7568433/pexels-photo-7568433.jpeg?auto=compress&cs=tinysrgb&w=800",
       title: "Super Saver",
       titleClass: "super-saver-title",
       subtitle: "Sale up to 70% for over 8,000 products",
