@@ -1540,6 +1540,66 @@ export default function BratorHomePage() {
             min-width: 150px;
             padding: 40px 15px 20px;
           }
+
+          .whats-hot-section {
+            padding: 40px 0;
+          }
+
+          .whats-hot-title {
+            font-size: 24px;
+          }
+
+          .carousel-nav {
+            width: 40px;
+            height: 40px;
+            font-size: 12px;
+          }
+
+          .carousel-prev {
+            left: -20px;
+          }
+
+          .carousel-next {
+            right: -20px;
+          }
+
+          .carousel-track {
+            width: 100%;
+          }
+
+          .hot-deal-card {
+            flex: 0 0 100%;
+            margin-right: 0;
+          }
+
+          .deal-background {
+            height: 350px;
+            padding: 25px;
+          }
+
+          .helix-title {
+            font-size: 28px;
+          }
+
+          .dunlop-title {
+            font-size: 24px;
+            line-height: 30px;
+          }
+
+          .sale-title {
+            font-size: 40px;
+            line-height: 48px;
+          }
+
+          .super-saver-title {
+            font-size: 24px;
+            line-height: 28px;
+          }
+
+          .deal-subtitle {
+            font-size: 16px;
+            line-height: 24px;
+          }
         }
 
         @media (max-width: 480px) {
