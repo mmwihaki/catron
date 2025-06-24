@@ -888,7 +888,7 @@ export default function BratorHomePage() {
                                 : "regular-price"
                             }
                           >
-                            <span className="currency">₹</span>
+                            <span className="currency">KES </span>
                             <span>{product.price.toLocaleString()}</span>
                           </span>
                         </p>
