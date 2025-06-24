@@ -1632,6 +1632,43 @@ export default function BratorHomePage() {
           .categories-container {
             padding: 0 15px;
           }
+
+          .whats-hot-container {
+            padding: 0 15px;
+          }
+
+          .carousel-nav {
+            display: none;
+          }
+
+          .deal-background {
+            height: 300px;
+            padding: 20px;
+          }
+
+          .helix-title {
+            font-size: 24px;
+          }
+
+          .dunlop-title {
+            font-size: 20px;
+            line-height: 26px;
+          }
+
+          .sale-title {
+            font-size: 32px;
+            line-height: 38px;
+          }
+
+          .super-saver-title {
+            font-size: 20px;
+            line-height: 24px;
+          }
+
+          .deal-subtitle {
+            font-size: 14px;
+            line-height: 20px;
+          }
         }
       `}</style>
     </div>
