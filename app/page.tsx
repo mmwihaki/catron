@@ -1026,6 +1026,7 @@ export default function BratorHomePage() {
           font-weight: bold;
           color: #333;
           margin-bottom: 10px;
+          font-family: "Playfair Display", serif;
         }
 
         .search-subtitle {
