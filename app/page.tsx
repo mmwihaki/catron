@@ -3193,6 +3193,518 @@ export default function BratorHomePage() {
           }
         }
 
+        /* Tips & Guides Section */
+        .tips-guides-section {
+          padding: 95px 0 110px 0;
+          background-color: white;
+        }
+
+        .tips-guides-container {
+          max-width: 1320px;
+          margin: 0 auto;
+          padding: 0 12px;
+        }
+
+        .section-header {
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          margin-bottom: 40px;
+        }
+
+        .view-all-link {
+          display: flex;
+          align-items: center;
+          gap: 10px;
+          color: #666;
+          text-decoration: none;
+          font-size: 14px;
+          transition: color 0.3s ease;
+        }
+
+        .view-all-link:hover {
+          color: #ff4444;
+        }
+
+        .view-all-link i {
+          font-size: 16px;
+          position: relative;
+          top: 2px;
+        }
+
+        .tips-guides-content {
+          display: grid;
+          grid-template-columns: 1fr 1fr;
+          gap: 40px;
+        }
+
+        .featured-article {
+          display: flex;
+          flex-direction: column;
+          padding-right: 40px;
+        }
+
+        .article-image {
+          border-radius: 5px;
+          overflow: hidden;
+          margin-bottom: 32px;
+        }
+
+        .article-image img {
+          width: 100%;
+          height: auto;
+          transition: transform 0.4s ease;
+        }
+
+        .article-image:hover img {
+          transform: scale(1.05);
+        }
+
+        .article-title {
+          font-size: 28px;
+          font-weight: 600;
+          line-height: 1.4;
+          margin-bottom: 15px;
+          font-family: "Playfair Display", serif;
+        }
+
+        .article-title a {
+          color: #333;
+          text-decoration: none;
+          transition: color 0.3s ease;
+        }
+
+        .article-title a:hover {
+          color: #ff4444;
+        }
+
+        .article-excerpt {
+          color: #666;
+          font-size: 14px;
+          line-height: 1.7;
+          margin-bottom: 15px;
+        }
+
+        .article-meta {
+          display: flex;
+          gap: 20px;
+          align-items: center;
+        }
+
+        .author,
+        .date {
+          display: flex;
+          align-items: center;
+          gap: 5px;
+          color: #999;
+          font-size: 13px;
+        }
+
+        .author i,
+        .date i {
+          font-size: 18px;
+          margin-right: 14px;
+        }
+
+        .article-list {
+          padding-left: 40px;
+        }
+
+        .small-article {
+          display: flex;
+          gap: 30px;
+          border-bottom: 0.8px solid #e5e5e5;
+          padding-bottom: 30px;
+          margin-bottom: 30px;
+        }
+
+        .small-article:last-child {
+          border-bottom: none;
+          margin-bottom: 0;
+        }
+
+        .small-article-image {
+          border-radius: 5px;
+          overflow: hidden;
+          flex-shrink: 0;
+          width: 265px;
+          max-width: 380px;
+        }
+
+        .small-article-image img {
+          width: 100%;
+          height: auto;
+          transition: transform 0.4s ease;
+        }
+
+        .small-article-image:hover img {
+          transform: scale(1.05);
+        }
+
+        .small-article-content {
+          display: flex;
+          flex-direction: column;
+        }
+
+        .small-article-title {
+          font-size: 28px;
+          font-weight: 600;
+          line-height: 1.4;
+          margin-bottom: 15px;
+          font-family: "Playfair Display", serif;
+        }
+
+        .small-article-title a {
+          color: #333;
+          text-decoration: none;
+          transition: color 0.3s ease;
+        }
+
+        .small-article-title a:hover {
+          color: #ff4444;
+        }
+
+        .small-article-excerpt {
+          color: #666;
+          font-size: 14px;
+          line-height: 1.7;
+          margin-bottom: 15px;
+        }
+
+        /* Featured Brands Section */
+        .featured-brands-section {
+          background-color: white;
+          padding: 90px 0;
+        }
+
+        .featured-brands-container {
+          max-width: 1320px;
+          margin: 0 auto;
+          padding: 0 12px;
+        }
+
+        .brands-grid {
+          display: grid;
+          grid-template-columns: repeat(6, 1fr);
+          gap: 40px;
+          align-items: center;
+        }
+
+        .brand-item {
+          display: flex;
+          justify-content: center;
+          align-items: center;
+        }
+
+        .brand-item a {
+          display: block;
+          transition: opacity 0.3s ease;
+        }
+
+        .brand-item a:hover {
+          opacity: 0.7;
+        }
+
+        .brand-item img {
+          max-width: 100%;
+          height: auto;
+          filter: grayscale(100%);
+          transition: filter 0.3s ease;
+        }
+
+        .brand-item:hover img {
+          filter: grayscale(0%);
+        }
+
+        /* Newsletter Section */
+        .newsletter-section {
+          background-color: #f6f7fa;
+          border-top: 0.8px solid #e5e5e5;
+          padding: 90px 0;
+        }
+
+        .newsletter-container {
+          max-width: 1320px;
+          margin: 0 auto;
+          padding: 0 12px;
+          display: grid;
+          grid-template-columns: 5fr 7fr;
+          gap: 40px;
+          align-items: center;
+        }
+
+        .newsletter-title {
+          font-size: 30px;
+          font-weight: 700;
+          line-height: 1.2;
+          margin-bottom: 15px;
+          color: #333;
+          font-family: "Playfair Display", serif;
+        }
+
+        .newsletter-description {
+          color: #666;
+          font-size: 14px;
+          line-height: 2;
+        }
+
+        .subscription-form {
+          margin-bottom: 15px;
+        }
+
+        .form-group {
+          display: flex;
+          align-items: stretch;
+          position: relative;
+        }
+
+        .email-input {
+          flex: 1;
+          border: 0.8px solid #ccc;
+          border-radius: 4px 0 0 4px;
+          padding: 12px 17px;
+          font-size: 15px;
+          color: #999;
+          outline: none;
+          background-color: white;
+        }
+
+        .email-input::placeholder {
+          color: #999;
+        }
+
+        .subscribe-btn {
+          background-color: #f73312;
+          border: 1.6px solid #f73312;
+          border-radius: 0 4px 4px 0;
+          padding: 15px 20px;
+          color: white;
+          font-weight: 700;
+          cursor: pointer;
+          transition: background-color 0.3s ease;
+          position: relative;
+          left: -5px;
+        }
+
+        .subscribe-btn:hover {
+          background-color: #d82c0e;
+        }
+
+        .newsletter-policy {
+          color: #666;
+          font-size: 14px;
+          line-height: 2;
+        }
+
+        .policy-link {
+          color: #333;
+          text-decoration: underline;
+          margin-left: 5px;
+        }
+
+        /* Footer Section */
+        .main-footer {
+          background-color: #f6f7fa;
+          padding: 100px 0 50px 0;
+          position: relative;
+        }
+
+        .footer-container {
+          max-width: 1320px;
+          margin: 0 auto;
+          padding: 0 12px;
+        }
+
+        .footer-main {
+          display: grid;
+          grid-template-columns: 5fr 2fr 2fr 3fr;
+          gap: 40px;
+          margin-bottom: 50px;
+        }
+
+        .footer-about {
+          padding-right: 105px;
+        }
+
+        .footer-logo .logo-text {
+          font-size: 28px;
+          font-weight: bold;
+          color: #333;
+          font-family: "Playfair Display", serif;
+        }
+
+        .footer-tagline {
+          font-size: 14px;
+          font-weight: 700;
+          line-height: 1.7;
+          margin: 20px 0 30px 0;
+          color: #333;
+        }
+
+        .footer-description {
+          color: #666;
+          font-size: 14px;
+          line-height: 1.7;
+          margin-bottom: 35px;
+        }
+
+        .social-links {
+          display: flex;
+          gap: 20px;
+        }
+
+        .social-link {
+          color: #666;
+          font-size: 18px;
+          transition: color 0.3s ease;
+        }
+
+        .social-link:hover {
+          color: #ff4444;
+        }
+
+        .footer-section-title {
+          font-size: 20px;
+          font-weight: 600;
+          line-height: 1.2;
+          margin-bottom: 35px;
+          color: #333;
+          font-family: "Playfair Display", serif;
+        }
+
+        .footer-links {
+          list-style: none;
+          padding: 0;
+          margin: 0;
+        }
+
+        .footer-links li {
+          margin-bottom: 12px;
+        }
+
+        .footer-links a {
+          color: #666;
+          font-size: 14px;
+          text-decoration: none;
+          transition: color 0.3s ease;
+        }
+
+        .footer-links a:hover {
+          color: #ff4444;
+        }
+
+        .footer-bottom {
+          border-top: 0.8px solid #e5e5e5;
+          padding-top: 30px;
+          text-align: center;
+        }
+
+        .copyright {
+          color: #666;
+          font-size: 14px;
+          margin: 0;
+        }
+
+        .brand-link {
+          color: #333;
+          font-weight: 600;
+          text-decoration: none;
+          margin: 0 4px;
+        }
+
+        .brand-link:hover {
+          color: #ff4444;
+        }
+
+        @media (max-width: 1024px) {
+          .tips-guides-content {
+            grid-template-columns: 1fr;
+            gap: 40px;
+          }
+
+          .featured-article {
+            padding-right: 0;
+          }
+
+          .article-list {
+            padding-left: 0;
+          }
+
+          .brands-grid {
+            grid-template-columns: repeat(4, 1fr);
+            gap: 30px;
+          }
+
+          .newsletter-container {
+            grid-template-columns: 1fr;
+            gap: 30px;
+          }
+
+          .footer-main {
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+          }
+
+          .footer-about {
+            padding-right: 0;
+            grid-column: 1 / -1;
+          }
+        }
+
+        @media (max-width: 768px) {
+          .tips-guides-section {
+            padding: 60px 0 80px 0;
+          }
+
+          .section-header {
+            flex-direction: column;
+            align-items: flex-start;
+            gap: 20px;
+          }
+
+          .small-article {
+            flex-direction: column;
+            gap: 20px;
+          }
+
+          .small-article-image {
+            width: 100%;
+            max-width: none;
+          }
+
+          .brands-grid {
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+          }
+
+          .newsletter-section {
+            padding: 60px 0;
+          }
+
+          .form-group {
+            flex-direction: column;
+            gap: 15px;
+          }
+
+          .email-input {
+            border-radius: 4px;
+          }
+
+          .subscribe-btn {
+            border-radius: 4px;
+            left: 0;
+          }
+
+          .footer-main {
+            grid-template-columns: 1fr;
+            gap: 30px;
+          }
+
+          .footer-about {
+            grid-column: 1;
+          }
+        }
+
         @media (max-width: 480px) {
           .promo-content {
             flex-direction: column;
@@ -3218,6 +3730,20 @@ export default function BratorHomePage() {
 
           .essential-items-container {
             padding: 0 15px;
+          }
+
+          .article-title,
+          .small-article-title {
+            font-size: 24px;
+          }
+
+          .brands-grid {
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
+          }
+
+          .newsletter-title {
+            font-size: 24px;
           }
         }
       `}</style>
