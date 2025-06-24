@@ -1141,7 +1141,7 @@ export default function BratorHomePage() {
                               {product.originalPrice && (
                                 <del className="original-price">
                                   <span>
-                                    <span className="currency">₹</span>
+                                    <span className="currency">KES </span>
                                     <span>
                                       {product.originalPrice.toLocaleString()}
                                     </span>
