@@ -1429,6 +1429,138 @@ export default function BratorHomePage() {
           box-shadow: 0 4px 12px rgba(247, 51, 18, 0.3);
         }
 
+        /* Featured Nissan Models Section */
+        .featured-models-section {
+          background-color: white;
+          padding: 85px 0 0 0;
+        }
+
+        .featured-models-container {
+          max-width: 1320px;
+          margin: 0 auto;
+          padding: 0 12px;
+        }
+
+        .featured-models-tabs {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          margin-bottom: 35px;
+        }
+
+        .tab-button {
+          background: none;
+          border: none;
+          cursor: pointer;
+          font-family: "Playfair Display", serif;
+          font-size: 30px;
+          font-weight: 400;
+          color: #999;
+          margin: 0 28px;
+          padding: 10px 0;
+          position: relative;
+          text-decoration: none;
+          transition: color 0.3s ease;
+        }
+
+        .tab-button.active {
+          font-weight: 700;
+          color: #333;
+        }
+
+        .tab-button.inactive {
+          color: #999;
+        }
+
+        .tab-button:hover {
+          color: #ff4444;
+        }
+
+        .featured-content {
+          width: 100%;
+        }
+
+        .models-grid {
+          display: flex;
+          flex-wrap: wrap;
+          gap: 15px;
+          margin-right: -15px;
+          align-items: flex-start;
+          justify-content: flex-start;
+        }
+
+        .model-card {
+          background-color: white;
+          border: 0.8px solid #d3d3d3;
+          border-radius: 3px;
+          padding: 10px 15px;
+          width: calc(20% - 15px);
+          transition: all 0.3s ease;
+        }
+
+        .model-card:hover {
+          border-color: #ff4444;
+          transform: translateY(-2px);
+          box-shadow: 0 4px 12px rgba(255, 68, 68, 0.15);
+        }
+
+        .model-link {
+          cursor: pointer;
+          line-height: 16px;
+          position: relative;
+          text-decoration: none;
+          color: #333;
+          font-family: "Source Sans Pro", sans-serif;
+          font-weight: 400;
+          transition: color 0.3s ease;
+        }
+
+        .model-link:hover {
+          color: #ff4444;
+        }
+
+        .model-link span {
+          cursor: pointer;
+          display: inline;
+        }
+
+        .view-more-container {
+          padding: 70px 0;
+          text-align: center;
+        }
+
+        .view-more-button {
+          background: transparent;
+          border: none;
+          cursor: pointer;
+          font-family: "Source Sans Pro", sans-serif;
+          font-size: 15px;
+          font-weight: 600;
+          line-height: normal;
+          color: #333;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          margin: 0 auto;
+          text-transform: uppercase;
+          transition: color 0.3s ease;
+        }
+
+        .view-more-button:hover {
+          color: #ff4444;
+        }
+
+        .view-more-text {
+          display: flex;
+          align-items: center;
+          gap: 8px;
+        }
+
+        .view-more-text i {
+          font-size: 16px;
+          transition: transform 0.3s ease;
+        }
+
         /* Responsive Design */
         @media (max-width: 1024px) {
           .header-container {
