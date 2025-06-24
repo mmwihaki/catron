@@ -1695,7 +1695,7 @@ export default function BratorHomePage() {
       </section>
 
       {/* Newsletter Section */}
-      <section className="newsletter-section">
+      <section className="newsletter-section newsletter-with-divider">
         <div className="newsletter-container">
           <div className="newsletter-content">
             <h2 className="newsletter-title">Subscribe To Our Newsletter</h2>
