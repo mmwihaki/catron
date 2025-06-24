@@ -700,7 +700,7 @@ export default function BratorHomePage() {
 
       <style jsx>{`
         .homepage {
-          font-family: "Arial", sans-serif;
+          font-family: "Source Sans Pro", sans-serif;
           margin: 0;
           padding: 0;
         }
