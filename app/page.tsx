@@ -15,33 +15,15 @@ export default function BratorHomePage() {
   const [showMoreMakes, setShowMoreMakes] = useState(false);
   const [showMoreModels, setShowMoreModels] = useState(false);
 
-  const nissanMakes = ["Nissan", "Infiniti", "Datsun", "Nismo"];
+  const nissanMakes = [
+    "Nissan", "Infiniti", "Datsun", "Nismo"
+  ];
 
   const nissanModels = [
-    "Altima",
-    "Sentra",
-    "Maxima",
-    "Versa",
-    "Rogue",
-    "Murano",
-    "Pathfinder",
-    "Armada",
-    "Frontier",
-    "Titan",
-    "370Z",
-    "GT-R",
-    "Leaf",
-    "Kicks",
-    "Juke",
-    "X-Trail",
-    "Navara",
-    "Note",
-    "Qashqai",
-    "Micra",
-    "Sylphy",
-    "Teana",
-    "Patrol",
-    "Sunny",
+    "Altima", "Sentra", "Maxima", "Versa", "Rogue", "Murano",
+    "Pathfinder", "Armada", "Frontier", "Titan", "370Z", "GT-R",
+    "Leaf", "Kicks", "Juke", "X-Trail", "Navara", "Note",
+    "Qashqai", "Micra", "Sylphy", "Teana", "Patrol", "Sunny"
   ];
 
   const [currentProductSlide, setCurrentProductSlide] = useState(0);
@@ -52,106 +34,98 @@ export default function BratorHomePage() {
       id: 1,
       name: "M195 METHOS Black with Bronze Face",
       category: "Air Filters",
-      price: 32.0,
+      price: 32.00,
       originalPrice: null,
       rating: 4.5,
       reviews: 2,
-      image:
-        "https://images.pexels.com/photos/9666306/pexels-photo-9666306.jpeg?auto=compress&cs=tinysrgb&w=400",
+      image: "https://images.pexels.com/photos/9666306/pexels-photo-9666306.jpeg?auto=compress&cs=tinysrgb&w=400",
       discount: null,
-      link: "#product-1",
+      link: "#product-1"
     },
     {
       id: 2,
       name: "CF2 FORGED COMPRESSION",
       category: "Custom Wheels",
-      price: 42.0,
-      originalPrice: 45.0,
+      price: 42.00,
+      originalPrice: 45.00,
       rating: 5.0,
       reviews: 2,
-      image:
-        "https://images.pexels.com/photos/8986137/pexels-photo-8986137.jpeg?auto=compress&cs=tinysrgb&w=400",
+      image: "https://images.pexels.com/photos/8986137/pexels-photo-8986137.jpeg?auto=compress&cs=tinysrgb&w=400",
       discount: "7% Off",
-      link: "#product-2",
+      link: "#product-2"
     },
     {
       id: 3,
       name: "SV-F4 Matte Bronze with Chrome Flip",
       category: "Fluids & Chemicals",
-      price: 45.0,
+      price: 45.00,
       originalPrice: null,
       rating: 5.0,
       reviews: 2,
-      image:
-        "https://images.pexels.com/photos/13065690/pexels-photo-13065690.jpeg?auto=compress&cs=tinysrgb&w=400",
+      image: "https://images.pexels.com/photos/13065690/pexels-photo-13065690.jpeg?auto=compress&cs=tinysrgb&w=400",
       discount: null,
-      link: "#product-3",
+      link: "#product-3"
     },
     {
       id: 4,
       name: "ABL-24 BETA Gloss Black",
       category: "Air Filters",
-      price: 18.0,
+      price: 18.00,
       originalPrice: null,
       rating: 4.5,
       reviews: 2,
-      image:
-        "https://images.pexels.com/photos/9666305/pexels-photo-9666305.jpeg?auto=compress&cs=tinysrgb&w=400",
+      image: "https://images.pexels.com/photos/9666305/pexels-photo-9666305.jpeg?auto=compress&cs=tinysrgb&w=400",
       discount: null,
-      link: "#product-4",
+      link: "#product-4"
     },
     {
       id: 5,
       name: "Brand Name CV10 Satin Black with Chrome",
       category: "Air Filters",
-      price: 18.0,
-      originalPrice: 20.0,
+      price: 18.00,
+      originalPrice: 20.00,
       rating: 5.0,
       reviews: 1,
-      image:
-        "https://images.pexels.com/photos/7568433/pexels-photo-7568433.jpeg?auto=compress&cs=tinysrgb&w=400",
+      image: "https://images.pexels.com/photos/7568433/pexels-photo-7568433.jpeg?auto=compress&cs=tinysrgb&w=400",
       discount: "10% Off",
-      link: "#product-5",
+      link: "#product-5"
     },
     {
       id: 6,
       name: "Silver with Mirror Cut Face Wheels",
       category: "Exteriors",
-      price: 19.0,
+      price: 19.00,
       originalPrice: null,
       rating: 5.0,
       reviews: 2,
-      image:
-        "https://images.pexels.com/photos/10912797/pexels-photo-10912797.jpeg?auto=compress&cs=tinysrgb&w=400",
+      image: "https://images.pexels.com/photos/10912797/pexels-photo-10912797.jpeg?auto=compress&cs=tinysrgb&w=400",
       discount: null,
-      link: "#product-6",
+      link: "#product-6"
     },
     {
       id: 7,
       name: "M249 GAMMA Silver with Full Chrome",
       category: "Interiors",
-      price: 16.0,
-      originalPrice: 18.0,
+      price: 16.00,
+      originalPrice: 18.00,
       rating: 4.5,
       reviews: 2,
-      image:
-        "https://images.pexels.com/photos/9666306/pexels-photo-9666306.jpeg?auto=compress&cs=tinysrgb&w=400",
+      image: "https://images.pexels.com/photos/9666306/pexels-photo-9666306.jpeg?auto=compress&cs=tinysrgb&w=400",
       discount: "11% Off",
-      link: "#product-7",
+      link: "#product-7"
     },
     {
       id: 8,
       name: "M195 METHOS Black with Bronze Face",
       category: "Clearance",
-      price: 90.0,
+      price: 90.00,
       originalPrice: null,
       rating: 5.0,
       reviews: 2,
-      image:
-        "https://images.pexels.com/photos/13065690/pexels-photo-13065690.jpeg?auto=compress&cs=tinysrgb&w=400",
+      image: "https://images.pexels.com/photos/13065690/pexels-photo-13065690.jpeg?auto=compress&cs=tinysrgb&w=400",
       discount: null,
-      link: "#product-8",
-    },
+      link: "#product-8"
+    }
   ];
 
   // Auto-play functionality for products
@@ -172,13 +146,13 @@ export default function BratorHomePage() {
   const nextProductSlide = () => {
     const itemsPerView = 4;
     const maxSlide = Math.max(0, essentialProducts.length - itemsPerView);
-    setCurrentProductSlide((prev) => (prev >= maxSlide ? 0 : prev + 1));
+    setCurrentProductSlide((prev) => prev >= maxSlide ? 0 : prev + 1);
   };
 
   const prevProductSlide = () => {
     const itemsPerView = 4;
     const maxSlide = Math.max(0, essentialProducts.length - itemsPerView);
-    setCurrentProductSlide((prev) => (prev <= 0 ? maxSlide : prev - 1));
+    setCurrentProductSlide((prev) => prev <= 0 ? maxSlide : prev - 1);
   };
 
   const renderStars = (rating) => {
@@ -202,177 +176,161 @@ export default function BratorHomePage() {
     {
       title: "Auto Parts",
       description: "Engine Components, Filters",
-      image:
-        "https://images.pexels.com/photos/9666306/pexels-photo-9666306.jpeg?auto=compress&cs=tinysrgb&w=200",
+      image: "https://images.pexels.com/photos/9666306/pexels-photo-9666306.jpeg?auto=compress&cs=tinysrgb&w=200",
       link: "#auto-parts",
       width: 120,
-      height: 80,
+      height: 80
     },
     {
       title: "Car Care",
       description: "Polishes, Cleaners",
-      image:
-        "https://images.pexels.com/photos/9666305/pexels-photo-9666305.jpeg?auto=compress&cs=tinysrgb&w=200",
+      image: "https://images.pexels.com/photos/9666305/pexels-photo-9666305.jpeg?auto=compress&cs=tinysrgb&w=200",
       link: "#car-care",
       width: 120,
-      height: 80,
+      height: 80
     },
     {
       title: "Performance",
       description: "Brakes, Batteries, Turbo",
-      image:
-        "https://images.pexels.com/photos/7568433/pexels-photo-7568433.jpeg?auto=compress&cs=tinysrgb&w=200",
+      image: "https://images.pexels.com/photos/7568433/pexels-photo-7568433.jpeg?auto=compress&cs=tinysrgb&w=200",
       link: "#performance",
       width: 120,
-      height: 80,
+      height: 80
     },
     {
       title: "Wheels & Tires",
       description: "Tires, TMPS Sensor",
-      image:
-        "https://images.pexels.com/photos/8986137/pexels-photo-8986137.jpeg?auto=compress&cs=tinysrgb&w=200",
+      image: "https://images.pexels.com/photos/8986137/pexels-photo-8986137.jpeg?auto=compress&cs=tinysrgb&w=200",
       link: "#wheels-tires",
       width: 120,
-      height: 80,
+      height: 80
     },
     {
       title: "Exteriors",
       description: "Lighting, Body, Wipers",
-      image:
-        "https://images.pexels.com/photos/9666306/pexels-photo-9666306.jpeg?auto=compress&cs=tinysrgb&w=200",
+      image: "https://images.pexels.com/photos/9666306/pexels-photo-9666306.jpeg?auto=compress&cs=tinysrgb&w=200",
       link: "#exteriors",
       width: 120,
-      height: 80,
+      height: 80
     },
     {
       title: "Interiors",
       description: "Steering Wheels, Seats",
-      image:
-        "https://images.pexels.com/photos/9666305/pexels-photo-9666305.jpeg?auto=compress&cs=tinysrgb&w=200",
+      image: "https://images.pexels.com/photos/9666305/pexels-photo-9666305.jpeg?auto=compress&cs=tinysrgb&w=200",
       link: "#interiors",
       width: 120,
-      height: 80,
+      height: 80
     },
     {
       title: "Entertainment",
       description: "Audios, Videos, GPS",
-      image:
-        "https://images.pexels.com/photos/7568433/pexels-photo-7568433.jpeg?auto=compress&cs=tinysrgb&w=200",
+      image: "https://images.pexels.com/photos/7568433/pexels-photo-7568433.jpeg?auto=compress&cs=tinysrgb&w=200",
       link: "#entertainment",
       width: 120,
-      height: 80,
+      height: 80
     },
     {
       title: "Exhaust System",
       description: "Headers, Mufflers",
-      image:
-        "https://images.pexels.com/photos/10912797/pexels-photo-10912797.jpeg?auto=compress&cs=tinysrgb&w=200",
+      image: "https://images.pexels.com/photos/10912797/pexels-photo-10912797.jpeg?auto=compress&cs=tinysrgb&w=200",
       link: "#exhaust-system",
       width: 120,
-      height: 80,
+      height: 80
     },
     {
       title: "Suspension",
       description: "Springs, Shock Absorbers",
-      image:
-        "https://images.pexels.com/photos/10912797/pexels-photo-10912797.jpeg?auto=compress&cs=tinysrgb&w=200",
+      image: "https://images.pexels.com/photos/10912797/pexels-photo-10912797.jpeg?auto=compress&cs=tinysrgb&w=200",
       link: "#suspension",
       width: 120,
-      height: 80,
+      height: 80
     },
     {
       title: "Air Filters",
       description: "Air intake, filters",
-      image:
-        "https://images.pexels.com/photos/9666306/pexels-photo-9666306.jpeg?auto=compress&cs=tinysrgb&w=200",
+      image: "https://images.pexels.com/photos/9666306/pexels-photo-9666306.jpeg?auto=compress&cs=tinysrgb&w=200",
       link: "#air-filters",
       width: 120,
-      height: 80,
+      height: 80
     },
     {
       title: "Starting & Charging",
       description: "Batteries, Starters",
-      image:
-        "https://images.pexels.com/photos/9666305/pexels-photo-9666305.jpeg?auto=compress&cs=tinysrgb&w=200",
+      image: "https://images.pexels.com/photos/9666305/pexels-photo-9666305.jpeg?auto=compress&cs=tinysrgb&w=200",
       link: "#starting-charging",
       width: 120,
-      height: 80,
+      height: 80
     },
     {
       title: "Wipers & Washers",
       description: "Wiper Blades, Cleaners",
-      image:
-        "https://images.pexels.com/photos/7568433/pexels-photo-7568433.jpeg?auto=compress&cs=tinysrgb&w=200",
+      image: "https://images.pexels.com/photos/7568433/pexels-photo-7568433.jpeg?auto=compress&cs=tinysrgb&w=200",
       link: "#wipers-washers",
       width: 120,
-      height: 80,
+      height: 80
     },
     {
       title: "Fluids & Chemicals",
       description: "Oils, Lubricants",
-      image:
-        "https://images.pexels.com/photos/13065690/pexels-photo-13065690.jpeg?auto=compress&cs=tinysrgb&w=200",
+      image: "https://images.pexels.com/photos/13065690/pexels-photo-13065690.jpeg?auto=compress&cs=tinysrgb&w=200",
       link: "#fluids-chemicals",
       width: 120,
-      height: 80,
+      height: 80
     },
     {
       title: "Tools & Supplies",
       description: "Repair Tools, Equipment",
-      image:
-        "https://images.pexels.com/photos/9666306/pexels-photo-9666306.jpeg?auto=compress&cs=tinysrgb&w=200",
+      image: "https://images.pexels.com/photos/9666306/pexels-photo-9666306.jpeg?auto=compress&cs=tinysrgb&w=200",
       link: "#tools-supplies",
       width: 120,
-      height: 80,
-    },
+      height: 80
+    }
   ];
 
   const hotDealsData = [
     {
       id: 1,
-      backgroundImage:
-        "https://images.pexels.com/photos/13065690/pexels-photo-13065690.jpeg?auto=compress&cs=tinysrgb&w=800",
+      backgroundImage: "https://images.pexels.com/photos/13065690/pexels-photo-13065690.jpeg?auto=compress&cs=tinysrgb&w=800",
       subtitle: "Keep things running smoothly",
       title: "Premium Engine Oils",
       titleClass: "helix-title",
       buttonText: "Shop Now",
-      link: "#helix-oils",
+      link: "#helix-oils"
     },
     {
       id: 2,
-      backgroundImage:
-        "https://images.pexels.com/photos/8986137/pexels-photo-8986137.jpeg?auto=compress&cs=tinysrgb&w=800",
+      backgroundImage: "https://images.pexels.com/photos/8986137/pexels-photo-8986137.jpeg?auto=compress&cs=tinysrgb&w=800",
       title: "Wheels & Tires",
       titleClass: "dunlop-title",
       badge: "Best Choice",
       badgeColor: "#fbab00",
       buttonText: "Shop Now",
-      link: "#dunlop-tires",
+      link: "#dunlop-tires"
     },
     {
       id: 3,
-      backgroundImage:
-        "https://images.pexels.com/photos/10912797/pexels-photo-10912797.jpeg?auto=compress&cs=tinysrgb&w=800",
+      backgroundImage: "https://images.pexels.com/photos/10912797/pexels-photo-10912797.jpeg?auto=compress&cs=tinysrgb&w=800",
       subtitle: "Big Season Sale Of The Year",
       title: "35% OFF",
       titleClass: "sale-title",
       description: "Shock Absorbers & Springs",
       buttonText: "Shop Now",
-      link: "#shock-absorbers",
+      link: "#shock-absorbers"
     },
     {
       id: 4,
-      backgroundImage:
-        "https://images.pexels.com/photos/7568433/pexels-photo-7568433.jpeg?auto=compress&cs=tinysrgb&w=800",
+      backgroundImage: "https://images.pexels.com/photos/7568433/pexels-photo-7568433.jpeg?auto=compress&cs=tinysrgb&w=800",
       title: "Super Saver",
       titleClass: "super-saver-title",
       subtitle: "Sale up to 70% for over 8,000 products",
       promoCode: "SUPER70",
       badgeColor: "#7faf2b",
       buttonText: "Shop Now",
-      link: "#super-saver",
-    },
+      link: "#super-saver"
+    }
   ];
+
+
 
   const categories = [
     "All Categories",
@@ -380,7 +338,7 @@ export default function BratorHomePage() {
     "Wheels & Tires",
     "Clearance",
     "Pages",
-    "Contact Us",
+    "Contact Us"
   ];
 
   const handleSearch = () => {
@@ -393,7 +351,7 @@ export default function BratorHomePage() {
       brand: vehicleBrand,
       model: vehicleModel,
       engine: vehicleEngine,
-      fuelType: vehicleFuelType,
+      fuelType: vehicleFuelType
     });
   };
 
@@ -403,9 +361,7 @@ export default function BratorHomePage() {
       <div className="promo-banner">
         <div className="promo-content">
           <span className="promo-text">
-            <span className="black-friday">BLACK FRIDAY</span> | Discount up to{" "}
-            <span className="discount">50%</span> use code:{" "}
-            <span className="promo-code">Brator50</span>
+            <span className="black-friday">BLACK FRIDAY</span> | Discount up to <span className="discount">50%</span> use code: <span className="promo-code">Brator50</span>
           </span>
           <div className="language-selector">
             Language: <span className="current-lang">EN</span> ▼
@@ -451,17 +407,8 @@ export default function BratorHomePage() {
                 onChange={(e) => setSearchQuery(e.target.value)}
               />
               <button className="search-button" onClick={handleSearch}>
-                <svg
-                  width="20"
-                  height="20"
-                  fill="currentColor"
-                  viewBox="0 0 20 20"
-                >
-                  <path
-                    fillRule="evenodd"
-                    d="M9 3.5a5.5 5.5 0 100 11 5.5 5.5 0 000-11zM2 9a7 7 0 1112.452 4.391l3.328 3.329a.75.75 0 11-1.06 1.06l-3.329-3.328A7 7 0 012 9z"
-                    clipRule="evenodd"
-                  />
+                <svg width="20" height="20" fill="currentColor" viewBox="0 0 20 20">
+                  <path fillRule="evenodd" d="M9 3.5a5.5 5.5 0 100 11 5.5 5.5 0 000-11zM2 9a7 7 0 1112.452 4.391l3.328 3.329a.75.75 0 11-1.06 1.06l-3.329-3.328A7 7 0 012 9z" clipRule="evenodd" />
                 </svg>
               </button>
             </div>
@@ -470,50 +417,19 @@ export default function BratorHomePage() {
           {/* Header Actions */}
           <div className="header-actions">
             <button className="action-btn wishlist-btn">
-              <svg
-                width="24"
-                height="24"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth={2}
-                  d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"
-                />
+              <svg width="24" height="24" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
               </svg>
             </button>
             <button className="action-btn cart-btn">
-              <svg
-                width="24"
-                height="24"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth={2}
-                  d="M3 3h2l.4 2M7 13h10l4-8H5.4m0 0L7 13m0 0l-2.5 2.5M7 13l2.5 2.5m6 0a1 1 0 11-2 0 1 1 0 012 0zm-8 0a1 1 0 11-2 0 1 1 0 012 0z"
-                />
+              <svg width="24" height="24" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 3h2l.4 2M7 13h10l4-8H5.4m0 0L7 13m0 0l-2.5 2.5M7 13l2.5 2.5m6 0a1 1 0 11-2 0 1 1 0 012 0zm-8 0a1 1 0 11-2 0 1 1 0 012 0z" />
               </svg>
               {cartItems > 0 && <span className="cart-count">{cartItems}</span>}
             </button>
             <button className="action-btn sign-in-btn">
-              <svg
-                width="20"
-                height="20"
-                fill="currentColor"
-                viewBox="0 0 20 20"
-              >
-                <path
-                  fillRule="evenodd"
-                  d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z"
-                  clipRule="evenodd"
-                />
+              <svg width="20" height="20" fill="currentColor" viewBox="0 0 20 20">
+                <path fillRule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" clipRule="evenodd" />
               </svg>
               Sign In
             </button>
@@ -526,37 +442,21 @@ export default function BratorHomePage() {
         <div className="nav-container">
           <button className="all-categories-btn">
             <svg width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
-              <path d="M2.5 12a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5z" />
+              <path d="M2.5 12a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5z"/>
             </svg>
             All Categories
           </button>
           <div className="nav-links">
-            <a href="#" className="nav-link">
-              Home
-            </a>
-            <a href="#" className="nav-link">
-              Auto Parts
-            </a>
-            <a href="#" className="nav-link">
-              Wheels & Tires
-            </a>
-            <a href="#" className="nav-link">
-              Clearance
-            </a>
-            <a href="#" className="nav-link">
-              Pages
-            </a>
-            <a href="#" className="nav-link">
-              Contact Us
-            </a>
+            <a href="#" className="nav-link">Home</a>
+            <a href="#" className="nav-link">Auto Parts</a>
+            <a href="#" className="nav-link">Wheels & Tires</a>
+            <a href="#" className="nav-link">Clearance</a>
+            <a href="#" className="nav-link">Pages</a>
+            <a href="#" className="nav-link">Contact Us</a>
           </div>
           <div className="nav-actions">
-            <a href="#" className="nav-action">
-              📋 Track Order
-            </a>
-            <a href="#" className="nav-action">
-              👁️ Recently Viewed
-            </a>
+            <a href="#" className="nav-action">📋 Track Order</a>
+            <a href="#" className="nav-action">👁️ Recently Viewed</a>
           </div>
         </div>
       </nav>
@@ -577,10 +477,7 @@ export default function BratorHomePage() {
       <section className="vehicle-search-section">
         <div className="vehicle-search-container">
           <h2 className="search-title">Search by Vehicle</h2>
-          <p className="search-subtitle">
-            Filter your results by entering your vehicle to ensure you find the
-            parts that fit.
-          </p>
+          <p className="search-subtitle">Filter your results by entering your vehicle to ensure you find the parts that fit.</p>
 
           <div className="vehicle-search-form">
             <div className="form-row">
@@ -651,10 +548,7 @@ export default function BratorHomePage() {
                   <option value="Electric">Electric</option>
                 </select>
               </div>
-              <button
-                className="search-vehicle-btn"
-                onClick={handleVehicleSearch}
-              >
+              <button className="search-vehicle-btn" onClick={handleVehicleSearch}>
                 Search
               </button>
             </div>
@@ -698,7 +592,9 @@ export default function BratorHomePage() {
           </div>
 
           <div className="load-more-container">
-            <button className="load-more-button">Load More</button>
+            <button className="load-more-button">
+              Load More
+            </button>
           </div>
         </div>
       </section>
@@ -725,10 +621,10 @@ export default function BratorHomePage() {
                         <p className="deal-subtitle">{deal.subtitle}</p>
                       )}
                       <h2 className={`deal-title ${deal.titleClass}`}>
-                        {deal.title.split(" ").map((word, i) => (
+                        {deal.title.split(' ').map((word, i) => (
                           <span key={i}>
                             {word}
-                            {i < deal.title.split(" ").length - 1 && <br />}
+                            {i < deal.title.split(' ').length - 1 && <br />}
                           </span>
                         ))}
                       </h2>
@@ -790,15 +686,13 @@ export default function BratorHomePage() {
           {activeTab === "makes" && (
             <div className="featured-content">
               <div className="models-grid">
-                {nissanMakes
-                  .slice(0, showMoreMakes ? nissanMakes.length : 20)
-                  .map((make, index) => (
-                    <div key={index} className="model-card">
-                      <a href={`#${make.toLowerCase()}`} className="model-link">
-                        <span>{make}</span>
-                      </a>
-                    </div>
-                  ))}
+                {nissanMakes.slice(0, showMoreMakes ? nissanMakes.length : 20).map((make, index) => (
+                  <div key={index} className="model-card">
+                    <a href={`#${make.toLowerCase()}`} className="model-link">
+                      <span>{make}</span>
+                    </a>
+                  </div>
+                ))}
               </div>
               <div className="view-more-container">
                 <button
@@ -807,9 +701,7 @@ export default function BratorHomePage() {
                 >
                   <span className="view-more-text">
                     <strong>{showMoreMakes ? "VIEW LESS" : "VIEW MORE"}</strong>
-                    <i
-                      className={`fas ${showMoreMakes ? "fa-chevron-up" : "fa-chevron-down"}`}
-                    ></i>
+                    <i className={`fas ${showMoreMakes ? "fa-chevron-up" : "fa-chevron-down"}`}></i>
                   </span>
                 </button>
               </div>
@@ -819,18 +711,13 @@ export default function BratorHomePage() {
           {activeTab === "models" && (
             <div className="featured-content">
               <div className="models-grid">
-                {nissanModels
-                  .slice(0, showMoreModels ? nissanModels.length : 20)
-                  .map((model, index) => (
-                    <div key={index} className="model-card">
-                      <a
-                        href={`#${model.toLowerCase()}`}
-                        className="model-link"
-                      >
-                        <span>{model}</span>
-                      </a>
-                    </div>
-                  ))}
+                {nissanModels.slice(0, showMoreModels ? nissanModels.length : 20).map((model, index) => (
+                  <div key={index} className="model-card">
+                    <a href={`#${model.toLowerCase()}`} className="model-link">
+                      <span>{model}</span>
+                    </a>
+                  </div>
+                ))}
               </div>
               <div className="view-more-container">
                 <button
@@ -838,12 +725,8 @@ export default function BratorHomePage() {
                   onClick={() => setShowMoreModels(!showMoreModels)}
                 >
                   <span className="view-more-text">
-                    <strong>
-                      {showMoreModels ? "VIEW LESS" : "VIEW MORE"}
-                    </strong>
-                    <i
-                      className={`fas ${showMoreModels ? "fa-chevron-up" : "fa-chevron-down"}`}
-                    ></i>
+                    <strong>{showMoreModels ? "VIEW LESS" : "VIEW MORE"}</strong>
+                    <i className={`fas ${showMoreModels ? "fa-chevron-up" : "fa-chevron-down"}`}></i>
                   </span>
                 </button>
               </div>
@@ -857,9 +740,7 @@ export default function BratorHomePage() {
         <div className="essential-items-container">
           <div className="essential-items-header">
             <div className="header-content">
-              <h2 className="essential-items-title">
-                Essential Items for New Car
-              </h2>
+              <h2 className="essential-items-title">Essential Items for New Car</h2>
               <a href="#all-products" className="see-all-link">
                 <span>See All Products</span>
                 <i className="fas fa-chevron-right"></i>
@@ -867,33 +748,9 @@ export default function BratorHomePage() {
             </div>
           </div>
 
-          <div className="products-carousel-wrapper">
-            <button
-              className="products-nav products-prev"
-              onClick={prevProductSlide}
-              onMouseEnter={() => setIsProductAutoPlaying(false)}
-              onMouseLeave={() => setIsProductAutoPlaying(true)}
-            >
-              <i className="fas fa-chevron-left"></i>
-            </button>
-
-            <button
-              className="products-nav products-next"
-              onClick={nextProductSlide}
-              onMouseEnter={() => setIsProductAutoPlaying(false)}
-              onMouseLeave={() => setIsProductAutoPlaying(true)}
-            >
-              <i className="fas fa-chevron-right"></i>
-            </button>
-
-            <div className="products-carousel-container">
-              <div
-                className="products-carousel-track"
-                style={{
-                  transform: `translateX(-${currentProductSlide * 25}%)`,
-                }}
-              >
-                {essentialProducts.map((product) => (
+          <div className="products-static-grid">
+            <div className="products-grid-container">
+              {essentialProducts.slice(0, 5).map((product) => (
                   <div key={product.id} className="product-card">
                     <div className="product-card-inner">
                       {product.discount && (
@@ -917,20 +774,14 @@ export default function BratorHomePage() {
 
                       <div className="product-info">
                         <div className="product-category">
-                          <a
-                            href={`#category-${product.category.toLowerCase().replace(/\s+/g, "-")}`}
-                            className="category-link"
-                          >
+                          <a href={`#category-${product.category.toLowerCase().replace(/\s+/g, '-')}`} className="category-link">
                             {product.category}
                           </a>
                         </div>
 
                         <div className="product-name">
                           <h5>
-                            <a
-                              href={product.link}
-                              className="product-name-link"
-                            >
+                            <a href={product.link} className="product-name-link">
                               {product.name}
                             </a>
                           </h5>
@@ -938,25 +789,15 @@ export default function BratorHomePage() {
 
                         <div className="product-rating">
                           <div className="rating-stars">
-                            <div
-                              className="stars"
-                              title={`Rated ${product.rating} out of 5`}
-                            >
-                              <span className="star-display">
-                                {renderStars(product.rating)}
-                              </span>
+                            <div className="stars" title={`Rated ${product.rating} out of 5`}>
+                              <span className="star-display">{renderStars(product.rating)}</span>
                               <span className="rating-text">
-                                Rated{" "}
-                                <strong>{product.rating.toFixed(2)}</strong> out
-                                of 5
+                                Rated <strong>{product.rating.toFixed(2)}</strong> out of 5
                               </span>
                             </div>
                           </div>
                           <div className="reviews-count">
-                            <p>
-                              {product.reviews} Review
-                              {product.reviews !== 1 ? "s" : ""}
-                            </p>
+                            <p>{product.reviews} Review{product.reviews !== 1 ? 's' : ''}</p>
                           </div>
                         </div>
 
@@ -966,19 +807,11 @@ export default function BratorHomePage() {
                               <del className="original-price">
                                 <span>
                                   <span className="currency">$</span>
-                                  <span>
-                                    {product.originalPrice.toFixed(2)}
-                                  </span>
+                                  <span>{product.originalPrice.toFixed(2)}</span>
                                 </span>
                               </del>
                             )}
-                            <span
-                              className={
-                                product.originalPrice
-                                  ? "sale-price"
-                                  : "regular-price"
-                              }
-                            >
+                            <span className={product.originalPrice ? "sale-price" : "regular-price"}>
                               <span className="currency">$</span>
                               <span>{product.price.toFixed(2)}</span>
                             </span>
@@ -1002,7 +835,7 @@ export default function BratorHomePage() {
 
       <style jsx>{`
         .homepage {
-          font-family: "Source Sans Pro", sans-serif;
+          font-family: 'Source Sans Pro', sans-serif;
           margin: 0;
           padding: 0;
         }
@@ -1108,7 +941,7 @@ export default function BratorHomePage() {
           font-size: 28px;
           font-weight: bold;
           color: #333;
-          font-family: "Playfair Display", serif;
+          font-family: 'Playfair Display', serif;
         }
 
         /* Search Section */
@@ -1274,9 +1107,8 @@ export default function BratorHomePage() {
         .hero-section {
           position: relative;
           height: 400px;
-          background:
-            linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)),
-            url("https://images.pexels.com/photos/7568433/pexels-photo-7568433.jpeg?auto=compress&cs=tinysrgb&w=1920");
+          background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)),
+                      url('https://images.pexels.com/photos/7568433/pexels-photo-7568433.jpeg?auto=compress&cs=tinysrgb&w=1920');
           background-size: cover;
           background-position: center;
           display: flex;
@@ -1306,7 +1138,7 @@ export default function BratorHomePage() {
           font-weight: bold;
           margin: 0;
           text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
-          font-family: "Playfair Display", serif;
+          font-family: 'Playfair Display', serif;
         }
 
         /* Vehicle Search Section */
@@ -1328,7 +1160,7 @@ export default function BratorHomePage() {
           font-weight: bold;
           color: #333;
           margin-bottom: 10px;
-          font-family: "Playfair Display", serif;
+          font-family: 'Playfair Display', serif;
         }
 
         .search-subtitle {
@@ -1407,7 +1239,7 @@ export default function BratorHomePage() {
         }
 
         .categories-title {
-          font-family: "Playfair Display", serif;
+          font-family: 'Playfair Display', serif;
           font-size: 30px;
           font-weight: 600;
           line-height: 36px;
@@ -1546,7 +1378,7 @@ export default function BratorHomePage() {
         }
 
         .whats-hot-title {
-          font-family: "Playfair Display", serif;
+          font-family: 'Playfair Display', serif;
           font-size: 30px;
           font-weight: 600;
           line-height: 36px;
@@ -1589,7 +1421,7 @@ export default function BratorHomePage() {
         }
 
         .deal-subtitle {
-          font-family: "Source Sans Pro", sans-serif;
+          font-family: 'Source Sans Pro', sans-serif;
           font-size: 18px;
           line-height: 28px;
           margin-bottom: 15px;
@@ -1598,7 +1430,7 @@ export default function BratorHomePage() {
         }
 
         .deal-title {
-          font-family: "Playfair Display", serif;
+          font-family: 'Playfair Display', serif;
           position: relative;
           transition: all 0.6s ease;
           margin: 0;
@@ -1637,7 +1469,7 @@ export default function BratorHomePage() {
         }
 
         .deal-description {
-          font-family: "Source Sans Pro", sans-serif;
+          font-family: 'Source Sans Pro', sans-serif;
           font-size: 14px;
           line-height: 18px;
           text-transform: uppercase;
@@ -1660,7 +1492,7 @@ export default function BratorHomePage() {
           font-weight: 600;
           line-height: 22px;
           text-transform: uppercase;
-          font-family: "Source Sans Pro", sans-serif;
+          font-family: 'Source Sans Pro', sans-serif;
           letter-spacing: 0.5px;
         }
 
@@ -1683,7 +1515,7 @@ export default function BratorHomePage() {
           font-weight: 300;
           line-height: 22px;
           text-transform: uppercase;
-          font-family: "Source Sans Pro", sans-serif;
+          font-family: 'Source Sans Pro', sans-serif;
         }
 
         .promo-divider {
@@ -1701,7 +1533,7 @@ export default function BratorHomePage() {
           font-weight: 700;
           line-height: 22px;
           text-transform: uppercase;
-          font-family: "Source Sans Pro", sans-serif;
+          font-family: 'Source Sans Pro', sans-serif;
           letter-spacing: 1px;
         }
 
@@ -1720,7 +1552,7 @@ export default function BratorHomePage() {
           text-decoration: none;
           text-transform: capitalize;
           transition: all 0.3s ease;
-          font-family: "Source Sans Pro", sans-serif;
+          font-family: 'Source Sans Pro', sans-serif;
           letter-spacing: 0.5px;
         }
 
@@ -1754,7 +1586,7 @@ export default function BratorHomePage() {
           background: none;
           border: none;
           cursor: pointer;
-          font-family: "Playfair Display", serif;
+          font-family: 'Playfair Display', serif;
           font-size: 30px;
           font-weight: 400;
           color: #999;
@@ -1812,7 +1644,7 @@ export default function BratorHomePage() {
           position: relative;
           text-decoration: none;
           color: #333;
-          font-family: "Source Sans Pro", sans-serif;
+          font-family: 'Source Sans Pro', sans-serif;
           font-weight: 400;
           transition: color 0.3s ease;
         }
@@ -1835,7 +1667,7 @@ export default function BratorHomePage() {
           background: transparent;
           border: none;
           cursor: pointer;
-          font-family: "Source Sans Pro", sans-serif;
+          font-family: 'Source Sans Pro', sans-serif;
           font-size: 15px;
           font-weight: 600;
           line-height: normal;
@@ -1888,7 +1720,7 @@ export default function BratorHomePage() {
         }
 
         .essential-items-title {
-          font-family: "Playfair Display", serif;
+          font-family: 'Playfair Display', serif;
           font-size: 30px;
           font-weight: 600;
           line-height: 36px;
@@ -1903,7 +1735,7 @@ export default function BratorHomePage() {
           text-decoration: none;
           font-size: 14px;
           line-height: 22px;
-          font-family: "Source Sans Pro", sans-serif;
+          font-family: 'Source Sans Pro', sans-serif;
           transition: color 0.3s ease;
         }
 
@@ -1999,7 +1831,7 @@ export default function BratorHomePage() {
           font-size: 12px;
           font-weight: 700;
           text-transform: uppercase;
-          font-family: "Source Sans Pro", sans-serif;
+          font-family: 'Source Sans Pro', sans-serif;
           z-index: 1;
         }
 
@@ -2040,7 +1872,7 @@ export default function BratorHomePage() {
 
         .category-link {
           color: #bbbbbb;
-          font-family: "Source Sans Pro", sans-serif;
+          font-family: 'Source Sans Pro', sans-serif;
           font-size: 13px;
           font-weight: 700;
           line-height: 24px;
@@ -2067,7 +1899,7 @@ export default function BratorHomePage() {
           text-decoration: none;
           display: inline-block;
           line-height: 24px;
-          font-family: "Source Sans Pro", sans-serif;
+          font-family: 'Source Sans Pro', sans-serif;
           font-size: 16px;
           font-weight: 500;
           transition: color 0.3s ease;
@@ -2092,7 +1924,7 @@ export default function BratorHomePage() {
 
         .stars {
           color: #ffba00;
-          font-family: "Source Sans Pro", sans-serif;
+          font-family: 'Source Sans Pro', sans-serif;
           font-size: 13px;
           height: 16px;
           letter-spacing: 3px;
@@ -2125,7 +1957,7 @@ export default function BratorHomePage() {
           font-size: 12px;
           line-height: 26px;
           margin: 0;
-          font-family: "Source Sans Pro", sans-serif;
+          font-family: 'Source Sans Pro', sans-serif;
         }
 
         .product-price {
@@ -2141,7 +1973,7 @@ export default function BratorHomePage() {
           font-weight: 600;
           line-height: 26px;
           margin: 0;
-          font-family: "Source Sans Pro", sans-serif;
+          font-family: 'Source Sans Pro', sans-serif;
         }
 
         .original-price {
@@ -2220,7 +2052,7 @@ export default function BratorHomePage() {
           text-transform: capitalize;
           transition: all 0.3s ease;
           width: 100%;
-          font-family: "Source Sans Pro", sans-serif;
+          font-family: 'Source Sans Pro', sans-serif;
         }
 
         .add-to-cart-btn:hover {
