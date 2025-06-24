@@ -3491,9 +3491,12 @@ export default function BratorHomePage() {
 
         /* Newsletter Section */
         .newsletter-section {
-          background-color: #f6f7fa;
-          border-top: 0.8px solid #e5e5e5;
+          background-color: white;
           padding: 90px 0;
+        }
+
+        .newsletter-with-divider {
+          border-top: 0.8px solid #e5e5e5;
         }
 
         .newsletter-container {
