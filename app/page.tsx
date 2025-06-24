@@ -1373,6 +1373,428 @@ export default function BratorHomePage() {
         </div>
       </section>
 
+      {/* Tips & Guides Section */}
+      <section className="tips-guides-section">
+        <div className="tips-guides-container">
+          <div className="section-header">
+            <h2 className="section-title">Tips & Guides</h2>
+            <a href="/blog" className="view-all-link">
+              See All Articles
+              <i className="fas fa-chevron-right"></i>
+            </a>
+          </div>
+          <div className="tips-guides-content">
+            <div className="featured-article">
+              <div className="article-image">
+                <a href="/blog/right-hand-steering">
+                  <img
+                    src="https://images.pexels.com/photos/244824/pexels-photo-244824.jpeg?auto=compress&cs=tinysrgb&w=656&h=430"
+                    alt="Right-hand steering wheel vehicles"
+                  />
+                </a>
+              </div>
+              <div className="article-content">
+                <h3 className="article-title">
+                  <a href="/blog/right-hand-steering">
+                    Which countries use vehicles with a right-hand steering
+                    wheel
+                  </a>
+                </h3>
+                <p className="article-excerpt">
+                  The braking system of a vehicle is an important safety aspect
+                  that should not be overlooked. From there, the pump forces the
+                  oil into the engine's lubrication system...
+                </p>
+                <div className="article-meta">
+                  <div className="author">
+                    <i className="fas fa-user"></i>
+                    <span>By bratoradm</span>
+                  </div>
+                  <div className="date">
+                    <i className="fas fa-calendar"></i>
+                    <span>Jan 11, 2022</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div className="article-list">
+              <div className="small-article">
+                <div className="small-article-image">
+                  <a href="/blog/custom-shift-knobs">
+                    <img
+                      src="https://images.pexels.com/photos/159769487/pexels-photo-159769487.jpeg?auto=compress&cs=tinysrgb&w=356&h=234"
+                      alt="Custom shift knobs"
+                    />
+                  </a>
+                </div>
+                <div className="small-article-content">
+                  <h3 className="small-article-title">
+                    <a href="/blog/custom-shift-knobs">
+                      Custom shift knobs | Can you handle one in your ride?
+                    </a>
+                  </h3>
+                  <p className="small-article-excerpt">
+                    The braking system of a vehicle is an important safety
+                    aspect that should not be overlooked. From the...
+                  </p>
+                  <div className="article-meta">
+                    <div className="author">
+                      <i className="fas fa-user"></i>
+                      <span>By bratoradm</span>
+                    </div>
+                    <div className="date">
+                      <i className="fas fa-calendar"></i>
+                      <span>Jan 11, 2022</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div className="small-article">
+                <div className="small-article-image">
+                  <a href="/blog/replace-rims">
+                    <img
+                      src="https://images.pexels.com/photos/195635/pexels-photo-195635.jpeg?auto=compress&cs=tinysrgb&w=356&h=234"
+                      alt="Replace rims yourself"
+                    />
+                  </a>
+                </div>
+                <div className="small-article-content">
+                  <h3 className="small-article-title">
+                    <a href="/blog/replace-rims">
+                      Replace Rims by yourself, why not?
+                    </a>
+                  </h3>
+                  <p className="small-article-excerpt">
+                    The braking system of a vehicle is an important safety
+                    aspect that should not be overlooked. From the...
+                  </p>
+                  <div className="article-meta">
+                    <div className="author">
+                      <i className="fas fa-user"></i>
+                      <span>By bratoradm</span>
+                    </div>
+                    <div className="date">
+                      <i className="fas fa-calendar"></i>
+                      <span>Jan 11, 2022</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div className="small-article">
+                <div className="small-article-image">
+                  <a href="/blog/off-road-bumpers">
+                    <img
+                      src="https://images.pexels.com/photos/7568433/pexels-photo-7568433.jpeg?auto=compress&cs=tinysrgb&w=356&h=234"
+                      alt="Off road bumpers shopping guide"
+                    />
+                  </a>
+                </div>
+                <div className="small-article-content">
+                  <h3 className="small-article-title">
+                    <a href="/blog/off-road-bumpers">
+                      Shopping guide – Off Road Bumpers
+                    </a>
+                  </h3>
+                  <p className="small-article-excerpt">
+                    The braking system of a vehicle is an important safety
+                    aspect that should not be overlooked. From the...
+                  </p>
+                  <div className="article-meta">
+                    <div className="author">
+                      <i className="fas fa-user"></i>
+                      <span>By bratoradm</span>
+                    </div>
+                    <div className="date">
+                      <i className="fas fa-calendar"></i>
+                      <span>Jan 11, 2022</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Featured Brands Section */}
+      <section className="featured-brands-section">
+        <div className="featured-brands-container">
+          <h2 className="section-title">Featured Brands</h2>
+          <div className="brands-grid">
+            <div className="brand-item">
+              <a href="/brands/bosch">
+                <img
+                  src="https://images.pexels.com/photos/3806288/pexels-photo-3806288.jpeg?auto=compress&cs=tinysrgb&w=132&h=50"
+                  alt="Bosch"
+                />
+              </a>
+            </div>
+            <div className="brand-item">
+              <a href="/brands/denso">
+                <img
+                  src="https://images.pexels.com/photos/1805053/pexels-photo-1805053.jpeg?auto=compress&cs=tinysrgb&w=136&h=70"
+                  alt="Denso"
+                />
+              </a>
+            </div>
+            <div className="brand-item">
+              <a href="/brands/acdelco">
+                <img
+                  src="https://images.pexels.com/photos/2244746/pexels-photo-2244746.jpeg?auto=compress&cs=tinysrgb&w=112&h=40"
+                  alt="ACDelco"
+                />
+              </a>
+            </div>
+            <div className="brand-item">
+              <a href="/brands/motorcraft">
+                <img
+                  src="https://images.pexels.com/photos/1564506/pexels-photo-1564506.jpeg?auto=compress&cs=tinysrgb&w=128&h=46"
+                  alt="Motorcraft"
+                />
+              </a>
+            </div>
+            <div className="brand-item">
+              <a href="/brands/gates">
+                <img
+                  src="https://images.pexels.com/photos/3806288/pexels-photo-3806288.jpeg?auto=compress&cs=tinysrgb&w=95&h=14"
+                  alt="Gates"
+                />
+              </a>
+            </div>
+            <div className="brand-item">
+              <a href="/brands/monroe">
+                <img
+                  src="https://images.pexels.com/photos/1805053/pexels-photo-1805053.jpeg?auto=compress&cs=tinysrgb&w=133&h=36"
+                  alt="Monroe"
+                />
+              </a>
+            </div>
+            <div className="brand-item">
+              <a href="/brands/moog">
+                <img
+                  src="https://images.pexels.com/photos/2244746/pexels-photo-2244746.jpeg?auto=compress&cs=tinysrgb&w=140&h=33"
+                  alt="Moog"
+                />
+              </a>
+            </div>
+            <div className="brand-item">
+              <a href="/brands/kn">
+                <img
+                  src="https://images.pexels.com/photos/1564506/pexels-photo-1564506.jpeg?auto=compress&cs=tinysrgb&w=138&h=58"
+                  alt="K&N"
+                />
+              </a>
+            </div>
+            <div className="brand-item">
+              <a href="/brands/dorman">
+                <img
+                  src="https://images.pexels.com/photos/3806288/pexels-photo-3806288.jpeg?auto=compress&cs=tinysrgb&w=129&h=47"
+                  alt="Dorman"
+                />
+              </a>
+            </div>
+            <div className="brand-item">
+              <a href="/brands/dayco">
+                <img
+                  src="https://images.pexels.com/photos/1805053/pexels-photo-1805053.jpeg?auto=compress&cs=tinysrgb&w=140&h=72"
+                  alt="Dayco"
+                />
+              </a>
+            </div>
+            <div className="brand-item">
+              <a href="/brands/ngk">
+                <img
+                  src="https://images.pexels.com/photos/2244746/pexels-photo-2244746.jpeg?auto=compress&cs=tinysrgb&w=85&h=67"
+                  alt="NGK"
+                />
+              </a>
+            </div>
+            <div className="brand-item">
+              <a href="/brands/mobil1">
+                <img
+                  src="https://images.pexels.com/photos/1564506/pexels-photo-1564506.jpeg?auto=compress&cs=tinysrgb&w=80&h=16"
+                  alt="Mobil 1"
+                />
+              </a>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Newsletter Section */}
+      <section className="newsletter-section">
+        <div className="newsletter-container">
+          <div className="newsletter-content">
+            <h2 className="newsletter-title">Subscribe To Our Newsletter</h2>
+            <p className="newsletter-description">
+              Register now to get latest updates on promotions & coupons. Don't
+              worry, we not spam!
+            </p>
+          </div>
+          <div className="newsletter-form">
+            <form className="subscription-form">
+              <div className="form-group">
+                <input
+                  type="email"
+                  placeholder="Enter your email"
+                  className="email-input"
+                  required
+                />
+                <button type="submit" className="subscribe-btn">
+                  Subscribe
+                </button>
+              </div>
+            </form>
+            <p className="newsletter-policy">
+              By subscribing, you accepted the our{" "}
+              <a href="/privacy-policy" className="policy-link">
+                Policy
+              </a>
+            </p>
+          </div>
+        </div>
+      </section>
+
+      {/* Footer Section */}
+      <footer className="main-footer">
+        <div className="footer-container">
+          <div className="footer-main">
+            <div className="footer-about">
+              <a href="/" className="footer-logo">
+                <div className="logo">
+                  <div className="logo-icon">
+                    <div className="logo-bars">
+                      <div className="bar bar-1"></div>
+                      <div className="bar bar-2"></div>
+                      <div className="bar bar-3"></div>
+                    </div>
+                  </div>
+                  <span className="logo-text">Brator</span>
+                </div>
+              </a>
+              <h6 className="footer-tagline">
+                #1 US's biggest online marketplace for car spare OEM &
+                Aftermarkets.
+              </h6>
+              <p className="footer-description">
+                All manufacturer names, symbols, and descriptions, used in our
+                images and text are used solely for identification purposes
+                only. It is neither inferred nor implied that any item sold by
+                Brator.com is a product authorized by or in any way connected
+                with any vehicle manufacturers displayed on this page.
+              </p>
+              <div className="social-links">
+                <a href="https://twitter.com/brator" className="social-link">
+                  <i className="fab fa-twitter"></i>
+                </a>
+                <a href="https://facebook.com/brator" className="social-link">
+                  <i className="fab fa-facebook-f"></i>
+                </a>
+                <a href="https://youtube.com/brator" className="social-link">
+                  <i className="fab fa-youtube"></i>
+                </a>
+                <a href="https://instagram.com/brator" className="social-link">
+                  <i className="fab fa-instagram"></i>
+                </a>
+              </div>
+            </div>
+            <div className="footer-catalog">
+              <h6 className="footer-section-title">Brator's Catalog</h6>
+              <ul className="footer-links">
+                <li>
+                  <a href="/auto-parts">Auto Parts</a>
+                </li>
+                <li>
+                  <a href="/car-care">Car Care</a>
+                </li>
+                <li>
+                  <a href="/fluids-chemicals">Fluids & Chemicals</a>
+                </li>
+                <li>
+                  <a href="/tools-supplies">Tools & Supplies</a>
+                </li>
+                <li>
+                  <a href="/wheels-tires">Wheel & Tires</a>
+                </li>
+                <li>
+                  <a href="/clearance">Clearances</a>
+                </li>
+                <li>
+                  <a href="/faq">FAQ</a>
+                </li>
+              </ul>
+            </div>
+            <div className="footer-information">
+              <h6 className="footer-section-title">Information</h6>
+              <ul className="footer-links">
+                <li>
+                  <a href="/about">About Brator</a>
+                </li>
+                <li>
+                  <a href="/investors">Investors</a>
+                </li>
+                <li>
+                  <a href="/blog">Blog</a>
+                </li>
+                <li>
+                  <a href="/career">Career</a>
+                </li>
+                <li>
+                  <a href="/contact">Contact</a>
+                </li>
+                <li>
+                  <a href="/affiliate">Affiliate Program</a>
+                </li>
+                <li>
+                  <a href="/sell">Sell on Brator</a>
+                </li>
+                <li>
+                  <a href="/partnership">Partnership</a>
+                </li>
+              </ul>
+            </div>
+            <div className="footer-customer-service">
+              <h6 className="footer-section-title">Customer Service</h6>
+              <ul className="footer-links">
+                <li>
+                  <a href="/help">Help Center</a>
+                </li>
+                <li>
+                  <a href="/account">My Account</a>
+                </li>
+                <li>
+                  <a href="/track">Track</a>
+                </li>
+                <li>
+                  <a href="/orders">My Order</a>
+                </li>
+                <li>
+                  <a href="/returns">Return Policy</a>
+                </li>
+                <li>
+                  <a href="/gift-cards">Gift Cards</a>
+                </li>
+                <li>
+                  <a href="/wholesale">Buy Wholesale</a>
+                </li>
+                <li>
+                  <a href="/faq">FAQ</a>
+                </li>
+              </ul>
+            </div>
+          </div>
+          <div className="footer-bottom">
+            <p className="copyright">
+              © 2022{" "}
+              <a href="/" className="brand-link">
+                Brator Inc.
+              </a>{" "}
+              All Rights Reserved
+            </p>
+          </div>
+        </div>
+      </footer>
+
       <style jsx>{`
         .homepage {
           font-family: "Source Sans Pro", sans-serif;
