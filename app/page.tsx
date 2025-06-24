@@ -1004,6 +1004,7 @@ export default function BratorHomePage() {
           font-weight: bold;
           margin: 0;
           text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+          font-family: "Playfair Display", serif;
         }
 
         /* Vehicle Search Section */
