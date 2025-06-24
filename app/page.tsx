@@ -44,6 +44,160 @@ export default function BratorHomePage() {
     "Sunny",
   ];
 
+  const [currentProductSlide, setCurrentProductSlide] = useState(0);
+  const [isProductAutoPlaying, setIsProductAutoPlaying] = useState(true);
+
+  const essentialProducts = [
+    {
+      id: 1,
+      name: "M195 METHOS Black with Bronze Face",
+      category: "Air Filters",
+      price: 32.0,
+      originalPrice: null,
+      rating: 4.5,
+      reviews: 2,
+      image:
+        "https://images.pexels.com/photos/9666306/pexels-photo-9666306.jpeg?auto=compress&cs=tinysrgb&w=400",
+      discount: null,
+      link: "#product-1",
+    },
+    {
+      id: 2,
+      name: "CF2 FORGED COMPRESSION",
+      category: "Custom Wheels",
+      price: 42.0,
+      originalPrice: 45.0,
+      rating: 5.0,
+      reviews: 2,
+      image:
+        "https://images.pexels.com/photos/8986137/pexels-photo-8986137.jpeg?auto=compress&cs=tinysrgb&w=400",
+      discount: "7% Off",
+      link: "#product-2",
+    },
+    {
+      id: 3,
+      name: "SV-F4 Matte Bronze with Chrome Flip",
+      category: "Fluids & Chemicals",
+      price: 45.0,
+      originalPrice: null,
+      rating: 5.0,
+      reviews: 2,
+      image:
+        "https://images.pexels.com/photos/13065690/pexels-photo-13065690.jpeg?auto=compress&cs=tinysrgb&w=400",
+      discount: null,
+      link: "#product-3",
+    },
+    {
+      id: 4,
+      name: "ABL-24 BETA Gloss Black",
+      category: "Air Filters",
+      price: 18.0,
+      originalPrice: null,
+      rating: 4.5,
+      reviews: 2,
+      image:
+        "https://images.pexels.com/photos/9666305/pexels-photo-9666305.jpeg?auto=compress&cs=tinysrgb&w=400",
+      discount: null,
+      link: "#product-4",
+    },
+    {
+      id: 5,
+      name: "Brand Name CV10 Satin Black with Chrome",
+      category: "Air Filters",
+      price: 18.0,
+      originalPrice: 20.0,
+      rating: 5.0,
+      reviews: 1,
+      image:
+        "https://images.pexels.com/photos/7568433/pexels-photo-7568433.jpeg?auto=compress&cs=tinysrgb&w=400",
+      discount: "10% Off",
+      link: "#product-5",
+    },
+    {
+      id: 6,
+      name: "Silver with Mirror Cut Face Wheels",
+      category: "Exteriors",
+      price: 19.0,
+      originalPrice: null,
+      rating: 5.0,
+      reviews: 2,
+      image:
+        "https://images.pexels.com/photos/10912797/pexels-photo-10912797.jpeg?auto=compress&cs=tinysrgb&w=400",
+      discount: null,
+      link: "#product-6",
+    },
+    {
+      id: 7,
+      name: "M249 GAMMA Silver with Full Chrome",
+      category: "Interiors",
+      price: 16.0,
+      originalPrice: 18.0,
+      rating: 4.5,
+      reviews: 2,
+      image:
+        "https://images.pexels.com/photos/9666306/pexels-photo-9666306.jpeg?auto=compress&cs=tinysrgb&w=400",
+      discount: "11% Off",
+      link: "#product-7",
+    },
+    {
+      id: 8,
+      name: "M195 METHOS Black with Bronze Face",
+      category: "Clearance",
+      price: 90.0,
+      originalPrice: null,
+      rating: 5.0,
+      reviews: 2,
+      image:
+        "https://images.pexels.com/photos/13065690/pexels-photo-13065690.jpeg?auto=compress&cs=tinysrgb&w=400",
+      discount: null,
+      link: "#product-8",
+    },
+  ];
+
+  // Auto-play functionality for products
+  useEffect(() => {
+    if (!isProductAutoPlaying) return;
+
+    const interval = setInterval(() => {
+      setCurrentProductSlide((prev) => {
+        const itemsPerView = 4;
+        const maxSlide = Math.max(0, essentialProducts.length - itemsPerView);
+        return prev >= maxSlide ? 0 : prev + 1;
+      });
+    }, 5000);
+
+    return () => clearInterval(interval);
+  }, [isProductAutoPlaying, essentialProducts.length]);
+
+  const nextProductSlide = () => {
+    const itemsPerView = 4;
+    const maxSlide = Math.max(0, essentialProducts.length - itemsPerView);
+    setCurrentProductSlide((prev) => (prev >= maxSlide ? 0 : prev + 1));
+  };
+
+  const prevProductSlide = () => {
+    const itemsPerView = 4;
+    const maxSlide = Math.max(0, essentialProducts.length - itemsPerView);
+    setCurrentProductSlide((prev) => (prev <= 0 ? maxSlide : prev - 1));
+  };
+
+  const renderStars = (rating) => {
+    const stars = [];
+    const fullStars = Math.floor(rating);
+    const hasHalfStar = rating % 1 !== 0;
+
+    for (let i = 0; i < 5; i++) {
+      if (i < fullStars) {
+        stars.push("★");
+      } else if (i === fullStars && hasHalfStar) {
+        stars.push("☆");
+      } else {
+        stars.push("☆");
+      }
+    }
+    return stars.join("");
+  };
+
   const categoriesData = [
     {
       title: "Auto Parts",
