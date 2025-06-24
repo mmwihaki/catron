@@ -1629,7 +1629,7 @@ export default function BratorHomePage() {
 
         .categories-grid {
           display: grid;
-          grid-template-columns: repeat(7, 1fr);
+          grid-template-columns: repeat(5, 1fr);
           gap: 20px;
         }
 
