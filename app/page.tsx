@@ -188,30 +188,6 @@ export default function BratorHomePage() {
     },
   ];
 
-  const [currentSlide, setCurrentSlide] = useState(0);
-  const [isAutoPlaying, setIsAutoPlaying] = useState(true);
-
-  // Auto-play functionality
-  useEffect(() => {
-    if (!isAutoPlaying) return;
-
-    const interval = setInterval(() => {
-      setCurrentSlide((prev) => (prev + 1) % hotDealsData.length);
-    }, 4000);
-
-    return () => clearInterval(interval);
-  }, [isAutoPlaying, hotDealsData.length]);
-
-  const nextSlide = () => {
-    setCurrentSlide((prev) => (prev + 1) % hotDealsData.length);
-  };
-
-  const prevSlide = () => {
-    setCurrentSlide(
-      (prev) => (prev - 1 + hotDealsData.length) % hotDealsData.length,
-    );
-  };
-
   const categories = [
     "All Categories",
     "Auto Parts",
