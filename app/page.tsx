@@ -300,6 +300,47 @@ export default function BratorHomePage() {
         </div>
       </section>
 
+      {/* Shop by Categories Section */}
+      <section className="categories-section">
+        <div className="categories-container">
+          <div className="categories-header">
+            <h2 className="categories-title">Shop by Categories</h2>
+          </div>
+
+          <div className="categories-grid">
+            {categoriesData.map((category, index) => (
+              <div key={index} className="category-card">
+                <div className="category-image-container">
+                  <a href={category.link} className="category-link">
+                    <img
+                      src={category.image}
+                      alt={category.title}
+                      className="category-image"
+                      width={category.width}
+                      height={category.height}
+                    />
+                  </a>
+                </div>
+                <div className="category-content">
+                  <p className="category-name">
+                    <a href={category.link} className="category-title-link">
+                      {category.title}
+                    </a>
+                  </p>
+                  <div className="category-description">
+                    {category.description}
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+
+          <div className="load-more-container">
+            <button className="load-more-button">Load More</button>
+          </div>
+        </div>
+      </section>
+
       <style jsx>{`
         .homepage {
           font-family: "Arial", sans-serif;
