@@ -1448,6 +1448,39 @@ export default function BratorHomePage() {
             max-width: calc(25% - 15px);
             min-width: 180px;
           }
+
+          .whats-hot-section {
+            padding: 60px 0;
+          }
+
+          .carousel-nav {
+            width: 45px;
+            height: 45px;
+            font-size: 14px;
+          }
+
+          .carousel-prev {
+            left: -22px;
+          }
+
+          .carousel-next {
+            right: -22px;
+          }
+
+          .deal-background {
+            height: 400px;
+            padding: 30px;
+          }
+
+          .sale-title {
+            font-size: 50px;
+            line-height: 60px;
+          }
+
+          .super-saver-title {
+            font-size: 28px;
+            line-height: 34px;
+          }
         }
 
         @media (max-width: 768px) {
