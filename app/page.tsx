@@ -806,6 +806,7 @@ export default function BratorHomePage() {
           font-size: 28px;
           font-weight: bold;
           color: #333;
+          font-family: "Playfair Display", serif;
         }
 
         /* Search Section */
