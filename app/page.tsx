@@ -1979,57 +1979,18 @@ export default function BratorHomePage() {
           top: 2px;
         }
 
-        .products-carousel-wrapper {
+        .products-static-grid {
           position: relative;
         }
 
-        .products-nav {
-          position: absolute;
-          top: 50%;
-          transform: translateY(-50%);
-          width: 50px;
-          height: 50px;
-          border-radius: 50%;
-          border: none;
-          background-color: rgba(0, 0, 0, 0.8);
-          color: white;
-          cursor: pointer;
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          z-index: 2;
-          transition: all 0.3s ease;
-          font-size: 16px;
-        }
-
-        .products-nav:hover {
-          background-color: #ff4444;
-          transform: translateY(-50%) scale(1.1);
-        }
-
-        .products-prev {
-          left: -25px;
-        }
-
-        .products-next {
-          right: -25px;
-        }
-
-        .products-carousel-container {
-          overflow: hidden;
-          position: relative;
+        .products-grid-container {
+          display: grid;
+          grid-template-columns: repeat(5, 1fr);
+          gap: 20px;
           padding: 5px 0;
         }
 
-        .products-carousel-track {
-          display: flex;
-          width: calc(100% * 2);
-          transition: transform 0.5s ease-in-out;
-        }
-
         .product-card {
-          flex: 0 0 25%;
-          margin-right: 20px;
           position: relative;
         }
 
