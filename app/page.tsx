@@ -1105,13 +1105,13 @@ export default function BratorHomePage() {
         }
 
         .categories-title {
+          font-family: "Playfair Display", serif;
           font-size: 30px;
           font-weight: 600;
           line-height: 36px;
           margin: 0;
           color: #333;
         }
-
         .categories-grid {
           display: flex;
           flex-wrap: wrap;
