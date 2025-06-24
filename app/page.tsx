@@ -141,6 +141,77 @@ export default function BratorHomePage() {
     },
   ];
 
+  const hotDealsData = [
+    {
+      id: 1,
+      backgroundImage:
+        "https://brator-main.smartdemowp.com/wp-content/uploads/2021/12/hot-1.png",
+      subtitle: "Keep things running smoothly",
+      title: "Helix Engine Oils",
+      titleClass: "helix-title",
+      buttonText: "Shop Now",
+      link: "#helix-oils",
+    },
+    {
+      id: 2,
+      backgroundImage:
+        "https://brator-main.smartdemowp.com/wp-content/uploads/2021/12/hot-2.png",
+      title: "Dunlop Tires & Wheels",
+      titleClass: "dunlop-title",
+      badge: "Best Choice",
+      badgeColor: "#fbab00",
+      buttonText: "Shop Now",
+      link: "#dunlop-tires",
+    },
+    {
+      id: 3,
+      backgroundImage:
+        "https://brator-main.smartdemowp.com/wp-content/uploads/2021/12/hot-3.png",
+      subtitle: "Big Season Sale Of The Year",
+      title: "35% OFF",
+      titleClass: "sale-title",
+      description: "Sport Gas Shock Absorbers",
+      buttonText: "Shop Now",
+      link: "#shock-absorbers",
+    },
+    {
+      id: 4,
+      backgroundImage:
+        "https://brator-main.smartdemowp.com/wp-content/uploads/2021/12/hot-4.png",
+      title: "Super Saver",
+      titleClass: "super-saver-title",
+      subtitle: "Sale up to 70% for over 8,000 products",
+      promoCode: "SUPER70",
+      badgeColor: "#7faf2b",
+      buttonText: "Shop Now",
+      link: "#super-saver",
+    },
+  ];
+
+  const [currentSlide, setCurrentSlide] = useState(0);
+  const [isAutoPlaying, setIsAutoPlaying] = useState(true);
+
+  // Auto-play functionality
+  useEffect(() => {
+    if (!isAutoPlaying) return;
+
+    const interval = setInterval(() => {
+      setCurrentSlide((prev) => (prev + 1) % hotDealsData.length);
+    }, 4000);
+
+    return () => clearInterval(interval);
+  }, [isAutoPlaying, hotDealsData.length]);
+
+  const nextSlide = () => {
+    setCurrentSlide((prev) => (prev + 1) % hotDealsData.length);
+  };
+
+  const prevSlide = () => {
+    setCurrentSlide(
+      (prev) => (prev - 1 + hotDealsData.length) % hotDealsData.length,
+    );
+  };
+
   const categories = [
     "All Categories",
     "Auto Parts",
