@@ -1335,7 +1335,7 @@ export default function BratorHomePage() {
         }
 
         .deal-description {
-          font-family: "Inter", sans-serif;
+          font-family: "Source Sans Pro", sans-serif;
           font-size: 14px;
           line-height: 18px;
           text-transform: uppercase;
