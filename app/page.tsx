@@ -833,6 +833,235 @@ export default function BratorHomePage() {
         </div>
       </section>
 
+      {/* Best Seller Section */}
+      <section className="best-seller-section">
+        <div className="best-seller-container">
+          <div className="best-seller-header">
+            <div className="header-left">
+              <div className="title-and-countdown">
+                <h2 className="best-seller-title">Best Seller</h2>
+                <div className="countdown-timer">
+                  <div className="countdown-content">
+                    <span className="expires-text">EXPIRES IN:</span>
+                    <div className="countdown-display">
+                      <ul className="countdown-list">
+                        <li className="countdown-item">
+                          <span className="countdown-number">118</span>
+                          <span className="countdown-label">D :</span>
+                        </li>
+                        <li className="countdown-item">
+                          <span className="countdown-number">14</span>
+                          <span className="countdown-label">H :</span>
+                        </li>
+                        <li className="countdown-item">
+                          <span className="countdown-number">09</span>
+                          <span className="countdown-label">M :</span>
+                        </li>
+                        <li className="countdown-item">
+                          <span className="countdown-number">46</span>
+                          <span className="countdown-label">S</span>
+                        </li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div className="header-right">
+              <a href="#shop" className="see-all-products-link">
+                <span>See All Products</span>
+                <i className="fas fa-chevron-right"></i>
+              </a>
+            </div>
+          </div>
+
+          <div className="best-seller-tabs">
+            <div className="tab-navigation">
+              <ul className="tab-list">
+                <li className="tab-item">
+                  <a href="#" className="tab-link active">Top 10</a>
+                </li>
+                <li className="tab-item">
+                  <a href="#" className="tab-link">Top Air Filters</a>
+                </li>
+                <li className="tab-item">
+                  <a href="#" className="tab-link">Top Auto Parts</a>
+                </li>
+                <li className="tab-item">
+                  <a href="#" className="tab-link">Top Exteriors</a>
+                </li>
+                <li className="tab-item">
+                  <a href="#" className="tab-link">Top Performance</a>
+                </li>
+              </ul>
+            </div>
+          </div>
+
+          <div className="best-seller-products">
+            <div className="products-carousel-wrapper">
+              <button className="carousel-nav carousel-prev disabled">
+                <i className="fas fa-chevron-left"></i>
+              </button>
+
+              <button className="carousel-nav carousel-next">
+                <i className="fas fa-chevron-right"></i>
+              </button>
+
+              <div className="products-carousel-container">
+                <div className="products-carousel-track">
+                  {[
+                    {
+                      id: 1,
+                      image: "https://images.pexels.com/photos/13065690/pexels-photo-13065690.jpeg?auto=compress&cs=tinysrgb&w=300",
+                      discount: "10% OFF",
+                      category: "Exhaust System",
+                      name: "HF-2 Gloss Black with Brushed Face",
+                      rating: 4.33,
+                      reviews: 3,
+                      originalPrice: 20.00,
+                      price: 18.00,
+                      link: "#product-1"
+                    },
+                    {
+                      id: 2,
+                      image: "https://images.pexels.com/photos/18497064/pexels-photo-18497064.jpeg?auto=compress&cs=tinysrgb&w=300",
+                      discount: "11% OFF",
+                      category: "Interiors",
+                      name: "M249 GAMMA Silver with Full Chrome",
+                      rating: 4.50,
+                      reviews: 2,
+                      originalPrice: 18.00,
+                      price: 16.00,
+                      link: "#product-2"
+                    },
+                    {
+                      id: 3,
+                      image: "https://images.pexels.com/photos/3642618/pexels-photo-3642618.jpeg?auto=compress&cs=tinysrgb&w=300",
+                      discount: "10% OFF",
+                      category: "Air Filters",
+                      name: "Brand Name CV10 Satin Black with Chrome",
+                      rating: 5.00,
+                      reviews: 1,
+                      originalPrice: 20.00,
+                      price: 18.00,
+                      link: "#product-3"
+                    },
+                    {
+                      id: 4,
+                      image: "https://images.pexels.com/photos/3642618/pexels-photo-3642618.jpeg?auto=compress&cs=tinysrgb&w=300",
+                      discount: "33% OFF",
+                      category: "Car Care",
+                      name: "Simple Leather Steering Wheel",
+                      rating: 5.00,
+                      reviews: 2,
+                      originalPrice: 3.00,
+                      price: 2.00,
+                      link: "#product-4"
+                    },
+                    {
+                      id: 5,
+                      image: "https://images.pexels.com/photos/13065690/pexels-photo-13065690.jpeg?auto=compress&cs=tinysrgb&w=300",
+                      category: "Car Care",
+                      name: "Silver with Mirror Cut Face Wheels",
+                      rating: 5.00,
+                      reviews: 2,
+                      price: 11.05,
+                      link: "#product-5"
+                    },
+                    {
+                      id: 6,
+                      image: "https://images.pexels.com/photos/18497064/pexels-photo-18497064.jpeg?auto=compress&cs=tinysrgb&w=300",
+                      category: "Air Filters",
+                      name: "ABL-24 BETA Gloss Black",
+                      rating: 4.50,
+                      reviews: 2,
+                      price: 18.00,
+                      link: "#product-6"
+                    }
+                  ].map((product) => (
+                    <div key={product.id} className="best-seller-product-card">
+                      <div className="product-card-inner">
+                        {product.discount && (
+                          <div className="product-discount-badge">
+                            {product.discount}
+                          </div>
+                        )}
+
+                        <div className="product-image-container">
+                          <a href={product.link} className="product-image-link">
+                            <img
+                              src={product.image}
+                              alt={product.name}
+                              className="product-image"
+                              loading="lazy"
+                              width="225"
+                              height="225"
+                            />
+                          </a>
+                        </div>
+
+                        <div className="product-info">
+                          <div className="product-category">
+                            <a href={`#category-${product.category.toLowerCase().replace(/\s+/g, '-')}`} className="category-link">
+                              {product.category}
+                            </a>
+                          </div>
+
+                          <div className="product-name">
+                            <h5>
+                              <a href={product.link} className="product-name-link">
+                                {product.name}
+                              </a>
+                            </h5>
+                          </div>
+
+                          <div className="product-rating">
+                            <div className="rating-stars">
+                              <div className="stars" title={`Rated ${product.rating} out of 5`}>
+                                <span className="star-display">{renderStars(product.rating)}</span>
+                                <span className="rating-text">
+                                  Rated <strong>{product.rating.toFixed(2)}</strong> out of 5
+                                </span>
+                              </div>
+                            </div>
+                            <div className="reviews-count">
+                              <p>{product.reviews} Review{product.reviews !== 1 ? 's' : ''}</p>
+                            </div>
+                          </div>
+
+                          <div className="product-price">
+                            <p className="price-container">
+                              {product.originalPrice && (
+                                <del className="original-price">
+                                  <span>
+                                    <span className="currency">$</span>
+                                    <span>{product.originalPrice.toFixed(2)}</span>
+                                  </span>
+                                </del>
+                              )}
+                              <span className={product.originalPrice ? "sale-price" : "regular-price"}>
+                                <span className="currency">$</span>
+                                <span>{product.price.toFixed(2)}</span>
+                              </span>
+                            </p>
+                          </div>
+
+                          <div className="product-actions">
+                            <a href={product.link} className="add-to-cart-btn">
+                              Add to cart
+                            </a>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
       <style jsx>{`
         .homepage {
           font-family: 'Source Sans Pro', sans-serif;
