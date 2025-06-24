@@ -853,6 +853,145 @@ export default function BratorHomePage() {
           background-color: #dd3333;
         }
 
+        /* Categories Section */
+        .categories-section {
+          background-color: #f2f2f7;
+          padding: 75px 0;
+        }
+
+        .categories-container {
+          max-width: 1320px;
+          margin: 0 auto;
+          padding: 0 12px;
+        }
+
+        .categories-header {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          margin-bottom: 35px;
+          width: 100%;
+        }
+
+        .categories-title {
+          font-size: 30px;
+          font-weight: 600;
+          line-height: 36px;
+          margin: 0;
+          color: #333;
+        }
+
+        .categories-grid {
+          display: flex;
+          flex-wrap: wrap;
+          gap: 30px;
+          align-items: flex-start;
+          justify-content: center;
+        }
+
+        .category-card {
+          background-color: white;
+          border-radius: 5px;
+          display: flex;
+          flex-direction: column;
+          text-align: center;
+          transition: all 0.3s ease;
+          width: calc(16.6667% - 30px);
+          min-width: 200px;
+          max-width: calc(16.6667% - 30px);
+          padding: 60px 17px 25px;
+          margin-bottom: 30px;
+        }
+
+        .category-card:hover {
+          transform: translateY(-5px);
+          box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .category-image-container {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          height: 60px;
+          margin-bottom: 30px;
+        }
+
+        .category-link {
+          display: grid;
+          place-items: center;
+          text-decoration: none;
+          cursor: pointer;
+        }
+
+        .category-image {
+          max-width: 114px;
+          height: auto;
+          object-fit: contain;
+          transition: transform 0.3s ease;
+        }
+
+        .category-card:hover .category-image {
+          transform: scale(1.1);
+        }
+
+        .category-content {
+          margin-top: auto;
+          text-align: center;
+        }
+
+        .category-name {
+          margin: 0 0 8px 0;
+        }
+
+        .category-title-link {
+          display: inline-block;
+          font-size: 14px;
+          font-weight: 700;
+          line-height: 24px;
+          text-align: center;
+          color: #333;
+          text-decoration: none;
+          transition: color 0.3s ease;
+        }
+
+        .category-title-link:hover {
+          color: #ff4444;
+        }
+
+        .category-description {
+          font-size: 12px;
+          color: #666;
+          text-align: center;
+        }
+
+        .load-more-container {
+          margin-top: 50px;
+          text-align: center;
+        }
+
+        .load-more-button {
+          background-color: white;
+          border: 0.8px solid #ccc;
+          border-radius: 4px;
+          cursor: pointer;
+          display: inline-block;
+          font-family: Arial, sans-serif;
+          font-weight: 700;
+          height: 52px;
+          line-height: 16px;
+          padding: 15px 53px;
+          text-align: center;
+          text-transform: capitalize;
+          transition: all 0.3s ease;
+          color: #333;
+        }
+
+        .load-more-button:hover {
+          background-color: #ff4444;
+          color: white;
+          border-color: #ff4444;
+        }
+
         /* Responsive Design */
         @media (max-width: 1024px) {
           .header-container {
