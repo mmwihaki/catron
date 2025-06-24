@@ -2614,6 +2614,55 @@ export default function BratorHomePage() {
           width: calc((100% - 100px) / 4);
         }
 
+        /* New Arrivals Section */
+        .new-arrivals-section {
+          background-color: #f2f2f7;
+          padding: 65px 0 100px 0;
+          max-width: 1520px;
+          margin: 0 auto;
+        }
+
+        .new-arrivals-container {
+          padding: 0 12px;
+          width: 100%;
+        }
+
+        .new-arrivals-header {
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          margin-bottom: 35px;
+          width: 100%;
+        }
+
+        .new-arrivals-title {
+          font-family: "Playfair Display", serif;
+          font-size: 30px;
+          font-weight: 600;
+          line-height: 36px;
+          margin: 0;
+          position: relative;
+          color: #333;
+        }
+
+        .new-arrivals-products {
+          position: relative;
+        }
+
+        .new-arrivals-product-card {
+          flex: 0 0 auto;
+          margin-right: 20px;
+          position: relative;
+          width: calc((100% - 100px) / 4);
+        }
+
+        .price-range {
+          font-size: 20px;
+          font-weight: 600;
+          line-height: 26px;
+          color: #333;
+        }
+
         /* Responsive Design */
         @media (max-width: 1024px) {
           .form-row {
