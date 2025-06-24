@@ -2441,6 +2441,48 @@ export default function BratorHomePage() {
             font-size: 16px;
             line-height: 24px;
           }
+
+          .essential-items-section {
+            padding: 40px 0 5px 0;
+          }
+
+          .essential-items-title {
+            font-size: 22px;
+          }
+
+          .header-content {
+            flex-direction: column;
+            gap: 15px;
+            text-align: center;
+          }
+
+          .products-nav {
+            width: 40px;
+            height: 40px;
+            font-size: 12px;
+          }
+
+          .products-prev {
+            left: -20px;
+          }
+
+          .products-next {
+            right: -20px;
+          }
+
+          .product-card {
+            flex: 0 0 100%;
+            margin-right: 0;
+          }
+
+          .products-carousel-track {
+            width: calc(100% * 8);
+          }
+
+          .product-image {
+            width: 180px;
+            height: 180px;
+          }
         }
 
         @media (max-width: 480px) {
