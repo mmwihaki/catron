@@ -11,6 +11,38 @@ export default function BratorHomePage() {
   const [vehicleEngine, setVehicleEngine] = useState("");
   const [vehicleFuelType, setVehicleFuelType] = useState("");
   const [cartItems, setCartItems] = useState(0);
+  const [activeTab, setActiveTab] = useState("models");
+  const [showMoreMakes, setShowMoreMakes] = useState(false);
+  const [showMoreModels, setShowMoreModels] = useState(false);
+
+  const nissanMakes = ["Nissan", "Infiniti", "Datsun", "Nismo"];
+
+  const nissanModels = [
+    "Altima",
+    "Sentra",
+    "Maxima",
+    "Versa",
+    "Rogue",
+    "Murano",
+    "Pathfinder",
+    "Armada",
+    "Frontier",
+    "Titan",
+    "370Z",
+    "GT-R",
+    "Leaf",
+    "Kicks",
+    "Juke",
+    "X-Trail",
+    "Navara",
+    "Note",
+    "Qashqai",
+    "Micra",
+    "Sylphy",
+    "Teana",
+    "Patrol",
+    "Sunny",
+  ];
 
   const categoriesData = [
     {
