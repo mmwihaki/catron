@@ -634,22 +634,32 @@ export default function BratorHomePage() {
                   "https://images.pexels.com/photos/162553/keys-workshop-mechanic-tools-162553.jpeg?auto=compress&cs=tinysrgb&w=300",
                 count: "289 Products",
               },
-            ].map((category, index) => (
-              <div key={index} className="category-card">
-                <a
-                  href={`#category-${category.name.toLowerCase().replace(/\s+/g, "-")}`}
-                  className="category-link"
-                >
-                  <div className="category-image">
-                    <img src={category.image} alt={category.name} />
-                  </div>
-                  <div className="category-info">
-                    <h3 className="category-name">{category.name}</h3>
-                    <p className="category-count">{category.count}</p>
-                  </div>
-                </a>
-              </div>
-            ))}
+            ]
+              .slice(0, showMoreCategories ? 14 : 10)
+              .map((category, index) => (
+                <div key={index} className="category-card">
+                  <a
+                    href={`#category-${category.name.toLowerCase().replace(/\s+/g, "-")}`}
+                    className="category-link"
+                  >
+                    <div className="category-image">
+                      <img src={category.image} alt={category.name} />
+                    </div>
+                    <div className="category-info">
+                      <h3 className="category-name">{category.name}</h3>
+                      <p className="category-count">{category.count}</p>
+                    </div>
+                  </a>
+                </div>
+              ))}
+          </div>
+          <div className="load-more-container">
+            <button
+              className="load-more-button"
+              onClick={() => setShowMoreCategories(!showMoreCategories)}
+            >
+              {showMoreCategories ? "Show Less" : "Load More"}
+            </button>
           </div>
         </div>
       </section>
