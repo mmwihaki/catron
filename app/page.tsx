@@ -1111,6 +1111,16 @@ export default function BratorHomePage() {
           .search-title {
             font-size: 24px;
           }
+
+          .category-card {
+            width: 100%;
+            max-width: 100%;
+            min-width: 200px;
+          }
+
+          .categories-container {
+            padding: 0 15px;
+          }
         }
       `}</style>
     </div>
