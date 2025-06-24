@@ -1441,27 +1441,9 @@ export default function BratorHomePage() {
             font-size: 24px;
           }
 
-          .carousel-nav {
-            width: 40px;
-            height: 40px;
-            font-size: 12px;
-          }
-
-          .carousel-prev {
-            left: -20px;
-          }
-
-          .carousel-next {
-            right: -20px;
-          }
-
-          .carousel-track {
-            width: 100%;
-          }
-
-          .hot-deal-card {
-            flex: 0 0 100%;
-            margin-right: 0;
+          .hot-deals-grid {
+            grid-template-columns: 1fr;
+            gap: 15px;
           }
 
           .deal-background {
