@@ -1358,7 +1358,7 @@ export default function BratorHomePage() {
           font-weight: 600;
           line-height: 22px;
           text-transform: uppercase;
-          font-family: "Inter", sans-serif;
+          font-family: "Source Sans Pro", sans-serif;
           letter-spacing: 0.5px;
         }
 
