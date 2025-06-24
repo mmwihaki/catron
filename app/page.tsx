@@ -541,6 +541,103 @@ export default function BratorHomePage() {
         </div>
       </section>
 
+      {/* What's Hot Section */}
+      <section className="whats-hot-section">
+        <div className="whats-hot-container">
+          <div className="whats-hot-header">
+            <h2 className="whats-hot-title">What's Hot</h2>
+          </div>
+
+          <div className="carousel-wrapper">
+            <button
+              className="carousel-nav carousel-prev"
+              onClick={prevSlide}
+              onMouseEnter={() => setIsAutoPlaying(false)}
+              onMouseLeave={() => setIsAutoPlaying(true)}
+            >
+              <i className="fas fa-chevron-left"></i>
+            </button>
+
+            <button
+              className="carousel-nav carousel-next"
+              onClick={nextSlide}
+              onMouseEnter={() => setIsAutoPlaying(false)}
+              onMouseLeave={() => setIsAutoPlaying(true)}
+            >
+              <i className="fas fa-chevron-right"></i>
+            </button>
+
+            <div className="carousel-container">
+              <div
+                className="carousel-track"
+                style={{
+                  transform: `translateX(-${currentSlide * (100 / 3)}%)`,
+                }}
+              >
+                {hotDealsData.map((deal, index) => (
+                  <div key={deal.id} className="hot-deal-card">
+                    <div
+                      className="deal-background"
+                      style={{
+                        backgroundImage: `url(${deal.backgroundImage})`,
+                      }}
+                    >
+                      <div className="deal-content">
+                        <div className="deal-top">
+                          {deal.subtitle && (
+                            <p className="deal-subtitle">{deal.subtitle}</p>
+                          )}
+                          <h2 className={`deal-title ${deal.titleClass}`}>
+                            {deal.title.split(" ").map((word, i) => (
+                              <span key={i}>
+                                {word}
+                                {i < deal.title.split(" ").length - 1 && <br />}
+                              </span>
+                            ))}
+                          </h2>
+                          {deal.description && (
+                            <h3 className="deal-description">
+                              {deal.description}
+                            </h3>
+                          )}
+                          {deal.badge && (
+                            <div
+                              className="deal-badge"
+                              style={{ backgroundColor: deal.badgeColor }}
+                            >
+                              <span>{deal.badge}</span>
+                            </div>
+                          )}
+                          {deal.promoCode && (
+                            <div
+                              className="promo-code-badge"
+                              style={{ backgroundColor: deal.badgeColor }}
+                            >
+                              <div className="promo-content">
+                                <span className="promo-text">USE Code</span>
+                                <span className="promo-divider">|</span>
+                                <span className="promo-code">
+                                  {deal.promoCode}
+                                </span>
+                              </div>
+                            </div>
+                          )}
+                        </div>
+                        <div className="deal-bottom">
+                          <a href={deal.link} className="deal-button">
+                            {deal.buttonText}
+                          </a>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
       <style jsx>{`
         .homepage {
           font-family: "Arial", sans-serif;
