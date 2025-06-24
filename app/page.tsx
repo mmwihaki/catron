@@ -1405,6 +1405,7 @@ export default function BratorHomePage() {
                                       <span>
                                         <span className="currency">$</span>
                                         <span>
+                                          KES{" "}
                                           {product.originalPrice.toLocaleString()}
                                         </span>
                                       </span>
