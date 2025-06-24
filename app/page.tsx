@@ -3446,7 +3446,7 @@ export default function BratorHomePage() {
 
         /* Featured Brands Section */
         .featured-brands-section {
-          background-color: white;
+          background-color: #f2f2f7;
           padding: 90px 0;
         }
 
