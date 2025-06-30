@@ -1190,9 +1190,16 @@ export default function CatronHomePage() {
         .hero-title {
           font-size: 48px;
           font-weight: bold;
-          margin: 0;
+          margin: 0 0 15px 0;
           text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
           font-family: "Playfair Display", serif;
+        }
+
+        .hero-subtitle {
+          font-size: 18px;
+          margin: 0;
+          opacity: 0.9;
+          text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
         }
 
         /* Vehicle Search Section */
