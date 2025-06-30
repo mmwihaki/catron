@@ -2,11 +2,11 @@
 
 import { useState, useEffect } from "react";
 
-export default function BratorHomePage() {
+export default function CatronHomePage() {
   const [searchCategory, setSearchCategory] = useState("All");
   const [searchQuery, setSearchQuery] = useState("");
   const [vehicleYear, setVehicleYear] = useState("");
-  const [vehicleBrand, setVehicleBrand] = useState("");
+  const [vehicleBrand, setVehicleBrand] = useState("Nissan");
   const [vehicleModel, setVehicleModel] = useState("");
   const [vehicleEngine, setVehicleEngine] = useState("");
   const [vehicleFuelType, setVehicleFuelType] = useState("");
@@ -16,34 +16,49 @@ export default function BratorHomePage() {
   const [showMoreModels, setShowMoreModels] = useState(false);
   const [showMoreCategories, setShowMoreCategories] = useState(false);
 
-  const nissanMakes = ["Nissan", "Infiniti", "Datsun", "Nismo"];
+  const nissanMakes = ["Nissan"];
 
+  // Updated with actual Nissan models from your inventory
   const nissanModels = [
-    "Altima",
-    "Sentra",
-    "Maxima",
-    "Versa",
-    "Rogue",
-    "Murano",
-    "Pathfinder",
-    "Armada",
-    "Frontier",
-    "Titan",
-    "370Z",
-    "GT-R",
-    "Leaf",
-    "Kicks",
-    "Juke",
-    "X-Trail",
-    "Navara",
-    "Note",
-    "Qashqai",
-    "Micra",
-    "Sylphy",
-    "Teana",
-    "Patrol",
-    "Sunny",
+    {
+      name: "Note",
+      generations: ["E11", "E12 DIG-S", "E12 e-Power", "E12 Puredrive", "E12"],
+    },
+    { name: "Sylphy", generations: ["B17"] },
+    { name: "Serena", generations: ["C27 e-Power", "C25"] },
+    { name: "AdVan", generations: ["Y12"] },
+    { name: "Wingroad", generations: ["Y12"] },
+    { name: "NV200 Vanette", generations: ["M20"] },
+    { name: "Kicks", generations: ["D15 e-Power"] },
+    { name: "X-Trail", generations: ["T31", "T32"] },
+    { name: "March", generations: ["K13", "K12"] },
+    { name: "Tiida", generations: ["C11"] },
+    { name: "TiidaLatio", generations: ["SC11"] },
+    { name: "Latio", generations: ["N17"] },
+    { name: "Bluebird Sylphy", generations: ["G11"] },
+    { name: "Dualis", generations: ["J10"] },
+    { name: "Teana", generations: ["J32", "L33"] },
+    { name: "NV350 Caravan", generations: ["E26"] },
+    { name: "Elgrand", generations: ["E52"] },
+    { name: "Murano", generations: ["Z50"] },
+    { name: "Lafesta", generations: ["B30"] },
+    { name: "Juke", generations: ["F15"] },
+    { name: "Cube", generations: ["Z11", "Z12"] },
   ];
+
+  const engineSpecs = {
+    HR12DDR: "1198cc",
+    HR12DE: "1198cc",
+    HR16DE: "1597cc",
+    MRA8DE: "1797cc",
+    MR18DE: "1800cc",
+    HR16DE: "1598cc",
+    MR20DE: "1997cc",
+    QR25DE: "2488cc",
+    HR12DE: "1198cc",
+    VQ25DE: "2495cc",
+    HR15DE: "1498cc",
+  };
 
   const essentialProducts = [
     {
