@@ -848,25 +848,25 @@ export default function CatronHomePage() {
               <h6 className="footer-section-title">Information</h6>
               <ul className="footer-links">
                 <li>
-                  <a href="/about">About Brator</a>
+                  <a href="/about">About Catron</a>
                 </li>
                 <li>
-                  <a href="/investors">Investors</a>
+                  <a href="/nissan-parts">Nissan Parts Guide</a>
                 </li>
                 <li>
-                  <a href="/blog">Blog</a>
+                  <a href="/blog">Maintenance Tips</a>
                 </li>
                 <li>
-                  <a href="/career">Career</a>
+                  <a href="/installation">Installation Service</a>
                 </li>
                 <li>
                   <a href="/contact">Contact</a>
                 </li>
                 <li>
-                  <a href="/affiliate">Affiliate Program</a>
+                  <a href="/warranty">Warranty Info</a>
                 </li>
                 <li>
-                  <a href="/sell">Sell on Brator</a>
+                  <a href="/wholesale">Wholesale</a>
                 </li>
                 <li>
                   <a href="/partnership">Partnership</a>
