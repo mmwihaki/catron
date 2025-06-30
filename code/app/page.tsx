@@ -788,45 +788,38 @@ export default function CatronHomePage() {
           <div className="footer-main">
             <div className="footer-about">
               <a href="/" className="footer-logo">
-                <div className="logo">
-                  <div className="logo-icon">
-                    <div className="logo-bars">
-                      <div className="bar bar-1"></div>
-                      <div className="bar bar-2"></div>
-                      <div className="bar bar-3"></div>
-                    </div>
-                  </div>
-                  <span className="logo-text">Brator</span>
-                </div>
+                <img
+                  src="https://cdn.builder.io/api/v1/image/assets%2F8ddb623b8e0840ee8617de2665c350a4%2F761030a73ad740c583f563b441ecf7a9?format=webp&width=800"
+                  alt="Catron Auto Parts"
+                  className="footer-logo-image"
+                />
               </a>
               <h6 className="footer-tagline">
-                #1 US's biggest online marketplace for car spare OEM &
-                Aftermarkets.
+                Premium Nissan Parts Kenya - Happy Car Ownership
               </h6>
               <p className="footer-description">
-                All manufacturer names, symbols, and descriptions, used in our
-                images and text are used solely for identification purposes
-                only. It is neither inferred nor implied that any item sold by
-                Brator.com is a product authorized by or in any way connected
-                with any vehicle manufacturers displayed on this page.
+                Quality OEM and aftermarket parts specifically for Nissan
+                vehicles. All parts are sourced from trusted manufacturers and
+                come with quality guarantee. We specialize in Nissan parts to
+                ensure the best fit and performance for your vehicle.
               </p>
               <div className="social-links">
-                <a href="https://twitter.com/brator" className="social-link">
+                <a href="https://twitter.com/catron" className="social-link">
                   <i className="fab fa-twitter"></i>
                 </a>
-                <a href="https://facebook.com/brator" className="social-link">
+                <a href="https://facebook.com/catron" className="social-link">
                   <i className="fab fa-facebook-f"></i>
                 </a>
-                <a href="https://youtube.com/brator" className="social-link">
+                <a href="https://youtube.com/catron" className="social-link">
                   <i className="fab fa-youtube"></i>
                 </a>
-                <a href="https://instagram.com/brator" className="social-link">
+                <a href="https://instagram.com/catron" className="social-link">
                   <i className="fab fa-instagram"></i>
                 </a>
               </div>
             </div>
             <div className="footer-catalog">
-              <h6 className="footer-section-title">Brator's Catalog</h6>
+              <h6 className="footer-section-title">Catron's Catalog</h6>
               <ul className="footer-links">
                 <li>
                   <a href="/auto-parts">Auto Parts</a>
