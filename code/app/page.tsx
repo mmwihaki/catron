@@ -187,11 +187,10 @@ export default function CatronHomePage() {
         <div className="header-container">
           <div className="logo">
             <img
-              src="https://images.pexels.com/photos/3642618/pexels-photo-3642618.jpeg?auto=compress&cs=tinysrgb&w=100&h=50"
+              src="https://cdn.builder.io/api/v1/image/assets%2F16c4d8eebb6943b4be5a75c55b5cdffd%2F5d8fbe0d7a4c4e1a9a82d71637d82593?format=webp&width=200"
               alt="Catron Auto Parts"
               className="logo-image"
             />
-            <span className="logo-text">CATRON</span>
           </div>
 
           <div className="search-section">
