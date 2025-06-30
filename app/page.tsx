@@ -3563,11 +3563,11 @@ export default function BratorHomePage() {
           padding-right: 105px;
         }
 
-        .footer-logo .logo-text {
-          font-size: 28px;
-          font-weight: bold;
-          color: #333;
-          font-family: "Playfair Display", serif;
+        .footer-logo .logo-image {
+          height: 50px;
+          width: auto;
+          max-width: 200px;
+          object-fit: contain;
         }
 
         .footer-tagline {
