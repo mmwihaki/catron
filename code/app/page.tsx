@@ -986,44 +986,15 @@ export default function CatronHomePage() {
           gap: 10px;
         }
 
-        .logo-icon {
-          width: 35px;
-          height: 35px;
-          position: relative;
+        .logo-image {
+          height: 50px;
+          width: auto;
         }
 
-        .logo-bars {
-          display: flex;
-          flex-direction: column;
-          gap: 3px;
-          transform: rotate(45deg);
-        }
-
-        .bar {
-          height: 6px;
-          border-radius: 3px;
-        }
-
-        .bar-1 {
-          width: 20px;
-          background: linear-gradient(45deg, #ff4444, #ff6600);
-        }
-
-        .bar-2 {
-          width: 25px;
-          background: linear-gradient(45deg, #ff6600, #ffaa00);
-        }
-
-        .bar-3 {
-          width: 15px;
-          background: linear-gradient(45deg, #ffaa00, #ffdd44);
-        }
-
-        .logo-text {
-          font-size: 28px;
-          font-weight: bold;
-          color: #333;
-          font-family: "Playfair Display", serif;
+        .footer-logo-image {
+          height: 60px;
+          width: auto;
+          margin-bottom: 10px;
         }
 
         /* Search Section */
