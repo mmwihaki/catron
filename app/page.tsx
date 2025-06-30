@@ -1038,28 +1038,6 @@ export default function BratorHomePage() {
                       price: 2.0,
                       link: "#product-4",
                     },
-                    {
-                      id: 5,
-                      image:
-                        "https://images.pexels.com/photos/13065690/pexels-photo-13065690.jpeg?auto=compress&cs=tinysrgb&w=300",
-                      category: "Car Care",
-                      name: "Silver with Mirror Cut Face Wheels",
-                      rating: 5.0,
-                      reviews: 2,
-                      price: 11.05,
-                      link: "#product-5",
-                    },
-                    {
-                      id: 6,
-                      image:
-                        "https://images.pexels.com/photos/18497064/pexels-photo-18497064.jpeg?auto=compress&cs=tinysrgb&w=300",
-                      category: "Air Filters",
-                      name: "ABL-24 BETA Gloss Black",
-                      rating: 4.5,
-                      reviews: 2,
-                      price: 18.0,
-                      link: "#product-6",
-                    },
                   ].map((product) => (
                     <div key={product.id} className="best-seller-product-card">
                       <div className="product-card-inner">
