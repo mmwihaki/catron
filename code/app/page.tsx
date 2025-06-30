@@ -2469,14 +2469,22 @@ export default function CatronHomePage() {
             height: 200px;
           }
 
-          .footer-container {
-            grid-template-columns: 1fr;
-            gap: 30px;
+          .footer-main {
+            flex-direction: column;
+            gap: 40px;
+          }
+
+          .footer-brand-section,
+          .footer-links-section {
+            width: 100%;
+          }
+
+          .footer-brand-content {
+            padding-right: 0;
             text-align: center;
           }
 
-          .footer-bottom-container {
-            flex-direction: column;
+          .footer-column-title {
             text-align: center;
           }
 
