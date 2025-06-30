@@ -1,2877 +1,3403 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
-export default function HomePage() {
-  // Cart state management
-  const [cart, setCart] = useState<any[]>([]);
-  const [cartVisible, setCartVisible] = useState(false);
+export default function CatronHomePage() {
+  const [searchCategory, setSearchCategory] = useState("All");
+  const [searchQuery, setSearchQuery] = useState("");
+  const [vehicleYear, setVehicleYear] = useState("");
+  const [vehicleBrand, setVehicleBrand] = useState("Nissan");
+  const [vehicleModel, setVehicleModel] = useState("");
+  const [vehicleEngine, setVehicleEngine] = useState("");
+  const [vehicleFuelType, setVehicleFuelType] = useState("");
+  const [cartItems, setCartItems] = useState(0);
+  const [activeTab, setActiveTab] = useState("models");
+  const [showMoreMakes, setShowMoreMakes] = useState(false);
+  const [showMoreModels, setShowMoreModels] = useState(false);
+  const [showMoreCategories, setShowMoreCategories] = useState(false);
 
-  // Real product data from your inventory with actual image URLs
-  const featuredProducts = [
+  const nissanMakes = ["Nissan"];
+
+  // Updated with actual Nissan models from your inventory
+  const nissanModels = [
+    {
+      name: "Note",
+      generations: ["E11", "E12 DIG-S", "E12 e-Power", "E12 Puredrive", "E12"],
+    },
+    { name: "Sylphy", generations: ["B17"] },
+    { name: "Serena", generations: ["C27 e-Power", "C25"] },
+    { name: "AdVan", generations: ["Y12"] },
+    { name: "Wingroad", generations: ["Y12"] },
+    { name: "NV200 Vanette", generations: ["M20"] },
+    { name: "Kicks", generations: ["D15 e-Power"] },
+    { name: "X-Trail", generations: ["T31", "T32"] },
+    { name: "March", generations: ["K13", "K12"] },
+    { name: "Tiida", generations: ["C11"] },
+    { name: "TiidaLatio", generations: ["SC11"] },
+    { name: "Latio", generations: ["N17"] },
+    { name: "Bluebird Sylphy", generations: ["G11"] },
+    { name: "Dualis", generations: ["J10"] },
+    { name: "Teana", generations: ["J32", "L33"] },
+    { name: "NV350 Caravan", generations: ["E26"] },
+    { name: "Elgrand", generations: ["E52"] },
+    { name: "Murano", generations: ["Z50"] },
+    { name: "Lafesta", generations: ["B30"] },
+    { name: "Juke", generations: ["F15"] },
+    { name: "Cube", generations: ["Z11", "Z12"] },
+  ];
+
+  const engineSpecs = {
+    HR12DDR: "1198cc",
+    HR12DE: "1198cc",
+    HR16DE: "1597cc",
+    MRA8DE: "1797cc",
+    MR18DE: "1800cc",
+    HR16DE: "1598cc",
+    MR20DE: "1997cc",
+    QR25DE: "2488cc",
+    HR12DE: "1198cc",
+    VQ25DE: "2495cc",
+    HR15DE: "1498cc",
+  };
+
+  const essentialProducts = [
     {
       id: 1,
       name: "RIDEX Oil Filter",
       category: "Oil Filter",
-      model: "E12/K13/N17",
-      sku: "7O0026",
       brand: "RIDEX",
-      stock: 30,
+      sku: "7O0026",
       price: 1300,
-      description: "up to 10k kms",
+      originalPrice: null,
+      rating: 4.8,
+      reviews: 12,
+      stock: 30,
+      description: "Upto 10k kms",
+      carModel: "E12/K13/N17",
       image:
-        "https://www.autodoc.co.uk/media/catalog/product/cache/3/image/1200x/17f82f742ffe127f42dca9de82fb58b1/7/o/7o0026_ridex_oil_filter.jpg",
-      badge: "BEST SELLER",
+        "https://images.pexels.com/photos/3642618/pexels-photo-3642618.jpeg?auto=compress&cs=tinysrgb&w=400",
+      discount: null,
+      link: "https://www.autodoc.co.uk/ridex/7989008",
     },
     {
       id: 2,
-      name: "KAVO Air Filter",
-      category: "Air Filter",
-      model: "Teana L33 QR25de",
-      sku: "NA-2650",
-      brand: "KAVO",
-      stock: 4,
-      price: 4500,
-      description: "Aftermarket OE Quality up-to 15k kms",
-      image: "https://images.autodoc.co.uk/images/parts/big/13863456.jpg",
-      badge: "PREMIUM",
+      name: "RIDEX Plus Oil Filter",
+      category: "Oil Filter",
+      brand: "Ridex Plus",
+      sku: "7O0026P",
+      price: 1800,
+      originalPrice: null,
+      rating: 4.9,
+      reviews: 8,
+      stock: 30,
+      description: "Upto 15k kms",
+      carModel: "E12/K13/N17",
+      image:
+        "https://images.pexels.com/photos/9666306/pexels-photo-9666306.jpeg?auto=compress&cs=tinysrgb&w=400",
+      discount: null,
+      link: "https://en.ridex.eu/product/18743865",
     },
     {
       id: 3,
-      name: "OSRAM Night Breaker 200",
-      category: "Headlight Bulbs",
-      model: "H4 models",
-      sku: "NB200H4",
-      brand: "OSRAM",
-      stock: 10,
-      price: 7500,
-      originalPrice: 9500,
-      description: "(pack of 2)",
+      name: "STARK Oil Filter",
+      category: "Oil Filter",
+      brand: "STARK",
+      sku: "SKOF-0860025",
+      price: 1800,
+      originalPrice: null,
+      rating: 4.7,
+      reviews: 5,
+      stock: 3,
+      description: "Upto 15k kms",
+      carModel: "E12/K13/N17",
       image:
-        "https://dammedia.osram.info/media/resource/hires/osram-dam-2414533/NB200_all_12V.png",
-      badge: "TOP RATED",
+        "https://images.pexels.com/photos/13065690/pexels-photo-13065690.jpeg?auto=compress&cs=tinysrgb&w=400",
+      discount: null,
+      link: "https://www.autodoc.co.uk/stark/7989008",
     },
     {
       id: 4,
-      name: "NGK Spark Plugs DIG-S",
-      category: "Spark Plugs",
-      model: "Note E12 DIG-S",
-      sku: "DILKAR7E11HS",
-      brand: "NGK",
-      stock: 33,
-      price: 4600,
-      description: "High Performance",
-      image:
-        "https://cdn.sparkplugs.co.uk/images/products/large/ngk-spark-plug-dilkar7e11hs-97439.jpg",
-      badge: "IN STOCK",
-    },
-    {
-      id: 5,
-      name: "KAVO Cabin Filter",
-      category: "Cabin Filter",
-      model: "Teana L33 QR25de",
-      sku: "NC-2037",
+      name: "KAVO Air Filter",
+      category: "Air Filter",
       brand: "KAVO",
-      stock: 2,
-      price: 4000,
-      description: "Aftermarket OE Quality - up-to 15k kms",
-      image: "https://images.autodoc.co.uk/images/parts/big/13863570.jpg",
-      badge: "LIMITED",
-    },
-    {
-      id: 6,
-      name: "LPR Brake Pads",
-      category: "Brake Pads",
-      model: "E12/K13/N17",
-      sku: "05P1686",
-      brand: "LPR",
-      stock: 1,
-      price: 7500,
-      description: "Aftermarket OE Quality - 15k - 30k kms",
-      image: "https://images.autodoc.co.uk/images/parts/big/15833801.jpg",
-      badge: "LAST ONE",
+      sku: "NA-2650",
+      price: 4500,
+      originalPrice: null,
+      rating: 4.6,
+      reviews: 7,
+      stock: 4,
+      description: "Aftermarket OE Quality up-to 15k kms",
+      carModel: "Teana L33 QR25de",
+      image:
+        "https://images.pexels.com/photos/18497064/pexels-photo-18497064.jpeg?auto=compress&cs=tinysrgb&w=400",
+      discount: null,
+      link: "https://www.autodoc.co.uk/kavo-parts/13863456",
     },
   ];
 
-  // Add to cart function
-  const addToCart = (product: any, quantity = 1) => {
-    setCart((prevCart) => {
-      const existingItem = prevCart.find((item) => item.id === product.id);
-      if (existingItem) {
-        return prevCart.map((item) =>
-          item.id === product.id
-            ? { ...item, quantity: item.quantity + quantity }
-            : item,
-        );
+  const whatHotProducts = [
+    {
+      title: "RIDEX Oil Filters",
+      subtitle: "Premium Quality Filtration",
+      image:
+        "https://images.pexels.com/photos/9666306/pexels-photo-9666306.jpeg?auto=compress&cs=tinysrgb&w=600",
+      link: "https://en.ridex.eu/product/18743865",
+    },
+    {
+      title: "NGK Spark Plugs",
+      subtitle: "Performance and Reliability",
+      image:
+        "https://images.pexels.com/photos/190570/pexels-photo-190570.jpeg?auto=compress&cs=tinysrgb&w=600",
+      link: "https://www.sparkplugs.co.uk/ngk-spark-plug-dilkar7e11hs-97439",
+    },
+    {
+      title: "OSRAM Headlights",
+      subtitle: "Bright & Long Lasting",
+      image:
+        "https://images.pexels.com/photos/162553/keys-workshop-mechanic-tools-162553.jpeg?auto=compress&cs=tinysrgb&w=600",
+      link: "https://www.osram.com/ecat/NIGHT%20BREAKER%20200-Halogen%20headlight%20lamps-Car%20lighting-Automotive/com/en/GPS01_3495633/ZMP_4062357/",
+    },
+    {
+      title: "Brake Components",
+      subtitle: "Safety First Priority",
+      image:
+        "https://images.pexels.com/photos/18497064/pexels-photo-18497064.jpeg?auto=compress&cs=tinysrgb&w=600",
+      link: "https://www.autodoc.co.uk/lpr/15833801",
+    },
+  ];
+
+  const renderStars = (rating) => {
+    const stars = [];
+    const fullStars = Math.floor(rating);
+    const hasHalfStar = rating % 1 !== 0;
+
+    for (let i = 0; i < 5; i++) {
+      if (i < fullStars) {
+        stars.push("★");
+      } else if (i === fullStars && hasHalfStar) {
+        stars.push("☆");
+      } else {
+        stars.push("☆");
       }
-      return [...prevCart, { ...product, quantity }];
-    });
-    setCartVisible(true);
-  };
-
-  // Remove from cart
-  const removeFromCart = (productId: number) => {
-    setCart((prevCart) => prevCart.filter((item) => item.id !== productId));
-  };
-
-  // Update quantity
-  const updateQuantity = (productId: number, newQuantity: number) => {
-    if (newQuantity <= 0) {
-      removeFromCart(productId);
-      return;
     }
-    setCart((prevCart) =>
-      prevCart.map((item) =>
-        item.id === productId ? { ...item, quantity: newQuantity } : item,
-      ),
-    );
-  };
-
-  // Calculate total
-  const getCartTotal = () => {
-    return cart.reduce((total, item) => total + item.price * item.quantity, 0);
-  };
-
-  // WhatsApp checkout
-  const checkoutViaWhatsApp = () => {
-    if (cart.length === 0) return;
-
-    let message =
-      "Hello! I'd like to order the following items from Catron:\n\n";
-    cart.forEach((item, index) => {
-      message += `${index + 1}. ${item.name}\n`;
-      message += `   SKU: ${item.sku}\n`;
-      message += `   Model: ${item.model}\n`;
-      message += `   Quantity: ${item.quantity}\n`;
-      message += `   Price: KES ${item.price.toLocaleString()} each\n`;
-      message += `   Subtotal: KES ${(item.price * item.quantity).toLocaleString()}\n\n`;
-    });
-
-    message += `Total Amount: KES ${getCartTotal().toLocaleString()}\n\n`;
-    message +=
-      "Please confirm availability and provide delivery details. Thank you!";
-
-    const whatsappUrl = `https://wa.me/254XXXXXXXXX?text=${encodeURIComponent(message)}`;
-    window.open(whatsappUrl, "_blank");
+    return stars.join("");
   };
 
   const categories = [
-    {
-      title: "Oil Filters",
-      subtitle: "RIDEX, STARK, Premium Quality",
-      code: "OF",
-      count: "63 items",
-      color: "#e74c3c",
-    },
-    {
-      title: "Air Filters",
-      subtitle: "KAVO, JAPKO, TOPRAN, RIDEX",
-      code: "AF",
-      count: "29 items",
-      color: "#3498db",
-    },
-    {
-      title: "Brake System",
-      subtitle: "LPR, JAPKO, KAVO, Brembo",
-      code: "BS",
-      count: "12 items",
-      color: "#9b59b6",
-    },
-    {
-      title: "Lighting",
-      subtitle: "OSRAM Premium Range",
-      code: "LT",
-      count: "21 items",
-      color: "#f39c12",
-    },
-    {
-      title: "Cabin Filters",
-      subtitle: "KAVO, JPN, Denkermann",
-      code: "CF",
-      count: "5 items",
-      color: "#2ecc71",
-    },
-    {
-      title: "Spark Plugs",
-      subtitle: "NGK Professional Grade",
-      code: "SP",
-      count: "39 items",
-      color: "#e67e22",
-    },
+    "Engine Parts",
+    "Air Filters",
+    "Oil Filters",
+    "Cabin Filters",
+    "Spark Plugs",
+    "Brake System",
+    "Suspension",
+    "Exhaust System",
+    "Electrical",
+    "Cooling System",
+    "Transmission",
+    "Headlight Bulbs",
+    "Exterior Parts",
+    "Interior Parts",
   ];
 
+  const navLinks = [
+    "Home",
+    "Shop",
+    "Product",
+    "Vendor",
+    "Mega Menu",
+    "Blog",
+    "Pages",
+    "Contact Us",
+  ];
+
+  const handleSearch = () => {
+    console.log("Searching for:", searchQuery, "in category:", searchCategory);
+  };
+
+  const handleVehicleSearch = () => {
+    console.log("Vehicle search:", {
+      year: vehicleYear,
+      brand: vehicleBrand,
+      model: vehicleModel,
+      engine: vehicleEngine,
+      fuelType: vehicleFuelType,
+    });
+  };
+
   return (
-    <div style={{ fontFamily: '"DM Sans", sans-serif', lineHeight: "1.6" }}>
-      {/* Cart Sidebar */}
-      {cartVisible && (
-        <div
-          style={{
-            position: "fixed",
-            top: "0",
-            right: "0",
-            width: "400px",
-            height: "100vh",
-            background: "white",
-            boxShadow: "-4px 0 20px rgba(0,0,0,0.1)",
-            zIndex: "9999",
-            padding: "20px",
-            overflowY: "auto",
-          }}
-        >
-          <div
-            style={{
-              display: "flex",
-              justifyContent: "space-between",
-              alignItems: "center",
-              marginBottom: "20px",
-              borderBottom: "2px solid #ecf0f1",
-              paddingBottom: "15px",
-            }}
-          >
-            <h3 style={{ margin: "0", fontSize: "24px", fontWeight: "700" }}>
-              Shopping Cart
-            </h3>
-            <button
-              onClick={() => setCartVisible(false)}
-              style={{
-                background: "none",
-                border: "none",
-                fontSize: "24px",
-                cursor: "pointer",
-                color: "#95a5a6",
-              }}
-            >
-              ×
-            </button>
+    <div className="homepage">
+      {/* Black Friday Banner */}
+      <div className="promo-banner">
+        <div className="promo-content">
+          <span className="promo-text">
+            <span className="black-friday">SPECIAL OFFER</span> | Premium Nissan
+            Parts <span className="discount">Quality Guaranteed</span> | Free
+            shipping on orders over{" "}
+            <span className="promo-code">KES 5,000</span>
+          </span>
+          <div className="language-selector">
+            Language: <span className="current-lang">EN</span> ▼
           </div>
-
-          {cart.length === 0 ? (
-            <div
-              style={{
-                textAlign: "center",
-                padding: "40px 0",
-                color: "#7f8c8d",
-              }}
-            >
-              <p>Your cart is empty</p>
-            </div>
-          ) : (
-            <>
-              <div style={{ marginBottom: "20px" }}>
-                {cart.map((item) => (
-                  <div
-                    key={item.id}
-                    style={{
-                      display: "flex",
-                      gap: "15px",
-                      padding: "15px",
-                      border: "1px solid #ecf0f1",
-                      borderRadius: "8px",
-                      marginBottom: "10px",
-                    }}
-                  >
-                    <img
-                      src={item.image}
-                      alt={item.name}
-                      style={{
-                        width: "60px",
-                        height: "60px",
-                        objectFit: "cover",
-                        borderRadius: "6px",
-                      }}
-                    />
-                    <div style={{ flex: "1" }}>
-                      <h4
-                        style={{
-                          margin: "0 0 5px 0",
-                          fontSize: "14px",
-                          fontWeight: "600",
-                        }}
-                      >
-                        {item.name}
-                      </h4>
-                      <p
-                        style={{
-                          margin: "0 0 5px 0",
-                          fontSize: "12px",
-                          color: "#7f8c8d",
-                        }}
-                      >
-                        {item.sku} | {item.model}
-                      </p>
-                      <div
-                        style={{
-                          display: "flex",
-                          alignItems: "center",
-                          gap: "10px",
-                        }}
-                      >
-                        <button
-                          onClick={() =>
-                            updateQuantity(item.id, item.quantity - 1)
-                          }
-                          style={{
-                            background: "#ecf0f1",
-                            border: "none",
-                            width: "25px",
-                            height: "25px",
-                            borderRadius: "4px",
-                            cursor: "pointer",
-                          }}
-                        >
-                          -
-                        </button>
-                        <span style={{ fontSize: "14px", fontWeight: "600" }}>
-                          {item.quantity}
-                        </span>
-                        <button
-                          onClick={() =>
-                            updateQuantity(item.id, item.quantity + 1)
-                          }
-                          style={{
-                            background: "#ecf0f1",
-                            border: "none",
-                            width: "25px",
-                            height: "25px",
-                            borderRadius: "4px",
-                            cursor: "pointer",
-                          }}
-                        >
-                          +
-                        </button>
-                        <button
-                          onClick={() => removeFromCart(item.id)}
-                          style={{
-                            background: "#e74c3c",
-                            color: "white",
-                            border: "none",
-                            padding: "4px 8px",
-                            borderRadius: "4px",
-                            cursor: "pointer",
-                            fontSize: "12px",
-                            marginLeft: "auto",
-                          }}
-                        >
-                          Remove
-                        </button>
-                      </div>
-                      <p
-                        style={{
-                          margin: "5px 0 0 0",
-                          fontSize: "14px",
-                          fontWeight: "700",
-                          color: "#e74c3c",
-                        }}
-                      >
-                        KES {(item.price * item.quantity).toLocaleString()}
-                      </p>
-                    </div>
-                  </div>
-                ))}
-              </div>
-
-              <div
-                style={{
-                  borderTop: "2px solid #ecf0f1",
-                  paddingTop: "20px",
-                  marginTop: "20px",
-                }}
-              >
-                <div
-                  style={{
-                    display: "flex",
-                    justifyContent: "space-between",
-                    alignItems: "center",
-                    marginBottom: "20px",
-                  }}
-                >
-                  <span style={{ fontSize: "18px", fontWeight: "700" }}>
-                    Total:
-                  </span>
-                  <span
-                    style={{
-                      fontSize: "24px",
-                      fontWeight: "700",
-                      color: "#e74c3c",
-                    }}
-                  >
-                    KES {getCartTotal().toLocaleString()}
-                  </span>
-                </div>
-
-                <button
-                  onClick={checkoutViaWhatsApp}
-                  style={{
-                    width: "100%",
-                    background: "#25D366",
-                    color: "white",
-                    border: "none",
-                    padding: "15px",
-                    borderRadius: "8px",
-                    fontSize: "16px",
-                    fontWeight: "700",
-                    cursor: "pointer",
-                    marginBottom: "10px",
-                  }}
-                >
-                  Checkout via WhatsApp
-                </button>
-              </div>
-            </>
-          )}
         </div>
-      )}
+      </div>
 
-      {/* Overlay */}
-      {cartVisible && (
-        <div
-          style={{
-            position: "fixed",
-            top: "0",
-            left: "0",
-            width: "100vw",
-            height: "100vh",
-            background: "rgba(0,0,0,0.5)",
-            zIndex: "9998",
-          }}
-          onClick={() => setCartVisible(false)}
-        />
-      )}
-
-      {/* Enhanced main header */}
-      <header
-        style={{
-          background: "#000000",
-          color: "white",
-          padding: "20px 0",
-          boxShadow: "0 4px 20px rgba(0,0,0,0.3)",
-        }}
-      >
-        <div
-          style={{
-            maxWidth: "1200px",
-            margin: "0 auto",
-            padding: "0 20px",
-            display: "flex",
-            alignItems: "center",
-            gap: "40px",
-          }}
-        >
-          {/* Enhanced Logo */}
-          <div style={{ display: "flex", alignItems: "center", gap: "15px" }}>
-            <div
-              style={{
-                background: "linear-gradient(135deg, #DC143C, #B22222)",
-                width: "50px",
-                height: "50px",
-                borderRadius: "12px",
-                display: "flex",
-                alignItems: "center",
-                justifyContent: "center",
-                fontSize: "24px",
-                boxShadow: "0 4px 15px rgba(220, 20, 60, 0.3)",
-                color: "white",
-                fontWeight: "bold",
-              }}
-            >
-              C
-            </div>
-            <div>
-              <h1
-                style={{
-                  color: "#DC143C",
-                  fontSize: "32px",
-                  fontWeight: "800",
-                  margin: "0",
-                  letterSpacing: "-1px",
-                }}
-              >
-                Catron
-              </h1>
-              <p
-                style={{
-                  fontSize: "12px",
-                  margin: "0",
-                  color: "#bdc3c7",
-                  fontWeight: "500",
-                }}
-              >
-                Premium Nissan Parts Kenya
-              </p>
-            </div>
+      {/* Main Header */}
+      <header className="main-header">
+        <div className="header-container">
+          <div className="logo">
+            <img
+              src="https://cdn.builder.io/api/v1/image/assets%2F8ddb623b8e0840ee8617de2665c350a4%2F761030a73ad740c583f563b441ecf7a9?format=webp&width=800"
+              alt="Catron Auto Parts"
+              className="logo-image"
+            />
           </div>
 
-          {/* Enhanced search bar */}
-          <div
-            style={{
-              flex: "1",
-              maxWidth: "600px",
-              position: "relative",
-            }}
-          >
-            <div
-              style={{
-                display: "flex",
-                borderRadius: "25px",
-                overflow: "hidden",
-                background: "white",
-                boxShadow: "0 4px 15px rgba(0,0,0,0.1)",
-                border: "2px solid transparent",
-              }}
-            >
+          <div className="search-section">
+            <div className="search-container">
+              <select
+                className="search-category"
+                value={searchCategory}
+                onChange={(e) => setSearchCategory(e.target.value)}
+              >
+                <option value="All">All</option>
+                {categories.map((category, index) => (
+                  <option key={index} value={category}>
+                    {category}
+                  </option>
+                ))}
+              </select>
               <input
                 type="text"
-                placeholder="Search by part number, brand, or vehicle model..."
-                style={{
-                  flex: "1",
-                  padding: "15px 25px",
-                  border: "none",
-                  outline: "none",
-                  fontSize: "15px",
-                  fontFamily: "Arial, sans-serif",
-                }}
+                className="search-input"
+                placeholder="Enter your keyword here"
+                value={searchQuery}
+                onChange={(e) => setSearchQuery(e.target.value)}
               />
-              <button
-                style={{
-                  background: "linear-gradient(135deg, #DC143C, #B22222)",
-                  border: "none",
-                  padding: "15px 25px",
-                  color: "white",
-                  cursor: "pointer",
-                  fontSize: "18px",
-                  fontWeight: "bold",
-                }}
-              >
-                Search
+              <button className="search-button" onClick={handleSearch}>
+                <i className="fas fa-search"></i>
               </button>
             </div>
           </div>
 
-          {/* Enhanced user actions */}
-          <div
-            style={{
-              display: "flex",
-              alignItems: "center",
-              gap: "25px",
-            }}
-          >
-            <div
-              style={{
-                display: "flex",
-                flexDirection: "column",
-                alignItems: "center",
-                cursor: "pointer",
-                position: "relative",
-                padding: "8px",
-              }}
-            >
-              <div
-                style={{
-                  fontSize: "14px",
-                  marginBottom: "4px",
-                  fontWeight: "600",
-                }}
-              >
-                ♡
-              </div>
-              <span style={{ fontSize: "11px", color: "#bdc3c7" }}>
-                Wishlist
-              </span>
-              <span
-                style={{
-                  position: "absolute",
-                  top: "0",
-                  right: "0",
-                  background: "#DC143C",
-                  color: "white",
-                  borderRadius: "50%",
-                  fontSize: "10px",
-                  minWidth: "18px",
-                  height: "18px",
-                  display: "flex",
-                  alignItems: "center",
-                  justifyContent: "center",
-                  fontWeight: "bold",
-                }}
-              >
-                0
-              </span>
-            </div>
-
-            <div
-              onClick={() => setCartVisible(true)}
-              style={{
-                display: "flex",
-                flexDirection: "column",
-                alignItems: "center",
-                cursor: "pointer",
-                position: "relative",
-                padding: "8px",
-              }}
-            >
-              <div
-                style={{
-                  fontSize: "14px",
-                  marginBottom: "4px",
-                  fontWeight: "600",
-                }}
-              >
-                □
-              </div>
-              <span style={{ fontSize: "11px", color: "#bdc3c7" }}>Cart</span>
-              <span
-                style={{
-                  position: "absolute",
-                  top: "0",
-                  right: "0",
-                  background: "#DC143C",
-                  color: "white",
-                  borderRadius: "50%",
-                  fontSize: "10px",
-                  minWidth: "18px",
-                  height: "18px",
-                  display: "flex",
-                  alignItems: "center",
-                  justifyContent: "center",
-                  fontWeight: "bold",
-                }}
-              >
-                {cart.reduce((total, item) => total + item.quantity, 0)}
-              </span>
-            </div>
-
-            <button
-              style={{
-                background: "linear-gradient(135deg, #DC143C, #B22222)",
-                color: "white",
-                border: "none",
-                padding: "12px 24px",
-                borderRadius: "8px",
-                cursor: "pointer",
-                fontWeight: "600",
-                fontSize: "14px",
-                boxShadow: "0 4px 15px rgba(220, 20, 60, 0.3)",
-              }}
-            >
-              Sign In
+          <div className="header-actions">
+            <button className="action-btn">
+              <i className="fas fa-heart"></i>
+              <span>0</span>
+            </button>
+            <button className="action-btn">
+              <i className="fas fa-balance-scale"></i>
+              <span>0</span>
+            </button>
+            <button className="action-btn cart-btn">
+              <i className="fas fa-shopping-cart"></i>
+              <span>Cart</span>
+              <span className="cart-count">{cartItems}</span>
             </button>
           </div>
         </div>
       </header>
 
-      {/* Premium navigation */}
-      <nav
-        style={{
-          background: "white",
-          borderBottom: "1px solid #ecf0f1",
-          padding: "15px 0",
-          boxShadow: "0 2px 10px rgba(0,0,0,0.05)",
-        }}
-      >
-        <div
-          style={{
-            maxWidth: "1200px",
-            margin: "0 auto",
-            padding: "0 20px",
-            display: "flex",
-            alignItems: "center",
-            gap: "40px",
-          }}
-        >
-          <button
-            style={{
-              display: "flex",
-              alignItems: "center",
-              gap: "12px",
-              background: "#DC143C",
-              color: "white",
-              border: "none",
-              padding: "12px 24px",
-              borderRadius: "8px",
-              fontWeight: "600",
-              cursor: "pointer",
-              fontSize: "15px",
-              boxShadow: "0 4px 15px rgba(220, 20, 60, 0.2)",
-            }}
-          >
+      {/* Navigation */}
+      <nav className="main-navigation">
+        <div className="nav-container">
+          <button className="all-categories-btn">
+            <i className="fas fa-bars"></i>
             All Categories
           </button>
-
-          <div
-            style={{
-              display: "flex",
-              gap: "35px",
-              flex: "1",
-            }}
-          >
-            {[
-              "Home",
-              "Shop by Vehicle",
-              "Brands",
-              "Deals",
-              "About",
-              "Contact",
-            ].map((item) => (
+          <div className="nav-links">
+            {navLinks.map((link, index) => (
               <a
-                key={item}
-                href="#"
-                style={{
-                  textDecoration: "none",
-                  color: "#2c3e50",
-                  fontWeight: "600",
-                  fontSize: "15px",
-                  padding: "8px 0",
-                  borderBottom:
-                    item === "Home"
-                      ? "2px solid #DC143C"
-                      : "2px solid transparent",
-                  transition: "all 0.3s ease",
-                }}
+                key={index}
+                href={`#${link.toLowerCase().replace(/\s+/g, "-")}`}
+                className="nav-link"
               >
-                {item}
+                {link}
               </a>
             ))}
           </div>
-
-          <div style={{ display: "flex", alignItems: "center", gap: "20px" }}>
-            <a
-              href="#"
-              style={{
-                color: "#DC143C",
-                textDecoration: "none",
-                fontWeight: "600",
-                fontSize: "14px",
-                display: "flex",
-                alignItems: "center",
-                gap: "8px",
-              }}
-            >
-              Track Your Order
+          <div className="nav-actions">
+            <a href="#order-tracking" className="nav-action">
+              Order Tracking
             </a>
-            <span
-              style={{
-                background: "#DC143C",
-                color: "white",
-                padding: "4px 12px",
-                borderRadius: "12px",
-                fontSize: "12px",
-                fontWeight: "600",
-              }}
-            >
-              Live Support
-            </span>
+            <a href="#compare" className="nav-action">
+              Compare (0)
+            </a>
           </div>
         </div>
       </nav>
 
-      {/* Hero section */}
-      <section
-        style={{
-          backgroundImage:
-            "linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url(https://images.unsplash.com/photo-1486262715619-67b85e0b08d3?w=1600&h=900&fit=crop&crop=center)",
-          backgroundSize: "cover",
-          backgroundPosition: "center",
-          backgroundRepeat: "no-repeat",
-          color: "white",
-          padding: "100px 0",
-          position: "relative",
-          overflow: "hidden",
-        }}
-      >
-        <div
-          style={{
-            maxWidth: "1200px",
-            margin: "0 auto",
-            padding: "0 20px",
-            display: "grid",
-            gridTemplateColumns: "1fr 1fr",
-            gap: "80px",
-            alignItems: "center",
-            position: "relative",
-            zIndex: "1",
-          }}
-        >
-          <div>
-            <div
-              style={{
-                background: "rgba(255, 215, 0, 0.2)",
-                color: "#FFD700",
-                display: "inline-flex",
-                alignItems: "center",
-                gap: "8px",
-                padding: "12px 20px",
-                borderRadius: "25px",
-                fontSize: "14px",
-                fontWeight: "700",
-                marginBottom: "25px",
-                border: "1px solid rgba(255, 215, 0, 0.3)",
-              }}
-            >
-              #1 TRUSTED NISSAN PARTS DEALER IN KENYA
-            </div>
+      {/* Hero Section */}
+      <section className="hero-section">
+        <div className="hero-content">
+          <div className="hero-badge">PREMIUM NISSAN PARTS</div>
+          <h1 className="hero-title">
+            Quality Parts for
+            <br />
+            Your Nissan
+          </h1>
+          <p className="hero-subtitle">
+            Premium OEM & Aftermarket Parts - Happy Car Ownership
+          </p>
+        </div>
+      </section>
 
-            <h1
-              style={{
-                fontSize: "64px",
-                fontWeight: "800",
-                lineHeight: "1.1",
-                marginBottom: "25px",
-              }}
-            >
-              Premium Nissan Parts
-              <span style={{ color: "rgb(247, 51, 18)" }}> & Accessories</span>
-            </h1>
+      {/* Vehicle Search Section */}
+      <section className="vehicle-search-section">
+        <div className="vehicle-search-container">
+          <h2 className="search-title">Find Parts by Your Vehicle</h2>
+          <p className="search-subtitle">
+            Select your vehicle details to find compatible parts
+          </p>
 
-            <p
-              style={{
-                fontSize: "20px",
-                lineHeight: "1.6",
-                marginBottom: "35px",
-                opacity: "0.9",
-                fontWeight: "400",
-              }}
-            >
-              Genuine OEM and premium aftermarket parts specifically for Nissan
-              vehicles from top brands like
-              <strong> RIDEX, KAVO, OSRAM, NGK</strong> and more. Quality
-              guaranteed with fast shipping across Kenya.
-            </p>
-
-            <div style={{ display: "flex", gap: "20px", marginBottom: "40px" }}>
-              <button
-                style={{
-                  background:
-                    "linear-gradient(135deg, rgb(247, 51, 18), rgb(220, 40, 15))",
-                  color: "white",
-                  border: "none",
-                  padding: "18px 35px",
-                  borderRadius: "12px",
-                  fontSize: "18px",
-                  fontWeight: "700",
-                  cursor: "pointer",
-                  boxShadow: "0 8px 25px rgba(247, 51, 18, 0.4)",
-                }}
-              >
-                Shop Now
-              </button>
-              <button
-                style={{
-                  background: "rgba(255, 255, 255, 0.1)",
-                  color: "white",
-                  border: "2px solid rgba(255, 255, 255, 0.3)",
-                  padding: "18px 35px",
-                  borderRadius: "12px",
-                  fontSize: "18px",
-                  fontWeight: "600",
-                  cursor: "pointer",
-                  backdropFilter: "blur(10px)",
-                }}
-              >
-                View Catalog
-              </button>
-            </div>
-
-            <div style={{ display: "flex", gap: "35px" }}>
-              {[
-                { text: "Free Delivery", detail: "Orders >5,000 KES" },
-                { text: "2 Year Warranty", detail: "All Products" },
-                { text: "Easy Returns", detail: "30 Day Policy" },
-              ].map((feature, i) => (
-                <div
-                  key={i}
-                  style={{
-                    background: "rgba(255, 255, 255, 0.05)",
-                    padding: "12px 16px",
-                    borderRadius: "10px",
-                    backdropFilter: "blur(10px)",
-                  }}
-                >
-                  <div style={{ fontSize: "14px", fontWeight: "600" }}>
-                    {feature.text}
-                  </div>
-                  <div style={{ fontSize: "12px", opacity: "0.8" }}>
-                    {feature.detail}
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
-
-          <div
-            style={{
-              background: "white",
-              borderRadius: "20px",
-              padding: "40px",
-              color: "#2c3e50",
-              boxShadow: "0 25px 50px rgba(0,0,0,0.2)",
+          <form
+            className="vehicle-search-form"
+            onSubmit={(e) => {
+              e.preventDefault();
+              handleVehicleSearch();
             }}
           >
-            <div
-              style={{
-                textAlign: "center",
-                marginBottom: "30px",
-              }}
-            >
-              <h3
-                style={{
-                  fontSize: "26px",
-                  fontWeight: "700",
-                  marginBottom: "8px",
-                }}
-              >
-                Find Your Parts
-              </h3>
-              <p
-                style={{
-                  fontSize: "14px",
-                  color: "#7f8c8d",
-                  margin: "0",
-                }}
-              >
-                Search by vehicle details for compatible parts
-              </p>
-            </div>
-
-            <div
-              style={{
-                display: "grid",
-                gap: "15px",
-              }}
-            >
-              {[
-                {
-                  label: "Year",
-                  options: ["2024", "2023", "2022", "2021", "2020"],
-                },
-                { label: "Make", options: ["Nissan"] },
-                {
-                  label: "Model",
-                  options: [
-                    "Note E12",
-                    "Teana L33",
-                    "March K13",
-                    "Altima L34",
-                    "Sentra B18",
-                    "X-Trail T33",
-                  ],
-                },
-                {
-                  label: "Engine",
-                  options: ["DIG-S", "QR25DE", "Puredrive", "VC-Turbo", "CVT"],
-                },
-              ].map((field, i) => (
+            <div className="form-row">
+              <div className="form-group">
+                <label htmlFor="year">Year</label>
                 <select
-                  key={i}
-                  style={{
-                    padding: "15px 20px",
-                    border: "2px solid #ecf0f1",
-                    borderRadius: "10px",
-                    fontSize: "15px",
-                    background: "white",
-                    cursor: "pointer",
-                  }}
+                  id="year"
+                  value={vehicleYear}
+                  onChange={(e) => setVehicleYear(e.target.value)}
+                  className="form-select"
                 >
-                  <option>Select {field.label}</option>
-                  {field.options.map((option, j) => (
-                    <option key={j} value={option}>
-                      {option}
+                  <option value="">Select Year</option>
+                  {Array.from({ length: 30 }, (_, i) => {
+                    const year = new Date().getFullYear() - i;
+                    return (
+                      <option key={year} value={year}>
+                        {year}
+                      </option>
+                    );
+                  })}
+                </select>
+              </div>
+
+              <div className="form-group">
+                <label htmlFor="brand">Brand</label>
+                <select
+                  id="brand"
+                  value={vehicleBrand}
+                  onChange={(e) => setVehicleBrand(e.target.value)}
+                  className="form-select"
+                  disabled
+                >
+                  <option value="Nissan">Nissan</option>
+                </select>
+              </div>
+
+              <div className="form-group">
+                <label htmlFor="model">Model</label>
+                <select
+                  id="model"
+                  value={vehicleModel}
+                  onChange={(e) => setVehicleModel(e.target.value)}
+                  className="form-select"
+                >
+                  <option value="">Select Model</option>
+                  {nissanModels.map((model, index) => (
+                    <option key={index} value={model.name}>
+                      {model.name}
                     </option>
                   ))}
                 </select>
+              </div>
+
+              <div className="form-group">
+                <label htmlFor="engine">Engine</label>
+                <select
+                  id="engine"
+                  value={vehicleEngine}
+                  onChange={(e) => setVehicleEngine(e.target.value)}
+                  className="form-select"
+                >
+                  <option value="">Select Engine</option>
+                  <option value="HR12DDR">HR12DDR (1198cc)</option>
+                  <option value="HR12DE">HR12DE (1198cc)</option>
+                  <option value="HR16DE">HR16DE (1597cc)</option>
+                  <option value="MRA8DE">MRA8DE (1797cc)</option>
+                  <option value="MR18DE">MR18DE (1800cc)</option>
+                  <option value="MR20DE">MR20DE (1997cc)</option>
+                  <option value="QR25DE">QR25DE (2488cc)</option>
+                  <option value="VQ25DE">VQ25DE (2495cc)</option>
+                  <option value="HR15DE">HR15DE (1498cc)</option>
+                </select>
+              </div>
+
+              <div className="form-group">
+                <label htmlFor="fuel">Fuel Type</label>
+                <select
+                  id="fuel"
+                  value={vehicleFuelType}
+                  onChange={(e) => setVehicleFuelType(e.target.value)}
+                  className="form-select"
+                >
+                  <option value="">Select Fuel Type</option>
+                  <option value="gasoline">Gasoline</option>
+                  <option value="diesel">Diesel</option>
+                  <option value="hybrid">Hybrid</option>
+                  <option value="electric">Electric</option>
+                </select>
+              </div>
+
+              <div className="form-group">
+                <button type="submit" className="search-submit-btn">
+                  <i className="fas fa-search"></i>
+                  Search Parts
+                </button>
+              </div>
+            </div>
+          </form>
+        </div>
+      </section>
+
+      {/* What's Hot Section */}
+      <section className="whats-hot-section">
+        <div className="whats-hot-container">
+          <h2 className="section-title">What's Hot</h2>
+          <div className="hot-products-grid">
+            {whatHotProducts.map((product, index) => (
+              <div key={index} className="hot-product-card">
+                <a href={product.link} className="hot-product-link">
+                  <div className="hot-product-image">
+                    <img src={product.image} alt={product.title} />
+                    <div className="hot-product-overlay">
+                      <div className="hot-product-content">
+                        <h3 className="hot-product-title">{product.title}</h3>
+                        <p className="hot-product-subtitle">
+                          {product.subtitle}
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                </a>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Categories Section */}
+      <section className="categories-section">
+        <div className="categories-container">
+          <h2 className="section-title">Shop by Categories</h2>
+          <div className="categories-grid">
+            {[
+              {
+                name: "Air Filters",
+                image:
+                  "https://images.pexels.com/photos/9666306/pexels-photo-9666306.jpeg?auto=compress&cs=tinysrgb&w=300",
+                count: "245 Products",
+              },
+              {
+                name: "Custom Wheels",
+                image:
+                  "https://images.pexels.com/photos/3642618/pexels-photo-3642618.jpeg?auto=compress&cs=tinysrgb&w=300",
+                count: "189 Products",
+              },
+              {
+                name: "Fluids & Chemicals",
+                image:
+                  "https://images.pexels.com/photos/13065690/pexels-photo-13065690.jpeg?auto=compress&cs=tinysrgb&w=300",
+                count: "156 Products",
+              },
+              {
+                name: "Exteriors",
+                image:
+                  "https://images.pexels.com/photos/18497064/pexels-photo-18497064.jpeg?auto=compress&cs=tinysrgb&w=300",
+                count: "298 Products",
+              },
+              {
+                name: "Interiors",
+                image:
+                  "https://images.pexels.com/photos/5835359/pexels-photo-5835359.jpeg?auto=compress&cs=tinysrgb&w=300",
+                count: "167 Products",
+              },
+              {
+                name: "Clearance",
+                image:
+                  "https://images.pexels.com/photos/3807277/pexels-photo-3807277.jpeg?auto=compress&cs=tinysrgb&w=300",
+                count: "89 Products",
+              },
+              {
+                name: "Engine Parts",
+                image:
+                  "https://images.pexels.com/photos/190570/pexels-photo-190570.jpeg?auto=compress&cs=tinysrgb&w=300",
+                count: "234 Products",
+              },
+              {
+                name: "Brake System",
+                image:
+                  "https://images.pexels.com/photos/3806287/pexels-photo-3806287.jpeg?auto=compress&cs=tinysrgb&w=300",
+                count: "178 Products",
+              },
+              {
+                name: "Suspension",
+                image:
+                  "https://images.pexels.com/photos/6872138/pexels-photo-6872138.jpeg?auto=compress&cs=tinysrgb&w=300",
+                count: "145 Products",
+              },
+              {
+                name: "Electrical",
+                image:
+                  "https://images.pexels.com/photos/162553/keys-workshop-mechanic-tools-162553.jpeg?auto=compress&cs=tinysrgb&w=300",
+                count: "267 Products",
+              },
+            ]
+              .slice(0, showMoreCategories ? 10 : 6)
+              .map((category, index) => (
+                <div key={index} className="category-card">
+                  <a
+                    href={`#category-${category.name.toLowerCase().replace(/\s+/g, "-")}`}
+                    className="category-link"
+                  >
+                    <div className="category-image">
+                      <img src={category.image} alt={category.name} />
+                    </div>
+                    <div className="category-info">
+                      <h3 className="category-name">{category.name}</h3>
+                      <p className="category-count">{category.count}</p>
+                    </div>
+                  </a>
+                </div>
               ))}
-
-              <button
-                style={{
-                  background:
-                    "linear-gradient(135deg, rgb(247, 51, 18), rgb(220, 40, 15))",
-                  color: "white",
-                  border: "none",
-                  padding: "18px 25px",
-                  borderRadius: "10px",
-                  fontSize: "18px",
-                  fontWeight: "700",
-                  cursor: "pointer",
-                  marginTop: "15px",
-                  boxShadow: "0 8px 25px rgba(247, 51, 18, 0.3)",
-                }}
-              >
-                Find Compatible Parts
-              </button>
-            </div>
           </div>
-        </div>
-      </section>
-
-      {/* Categories section */}
-      <section
-        style={{
-          position: "relative",
-          backgroundColor: "rgb(242, 242, 247)",
-          paddingTop: "75px",
-          paddingBottom: "75px",
-        }}
-      >
-        <div
-          style={{
-            maxWidth: "1520px",
-            margin: "0 auto",
-            paddingLeft: "12px",
-            paddingRight: "12px",
-            width: "100%",
-          }}
-        >
-          <div
-            style={{
-              display: "flex",
-              flexWrap: "wrap",
-              marginLeft: "-12px",
-              marginRight: "-12px",
-            }}
-          >
-            <div
-              style={{
-                flexShrink: 0,
-                maxWidth: "100%",
-                paddingLeft: "12px",
-                paddingRight: "12px",
-                width: "100%",
-              }}
-            >
-              <div
-                style={{
-                  alignItems: "center",
-                  display: "flex",
-                  justifyContent: "center",
-                  marginBottom: "35px",
-                  width: "100%",
-                }}
-              >
-                <div>
-                  <h2
-                    style={{
-                      fontSize: "42px",
-                      fontWeight: "800",
-                      lineHeight: "1.2",
-                      marginRight: "35px",
-                      position: "relative",
-                      color: "#000000",
-                      textAlign: "center",
-                    }}
-                  >
-                    Shop by Categories
-                  </h2>
-                </div>
-              </div>
-            </div>
-
-            <div
-              style={{
-                flexShrink: 0,
-                maxWidth: "100%",
-                paddingLeft: "12px",
-                paddingRight: "12px",
-                width: "100%",
-              }}
-            >
-              <div
-                style={{
-                  alignItems: "flex-start",
-                  display: "flex",
-                  flexWrap: "wrap",
-                  gap: "30px",
-                  justifyContent: "center",
-                }}
-              >
-                {/* Auto Parts */}
-                <div
-                  className="category-card"
-                  style={{
-                    backgroundColor: "white",
-                    borderRadius: "5px",
-                    display: "flex",
-                    flexDirection: "column",
-                    marginBottom: "30px",
-                    maxWidth: "calc(14.2857% - 30px)",
-                    minWidth: "200px",
-                    paddingBottom: "25px",
-                    paddingLeft: "17px",
-                    paddingRight: "17px",
-                    paddingTop: "60px",
-                    textAlign: "center",
-                    transition: "all 0.3s ease",
-                    width: "100%",
-                    cursor: "pointer",
-                    border: "2px solid transparent",
-                  }}
-                >
-                  <div
-                    style={{
-                      alignItems: "center",
-                      display: "flex",
-                      height: "60px",
-                      justifyContent: "center",
-                      marginBottom: "30px",
-                    }}
-                  >
-                    <a
-                      href="#"
-                      style={{
-                        cursor: "pointer",
-                        display: "grid",
-                        textAlign: "center",
-                      }}
-                    >
-                      <img
-                        src="https://brator-main.smartdemowp.com/wp-content/uploads/2021/12/categories-30.png"
-                        alt="Auto Parts"
-                        width="107"
-                        height="71"
-                        style={{
-                          cursor: "pointer",
-                          marginLeft: "auto",
-                          marginRight: "auto",
-                          maxWidth: "114px",
-                          textAlign: "center",
-                          width: "107px",
-                        }}
-                      />
-                    </a>
-                  </div>
-                  <div style={{ marginTop: "auto", textAlign: "center" }}>
-                    <p
-                      style={{
-                        color: "#000000",
-                        fontSize: "14px",
-                        lineHeight: "1.7",
-                        textAlign: "center",
-                      }}
-                    >
-                      <a
-                        href="#"
-                        className="category-title"
-                        style={{
-                          cursor: "pointer",
-                          display: "inline-block",
-                          fontSize: "14px",
-                          fontWeight: "700",
-                          lineHeight: "1.7",
-                          textAlign: "center",
-                          color: "#000000",
-                          textDecoration: "none",
-                        }}
-                      >
-                        Auto Parts
-                      </a>
-                    </p>
-                  </div>
-                  <div
-                    style={{
-                      color: "#666666",
-                      fontSize: "12px",
-                      textAlign: "center",
-                    }}
-                  >
-                    Mesh, Billet, CNC
-                  </div>
-                </div>
-
-                {/* Car Care */}
-                <div
-                  className="category-card"
-                  style={{
-                    backgroundColor: "white",
-                    borderRadius: "5px",
-                    display: "flex",
-                    flexDirection: "column",
-                    marginBottom: "30px",
-                    maxWidth: "calc(14.2857% - 30px)",
-                    minWidth: "200px",
-                    paddingBottom: "25px",
-                    paddingLeft: "17px",
-                    paddingRight: "17px",
-                    paddingTop: "60px",
-                    textAlign: "center",
-                    transition: "all 0.3s ease",
-                    width: "100%",
-                    cursor: "pointer",
-                    border: "2px solid transparent",
-                  }}
-                >
-                  <div
-                    style={{
-                      alignItems: "center",
-                      display: "flex",
-                      height: "60px",
-                      justifyContent: "center",
-                      marginBottom: "30px",
-                    }}
-                  >
-                    <a
-                      href="#"
-                      style={{
-                        cursor: "pointer",
-                        display: "grid",
-                        textAlign: "center",
-                      }}
-                    >
-                      <img
-                        src="https://brator-main.smartdemowp.com/wp-content/uploads/categories-29.png"
-                        alt="Car Care"
-                        width="108"
-                        height="71"
-                        style={{
-                          cursor: "pointer",
-                          marginLeft: "auto",
-                          marginRight: "auto",
-                          maxWidth: "114px",
-                          textAlign: "center",
-                          width: "108px",
-                        }}
-                      />
-                    </a>
-                  </div>
-                  <div style={{ marginTop: "auto", textAlign: "center" }}>
-                    <p
-                      style={{
-                        color: "#000000",
-                        fontSize: "14px",
-                        lineHeight: "1.7",
-                        textAlign: "center",
-                      }}
-                    >
-                      <a
-                        href="#"
-                        style={{
-                          cursor: "pointer",
-                          display: "inline-block",
-                          fontSize: "14px",
-                          fontWeight: "700",
-                          lineHeight: "1.7",
-                          textAlign: "center",
-                          color: "#000000",
-                          textDecoration: "none",
-                        }}
-                      >
-                        Car Care
-                      </a>
-                    </p>
-                  </div>
-                  <div
-                    style={{
-                      color: "#666666",
-                      fontSize: "12px",
-                      textAlign: "center",
-                    }}
-                  >
-                    Polishes, Cleaners
-                  </div>
-                </div>
-
-                {/* Performance */}
-                <div
-                  style={{
-                    backgroundColor: "white",
-                    borderRadius: "5px",
-                    display: "flex",
-                    flexDirection: "column",
-                    marginBottom: "30px",
-                    maxWidth: "calc(14.2857% - 30px)",
-                    minWidth: "200px",
-                    paddingBottom: "25px",
-                    paddingLeft: "17px",
-                    paddingRight: "17px",
-                    paddingTop: "60px",
-                    textAlign: "center",
-                    transition: "all 0.3s ease",
-                    width: "100%",
-                    cursor: "pointer",
-                    border: "2px solid transparent",
-                  }}
-                >
-                  <div
-                    style={{
-                      alignItems: "center",
-                      display: "flex",
-                      height: "60px",
-                      justifyContent: "center",
-                      marginBottom: "30px",
-                    }}
-                  >
-                    <a
-                      href="#"
-                      style={{
-                        cursor: "pointer",
-                        display: "grid",
-                        textAlign: "center",
-                      }}
-                    >
-                      <img
-                        src="https://brator-main.smartdemowp.com/wp-content/uploads/categories-28.png"
-                        alt="Performance"
-                        width="116"
-                        height="76"
-                        style={{
-                          cursor: "pointer",
-                          marginLeft: "auto",
-                          marginRight: "auto",
-                          maxWidth: "114px",
-                          textAlign: "center",
-                          width: "116px",
-                        }}
-                      />
-                    </a>
-                  </div>
-                  <div style={{ marginTop: "auto", textAlign: "center" }}>
-                    <p
-                      style={{
-                        color: "#000000",
-                        fontSize: "14px",
-                        lineHeight: "1.7",
-                        textAlign: "center",
-                      }}
-                    >
-                      <a
-                        href="#"
-                        style={{
-                          cursor: "pointer",
-                          display: "inline-block",
-                          fontSize: "14px",
-                          fontWeight: "700",
-                          lineHeight: "1.7",
-                          textAlign: "center",
-                          color: "#000000",
-                          textDecoration: "none",
-                        }}
-                      >
-                        Performance
-                      </a>
-                    </p>
-                  </div>
-                  <div
-                    style={{
-                      color: "#666666",
-                      fontSize: "12px",
-                      textAlign: "center",
-                    }}
-                  >
-                    Brakes, Batteries, Turbo
-                  </div>
-                </div>
-
-                {/* Wheels & Tires */}
-                <div
-                  style={{
-                    backgroundColor: "white",
-                    borderRadius: "5px",
-                    display: "flex",
-                    flexDirection: "column",
-                    marginBottom: "30px",
-                    maxWidth: "calc(14.2857% - 30px)",
-                    minWidth: "200px",
-                    paddingBottom: "25px",
-                    paddingLeft: "17px",
-                    paddingRight: "17px",
-                    paddingTop: "60px",
-                    textAlign: "center",
-                    transition: "all 0.3s ease",
-                    width: "100%",
-                    cursor: "pointer",
-                    border: "2px solid transparent",
-                  }}
-                >
-                  <div
-                    style={{
-                      alignItems: "center",
-                      display: "flex",
-                      height: "60px",
-                      justifyContent: "center",
-                      marginBottom: "30px",
-                    }}
-                  >
-                    <a
-                      href="#"
-                      style={{
-                        cursor: "pointer",
-                        display: "grid",
-                        textAlign: "center",
-                      }}
-                    >
-                      <img
-                        src="https://brator-main.smartdemowp.com/wp-content/uploads/2021/11/categories-09.png"
-                        alt="Wheels & Tires"
-                        width="101"
-                        height="81"
-                        style={{
-                          cursor: "pointer",
-                          marginLeft: "auto",
-                          marginRight: "auto",
-                          maxWidth: "114px",
-                          textAlign: "center",
-                          width: "101px",
-                        }}
-                      />
-                    </a>
-                  </div>
-                  <div style={{ marginTop: "auto", textAlign: "center" }}>
-                    <p
-                      style={{
-                        color: "#000000",
-                        fontSize: "14px",
-                        lineHeight: "1.7",
-                        textAlign: "center",
-                      }}
-                    >
-                      <a
-                        href="#"
-                        style={{
-                          cursor: "pointer",
-                          display: "inline-block",
-                          fontSize: "14px",
-                          fontWeight: "700",
-                          lineHeight: "1.7",
-                          textAlign: "center",
-                          color: "#000000",
-                          textDecoration: "none",
-                        }}
-                      >
-                        Wheels & Tires
-                      </a>
-                    </p>
-                  </div>
-                  <div
-                    style={{
-                      color: "#666666",
-                      fontSize: "12px",
-                      textAlign: "center",
-                    }}
-                  >
-                    Tires, TMPS Sensor
-                  </div>
-                </div>
-
-                {/* Exteriors */}
-                <div
-                  style={{
-                    backgroundColor: "white",
-                    borderRadius: "5px",
-                    display: "flex",
-                    flexDirection: "column",
-                    marginBottom: "30px",
-                    maxWidth: "calc(14.2857% - 30px)",
-                    minWidth: "200px",
-                    paddingBottom: "25px",
-                    paddingLeft: "17px",
-                    paddingRight: "17px",
-                    paddingTop: "60px",
-                    textAlign: "center",
-                    transition: "all 0.3s ease",
-                    width: "100%",
-                    cursor: "pointer",
-                    border: "2px solid transparent",
-                  }}
-                >
-                  <div
-                    style={{
-                      alignItems: "center",
-                      display: "flex",
-                      height: "60px",
-                      justifyContent: "center",
-                      marginBottom: "30px",
-                    }}
-                  >
-                    <a
-                      href="#"
-                      style={{
-                        cursor: "pointer",
-                        display: "grid",
-                        textAlign: "center",
-                      }}
-                    >
-                      <img
-                        src="https://brator-main.smartdemowp.com/wp-content/uploads/categories-27.png"
-                        alt="Exteriors"
-                        width="122"
-                        height="80"
-                        style={{
-                          cursor: "pointer",
-                          marginLeft: "auto",
-                          marginRight: "auto",
-                          maxWidth: "114px",
-                          textAlign: "center",
-                          width: "122px",
-                        }}
-                      />
-                    </a>
-                  </div>
-                  <div style={{ marginTop: "auto", textAlign: "center" }}>
-                    <p
-                      style={{
-                        color: "#000000",
-                        fontSize: "14px",
-                        lineHeight: "1.7",
-                        textAlign: "center",
-                      }}
-                    >
-                      <a
-                        href="#"
-                        style={{
-                          cursor: "pointer",
-                          display: "inline-block",
-                          fontSize: "14px",
-                          fontWeight: "700",
-                          lineHeight: "1.7",
-                          textAlign: "center",
-                          color: "#000000",
-                          textDecoration: "none",
-                        }}
-                      >
-                        Exteriors
-                      </a>
-                    </p>
-                  </div>
-                  <div
-                    style={{
-                      color: "#666666",
-                      fontSize: "12px",
-                      textAlign: "center",
-                    }}
-                  >
-                    Lighting, Body, Wipers
-                  </div>
-                </div>
-
-                {/* Interiors */}
-                <div
-                  style={{
-                    backgroundColor: "white",
-                    borderRadius: "5px",
-                    display: "flex",
-                    flexDirection: "column",
-                    marginBottom: "30px",
-                    maxWidth: "calc(14.2857% - 30px)",
-                    minWidth: "200px",
-                    paddingBottom: "25px",
-                    paddingLeft: "17px",
-                    paddingRight: "17px",
-                    paddingTop: "60px",
-                    textAlign: "center",
-                    transition: "all 0.3s ease",
-                    width: "100%",
-                    cursor: "pointer",
-                    border: "2px solid transparent",
-                  }}
-                >
-                  <div
-                    style={{
-                      alignItems: "center",
-                      display: "flex",
-                      height: "60px",
-                      justifyContent: "center",
-                      marginBottom: "30px",
-                    }}
-                  >
-                    <a
-                      href="#"
-                      style={{
-                        cursor: "pointer",
-                        display: "grid",
-                        textAlign: "center",
-                      }}
-                    >
-                      <img
-                        src="https://brator-main.smartdemowp.com/wp-content/uploads/categories-26.png"
-                        alt="Interiors"
-                        width="128"
-                        height="84"
-                        style={{
-                          cursor: "pointer",
-                          marginLeft: "auto",
-                          marginRight: "auto",
-                          maxWidth: "114px",
-                          textAlign: "center",
-                          width: "128px",
-                        }}
-                      />
-                    </a>
-                  </div>
-                  <div style={{ marginTop: "auto", textAlign: "center" }}>
-                    <p
-                      style={{
-                        color: "#000000",
-                        fontSize: "14px",
-                        lineHeight: "1.7",
-                        textAlign: "center",
-                      }}
-                    >
-                      <a
-                        href="#"
-                        style={{
-                          cursor: "pointer",
-                          display: "inline-block",
-                          fontSize: "14px",
-                          fontWeight: "700",
-                          lineHeight: "1.7",
-                          textAlign: "center",
-                          color: "#000000",
-                          textDecoration: "none",
-                        }}
-                      >
-                        Interiors
-                      </a>
-                    </p>
-                  </div>
-                  <div
-                    style={{
-                      color: "#666666",
-                      fontSize: "12px",
-                      textAlign: "center",
-                    }}
-                  >
-                    Steering Wheels, Seats
-                  </div>
-                </div>
-              </div>
-
-              {/* Load More Button */}
-              <div
-                style={{
-                  marginTop: "50px",
-                  textAlign: "center",
-                }}
-              >
-                <button
-                  className="load-more-btn"
-                  style={{
-                    backgroundColor: "white",
-                    border: "1px solid #DC143C",
-                    borderRadius: "4px",
-                    color: "#DC143C",
-                    cursor: "pointer",
-                    display: "inline-block",
-                    fontFamily: '"DM Sans", sans-serif',
-                    fontWeight: "700",
-                    height: "52px",
-                    lineHeight: "16px",
-                    paddingBottom: "15px",
-                    paddingLeft: "53px",
-                    paddingRight: "53px",
-                    paddingTop: "15px",
-                    textAlign: "center",
-                    textTransform: "capitalize",
-                    transition: "all 0.3s ease",
-                  }}
-                >
-                  Load More
-                </button>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Essential Items for New Car */}
-      <section
-        style={{
-          background: "#f8f9fa",
-          padding: "80px 0",
-        }}
-      >
-        <div
-          style={{
-            maxWidth: "1200px",
-            margin: "0 auto",
-            padding: "0 20px",
-          }}
-        >
-          <h2
-            style={{
-              fontSize: "42px",
-              fontWeight: "800",
-              marginBottom: "20px",
-              color: "#2c3e50",
-              textAlign: "center",
-            }}
-          >
-            Essential Items for New Nissan
-          </h2>
-          <p
-            style={{
-              fontSize: "18px",
-              color: "#7f8c8d",
-              textAlign: "center",
-              marginBottom: "50px",
-            }}
-          >
-            Get your new Nissan ready with these essential maintenance items
-          </p>
-          <div
-            style={{
-              display: "grid",
-              gridTemplateColumns: "repeat(auto-fit, minmax(250px, 1fr))",
-              gap: "30px",
-            }}
-          >
-            {[
-              {
-                name: "Oil Filter Kit",
-                price: 2500,
-                image:
-                  "https://images.autodoc.de/categorypictures/oil-filter-1.jpg",
-              },
-              {
-                name: "Air Filter Set",
-                price: 3200,
-                image:
-                  "https://images.autodoc.de/categorypictures/air-filter-1.jpg",
-              },
-              {
-                name: "Brake Pads",
-                price: 5500,
-                image:
-                  "https://images.autodoc.de/categorypictures/brake-pads-1.jpg",
-              },
-              {
-                name: "Spark Plugs",
-                price: 4000,
-                image:
-                  "https://images.autodoc.de/categorypictures/spark-plugs-1.jpg",
-              },
-            ].map((item, index) => (
-              <div
-                key={index}
-                style={{
-                  background: "white",
-                  borderRadius: "12px",
-                  padding: "25px",
-                  boxShadow: "0 8px 25px rgba(0,0,0,0.1)",
-                  textAlign: "center",
-                }}
-              >
-                <div
-                  style={{
-                    width: "80px",
-                    height: "80px",
-                    background: `url(${item.image})`,
-                    backgroundSize: "cover",
-                    backgroundPosition: "center",
-                    borderRadius: "50%",
-                    margin: "0 auto 20px",
-                  }}
-                ></div>
-                <h3
-                  style={{
-                    fontSize: "18px",
-                    fontWeight: "700",
-                    marginBottom: "10px",
-                    color: "#2c3e50",
-                  }}
-                >
-                  {item.name}
-                </h3>
-                <p
-                  style={{
-                    fontSize: "20px",
-                    fontWeight: "700",
-                    color: "#DC143C",
-                    marginBottom: "15px",
-                  }}
-                >
-                  KES {item.price.toLocaleString()}
-                </p>
-                <button
-                  style={{
-                    background: "#DC143C",
-                    color: "white",
-                    border: "none",
-                    padding: "12px 24px",
-                    borderRadius: "8px",
-                    fontSize: "14px",
-                    fontWeight: "600",
-                    cursor: "pointer",
-                  }}
-                >
-                  Add to Cart
-                </button>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Best Seller */}
-      <section
-        style={{
-          background: "white",
-          padding: "80px 0",
-        }}
-      >
-        <div
-          style={{
-            maxWidth: "1200px",
-            margin: "0 auto",
-            padding: "0 20px",
-          }}
-        >
-          <h2
-            style={{
-              fontSize: "42px",
-              fontWeight: "800",
-              marginBottom: "20px",
-              color: "#2c3e50",
-              textAlign: "center",
-            }}
-          >
-            Best Sellers
-          </h2>
-          <p
-            style={{
-              fontSize: "18px",
-              color: "#7f8c8d",
-              textAlign: "center",
-              marginBottom: "50px",
-            }}
-          >
-            Most popular Nissan parts chosen by our customers
-          </p>
-          <div
-            style={{
-              display: "grid",
-              gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))",
-              gap: "30px",
-            }}
-          >
-            {[
-              {
-                name: "RIDEX Oil Filter",
-                bestseller: true,
-                price: 1300,
-                originalPrice: 1500,
-              },
-              {
-                name: "NGK Spark Plugs",
-                bestseller: true,
-                price: 4600,
-                originalPrice: 5200,
-              },
-              {
-                name: "OSRAM Headlights",
-                bestseller: true,
-                price: 7500,
-                originalPrice: 8500,
-              },
-            ].map((item, index) => (
-              <div
-                key={index}
-                style={{
-                  background: "white",
-                  borderRadius: "16px",
-                  overflow: "hidden",
-                  boxShadow: "0 12px 30px rgba(0,0,0,0.1)",
-                  position: "relative",
-                  border: "1px solid #f1f2f6",
-                }}
-              >
-                <div
-                  style={{
-                    position: "absolute",
-                    top: "15px",
-                    left: "15px",
-                    background: "#e74c3c",
-                    color: "white",
-                    padding: "6px 12px",
-                    borderRadius: "20px",
-                    fontSize: "11px",
-                    fontWeight: "700",
-                  }}
-                >
-                  BEST SELLER
-                </div>
-                <div
-                  style={{
-                    height: "200px",
-                    backgroundImage:
-                      "url(https://images.unsplash.com/photo-1486262715619-67b85e0b08d3?w=400&h=200&fit=crop&crop=center)",
-                    backgroundSize: "cover",
-                    backgroundPosition: "center",
-                    display: "flex",
-                    alignItems: "center",
-                    justifyContent: "center",
-                  }}
-                ></div>
-                <div style={{ padding: "25px" }}>
-                  <h3
-                    style={{
-                      fontSize: "18px",
-                      fontWeight: "700",
-                      color: "#2c3e50",
-                      marginBottom: "15px",
-                    }}
-                  >
-                    {item.name}
-                  </h3>
-                  <div
-                    style={{
-                      display: "flex",
-                      alignItems: "center",
-                      gap: "12px",
-                      marginBottom: "20px",
-                    }}
-                  >
-                    <span
-                      style={{
-                        fontSize: "24px",
-                        fontWeight: "700",
-                        color: "#DC143C",
-                      }}
-                    >
-                      KES {item.price.toLocaleString()}
-                    </span>
-                    <span
-                      style={{
-                        fontSize: "16px",
-                        color: "#95a5a6",
-                        textDecoration: "line-through",
-                      }}
-                    >
-                      KES {item.originalPrice.toLocaleString()}
-                    </span>
-                  </div>
-                  <button
-                    style={{
-                      width: "100%",
-                      background: "#DC143C",
-                      color: "white",
-                      border: "none",
-                      padding: "15px",
-                      borderRadius: "10px",
-                      fontSize: "16px",
-                      fontWeight: "600",
-                      cursor: "pointer",
-                    }}
-                  >
-                    Add to Cart
-                  </button>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* New Arrivals */}
-      <section
-        style={{
-          background: "#f8f9fa",
-          padding: "80px 0",
-        }}
-      >
-        <div
-          style={{
-            maxWidth: "1200px",
-            margin: "0 auto",
-            padding: "0 20px",
-          }}
-        >
-          <h2
-            style={{
-              fontSize: "42px",
-              fontWeight: "800",
-              marginBottom: "20px",
-              color: "#2c3e50",
-              textAlign: "center",
-            }}
-          >
-            New Arrivals
-          </h2>
-          <p
-            style={{
-              fontSize: "18px",
-              color: "#7f8c8d",
-              textAlign: "center",
-              marginBottom: "50px",
-            }}
-          >
-            Latest Nissan parts and accessories just arrived
-          </p>
-          <div
-            style={{
-              display: "grid",
-              gridTemplateColumns: "repeat(auto-fit, minmax(250px, 1fr))",
-              gap: "30px",
-            }}
-          >
-            {[
-              { name: "LED Headlight Kit", isNew: true, price: 12500 },
-              { name: "Performance Air Filter", isNew: true, price: 5800 },
-              { name: "Brake Disc Set", isNew: true, price: 9200 },
-              { name: "Cabin Filter", isNew: true, price: 2800 },
-            ].map((item, index) => (
-              <div
-                key={index}
-                style={{
-                  background: "white",
-                  borderRadius: "12px",
-                  padding: "25px",
-                  boxShadow: "0 8px 25px rgba(0,0,0,0.1)",
-                  textAlign: "center",
-                  position: "relative",
-                }}
-              >
-                <div
-                  style={{
-                    position: "absolute",
-                    top: "15px",
-                    right: "15px",
-                    background: "#27ae60",
-                    color: "white",
-                    padding: "4px 8px",
-                    borderRadius: "12px",
-                    fontSize: "10px",
-                    fontWeight: "600",
-                  }}
-                >
-                  NEW
-                </div>
-                <div
-                  style={{
-                    width: "80px",
-                    height: "80px",
-                    backgroundImage:
-                      "url(https://images.unsplash.com/photo-1486262715619-67b85e0b08d3?w=80&h=80&fit=crop&crop=center)",
-                    backgroundSize: "cover",
-                    backgroundPosition: "center",
-                    borderRadius: "50%",
-                    margin: "0 auto 20px",
-                    border: "3px solid #DC143C",
-                  }}
-                ></div>
-                <h3
-                  style={{
-                    fontSize: "18px",
-                    fontWeight: "700",
-                    marginBottom: "10px",
-                    color: "#2c3e50",
-                  }}
-                >
-                  {item.name}
-                </h3>
-                <p
-                  style={{
-                    fontSize: "20px",
-                    fontWeight: "700",
-                    color: "#DC143C",
-                    marginBottom: "15px",
-                  }}
-                >
-                  KES {item.price.toLocaleString()}
-                </p>
-                <button
-                  style={{
-                    background: "#DC143C",
-                    color: "white",
-                    border: "none",
-                    padding: "12px 24px",
-                    borderRadius: "8px",
-                    fontSize: "14px",
-                    fontWeight: "600",
-                    cursor: "pointer",
-                  }}
-                >
-                  Add to Cart
-                </button>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Tips and Guides */}
-      <section
-        style={{
-          background: "white",
-          padding: "80px 0",
-        }}
-      >
-        <div
-          style={{
-            maxWidth: "1200px",
-            margin: "0 auto",
-            padding: "0 20px",
-          }}
-        >
-          <h2
-            style={{
-              fontSize: "42px",
-              fontWeight: "800",
-              marginBottom: "20px",
-              color: "#2c3e50",
-              textAlign: "center",
-            }}
-          >
-            Tips and Guides
-          </h2>
-          <p
-            style={{
-              fontSize: "18px",
-              color: "#7f8c8d",
-              textAlign: "center",
-              marginBottom: "50px",
-            }}
-          >
-            Expert advice for maintaining your Nissan vehicle
-          </p>
-          <div
-            style={{
-              display: "grid",
-              gridTemplateColumns: "repeat(auto-fit, minmax(300px, 1fr))",
-              gap: "30px",
-            }}
-          >
-            {[
-              {
-                title: "Oil Change Guide",
-                description:
-                  "Learn how to change your Nissan engine oil properly",
-                readTime: "5 min read",
-              },
-              {
-                title: "Brake Maintenance",
-                description:
-                  "Essential brake system maintenance for your Nissan",
-                readTime: "7 min read",
-              },
-              {
-                title: "Filter Replacement",
-                description: "When and how to replace air and oil filters",
-                readTime: "4 min read",
-              },
-            ].map((guide, index) => (
-              <div
-                key={index}
-                style={{
-                  background: "white",
-                  borderRadius: "12px",
-                  padding: "30px",
-                  boxShadow: "0 8px 25px rgba(0,0,0,0.1)",
-                  border: "1px solid #f1f2f6",
-                }}
-              >
-                <div
-                  style={{
-                    width: "60px",
-                    height: "60px",
-                    backgroundImage:
-                      "url(https://images.unsplash.com/photo-1481627834876-b7833e8f5570?w=60&h=60&fit=crop&crop=center)",
-                    backgroundSize: "cover",
-                    backgroundPosition: "center",
-                    borderRadius: "50%",
-                    border: "3px solid #DC143C",
-                    marginBottom: "20px",
-                  }}
-                ></div>
-                <h3
-                  style={{
-                    fontSize: "20px",
-                    fontWeight: "700",
-                    marginBottom: "15px",
-                    color: "#2c3e50",
-                  }}
-                >
-                  {guide.title}
-                </h3>
-                <p
-                  style={{
-                    fontSize: "14px",
-                    color: "#7f8c8d",
-                    lineHeight: "1.6",
-                    marginBottom: "20px",
-                  }}
-                >
-                  {guide.description}
-                </p>
-                <div
-                  style={{
-                    display: "flex",
-                    justifyContent: "space-between",
-                    alignItems: "center",
-                  }}
-                >
-                  <span
-                    style={{
-                      fontSize: "12px",
-                      color: "#95a5a6",
-                    }}
-                  >
-                    {guide.readTime}
-                  </span>
-                  <button
-                    style={{
-                      background: "transparent",
-                      color: "#DC143C",
-                      border: "1px solid #DC143C",
-                      padding: "8px 16px",
-                      borderRadius: "6px",
-                      fontSize: "14px",
-                      fontWeight: "600",
-                      cursor: "pointer",
-                    }}
-                  >
-                    Read More
-                  </button>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Featured Brands */}
-      <section
-        style={{
-          background: "#f8f9fa",
-          padding: "80px 0",
-        }}
-      >
-        <div
-          style={{
-            maxWidth: "1200px",
-            margin: "0 auto",
-            padding: "0 20px",
-          }}
-        >
-          <h2
-            style={{
-              fontSize: "42px",
-              fontWeight: "800",
-              marginBottom: "20px",
-              color: "#2c3e50",
-              textAlign: "center",
-            }}
-          >
-            Featured Brands
-          </h2>
-          <p
-            style={{
-              fontSize: "18px",
-              color: "#7f8c8d",
-              textAlign: "center",
-              marginBottom: "50px",
-            }}
-          >
-            Trusted brands for your Nissan vehicle
-          </p>
-          <div
-            style={{
-              display: "grid",
-              gridTemplateColumns: "repeat(auto-fit, minmax(200px, 1fr))",
-              gap: "30px",
-            }}
-          >
-            {[
-              { name: "RIDEX", description: "Premium oil filters" },
-              { name: "KAVO", description: "Air filtration systems" },
-              { name: "OSRAM", description: "Lighting solutions" },
-              { name: "NGK", description: "Spark plugs & ignition" },
-              { name: "BOSCH", description: "Engine components" },
-              { name: "MANN", description: "Filter technology" },
-            ].map((brand, index) => (
-              <div
-                key={index}
-                style={{
-                  background: "white",
-                  borderRadius: "12px",
-                  padding: "30px",
-                  boxShadow: "0 8px 25px rgba(0,0,0,0.1)",
-                  textAlign: "center",
-                  transition: "transform 0.3s ease",
-                  cursor: "pointer",
-                }}
-              >
-                <div
-                  style={{
-                    width: "80px",
-                    height: "80px",
-                    background: "#DC143C",
-                    borderRadius: "50%",
-                    display: "flex",
-                    alignItems: "center",
-                    justifyContent: "center",
-                    fontSize: "20px",
-                    fontWeight: "700",
-                    color: "white",
-                    margin: "0 auto 20px",
-                  }}
-                >
-                  {brand.name.substring(0, 2)}
-                </div>
-                <h3
-                  style={{
-                    fontSize: "18px",
-                    fontWeight: "700",
-                    marginBottom: "10px",
-                    color: "#2c3e50",
-                  }}
-                >
-                  {brand.name}
-                </h3>
-                <p
-                  style={{
-                    fontSize: "14px",
-                    color: "#7f8c8d",
-                  }}
-                >
-                  {brand.description}
-                </p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Featured Products with real inventory and KES pricing */}
-      <section
-        style={{
-          background: "white",
-          padding: "80px 0",
-        }}
-      >
-        <div
-          style={{
-            maxWidth: "1200px",
-            margin: "0 auto",
-            padding: "0 20px",
-          }}
-        >
-          <div
-            style={{
-              display: "flex",
-              justifyContent: "space-between",
-              alignItems: "center",
-              marginBottom: "50px",
-            }}
-          >
-            <div>
-              <h2
-                style={{
-                  fontSize: "42px",
-                  fontWeight: "800",
-                  marginBottom: "10px",
-                  color: "#2c3e50",
-                }}
-              >
-                Featured Products
-              </h2>
-              <p style={{ fontSize: "16px", color: "#7f8c8d" }}>
-                Premium quality Nissan parts from trusted brands
-              </p>
-            </div>
-            <a
-              href="#"
-              style={{
-                color: "rgb(247, 51, 18)",
-                textDecoration: "none",
-                fontWeight: "600",
-                fontSize: "16px",
-              }}
-            >
-              View All Products →
-            </a>
-          </div>
-
-          <div
-            style={{
-              display: "grid",
-              gridTemplateColumns: "repeat(auto-fit, minmax(300px, 1fr))",
-              gap: "30px",
-            }}
-          >
-            {featuredProducts.map((product, index) => (
-              <div
-                key={index}
-                style={{
-                  background: "white",
-                  borderRadius: "16px",
-                  overflow: "hidden",
-                  boxShadow: "0 12px 30px rgba(0,0,0,0.1)",
-                  transition: "transform 0.3s ease",
-                  position: "relative",
-                  border: "1px solid #f1f2f6",
-                }}
-              >
-                {/* Badge */}
-                <div
-                  style={{
-                    position: "absolute",
-                    top: "15px",
-                    left: "15px",
-                    background:
-                      product.badge === "BEST SELLER"
-                        ? "#e74c3c"
-                        : product.badge === "TOP RATED"
-                          ? "#f39c12"
-                          : product.badge === "PREMIUM"
-                            ? "#9b59b6"
-                            : product.badge === "LIMITED"
-                              ? "#e67e22"
-                              : product.badge === "LAST ONE"
-                                ? "#c0392b"
-                                : "#27ae60",
-                    color: "white",
-                    padding: "6px 12px",
-                    borderRadius: "20px",
-                    fontSize: "11px",
-                    fontWeight: "700",
-                    zIndex: "2",
-                    textTransform: "uppercase",
-                  }}
-                >
-                  {product.badge}
-                </div>
-
-                {/* Stock indicator */}
-                <div
-                  style={{
-                    position: "absolute",
-                    top: "15px",
-                    right: "15px",
-                    background:
-                      product.stock > 10
-                        ? "#27ae60"
-                        : product.stock > 0
-                          ? "#f39c12"
-                          : "#e74c3c",
-                    color: "white",
-                    padding: "4px 8px",
-                    borderRadius: "12px",
-                    fontSize: "10px",
-                    fontWeight: "600",
-                    zIndex: "2",
-                  }}
-                >
-                  {product.stock > 0
-                    ? `${product.stock} in stock`
-                    : "Out of stock"}
-                </div>
-
-                {/* Product Image */}
-                <div
-                  style={{
-                    height: "240px",
-                    backgroundImage: `url(${product.image})`,
-                    backgroundSize: "contain",
-                    backgroundPosition: "center",
-                    backgroundRepeat: "no-repeat",
-                    backgroundColor: "#f8f9fa",
-                    position: "relative",
-                  }}
-                >
-                  <button
-                    style={{
-                      position: "absolute",
-                      bottom: "15px",
-                      right: "15px",
-                      background: "white",
-                      border: "none",
-                      borderRadius: "50%",
-                      width: "44px",
-                      height: "44px",
-                      cursor: "pointer",
-                      boxShadow: "0 4px 15px rgba(0,0,0,0.2)",
-                      fontSize: "12px",
-                      fontWeight: "600",
-                      color: "#DC143C",
-                    }}
-                  >
-                    SAVE
-                  </button>
-                </div>
-
-                {/* Product Info */}
-                <div style={{ padding: "25px" }}>
-                  <div
-                    style={{
-                      display: "flex",
-                      justifyContent: "space-between",
-                      alignItems: "center",
-                      marginBottom: "12px",
-                    }}
-                  >
-                    <div
-                      style={{
-                        color: "#7f8c8d",
-                        fontSize: "12px",
-                        textTransform: "uppercase",
-                        fontWeight: "600",
-                        background: "#f8f9fa",
-                        padding: "4px 8px",
-                        borderRadius: "6px",
-                      }}
-                    >
-                      {product.category}
-                    </div>
-                    <div
-                      style={{
-                        fontSize: "12px",
-                        color: "#95a5a6",
-                        fontWeight: "600",
-                      }}
-                    >
-                      {product.sku}
-                    </div>
-                  </div>
-
-                  <h3
-                    style={{
-                      fontSize: "18px",
-                      fontWeight: "700",
-                      color: "#2c3e50",
-                      marginBottom: "8px",
-                      lineHeight: "1.4",
-                    }}
-                  >
-                    {product.name}
-                  </h3>
-
-                  <div
-                    style={{
-                      fontSize: "13px",
-                      color: "#7f8c8d",
-                      marginBottom: "12px",
-                      display: "flex",
-                      justifyContent: "space-between",
-                    }}
-                  >
-                    <span>Model: {product.model}</span>
-                    <span style={{ fontWeight: "600", color: "#2c3e50" }}>
-                      {product.brand}
-                    </span>
-                  </div>
-
-                  <p
-                    style={{
-                      fontSize: "13px",
-                      color: "#95a5a6",
-                      marginBottom: "15px",
-                      lineHeight: "1.4",
-                    }}
-                  >
-                    {product.description}
-                  </p>
-
-                  {/* Price in KES */}
-                  <div
-                    style={{
-                      display: "flex",
-                      alignItems: "center",
-                      gap: "12px",
-                      marginBottom: "20px",
-                    }}
-                  >
-                    <span
-                      style={{
-                        fontSize: "24px",
-                        fontWeight: "700",
-                        color: "rgb(247, 51, 18)",
-                      }}
-                    >
-                      KES {product.price.toLocaleString()}
-                    </span>
-                    {product.originalPrice && (
-                      <span
-                        style={{
-                          fontSize: "16px",
-                          color: "#95a5a6",
-                          textDecoration: "line-through",
-                        }}
-                      >
-                        KES {product.originalPrice.toLocaleString()}
-                      </span>
-                    )}
-                  </div>
-
-                  {/* Add to Cart Button */}
-                  <button
-                    onClick={() => addToCart(product)}
-                    disabled={product.stock === 0}
-                    style={{
-                      width: "100%",
-                      background:
-                        product.stock > 0
-                          ? "linear-gradient(135deg, rgb(247, 51, 18), rgb(220, 40, 15))"
-                          : "#95a5a6",
-                      color: "white",
-                      border: "none",
-                      padding: "15px",
-                      borderRadius: "10px",
-                      fontSize: "16px",
-                      fontWeight: "600",
-                      cursor: product.stock > 0 ? "pointer" : "not-allowed",
-                      boxShadow:
-                        product.stock > 0
-                          ? "0 4px 15px rgba(247, 51, 18, 0.3)"
-                          : "none",
-                    }}
-                  >
-                    {product.stock > 0 ? "Add to Cart" : "Out of Stock"}
-                  </button>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Newsletter */}
-      <section
-        style={{
-          background:
-            "linear-gradient(135deg, rgb(247, 51, 18), rgb(220, 40, 15))",
-          color: "white",
-          padding: "80px 0",
-        }}
-      >
-        <div
-          style={{
-            maxWidth: "800px",
-            margin: "0 auto",
-            padding: "0 20px",
-            textAlign: "center",
-          }}
-        >
-          <h3
-            style={{
-              fontSize: "36px",
-              fontWeight: "800",
-              marginBottom: "15px",
-            }}
-          >
-            Stay Updated with Catron Kenya
-          </h3>
-          <p
-            style={{
-              fontSize: "18px",
-              marginBottom: "40px",
-              opacity: "0.95",
-            }}
-          >
-            Get exclusive deals on Nissan parts, new arrivals, and Nissan tips
-            delivered to your inbox
-          </p>
-          <div
-            style={{
-              display: "flex",
-              justifyContent: "center",
-              gap: "15px",
-              maxWidth: "500px",
-              margin: "0 auto",
-            }}
-          >
-            <input
-              type="email"
-              placeholder="Enter your email address"
-              style={{
-                flex: "1",
-                padding: "18px 24px",
-                border: "none",
-                borderRadius: "12px",
-                fontSize: "16px",
-                outline: "none",
-              }}
-            />
+          <div className="load-more-container">
             <button
-              style={{
-                background: "#2c3e50",
-                color: "white",
-                border: "none",
-                padding: "18px 30px",
-                borderRadius: "12px",
-                fontSize: "16px",
-                fontWeight: "700",
-                cursor: "pointer",
-              }}
+              className="load-more-button"
+              onClick={() => setShowMoreCategories(!showMoreCategories)}
             >
-              Subscribe
+              {showMoreCategories ? "Show Less" : "Load More"}
             </button>
           </div>
         </div>
       </section>
 
-      {/* Footer */}
-      <footer
-        style={{
-          background: "#1a1a1a",
-          color: "white",
-          padding: "80px 0 40px 0",
-        }}
-      >
-        <div
-          style={{
-            maxWidth: "1200px",
-            margin: "0 auto",
-            padding: "0 20px",
-          }}
-        >
-          <div
-            style={{
-              display: "grid",
-              gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))",
-              gap: "50px",
-              marginBottom: "50px",
-            }}
-          >
-            <div>
-              <div
-                style={{
-                  display: "flex",
-                  alignItems: "center",
-                  marginBottom: "25px",
-                }}
+      {/* Featured Models Section */}
+      <section className="featured-models-section">
+        <div className="featured-models-container">
+          <div className="featured-header">
+            <div className="tab-buttons">
+              <button
+                className={`tab-button ${activeTab === "makes" ? "active" : ""}`}
+                onClick={() => setActiveTab("makes")}
               >
-                <div
-                  style={{
-                    background:
-                      "linear-gradient(135deg, rgb(247, 51, 18), rgb(220, 40, 15))",
-                    width: "50px",
-                    height: "50px",
-                    borderRadius: "12px",
-                    display: "flex",
-                    alignItems: "center",
-                    justifyContent: "center",
-                    fontSize: "24px",
-                    marginRight: "15px",
-                    color: "white",
-                    fontWeight: "bold",
-                  }}
-                >
-                  C
-                </div>
-                <div>
-                  <h3
-                    style={{
-                      fontSize: "28px",
-                      fontWeight: "800",
-                      margin: "0",
-                      color: "rgb(247, 51, 18)",
-                    }}
-                  >
-                    Catron Kenya
-                  </h3>
-                  <p
-                    style={{ fontSize: "12px", margin: "0", color: "#bdc3c7" }}
-                  >
-                    Premium Nissan Parts
-                  </p>
-                </div>
-              </div>
-              <p
-                style={{
-                  opacity: "0.8",
-                  lineHeight: "1.6",
-                  marginBottom: "25px",
-                }}
+                <span>Featured Makes</span>
+              </button>
+              <button
+                className={`tab-button ${activeTab === "models" ? "active" : ""}`}
+                onClick={() => setActiveTab("models")}
               >
-                Your trusted source for premium Nissan parts in Kenya. We
-                specialize in authentic OEM and high-quality aftermarket
-                components specifically for Nissan vehicles.
-              </p>
-            </div>
-
-            <div>
-              <h4
-                style={{
-                  fontSize: "20px",
-                  fontWeight: "700",
-                  marginBottom: "25px",
-                  color: "rgb(247, 51, 18)",
-                }}
-              >
-                Quick Links
-              </h4>
-              {[
-                "About Catron",
-                "Shipping & Delivery",
-                "Returns & Exchanges",
-                "Warranty Information",
-                "Privacy Policy",
-                "Terms of Service",
-                "Track Your Order",
-              ].map((link) => (
-                <a
-                  key={link}
-                  href="#"
-                  style={{
-                    display: "block",
-                    color: "rgba(255,255,255,0.8)",
-                    textDecoration: "none",
-                    marginBottom: "12px",
-                    fontSize: "14px",
-                  }}
-                >
-                  {link}
-                </a>
-              ))}
-            </div>
-
-            <div>
-              <h4
-                style={{
-                  fontSize: "20px",
-                  fontWeight: "700",
-                  marginBottom: "25px",
-                  color: "rgb(247, 51, 18)",
-                }}
-              >
-                Popular Categories
-              </h4>
-              {[
-                "Oil Filters",
-                "Air Filters",
-                "Brake Systems",
-                "Lighting Solutions",
-                "Spark Plugs",
-                "Cabin Filters",
-                "Belt Systems",
-                "Suspension Parts",
-              ].map((category) => (
-                <a
-                  key={category}
-                  href="#"
-                  style={{
-                    display: "block",
-                    color: "rgba(255,255,255,0.8)",
-                    textDecoration: "none",
-                    marginBottom: "12px",
-                    fontSize: "14px",
-                  }}
-                >
-                  {category}
-                </a>
-              ))}
+                <span>Featured Models</span>
+              </button>
             </div>
           </div>
 
-          <div
-            style={{
-              borderTop: "1px solid #333",
-              paddingTop: "30px",
-              display: "flex",
-              justifyContent: "space-between",
-              alignItems: "center",
-              flexWrap: "wrap",
-              gap: "20px",
-            }}
-          >
-            <div style={{ opacity: "0.8", fontSize: "14px" }}>
-              © 2024 Catron Kenya. All rights reserved.
+          {activeTab === "makes" && (
+            <div className="featured-content">
+              <div className="makes-grid">
+                {nissanMakes
+                  .slice(0, showMoreMakes ? nissanMakes.length : 4)
+                  .map((make, index) => (
+                    <div key={index} className="make-card">
+                      <a href={`#${make.toLowerCase()}`} className="make-link">
+                        <span>{make}</span>
+                      </a>
+                    </div>
+                  ))}
+              </div>
+              <div className="view-more-container">
+                <button
+                  className="view-more-button"
+                  onClick={() => setShowMoreMakes(!showMoreMakes)}
+                >
+                  <span className="view-more-text">
+                    <strong>{showMoreMakes ? "VIEW LESS" : "VIEW MORE"}</strong>
+                    <i
+                      className={`fas ${showMoreMakes ? "fa-chevron-up" : "fa-chevron-down"}`}
+                    ></i>
+                  </span>
+                </button>
+              </div>
             </div>
-            <div style={{ display: "flex", gap: "25px", alignItems: "center" }}>
-              <span style={{ fontSize: "14px", opacity: "0.8" }}>
-                Trusted by 5,000+ customers in Kenya
-              </span>
+          )}
+
+          {activeTab === "models" && (
+            <div className="featured-content">
+              <div className="models-grid">
+                {nissanModels
+                  .slice(0, showMoreModels ? nissanModels.length : 20)
+                  .map((model, index) => (
+                    <div key={index} className="model-card">
+                      <a
+                        href={`#${model.name.toLowerCase()}`}
+                        className="model-link"
+                      >
+                        <span>{model.name}</span>
+                      </a>
+                    </div>
+                  ))}
+              </div>
+              <div className="view-more-container">
+                <button
+                  className="view-more-button"
+                  onClick={() => setShowMoreModels(!showMoreModels)}
+                >
+                  <span className="view-more-text">
+                    <strong>
+                      {showMoreModels ? "VIEW LESS" : "VIEW MORE"}
+                    </strong>
+                    <i
+                      className={`fas ${showMoreModels ? "fa-chevron-up" : "fa-chevron-down"}`}
+                    ></i>
+                  </span>
+                </button>
+              </div>
+            </div>
+          )}
+        </div>
+      </section>
+
+      {/* Essential Items for New Car Section */}
+      <section className="essential-items-section">
+        <div className="essential-items-container">
+          <div className="essential-items-header">
+            <div className="header-content">
+              <h2 className="essential-items-title">
+                Essential Items for New Car
+              </h2>
+              <a href="#all-products" className="see-all-link">
+                <span>See All Products</span>
+                <i className="fas fa-chevron-right"></i>
+              </a>
+            </div>
+          </div>
+
+          <div className="products-static-grid">
+            <div className="products-grid-container">
+              {essentialProducts.slice(0, 4).map((product) => (
+                <div key={product.id} className="product-card">
+                  <div className="product-card-inner">
+                    {product.discount && (
+                      <div className="product-discount-badge">
+                        {product.discount}
+                      </div>
+                    )}
+
+                    <div className="product-image-container">
+                      <a href={product.link} className="product-image-link">
+                        <img
+                          src={product.image}
+                          alt={product.name}
+                          className="product-image"
+                          loading="lazy"
+                          width="225"
+                          height="225"
+                        />
+                      </a>
+                    </div>
+
+                    <div className="product-info">
+                      <div className="product-category">
+                        <a
+                          href={`#category-${product.category.toLowerCase().replace(/\s+/g, "-")}`}
+                          className="category-link"
+                        >
+                          {product.category}
+                        </a>
+                      </div>
+
+                      <div className="product-name">
+                        <h5>
+                          <a href={product.link} className="product-name-link">
+                            {product.name}
+                          </a>
+                        </h5>
+                      </div>
+
+                      <div className="product-rating">
+                        <div className="rating-stars">
+                          <div
+                            className="stars"
+                            title={`Rated ${product.rating} out of 5`}
+                          >
+                            <span className="star-display">
+                              {renderStars(product.rating)}
+                            </span>
+                            <span className="rating-text">
+                              Rated <strong>{product.rating.toFixed(2)}</strong>{" "}
+                              out of 5
+                            </span>
+                          </div>
+                        </div>
+                        <div className="reviews-count">
+                          <p>
+                            {product.reviews} Review
+                            {product.reviews !== 1 ? "s" : ""}
+                          </p>
+                        </div>
+                      </div>
+
+                      <div className="product-price">
+                        <p className="price-container">
+                          {product.originalPrice && (
+                            <del className="original-price">
+                              <span>
+                                <span className="currency">KES </span>
+                                <span>
+                                  {product.originalPrice.toLocaleString()}
+                                </span>
+                              </span>
+                            </del>
+                          )}
+                          <span
+                            className={
+                              product.originalPrice
+                                ? "sale-price"
+                                : "regular-price"
+                            }
+                          >
+                            <span className="currency">KES </span>
+                            <span>{product.price.toLocaleString()}</span>
+                          </span>
+                        </p>
+                      </div>
+
+                      <div className="product-actions">
+                        <a href={product.link} className="add-to-cart-btn">
+                          Add to cart
+                        </a>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              ))}
             </div>
           </div>
         </div>
+      </section>
+
+      {/* Essential Items for New Car Section */}
+      <section className="essential-items-section">
+        <div className="container">
+          <div className="section-content">
+            <div className="section-header">
+              <div className="header-content">
+                <div>
+                  <h2 className="section-title">Essential Items for New Car</h2>
+                </div>
+                <a href="/shop" className="see-all-link">
+                  <span>See All Products</span>
+                  <svg
+                    width="16"
+                    height="16"
+                    fill="currentColor"
+                    viewBox="0 0 16 16"
+                  >
+                    <path
+                      fillRule="evenodd"
+                      d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708z"
+                    />
+                  </svg>
+                </a>
+              </div>
+            </div>
+
+            <div className="products-carousel">
+              <div className="carousel-container">
+                <button className="carousel-nav prev-btn" disabled>
+                  <svg
+                    className="nav-icon"
+                    width="16"
+                    height="16"
+                    fill="currentColor"
+                    viewBox="0 0 16 16"
+                  >
+                    <path
+                      fillRule="evenodd"
+                      d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708z"
+                    />
+                  </svg>
+                </button>
+                <button className="carousel-nav next-btn">
+                  <svg
+                    className="nav-icon"
+                    width="16"
+                    height="16"
+                    fill="currentColor"
+                    viewBox="0 0 16 16"
+                  >
+                    <path
+                      fillRule="evenodd"
+                      d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708z"
+                    />
+                  </svg>
+                </button>
+              </div>
+
+              <div className="carousel-track">
+                <div className="products-grid">
+                  {essentialProducts.map((product) => (
+                    <div key={product.id} className="product-card">
+                      <div className="product-card-inner">
+                        <div className="product-badges">
+                          {product.discount && (
+                            <div className="discount-badge">
+                              {product.discount}% Off
+                            </div>
+                          )}
+                        </div>
+
+                        <div className="product-image">
+                          <a href={product.link}>
+                            <img
+                              src={product.image}
+                              alt={product.name}
+                              width="225"
+                              height="225"
+                            />
+                          </a>
+                        </div>
+
+                        <div className="product-info">
+                          <div className="product-category">
+                            <a
+                              href={`#${product.category.toLowerCase().replace(/\s+/g, "-")}`}
+                            >
+                              {product.category}
+                            </a>
+                          </div>
+
+                          <div className="product-name">
+                            <h5>
+                              <a href={product.link}>{product.name}</a>
+                            </h5>
+                          </div>
+
+                          <div className="product-rating">
+                            <div className="rating-stars">
+                              <div
+                                className="stars"
+                                title={`Rated ${product.rating} out of 5`}
+                              >
+                                <span className="star-display">
+                                  {renderStars(product.rating)}
+                                </span>
+                                <span className="rating-text">
+                                  Rated{" "}
+                                  <strong>{product.rating.toFixed(2)}</strong>{" "}
+                                  out of 5
+                                </span>
+                              </div>
+                            </div>
+                            <div className="reviews-count">
+                              <p>
+                                {product.reviews} Review
+                                {product.reviews !== 1 ? "s" : ""}
+                              </p>
+                            </div>
+                          </div>
+
+                          <div className="product-price">
+                            <p className="price-container">
+                              {product.originalPrice && (
+                                <del className="original-price">
+                                  <span>
+                                    <span className="currency">KES </span>
+                                    <span>
+                                      {product.originalPrice.toLocaleString()}
+                                    </span>
+                                  </span>
+                                </del>
+                              )}
+                              <span
+                                className={
+                                  product.originalPrice
+                                    ? "sale-price"
+                                    : "regular-price"
+                                }
+                              >
+                                <span className="currency">KES </span>
+                                <span>{product.price.toLocaleString()}</span>
+                              </span>
+                            </p>
+                          </div>
+
+                          <div className="product-actions">
+                            <a href={product.link} className="add-to-cart-btn">
+                              Add to cart
+                            </a>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Best Sellers Section with Timer */}
+      <section className="best-sellers-section">
+        <div className="container">
+          <div className="section-content">
+            <div className="section-header">
+              <div className="header-content">
+                <div className="title-with-timer">
+                  <h2 className="section-title">Best Seller</h2>
+                  <div className="countdown-timer">
+                    <div className="timer-content">
+                      <span className="timer-label">Expires in:</span>
+                      <div className="timer-display">
+                        <ul className="timer-list">
+                          <li className="timer-item">
+                            <span className="timer-value">124</span>
+                            <span>D :</span>
+                          </li>
+                          <li className="timer-item">
+                            <span className="timer-value">14</span>
+                            <span>H :</span>
+                          </li>
+                          <li className="timer-item">
+                            <span className="timer-value">13</span>
+                            <span>M :</span>
+                          </li>
+                          <li className="timer-item">
+                            <span className="timer-value">49</span>
+                            <span>S</span>
+                          </li>
+                        </ul>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <a href="/shop" className="see-all-link">
+                  <span>See All Products</span>
+                  <svg
+                    width="16"
+                    height="16"
+                    fill="currentColor"
+                    viewBox="0 0 16 16"
+                  >
+                    <path
+                      fillRule="evenodd"
+                      d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708z"
+                    />
+                  </svg>
+                </a>
+              </div>
+
+              <div className="category-tabs">
+                <ul className="tabs-list">
+                  <li className="tab-item">
+                    <a href="javascript:void(0)" className="tab-link active">
+                      Top 10
+                    </a>
+                  </li>
+                  <li className="tab-item">
+                    <a href="javascript:void(0)" className="tab-link">
+                      Top Air Filters
+                    </a>
+                  </li>
+                  <li className="tab-item">
+                    <a href="javascript:void(0)" className="tab-link">
+                      Top Auto Parts
+                    </a>
+                  </li>
+                  <li className="tab-item">
+                    <a href="javascript:void(0)" className="tab-link">
+                      Top Exteriors
+                    </a>
+                  </li>
+                  <li className="tab-item">
+                    <a href="javascript:void(0)" className="tab-link">
+                      Top Performance
+                    </a>
+                  </li>
+                </ul>
+              </div>
+            </div>
+
+            <div className="products-carousel">
+              <div className="carousel-container">
+                <button className="carousel-nav prev-btn" disabled>
+                  <svg
+                    className="nav-icon"
+                    width="16"
+                    height="16"
+                    fill="currentColor"
+                    viewBox="0 0 16 16"
+                  >
+                    <path
+                      fillRule="evenodd"
+                      d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708z"
+                    />
+                  </svg>
+                </button>
+                <button className="carousel-nav next-btn">
+                  <svg
+                    className="nav-icon"
+                    width="16"
+                    height="16"
+                    fill="currentColor"
+                    viewBox="0 0 16 16"
+                  >
+                    <path
+                      fillRule="evenodd"
+                      d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708z"
+                    />
+                  </svg>
+                </button>
+              </div>
+
+              <div className="carousel-track">
+                <div className="products-grid">
+                  {essentialProducts.slice(0, 8).map((product, index) => (
+                    <div
+                      key={`bestseller-${product.id}`}
+                      className="product-card"
+                    >
+                      <div className="product-card-inner">
+                        <div className="product-badges">
+                          <div className="discount-badge">
+                            {index === 0
+                              ? "10"
+                              : index === 1
+                                ? "11"
+                                : index === 2
+                                  ? "10"
+                                  : index === 3
+                                    ? "33"
+                                    : "7"}
+                            % Off
+                          </div>
+                        </div>
+
+                        <div className="product-image">
+                          <a href={product.link}>
+                            <img
+                              src={product.image}
+                              alt={product.name}
+                              width="225"
+                              height="225"
+                            />
+                          </a>
+                        </div>
+
+                        <div className="product-info">
+                          <div className="product-category">
+                            <a
+                              href={`#${product.category.toLowerCase().replace(/\s+/g, "-")}`}
+                            >
+                              {product.category}
+                            </a>
+                          </div>
+
+                          <div className="product-name">
+                            <h5>
+                              <a href={product.link}>{product.name}</a>
+                            </h5>
+                          </div>
+
+                          <div className="product-rating">
+                            <div className="rating-stars">
+                              <div
+                                className="stars"
+                                title={`Rated ${product.rating} out of 5`}
+                              >
+                                <span className="star-display">
+                                  {renderStars(product.rating)}
+                                </span>
+                                <span className="rating-text">
+                                  Rated{" "}
+                                  <strong>{product.rating.toFixed(2)}</strong>{" "}
+                                  out of 5
+                                </span>
+                              </div>
+                            </div>
+                            <div className="reviews-count">
+                              <p>
+                                {product.reviews} Review
+                                {product.reviews !== 1 ? "s" : ""}
+                              </p>
+                            </div>
+                          </div>
+
+                          <div className="product-price">
+                            <p className="price-container">
+                              <del className="original-price">
+                                <span>
+                                  <span className="currency">KES </span>
+                                  <span>
+                                    {Math.round(
+                                      product.price * 1.15,
+                                    ).toLocaleString()}
+                                  </span>
+                                </span>
+                              </del>
+                              <span className="sale-price">
+                                <span className="currency">KES </span>
+                                <span>{product.price.toLocaleString()}</span>
+                              </span>
+                            </p>
+                          </div>
+
+                          <div className="product-actions">
+                            <a href={product.link} className="add-to-cart-btn">
+                              Add to cart
+                            </a>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* New Arrivals Section */}
+      <section className="new-arrivals-section">
+        <div className="container">
+          <div className="section-content">
+            <div className="section-header">
+              <div className="header-content">
+                <div>
+                  <h2 className="section-title">New Arrivals</h2>
+                </div>
+                <a href="/shop" className="see-all-link">
+                  <span>See All Products</span>
+                  <svg
+                    width="16"
+                    height="16"
+                    fill="currentColor"
+                    viewBox="0 0 16 16"
+                  >
+                    <path
+                      fillRule="evenodd"
+                      d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708z"
+                    />
+                  </svg>
+                </a>
+              </div>
+            </div>
+
+            <div className="products-carousel">
+              <div className="carousel-container">
+                <button className="carousel-nav prev-btn" disabled>
+                  <svg
+                    className="nav-icon"
+                    width="16"
+                    height="16"
+                    fill="currentColor"
+                    viewBox="0 0 16 16"
+                  >
+                    <path
+                      fillRule="evenodd"
+                      d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708z"
+                    />
+                  </svg>
+                </button>
+                <button className="carousel-nav next-btn">
+                  <svg
+                    className="nav-icon"
+                    width="16"
+                    height="16"
+                    fill="currentColor"
+                    viewBox="0 0 16 16"
+                  >
+                    <path
+                      fillRule="evenodd"
+                      d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708z"
+                    />
+                  </svg>
+                </button>
+              </div>
+
+              <div className="carousel-track">
+                <div className="products-grid">
+                  {essentialProducts.map((product) => (
+                    <div
+                      key={`newarrival-${product.id}`}
+                      className="product-card"
+                    >
+                      <div className="product-card-inner">
+                        <div className="product-image">
+                          <a href={product.link}>
+                            <img
+                              src={product.image}
+                              alt={product.name}
+                              width="225"
+                              height="225"
+                            />
+                          </a>
+                        </div>
+
+                        <div className="product-info">
+                          <div className="product-category">
+                            <a
+                              href={`#${product.category.toLowerCase().replace(/\s+/g, "-")}`}
+                            >
+                              {product.category}
+                            </a>
+                          </div>
+
+                          <div className="product-name">
+                            <h5>
+                              <a href={product.link}>{product.name}</a>
+                            </h5>
+                          </div>
+
+                          <div className="product-rating">
+                            <div className="rating-stars">
+                              <div
+                                className="stars"
+                                title={`Rated ${product.rating} out of 5`}
+                              >
+                                <span className="star-display">
+                                  {renderStars(product.rating)}
+                                </span>
+                                <span className="rating-text">
+                                  Rated{" "}
+                                  <strong>{product.rating.toFixed(2)}</strong>{" "}
+                                  out of 5
+                                </span>
+                              </div>
+                            </div>
+                            <div className="reviews-count">
+                              <p>
+                                {product.reviews} Review
+                                {product.reviews !== 1 ? "s" : ""}
+                              </p>
+                            </div>
+                          </div>
+
+                          <div className="product-price">
+                            <p className="price-container">
+                              <span className="regular-price">
+                                <span className="currency">KES </span>
+                                <span>{product.price.toLocaleString()}</span>
+                              </span>
+                            </p>
+                          </div>
+
+                          <div className="product-actions">
+                            <a href={product.link} className="add-to-cart-btn">
+                              Add to cart
+                            </a>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Footer Section */}
+      <footer className="main-footer">
+        <div className="footer-container">
+          <div className="footer-main">
+            <div className="footer-about">
+              <a href="/" className="footer-logo">
+                <img
+                  src="https://cdn.builder.io/api/v1/image/assets%2F8ddb623b8e0840ee8617de2665c350a4%2F761030a73ad740c583f563b441ecf7a9?format=webp&width=800"
+                  alt="Catron Auto Parts"
+                  className="footer-logo-image"
+                />
+              </a>
+              <h6 className="footer-tagline">
+                Premium Nissan Parts Kenya - Happy Car Ownership
+              </h6>
+              <p className="footer-description">
+                Quality OEM and aftermarket parts specifically for Nissan
+                vehicles. All parts are sourced from trusted manufacturers and
+                come with quality guarantee. We specialize in Nissan parts to
+                ensure the best fit and performance for your vehicle.
+              </p>
+              <div className="social-links">
+                <a href="https://twitter.com/catron" className="social-link">
+                  <i className="fab fa-twitter"></i>
+                </a>
+                <a href="https://facebook.com/catron" className="social-link">
+                  <i className="fab fa-facebook-f"></i>
+                </a>
+                <a href="https://youtube.com/catron" className="social-link">
+                  <i className="fab fa-youtube"></i>
+                </a>
+                <a href="https://instagram.com/catron" className="social-link">
+                  <i className="fab fa-instagram"></i>
+                </a>
+              </div>
+            </div>
+            <div className="footer-catalog">
+              <h6 className="footer-section-title">Catron's Catalog</h6>
+              <ul className="footer-links">
+                <li>
+                  <a href="/auto-parts">Auto Parts</a>
+                </li>
+                <li>
+                  <a href="/car-care">Car Care</a>
+                </li>
+                <li>
+                  <a href="/fluids-chemicals">Fluids & Chemicals</a>
+                </li>
+                <li>
+                  <a href="/tools-supplies">Tools & Supplies</a>
+                </li>
+                <li>
+                  <a href="/wheels-tires">Wheel & Tires</a>
+                </li>
+                <li>
+                  <a href="/clearance">Clearances</a>
+                </li>
+                <li>
+                  <a href="/faq">FAQ</a>
+                </li>
+              </ul>
+            </div>
+            <div className="footer-information">
+              <h6 className="footer-section-title">Information</h6>
+              <ul className="footer-links">
+                <li>
+                  <a href="/about">About Catron</a>
+                </li>
+                <li>
+                  <a href="/nissan-parts">Nissan Parts Guide</a>
+                </li>
+                <li>
+                  <a href="/blog">Maintenance Tips</a>
+                </li>
+                <li>
+                  <a href="/installation">Installation Service</a>
+                </li>
+                <li>
+                  <a href="/contact">Contact</a>
+                </li>
+                <li>
+                  <a href="/warranty">Warranty Info</a>
+                </li>
+                <li>
+                  <a href="/wholesale">Wholesale</a>
+                </li>
+                <li>
+                  <a href="/partnership">Partnership</a>
+                </li>
+              </ul>
+            </div>
+            <div className="footer-customer-service">
+              <h6 className="footer-section-title">Customer Service</h6>
+              <ul className="footer-links">
+                <li>
+                  <a href="/help">Help Center</a>
+                </li>
+                <li>
+                  <a href="/account">My Account</a>
+                </li>
+                <li>
+                  <a href="/track">Track</a>
+                </li>
+                <li>
+                  <a href="/orders">My Order</a>
+                </li>
+                <li>
+                  <a href="/returns">Return Policy</a>
+                </li>
+                <li>
+                  <a href="/gift-cards">Gift Cards</a>
+                </li>
+                <li>
+                  <a href="/wholesale">Buy Wholesale</a>
+                </li>
+                <li>
+                  <a href="/faq">FAQ</a>
+                </li>
+              </ul>
+            </div>
+          </div>
+          <div className="footer-bottom">
+            <p className="copyright">
+              © 2024{" "}
+              <a href="/" className="brand-link">
+                Catron Auto Parts
+              </a>{" "}
+              All Rights Reserved
+            </p>
+          </div>
+        </div>
       </footer>
+
+      <style jsx>{`
+        .homepage {
+          font-family: "Source Sans Pro", sans-serif;
+          margin: 0;
+          padding: 0;
+        }
+
+        /* Promo Banner */
+        .promo-banner {
+          background-color: #1a1a1a;
+          color: white;
+          padding: 8px 0;
+          font-size: 14px;
+        }
+
+        .promo-content {
+          max-width: 1200px;
+          margin: 0 auto;
+          padding: 0 20px;
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+        }
+
+        .black-friday {
+          color: #ff4444;
+          font-weight: bold;
+        }
+
+        .discount {
+          color: #ffdd44;
+          font-weight: bold;
+        }
+
+        .promo-code {
+          color: #44ff44;
+          font-weight: bold;
+        }
+
+        .language-selector {
+          color: #ccc;
+        }
+
+        .current-lang {
+          color: white;
+          font-weight: bold;
+        }
+
+        /* Main Header */
+        .main-header {
+          background-color: white;
+          border-bottom: 1px solid #eee;
+          padding: 15px 0;
+        }
+
+        .header-container {
+          max-width: 1200px;
+          margin: 0 auto;
+          padding: 0 20px;
+          display: flex;
+          align-items: center;
+          gap: 30px;
+        }
+
+        /* Logo */
+        .logo {
+          display: flex;
+          align-items: center;
+          gap: 10px;
+        }
+
+        .logo-image {
+          height: 50px;
+          width: auto;
+        }
+
+        .footer-logo-image {
+          height: 60px;
+          width: auto;
+          margin-bottom: 10px;
+        }
+
+        /* Search Section */
+        .search-section {
+          flex: 1;
+          max-width: 600px;
+        }
+
+        .search-container {
+          display: flex;
+          border: 2px solid #ff4444;
+          border-radius: 8px;
+          overflow: hidden;
+        }
+
+        .search-category {
+          background-color: #f8f8f8;
+          border: none;
+          padding: 12px 15px;
+          font-size: 14px;
+          color: #333;
+          border-right: 1px solid #ddd;
+          cursor: pointer;
+          outline: none;
+        }
+
+        .search-input {
+          flex: 1;
+          border: none;
+          padding: 12px 15px;
+          font-size: 14px;
+          outline: none;
+        }
+
+        .search-input::placeholder {
+          color: #999;
+        }
+
+        .search-button {
+          background-color: #ff4444;
+          border: none;
+          padding: 12px 20px;
+          color: white;
+          cursor: pointer;
+          transition: background-color 0.3s ease;
+        }
+
+        .search-button:hover {
+          background-color: #dd3333;
+        }
+
+        /* Header Actions */
+        .header-actions {
+          display: flex;
+          align-items: center;
+          gap: 15px;
+        }
+
+        .action-btn {
+          background: none;
+          border: none;
+          cursor: pointer;
+          display: flex;
+          align-items: center;
+          gap: 5px;
+          color: #333;
+          padding: 8px;
+          border-radius: 6px;
+          transition: background-color 0.3s ease;
+        }
+
+        .action-btn:hover {
+          background-color: #f5f5f5;
+        }
+
+        .cart-btn {
+          position: relative;
+        }
+
+        .cart-count {
+          position: absolute;
+          top: -5px;
+          right: -5px;
+          background-color: #ff4444;
+          color: white;
+          border-radius: 50%;
+          width: 20px;
+          height: 20px;
+          font-size: 12px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+        }
+
+        /* Navigation */
+        .main-navigation {
+          background-color: #f8f8f8;
+          border-bottom: 1px solid #ddd;
+        }
+
+        .nav-container {
+          max-width: 1200px;
+          margin: 0 auto;
+          padding: 0 20px;
+          display: flex;
+          align-items: center;
+          gap: 30px;
+        }
+
+        .all-categories-btn {
+          background-color: #ff4444;
+          color: white;
+          border: none;
+          padding: 12px 20px;
+          border-radius: 6px;
+          cursor: pointer;
+          display: flex;
+          align-items: center;
+          gap: 8px;
+          font-weight: 500;
+          transition: background-color 0.3s ease;
+        }
+
+        .all-categories-btn:hover {
+          background-color: #dd3333;
+        }
+
+        .nav-links {
+          display: flex;
+          gap: 25px;
+          flex: 1;
+        }
+
+        .nav-link {
+          text-decoration: none;
+          color: #333;
+          padding: 15px 0;
+          font-weight: 500;
+          transition: color 0.3s ease;
+        }
+
+        .nav-link:hover {
+          color: #ff4444;
+        }
+
+        .nav-actions {
+          display: flex;
+          gap: 20px;
+        }
+
+        .nav-action {
+          text-decoration: none;
+          color: #666;
+          font-size: 14px;
+          transition: color 0.3s ease;
+        }
+
+        .nav-action:hover {
+          color: #ff4444;
+        }
+
+        /* Hero Section */
+        .hero-section {
+          position: relative;
+          height: 400px;
+          background:
+            linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)),
+            url("https://images.pexels.com/photos/7568433/pexels-photo-7568433.jpeg?auto=compress&cs=tinysrgb&w=1920");
+          background-size: cover;
+          background-position: center;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+        }
+
+        .hero-content {
+          text-align: center;
+          color: white;
+        }
+
+        .hero-badge {
+          background-color: rgba(255, 68, 68, 0.9);
+          color: white;
+          padding: 8px 20px;
+          border-radius: 25px;
+          font-size: 14px;
+          font-weight: bold;
+          display: inline-block;
+          margin-bottom: 20px;
+          letter-spacing: 1px;
+        }
+
+        .hero-title {
+          font-size: 48px;
+          font-weight: bold;
+          margin: 0 0 15px 0;
+          text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+          font-family: "Playfair Display", serif;
+        }
+
+        .hero-subtitle {
+          font-size: 18px;
+          margin: 0;
+          opacity: 0.9;
+          text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
+        }
+
+        /* Vehicle Search Section */
+        .vehicle-search-section {
+          background-color: white;
+          padding: 40px 0;
+          border-top: 1px solid #eee;
+        }
+
+        .vehicle-search-container {
+          max-width: 1200px;
+          margin: 0 auto;
+          padding: 0 20px;
+          text-align: center;
+        }
+
+        .search-title {
+          font-size: 32px;
+          font-weight: bold;
+          color: #333;
+          margin-bottom: 10px;
+          font-family: "Playfair Display", serif;
+        }
+
+        .search-subtitle {
+          font-size: 16px;
+          color: #666;
+          margin-bottom: 30px;
+        }
+
+        .vehicle-search-form {
+          max-width: 900px;
+          margin: 0 auto;
+        }
+
+        .form-row {
+          display: grid;
+          grid-template-columns: repeat(6, 1fr);
+          gap: 15px;
+          align-items: end;
+        }
+
+        .form-group {
+          display: flex;
+          flex-direction: column;
+          text-align: left;
+        }
+
+        .form-group label {
+          font-weight: 600;
+          margin-bottom: 8px;
+          color: #333;
+          font-size: 14px;
+        }
+
+        .form-select {
+          padding: 12px 15px;
+          border: 2px solid #ddd;
+          border-radius: 6px;
+          font-size: 14px;
+          background-color: white;
+          cursor: pointer;
+          transition: border-color 0.3s ease;
+        }
+
+        .form-select:focus {
+          outline: none;
+          border-color: #ff4444;
+        }
+
+        .search-submit-btn {
+          background-color: #ff4444;
+          color: white;
+          border: none;
+          padding: 12px 20px;
+          border-radius: 6px;
+          cursor: pointer;
+          font-weight: 600;
+          display: flex;
+          align-items: center;
+          gap: 8px;
+          justify-content: center;
+          transition: background-color 0.3s ease;
+          height: fit-content;
+        }
+
+        .search-submit-btn:hover {
+          background-color: #dd3333;
+        }
+
+        /* What's Hot Section */
+        .whats-hot-section {
+          background-color: #f8f8f8;
+          padding: 60px 0;
+        }
+
+        .whats-hot-container {
+          max-width: 1200px;
+          margin: 0 auto;
+          padding: 0 20px;
+        }
+
+        .section-title {
+          font-size: 36px;
+          font-weight: bold;
+          text-align: center;
+          margin-bottom: 50px;
+          color: #333;
+          font-family: "Playfair Display", serif;
+        }
+
+        .hot-products-grid {
+          display: grid;
+          grid-template-columns: repeat(4, 1fr);
+          gap: 20px;
+        }
+
+        .hot-product-card {
+          position: relative;
+          border-radius: 12px;
+          overflow: hidden;
+          transition: transform 0.3s ease;
+        }
+
+        .hot-product-card:hover {
+          transform: translateY(-5px);
+        }
+
+        .hot-product-link {
+          text-decoration: none;
+          display: block;
+        }
+
+        .hot-product-image {
+          position: relative;
+          height: 300px;
+          overflow: hidden;
+        }
+
+        .hot-product-image img {
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+          transition: transform 0.3s ease;
+        }
+
+        .hot-product-card:hover .hot-product-image img {
+          transform: scale(1.1);
+        }
+
+        .hot-product-overlay {
+          position: absolute;
+          bottom: 0;
+          left: 0;
+          right: 0;
+          background: linear-gradient(transparent, rgba(0, 0, 0, 0.8));
+          color: white;
+          padding: 30px 20px 20px;
+        }
+
+        .hot-product-title {
+          font-size: 24px;
+          font-weight: bold;
+          margin: 0 0 8px 0;
+          font-family: "Playfair Display", serif;
+        }
+
+        .hot-product-subtitle {
+          font-size: 14px;
+          margin: 0;
+          opacity: 0.9;
+        }
+
+        /* Categories Section */
+        .categories-section {
+          background-color: white;
+          padding: 60px 0;
+        }
+
+        .categories-container {
+          max-width: 1200px;
+          margin: 0 auto;
+          padding: 0 20px;
+        }
+
+        .categories-grid {
+          display: grid;
+          grid-template-columns: repeat(5, 1fr);
+          gap: 20px;
+        }
+
+        .category-card {
+          background-color: white;
+          border-radius: 12px;
+          box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+          overflow: hidden;
+          transition: all 0.3s ease;
+        }
+
+        .category-card:hover {
+          transform: translateY(-5px);
+          box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+        }
+
+        .category-link {
+          text-decoration: none;
+          display: block;
+        }
+
+        .category-image {
+          height: 120px;
+          overflow: hidden;
+        }
+
+        .category-image img {
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+          transition: transform 0.3s ease;
+        }
+
+        .category-card:hover .category-image img {
+          transform: scale(1.1);
+        }
+
+        .category-info {
+          padding: 15px;
+          text-align: center;
+        }
+
+        .category-name {
+          font-size: 16px;
+          font-weight: 600;
+          color: #333;
+          margin: 0 0 5px 0;
+        }
+
+        .category-count {
+          font-size: 12px;
+          color: #666;
+          margin: 0;
+        }
+
+        .load-more-container {
+          text-align: center;
+          margin-top: 30px;
+        }
+
+        .load-more-button {
+          background-color: #ff4444;
+          color: white;
+          border: none;
+          padding: 12px 30px;
+          border-radius: 6px;
+          cursor: pointer;
+          font-weight: 600;
+          font-size: 14px;
+          transition: background-color 0.3s ease;
+        }
+
+        .load-more-button:hover {
+          background-color: #dd3333;
+        }
+
+        /* Featured Models Section */
+        .featured-models-section {
+          background-color: #f8f8f8;
+          padding: 60px 0;
+        }
+
+        .featured-models-container {
+          max-width: 1200px;
+          margin: 0 auto;
+          padding: 0 20px;
+        }
+
+        .featured-header {
+          margin-bottom: 40px;
+        }
+
+        .tab-buttons {
+          display: flex;
+          justify-content: center;
+          gap: 2px;
+          background-color: #ddd;
+          border-radius: 8px;
+          padding: 4px;
+          max-width: 400px;
+          margin: 0 auto;
+        }
+
+        .tab-button {
+          flex: 1;
+          background-color: transparent;
+          border: none;
+          padding: 12px 20px;
+          border-radius: 6px;
+          cursor: pointer;
+          font-weight: 600;
+          transition: all 0.3s ease;
+          color: #666;
+        }
+
+        .tab-button.active {
+          background-color: #ff4444;
+          color: white;
+        }
+
+        .featured-content {
+          background-color: white;
+          border-radius: 12px;
+          padding: 30px;
+          box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .makes-grid,
+        .models-grid {
+          display: grid;
+          grid-template-columns: repeat(4, 1fr);
+          gap: 15px;
+          margin-bottom: 20px;
+        }
+
+        .make-card,
+        .model-card {
+          background-color: #f8f8f8;
+          border-radius: 8px;
+          transition: all 0.3s ease;
+        }
+
+        .make-card:hover,
+        .model-card:hover {
+          background-color: #ff4444;
+          transform: translateY(-2px);
+        }
+
+        .make-link,
+        .model-link {
+          display: block;
+          padding: 15px;
+          text-decoration: none;
+          color: #333;
+          font-weight: 500;
+          text-align: center;
+          transition: color 0.3s ease;
+        }
+
+        .make-card:hover .make-link,
+        .model-card:hover .model-link {
+          color: white;
+        }
+
+        .view-more-container {
+          text-align: center;
+        }
+
+        .view-more-button {
+          background: none;
+          border: 2px solid #ff4444;
+          color: #ff4444;
+          padding: 12px 30px;
+          border-radius: 25px;
+          cursor: pointer;
+          font-weight: 600;
+          transition: all 0.3s ease;
+        }
+
+        .view-more-button:hover {
+          background-color: #ff4444;
+          color: white;
+        }
+
+        .view-more-text {
+          display: flex;
+          align-items: center;
+          gap: 8px;
+        }
+
+        /* Essential Items Section */
+        .essential-items-section {
+          background-color: #f2f2f7;
+          padding: 65px 0 5px 0;
+          max-width: 1520px;
+          margin: 0 auto;
+        }
+
+        .essential-items-container {
+          padding: 0 12px;
+          width: 100%;
+        }
+
+        .essential-items-header {
+          margin-bottom: 35px;
+        }
+
+        .header-content {
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          width: 100%;
+        }
+
+        .essential-items-title {
+          font-family: "Playfair Display", serif;
+          font-size: 30px;
+          font-weight: 600;
+          line-height: 36px;
+          margin: 0;
+          color: #333;
+        }
+
+        .see-all-link {
+          display: flex;
+          align-items: center;
+          color: #666;
+          text-decoration: none;
+          font-size: 14px;
+          line-height: 22px;
+          font-family: "Source Sans Pro", sans-serif;
+          transition: color 0.3s ease;
+        }
+
+        .see-all-link:hover {
+          color: #ff4444;
+        }
+
+        .see-all-link i {
+          margin-left: 10px;
+          font-size: 16px;
+          position: relative;
+          top: 2px;
+        }
+
+        .products-static-grid {
+          position: relative;
+        }
+
+        .products-grid-container {
+          display: grid;
+          grid-template-columns: repeat(4, 1fr);
+          gap: 20px;
+          padding: 5px 0;
+        }
+
+        .product-card {
+          position: relative;
+        }
+
+        .product-card-inner {
+          background-color: white;
+          border: 0.8px solid #d4d4d4;
+          border-radius: 5px;
+          padding: 20px;
+          position: relative;
+          transition: all 0.3s ease;
+          height: 100%;
+        }
+
+        .product-card-inner:hover {
+          transform: translateY(-5px);
+          box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+          border-color: #ff4444;
+        }
+
+        .product-discount-badge {
+          position: absolute;
+          top: 2px;
+          right: 10px;
+          background-color: #f73312;
+          color: white;
+          border-radius: 3px;
+          padding: 5px 6px;
+          font-size: 12px;
+          font-weight: 700;
+          text-transform: uppercase;
+          font-family: "Source Sans Pro", sans-serif;
+          z-index: 1;
+        }
+
+        .product-image-container {
+          text-align: center;
+          margin-bottom: 11px;
+        }
+
+        .product-image-link {
+          display: grid;
+          place-items: center;
+          text-decoration: none;
+        }
+
+        .product-image {
+          max-width: 100%;
+          width: 225px;
+          height: 225px;
+          object-fit: cover;
+          border-radius: 4px;
+          transition: transform 0.3s ease;
+        }
+
+        .product-card-inner:hover .product-image {
+          transform: scale(1.05);
+        }
+
+        .product-info {
+          background-color: white;
+          padding-top: 11px;
+          position: relative;
+          z-index: 1;
+        }
+
+        .product-category {
+          margin-bottom: 3px;
+        }
+
+        .category-link {
+          color: #bbbbbb;
+          font-family: "Source Sans Pro", sans-serif;
+          font-size: 13px;
+          font-weight: 700;
+          line-height: 24px;
+          text-transform: uppercase;
+          text-decoration: none;
+          transition: color 0.3s ease;
+        }
+
+        .category-link:hover {
+          color: #ff4444;
+        }
+
+        .product-name {
+          margin-bottom: 5px;
+        }
+
+        .product-name h5 {
+          margin: 0;
+          line-height: 19.2px;
+          font-size: 16px;
+          font-weight: 500;
+        }
+
+        .product-name-link {
+          color: #333;
+          text-decoration: none;
+          display: inline-block;
+          line-height: 24px;
+          transition: color 0.3s ease;
+        }
+
+        .product-name-link:hover {
+          color: #ff4444;
+        }
+
+        .product-rating {
+          display: flex;
+          align-items: center;
+          justify-content: flex-start;
+          margin-bottom: 15px;
+        }
+
+        .rating-stars {
+          display: flex;
+          align-items: center;
+        }
+
+        .stars {
+          color: #ffba00;
+          float: right;
+          font-family: "woocommerce";
+          font-size: 13px;
+          height: 19.5px;
+          letter-spacing: 3px;
+          line-height: 1;
+          position: relative;
+          width: 83.2px;
+          overflow: hidden;
+        }
+
+        .star-display {
+          color: #ffba00;
+          font-family: "star";
+          font-size: 13px;
+          left: 0;
+          letter-spacing: 3px;
+          line-height: 1;
+          padding-top: 19.5px;
+          position: absolute;
+          top: 0;
+          width: 100%;
+        }
+
+        .rating-text {
+          clip: rect(1px, 1px, 1px, 1px);
+          clip-path: inset(50%);
+          height: 1px;
+          margin: -1px;
+          overflow: hidden;
+          position: absolute;
+          width: 1px;
+          word-wrap: normal;
+        }
+
+        .reviews-count {
+          margin-left: 10px;
+        }
+
+        .reviews-count p {
+          color: #999;
+          font-size: 12px;
+          line-height: 26px;
+          margin: 0;
+        }
+
+        .product-price {
+          margin-top: 15px;
+          margin-bottom: 15px;
+        }
+
+        .price-container {
+          display: flex;
+          align-items: flex-end;
+          justify-content: flex-start;
+          font-size: 20px;
+          font-weight: 600;
+          line-height: 26px;
+          margin: 0;
+        }
+
+        .original-price {
+          color: #999;
+          font-size: 14px;
+          line-height: 26px;
+          margin-left: 10px;
+          order: 1;
+          text-decoration: line-through;
+        }
+
+        .original-price span {
+          color: #999;
+          display: inline;
+          font-size: 14px;
+          line-height: 26px;
+        }
+
+        .sale-price,
+        .regular-price {
+          color: #f73312;
+          font-size: 20px;
+          font-weight: 600;
+          line-height: 28px;
+        }
+
+        .regular-price {
+          color: #333;
+        }
+
+        .currency {
+          display: inline;
+          font-size: 20px;
+          font-weight: 600;
+          line-height: 26px;
+        }
+
+        .product-actions {
+          opacity: 0;
+          max-height: 0;
+          overflow: hidden;
+          transition: all 0.3s ease;
+        }
+
+        .product-card-inner:hover .product-actions {
+          opacity: 1;
+          max-height: 60px;
+        }
+
+        .add-to-cart-btn {
+          background-color: #f73312;
+          border: 1.6px solid #f73312;
+          border-radius: 4px;
+          color: white;
+          cursor: pointer;
+          display: inline-block;
+          font-size: 14px;
+          font-weight: 500;
+          line-height: 1.5;
+          padding: 13px 20px;
+          position: relative;
+          text-align: center;
+          text-decoration: none;
+          text-transform: capitalize;
+          transition: all 0.3s ease;
+          width: 100%;
+        }
+
+        .add-to-cart-btn:hover {
+          background-color: #d12a0e;
+          border-color: #d12a0e;
+        }
+
+        /* Footer Section */
+        .main-footer {
+          background-color: #f6f7fa;
+          padding: 100px 0 50px 0;
+          position: relative;
+        }
+
+        .footer-container {
+          max-width: 1320px;
+          margin: 0 auto;
+          padding: 0 12px;
+        }
+
+        .footer-main {
+          display: grid;
+          grid-template-columns: 5fr 2fr 2fr 3fr;
+          gap: 40px;
+          margin-bottom: 50px;
+        }
+
+        .footer-about {
+          padding-right: 105px;
+        }
+
+        .footer-logo .logo-text {
+          font-size: 28px;
+          font-weight: bold;
+          color: #333;
+          font-family: "Playfair Display", serif;
+        }
+
+        .footer-tagline {
+          font-size: 14px;
+          font-weight: 700;
+          line-height: 1.7;
+          margin: 20px 0 30px 0;
+          color: #333;
+        }
+
+        .footer-description {
+          color: #666;
+          font-size: 14px;
+          line-height: 1.7;
+          margin-bottom: 35px;
+        }
+
+        .social-links {
+          display: flex;
+          gap: 20px;
+        }
+
+        .social-link {
+          color: #666;
+          font-size: 18px;
+          transition: color 0.3s ease;
+        }
+
+        .social-link:hover {
+          color: #ff4444;
+        }
+
+        .footer-section-title {
+          font-size: 20px;
+          font-weight: 600;
+          line-height: 1.2;
+          margin-bottom: 35px;
+          color: #333;
+          font-family: "Playfair Display", serif;
+        }
+
+        .footer-links {
+          list-style: none;
+          padding: 0;
+          margin: 0;
+        }
+
+        .footer-links li {
+          margin-bottom: 12px;
+        }
+
+        .footer-links a {
+          color: #666;
+          font-size: 14px;
+          text-decoration: none;
+          transition: color 0.3s ease;
+        }
+
+        .footer-links a:hover {
+          color: #ff4444;
+        }
+
+        .footer-bottom {
+          border-top: 0.8px solid #e5e5e5;
+          padding-top: 30px;
+          text-align: center;
+        }
+
+        .copyright {
+          color: #666;
+          font-size: 14px;
+          margin: 0;
+        }
+
+        .brand-link {
+          color: #333;
+          font-weight: 600;
+          text-decoration: none;
+          margin: 0 4px;
+        }
+
+        .brand-link:hover {
+          color: #ff4444;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 1024px) {
+          .form-row {
+            grid-template-columns: repeat(3, 1fr);
+            gap: 10px;
+          }
+
+          .search-submit-btn {
+            grid-column: span 3;
+          }
+
+          .hot-products-grid,
+          .categories-grid {
+            grid-template-columns: repeat(2, 1fr);
+          }
+
+          .makes-grid,
+          .models-grid {
+            grid-template-columns: repeat(3, 1fr);
+          }
+
+          .products-grid-container {
+            grid-template-columns: repeat(2, 1fr);
+          }
+
+          .categories-grid {
+            grid-template-columns: repeat(3, 1fr);
+          }
+
+          .essential-items-section {
+            padding: 50px 0 5px 0;
+          }
+
+          .essential-items-container {
+            padding: 0 15px;
+          }
+        }
+
+        @media (max-width: 768px) {
+          .header-container {
+            flex-wrap: wrap;
+            gap: 15px;
+          }
+
+          .search-section {
+            order: 3;
+            width: 100%;
+            max-width: none;
+          }
+
+          .nav-container {
+            flex-wrap: wrap;
+            gap: 15px;
+          }
+
+          .nav-links {
+            order: 3;
+            width: 100%;
+            justify-content: center;
+          }
+
+          .hero-title {
+            font-size: 36px;
+          }
+
+          .form-row {
+            grid-template-columns: 1fr;
+          }
+
+          .search-submit-btn {
+            grid-column: span 1;
+          }
+
+          .hot-products-grid,
+          .categories-grid {
+            grid-template-columns: 1fr;
+          }
+
+          .makes-grid,
+          .models-grid {
+            grid-template-columns: repeat(2, 1fr);
+          }
+
+          .products-grid-container {
+            grid-template-columns: 1fr;
+          }
+
+          .categories-grid {
+            grid-template-columns: repeat(2, 1fr);
+          }
+
+          .essential-items-section {
+            padding: 40px 0 5px 0;
+          }
+
+          .footer-main {
+            grid-template-columns: 1fr;
+            gap: 30px;
+          }
+
+          .footer-about {
+            grid-column: 1;
+            padding-right: 0;
+          }
+        }
+
+        @media (max-width: 480px) {
+          .promo-content {
+            flex-direction: column;
+            gap: 10px;
+            text-align: center;
+          }
+
+          .logo-text {
+            font-size: 24px;
+          }
+
+          .hero-title {
+            font-size: 28px;
+          }
+
+          .section-title {
+            font-size: 28px;
+          }
+
+          .search-title {
+            font-size: 24px;
+          }
+
+          .essential-items-container {
+            padding: 0 15px;
+          }
+        }
+
+        /* Essential Items Section */
+        .essential-items-section {
+          background-color: rgb(242, 242, 247);
+          position: relative;
+          padding: 65px 0;
+        }
+
+        .essential-items-section .container {
+          display: flex;
+          margin-left: auto;
+          margin-right: auto;
+          max-width: 1520px;
+          position: relative;
+        }
+
+        .essential-items-section .section-content {
+          width: 100%;
+          padding: 0 12px;
+        }
+
+        .essential-items-section .section-header {
+          margin-bottom: 35px;
+        }
+
+        .essential-items-section .header-content {
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          width: 100%;
+        }
+
+        .essential-items-section .section-title {
+          font-size: 30px;
+          font-weight: 600;
+          line-height: 36px;
+          margin-right: 35px;
+          position: relative;
+          transition-duration: 0.6s;
+          margin: 0;
+        }
+
+        .essential-items-section .see-all-link {
+          display: flex;
+          align-items: center;
+          color: rgb(102, 102, 102);
+          cursor: pointer;
+          font-size: 14px;
+          line-height: 21.994px;
+          text-decoration: none;
+        }
+
+        .essential-items-section .see-all-link svg {
+          margin-left: 10px;
+          width: 16px;
+          height: 16px;
+          position: relative;
+          top: 2px;
+        }
+
+        /* Best Sellers Section */
+        .best-sellers-section {
+          background-color: rgb(242, 242, 247);
+          position: relative;
+          padding: 85px 0;
+        }
+
+        .best-sellers-section .container {
+          display: flex;
+          margin-left: auto;
+          margin-right: auto;
+          max-width: 1520px;
+          position: relative;
+        }
+
+        .best-sellers-section .section-content {
+          width: 100%;
+          padding: 0 12px;
+        }
+
+        .best-sellers-section .section-header {
+          margin-bottom: 35px;
+        }
+
+        .best-sellers-section .header-content {
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          width: 100%;
+          margin-bottom: 35px;
+        }
+
+        .best-sellers-section .title-with-timer {
+          display: flex;
+          align-items: center;
+          flex-basis: 80%;
+          flex-wrap: wrap;
+        }
+
+        .best-sellers-section .section-title {
+          font-size: 30px;
+          font-weight: 600;
+          line-height: 36px;
+          margin-right: 35px;
+          position: relative;
+          transition-duration: 0.6s;
+          margin: 0;
+        }
+
+        .best-sellers-section .countdown-timer {
+          background-color: rgb(247, 51, 18);
+          border-radius: 3px;
+        }
+
+        .best-sellers-section .timer-content {
+          display: flex;
+          align-items: center;
+          padding: 0 10px;
+        }
+
+        .best-sellers-section .timer-label {
+          color: rgb(255, 255, 255);
+          font-size: 13px;
+          font-weight: 700;
+          line-height: 26px;
+          margin-right: 10px;
+          margin-top: 2px;
+          text-transform: uppercase;
+        }
+
+        .best-sellers-section .timer-display {
+          display: flex;
+        }
+
+        .best-sellers-section .timer-list {
+          display: flex;
+          margin: 0;
+          padding: 0;
+          list-style: none;
+        }
+
+        .best-sellers-section .timer-item {
+          display: inline-block;
+          color: rgb(255, 255, 255);
+          font-size: 13px;
+          font-weight: 700;
+          line-height: 23.4px;
+          text-align: left;
+          text-transform: uppercase;
+        }
+
+        .best-sellers-section .timer-value {
+          display: inline;
+          font-size: 13px;
+          font-weight: 700;
+          color: rgb(255, 255, 255);
+          text-align: left;
+          text-transform: uppercase;
+        }
+
+        .best-sellers-section .category-tabs {
+          width: 100%;
+        }
+
+        .best-sellers-section .tabs-list {
+          display: flex;
+          align-items: center;
+          justify-content: flex-start;
+          margin: 0;
+          padding: 0;
+          list-style: none;
+        }
+
+        .best-sellers-section .tab-item {
+          display: list-item;
+          font-size: 18px;
+          line-height: 32.4px;
+          text-align: left;
+        }
+
+        .best-sellers-section .tab-link {
+          display: inline-block;
+          cursor: pointer;
+          font-size: 14px;
+          font-weight: 600;
+          padding: 0 12px;
+          text-align: left;
+          text-decoration: none;
+          border-radius: 3px;
+          color: #333;
+          transition: all 0.3s ease;
+        }
+
+        .best-sellers-section .tab-link.active {
+          background-color: rgb(255, 255, 255);
+          border-color: rgb(247, 51, 18);
+          color: rgb(247, 51, 18);
+        }
+
+        .best-sellers-section .tab-link:hover {
+          background-color: rgb(255, 255, 255);
+          color: rgb(247, 51, 18);
+        }
+
+        /* New Arrivals Section */
+        .new-arrivals-section {
+          background-color: rgb(242, 242, 247);
+          position: relative;
+          padding: 65px 0 100px 0;
+        }
+
+        .new-arrivals-section .container {
+          display: flex;
+          margin-left: auto;
+          margin-right: auto;
+          max-width: 1520px;
+          position: relative;
+        }
+
+        .new-arrivals-section .section-content {
+          width: 100%;
+          padding: 0 12px;
+        }
+
+        .new-arrivals-section .section-header {
+          margin-bottom: 35px;
+        }
+
+        .new-arrivals-section .header-content {
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          width: 100%;
+        }
+
+        .new-arrivals-section .section-title {
+          font-size: 30px;
+          font-weight: 600;
+          line-height: 36px;
+          margin-right: 35px;
+          position: relative;
+          transition-duration: 0.6s;
+          margin: 0;
+        }
+
+        .new-arrivals-section .see-all-link {
+          display: flex;
+          align-items: center;
+          color: rgb(102, 102, 102);
+          cursor: pointer;
+          font-size: 14px;
+          line-height: 21.994px;
+          text-decoration: none;
+        }
+
+        .new-arrivals-section .see-all-link svg {
+          margin-left: 10px;
+          width: 16px;
+          height: 16px;
+          position: relative;
+          top: 2px;
+        }
+
+        /* Common Carousel Styles */
+        .products-carousel {
+          position: relative;
+        }
+
+        .carousel-container {
+          position: relative;
+        }
+
+        .carousel-nav {
+          position: absolute;
+          top: 50%;
+          transform: translateY(-50%);
+          width: 26.67px;
+          height: 26.67px;
+          border-radius: 50%;
+          border: none;
+          background-color: rgba(0, 0, 0, 0);
+          border-color: rgba(16, 16, 16, 0.3);
+          color: rgba(16, 16, 16, 0.3);
+          cursor: pointer;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          font-family: Arial;
+          font-size: 13.33px;
+          line-height: normal;
+          opacity: 0.7;
+          z-index: 1;
+          transition: opacity 0.3s;
+        }
+
+        .carousel-nav:disabled {
+          pointer-events: none;
+          opacity: 0.3;
+        }
+
+        .carousel-nav.prev-btn {
+          left: -100px;
+        }
+
+        .carousel-nav.next-btn {
+          right: -100px;
+        }
+
+        .carousel-nav .nav-icon {
+          width: 16px;
+          height: 16px;
+          font-size: 23px;
+          text-align: center;
+        }
+
+        .carousel-nav.prev-btn .nav-icon {
+          transform: matrix(-1, 0, 0, 1, 0, 0);
+        }
+
+        .carousel-track {
+          overflow: hidden;
+          padding: 5px 0;
+          position: relative;
+          z-index: 0;
+        }
+
+        .products-grid {
+          display: flex;
+          width: max-content;
+          will-change: transform;
+          transform: matrix(1, 0, 0, 1, 0, 0);
+        }
+
+        .product-card {
+          flex-shrink: 0;
+          margin-right: 20px;
+          position: relative;
+          user-select: none;
+          width: 283.2px;
+        }
+
+        .product-card-inner {
+          background-color: rgb(255, 255, 255);
+          border: 1px solid rgb(212, 212, 212);
+          border-radius: 5px;
+          padding: 20px;
+          position: relative;
+          user-select: none;
+        }
+
+        .product-badges {
+          display: flex;
+          justify-content: flex-end;
+          align-items: center;
+          user-select: none;
+        }
+
+        .discount-badge {
+          position: absolute;
+          right: 10px;
+          top: 2px;
+          background-color: rgb(247, 51, 18);
+          border-radius: 3px;
+          color: rgb(255, 255, 255);
+          display: inline-block;
+          font-size: 12px;
+          font-weight: 700;
+          line-height: 1;
+          padding: 5px 6px;
+          text-transform: uppercase;
+          user-select: none;
+        }
+
+        .product-image {
+          user-select: none;
+          text-align: center;
+          margin-bottom: 11px;
+        }
+
+        .product-image a {
+          cursor: pointer;
+          display: grid;
+          text-align: center;
+          user-select: none;
+        }
+
+        .product-image img {
+          aspect-ratio: auto 225 / 225;
+          cursor: pointer;
+          max-width: 100%;
+          text-align: center;
+          user-select: none;
+          vertical-align: bottom;
+          width: 225px;
+          height: 225px;
+          object-fit: cover;
+        }
+
+        .product-info {
+          background-color: rgb(255, 255, 255);
+          padding-top: 11px;
+          position: relative;
+          transition-duration: 0.3s;
+          user-select: none;
+          z-index: 1;
+        }
+
+        .product-category {
+          color: rgb(187, 187, 187);
+          font-family: Poppins;
+          font-size: 14px;
+          line-height: 24px;
+          margin-bottom: 3px;
+          text-transform: capitalize;
+          user-select: none;
+        }
+
+        .product-category a {
+          cursor: pointer;
+          display: inline-block;
+          font-size: 13px;
+          font-weight: 700;
+          line-height: 24px;
+          text-transform: uppercase;
+          user-select: none;
+          color: rgb(187, 187, 187);
+          text-decoration: none;
+        }
+
+        .product-name {
+          margin-bottom: 5px;
+          user-select: none;
+        }
+
+        .product-name h5 {
+          line-height: 19.2px;
+          position: relative;
+          transition-duration: 0.6s;
+          user-select: none;
+          margin: 0;
+        }
+
+        .product-name a {
+          cursor: pointer;
+          display: inline-block;
+          line-height: 24px;
+          transition-duration: 0.3s;
+          user-select: none;
+          color: #333;
+          text-decoration: none;
+        }
+
+        .product-name a:hover {
+          color: rgb(247, 51, 18);
+        }
+
+        .product-rating {
+          display: flex;
+          align-items: center;
+          justify-content: flex-start;
+          user-select: none;
+        }
+
+        .rating-stars {
+          display: flex;
+          align-items: center;
+          justify-content: flex-start;
+          user-select: none;
+        }
+
+        .stars {
+          color: rgb(255, 186, 0);
+          float: right;
+          font-family: woocommerce;
+          font-size: 13px;
+          height: 1em;
+          letter-spacing: 3px;
+          line-height: 1;
+          position: relative;
+          text-decoration-color: rgb(255, 186, 0);
+          user-select: none;
+          width: 83.2px;
+        }
+
+        .star-display {
+          color: rgb(255, 186, 0);
+          font-family: star;
+          font-size: 13px;
+          left: 0px;
+          letter-spacing: 3px;
+          line-height: 1;
+          padding-top: 19.5px;
+          position: absolute;
+          top: 0;
+          user-select: none;
+          width: 100%;
+        }
+
+        .rating-text {
+          position: absolute;
+          clip: rect(1px, 1px, 1px, 1px);
+          clip-path: inset(50%);
+          height: 1px;
+          margin: -1px;
+          overflow: hidden;
+          width: 1px;
+          word-wrap: normal;
+        }
+
+        .rating-text strong {
+          display: inline;
+          font-size: 13px;
+          font-weight: 700;
+          letter-spacing: 3px;
+          user-select: none;
+        }
+
+        .reviews-count {
+          user-select: none;
+        }
+
+        .reviews-count p {
+          color: rgb(153, 153, 153);
+          font-size: 12px;
+          line-height: 26px;
+          margin-left: 10px;
+          user-select: none;
+          margin: 0;
+        }
+
+        .product-price {
+          margin-top: 15px;
+          user-select: none;
+        }
+
+        .price-container {
+          display: flex;
+          align-items: flex-end;
+          font-size: 20px;
+          font-weight: 600;
+          justify-content: flex-start;
+          line-height: 26px;
+          user-select: none;
+          margin: 0;
+        }
+
+        .original-price {
+          color: rgb(153, 153, 153);
+          font-size: 14px;
+          line-height: 26px;
+          margin-left: 10px;
+          order: 1;
+          text-decoration: line-through solid rgb(153, 153, 153);
+          user-select: none;
+        }
+
+        .original-price span {
+          color: rgb(153, 153, 153);
+          display: inline;
+          font-size: 14px;
+          line-height: 26px;
+          user-select: none;
+        }
+
+        .sale-price {
+          color: rgb(247, 51, 18);
+          font-size: 20px;
+          font-weight: 600;
+          line-height: 28px;
+          user-select: none;
+        }
+
+        .sale-price span {
+          color: rgb(247, 51, 18);
+          display: inline;
+          font-size: 20px;
+          font-weight: 600;
+          line-height: 26px;
+          user-select: none;
+        }
+
+        .regular-price {
+          font-size: 20px;
+          font-weight: 600;
+          line-height: 26px;
+          user-select: none;
+          color: #333;
+        }
+
+        .regular-price span {
+          display: inline;
+          font-size: 20px;
+          font-weight: 600;
+          line-height: 26px;
+          user-select: none;
+          color: #333;
+        }
+
+        .currency {
+          display: inline;
+          font-size: 20px;
+          font-weight: 600;
+          line-height: 26px;
+          user-select: none;
+        }
+
+        .product-actions {
+          height: 0px;
+          overflow: hidden;
+          transition-duration: 0.3s;
+          user-select: none;
+          margin-top: 15px;
+        }
+
+        .product-card:hover .product-actions {
+          height: auto;
+        }
+
+        .add-to-cart-btn {
+          background-color: rgb(247, 51, 18);
+          border: 2px solid rgb(247, 51, 18);
+          border-radius: 4px;
+          color: rgb(255, 255, 255);
+          cursor: pointer;
+          display: inline-block;
+          font-size: 14px;
+          font-weight: 500;
+          line-height: 1;
+          overflow: hidden;
+          padding: 13px 20px;
+          position: relative;
+          text-align: center;
+          text-transform: capitalize;
+          transition-duration: 0.3s;
+          user-select: none;
+          width: 100%;
+          text-decoration: none;
+        }
+
+        .add-to-cart-btn:hover {
+          background-color: #333;
+          border-color: #333;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+          .essential-items-section,
+          .best-sellers-section,
+          .new-arrivals-section {
+            padding: 40px 0;
+          }
+
+          .section-title {
+            font-size: 24px !important;
+            line-height: 30px !important;
+          }
+
+          .title-with-timer {
+            flex-direction: column;
+            align-items: flex-start !important;
+            gap: 10px;
+          }
+
+          .header-content {
+            flex-direction: column;
+            align-items: flex-start !important;
+            gap: 15px;
+          }
+
+          .carousel-nav {
+            display: none;
+          }
+
+          .products-grid {
+            flex-wrap: wrap;
+            width: 100% !important;
+            gap: 15px;
+          }
+
+          .product-card {
+            width: calc(50% - 10px) !important;
+            margin-right: 0 !important;
+          }
+
+          .timer-content {
+            flex-direction: column;
+            align-items: flex-start;
+            padding: 8px 10px;
+          }
+
+          .timer-label {
+            margin-bottom: 5px;
+            margin-right: 0;
+          }
+
+          .tabs-list {
+            flex-wrap: wrap;
+            gap: 5px;
+          }
+
+          .tab-link {
+            font-size: 12px !important;
+            padding: 8px 10px !important;
+          }
+        }
+
+        @media (max-width: 480px) {
+          .product-card {
+            width: 100% !important;
+          }
+
+          .section-title {
+            font-size: 20px !important;
+            line-height: 26px !important;
+          }
+
+          .countdown-timer {
+            width: 100%;
+          }
+
+          .timer-content {
+            justify-content: center;
+          }
+
+          .timer-display {
+            justify-content: center;
+          }
+        }
+      `}</style>
     </div>
   );
 }

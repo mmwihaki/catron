@@ -1,9 +1,10 @@
+import "./globals.css";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Catron - Premium Nissan Parts",
+  title: "Catron Auto Parts - Premium Nissan Parts Kenya",
   description:
-    "Premium Nissan car parts and accessories in Kenya. Quality OEM and aftermarket parts specifically for Nissan vehicles from trusted brands.",
+    "Quality OEM and aftermarket parts specifically for Nissan vehicles in Kenya. Happy car ownership guaranteed.",
 };
 
 export default function RootLayout({
@@ -21,68 +22,17 @@ export default function RootLayout({
           crossOrigin="anonymous"
         />
         <link
-          href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&display=swap"
+          href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900;1,400;1,500;1,600;1,700;1,800;1,900&family=Source+Sans+Pro:ital,wght@0,300;0,400;0,600;0,700;0,900;1,300;1,400;1,600;1,700;1,900&display=swap"
           rel="stylesheet"
         />
-        <style>{`
-          * { box-sizing: border-box; }
-
-          .category-card {
-            transition: all 0.3s ease;
-          }
-
-          .category-card:hover {
-            transform: translateY(-5px);
-            border-color: #DC143C !important;
-            box-shadow: 0 10px 30px rgba(220, 20, 60, 0.2);
-          }
-
-          .category-card:hover .category-title {
-            color: #DC143C !important;
-          }
-
-          .load-more-btn:hover {
-            background-color: #DC143C !important;
-            color: #FFD700 !important;
-          }
-
-          @media (max-width: 1200px) {
-            .category-card {
-              max-width: calc(20% - 24px) !important;
-            }
-          }
-
-          @media (max-width: 992px) {
-            .category-card {
-              max-width: calc(25% - 22px) !important;
-            }
-          }
-
-          @media (max-width: 768px) {
-            .grid-responsive { grid-template-columns: 1fr !important; }
-            .hide-mobile { display: none !important; }
-            .text-small-mobile { font-size: 14px !important; }
-            .padding-small-mobile { padding: 10px !important; }
-
-            .category-card {
-              max-width: calc(50% - 15px) !important;
-              min-width: 150px !important;
-            }
-          }
-
-          @media (max-width: 480px) {
-            .category-card {
-              max-width: calc(100% - 30px) !important;
-              min-width: 200px !important;
-            }
-          }
-        `}</style>
+        <link
+          rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+          integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
+          crossOrigin="anonymous"
+        />
       </head>
-      <body
-        style={{ margin: 0, padding: 0, fontFamily: '"DM Sans", sans-serif' }}
-      >
-        {children}
-      </body>
+      <body>{children}</body>
     </html>
   );
 }
