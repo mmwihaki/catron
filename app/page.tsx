@@ -2963,53 +2963,38 @@ export default function BratorHomePage() {
           position: relative;
         }
 
-        .carousel-nav {
-          position: absolute;
-          top: 50%;
-          transform: translateY(-50%);
-          width: 50px;
-          height: 50px;
-          border-radius: 50%;
-          border: none;
-          background-color: rgba(0, 0, 0, 0.8);
-          color: white;
-          cursor: pointer;
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          z-index: 1;
-          transition: all 0.3s ease;
-          font-size: 23px;
-        }
-
-        .carousel-nav:hover {
-          background-color: #ff4444;
-          transform: translateY(-50%) scale(1.1);
-        }
-
-        .carousel-nav.disabled {
-          opacity: 0.7;
-          pointer-events: none;
-        }
-
-        .carousel-prev {
-          left: 10px;
-        }
-
-        .carousel-next {
-          right: 10px;
-        }
-
-        .products-carousel-container {
-          overflow: hidden;
+        .products-grid-container {
           position: relative;
           padding: 5px 0;
         }
 
-        .products-carousel-track {
-          display: flex;
+        .products-grid {
+          display: grid;
+          grid-template-columns: repeat(4, 1fr);
+          gap: 20px;
           width: 100%;
-          transition: transform 0.3s ease-in-out;
+        }
+
+        .view-more-container {
+          text-align: center;
+          margin-top: 30px;
+        }
+
+        .view-more-btn {
+          display: inline-block;
+          padding: 12px 30px;
+          background-color: #ff4444;
+          color: white;
+          text-decoration: none;
+          border-radius: 5px;
+          font-weight: 600;
+          transition: all 0.3s ease;
+          border: 2px solid #ff4444;
+        }
+
+        .view-more-btn:hover {
+          background-color: transparent;
+          color: #ff4444;
         }
 
         .best-seller-product-card {
