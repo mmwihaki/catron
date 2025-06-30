@@ -1013,21 +1013,12 @@ export default function HomePage() {
       >
         <div
           style={{
-            maxWidth: "1520px",
+            maxWidth: "100%",
             margin: "0 auto",
-            paddingLeft: "12px",
-            paddingRight: "12px",
+            padding: "0 20px",
             width: "100%",
           }}
         >
-          <div
-            style={{
-              display: "flex",
-              flexWrap: "wrap",
-              marginLeft: "-12px",
-              marginRight: "-12px",
-            }}
-          >
             <div
               style={{
                 flexShrink: 0,
