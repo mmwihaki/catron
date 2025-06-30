@@ -2182,145 +2182,180 @@ export default function CatronHomePage() {
 
         /* Footer */
         .footer {
-          background: rgb(30, 30, 31);
-          color: white;
-        }
-
-        .footer-content {
-          background: rgb(30, 30, 31);
+          background: rgb(246, 247, 250);
+          padding-bottom: 50px;
+          padding-top: 100px;
         }
 
         .footer-container {
-          max-width: 1200px;
-          margin: 0 auto;
-          padding: 60px 20px 40px;
-          display: grid;
-          grid-template-columns: 2fr 1fr 1fr 1fr 1fr;
-          gap: 40px;
+          margin-left: auto;
+          margin-right: auto;
+          max-width: 1320px;
+          padding-left: 12px;
+          padding-right: 12px;
+          width: 100%;
         }
 
-        .footer-section {
-          min-width: 0;
+        .footer-content {
+          position: relative;
+        }
+
+        .footer-main {
+          display: flex;
+          margin-left: auto;
+          margin-right: auto;
+          position: relative;
+        }
+
+        .footer-brand-section {
+          display: flex;
+          min-height: 1px;
+          position: relative;
+          width: 41.6667%;
+        }
+
+        .footer-brand-content {
+          align-content: flex-start;
+          display: flex;
+          flex-flow: row wrap;
+          flex-wrap: wrap;
+          position: relative;
+          width: 100%;
+          padding-right: 105px;
+        }
+
+        .footer-logo-link {
+          cursor: pointer;
+          display: inline-block;
         }
 
         .footer-logo {
+          cursor: pointer;
+          display: inline;
           margin-bottom: 20px;
+          max-width: 191px;
+          overflow-clip-margin: content-box;
+          overflow-x: clip;
+          overflow-y: clip;
         }
 
-        .footer-logo-image {
-          width: 150px;
-          height: auto;
-          margin-bottom: 20px;
-          filter: brightness(0) invert(1);
+        .footer-brand-description {
+          width: 100%;
         }
 
-        .footer-description {
-          color: #ccc;
-          line-height: 1.6;
-          margin-bottom: 20px;
+        .footer-tagline {
+          font-size: 14px;
+          font-weight: 700;
+          line-height: 24px;
+          margin-bottom: 30px;
+          position: relative;
+          transition-duration: 0.6s;
+          color: #333;
         }
 
-        .social-links {
-          display: flex;
-          gap: 10px;
+        .footer-disclaimer {
+          border-color: rgb(102, 102, 102);
+          color: rgb(102, 102, 102);
+          font-size: 14px;
+          line-height: 23.996px;
+          margin-bottom: 10px;
+          outline-color: rgb(102, 102, 102);
+          text-decoration-color: rgb(102, 102, 102);
+          text-emphasis-color: rgb(102, 102, 102);
+          width: 100%;
         }
 
-        .social-link {
-          width: 40px;
-          height: 40px;
-          background: rgb(247, 51, 18);
-          border-radius: 50%;
-          display: flex;
+        .footer-social {
           align-items: center;
-          justify-content: center;
+          display: flex;
+          justify-content: flex-start;
+          margin-top: 35px;
+        }
+
+        .social-icon {
+          cursor: pointer;
+          display: grid;
+          font-size: 24px;
+          margin-right: 20px;
           text-decoration: none;
-          transition: background 0.3s ease;
+          color: #666;
+          transition: color 0.3s ease;
         }
 
-        .social-link:hover {
-          background: rgb(220, 40, 15);
+        .social-icon:hover {
+          color: rgb(247, 51, 18);
         }
 
-        .footer-title {
+        .social-icon svg {
+          cursor: pointer;
           font-size: 18px;
-          font-weight: 600;
-          margin-bottom: 20px;
-          color: white;
+          height: 18px;
+          overflow-clip-margin: content-box;
+          overflow-x: hidden;
+          overflow-y: hidden;
+          width: 18px;
+          fill: currentColor;
         }
 
-        .footer-links {
+        .footer-links-section {
+          display: flex;
+          min-height: 1px;
+          position: relative;
+          width: 16.6667%;
+        }
+
+        .footer-links-section:last-child {
+          width: 24.999%;
+        }
+
+        .footer-column {
+          align-content: flex-start;
+          display: flex;
+          flex-flow: row wrap;
+          flex-wrap: wrap;
+          position: relative;
+          width: 100%;
+        }
+
+        .footer-column-title {
+          font-size: 20px;
+          font-weight: 600;
+          line-height: 24px;
+          margin-bottom: 35px;
+          position: relative;
+          transition-duration: 0.6s;
+          color: #333;
+          width: 100%;
+        }
+
+        .footer-links-list {
           list-style: none;
           padding: 0;
           margin: 0;
+          width: 100%;
         }
 
-        .footer-links li {
-          margin-bottom: 8px;
+        .footer-links-list li {
+          font-size: 18px;
+          line-height: 32.4px;
+          text-align: left;
         }
 
-        .footer-links a {
-          color: #ccc;
+        .footer-links-list a {
+          border-color: rgb(102, 102, 102);
+          color: rgb(102, 102, 102);
+          cursor: pointer;
+          display: inline-block;
+          font-size: 14px;
+          outline-color: rgb(102, 102, 102);
+          text-align: left;
+          text-decoration-color: rgb(102, 102, 102);
+          text-emphasis-color: rgb(102, 102, 102);
           text-decoration: none;
           transition: color 0.3s ease;
         }
 
-        .footer-links a:hover {
-          color: rgb(247, 51, 18);
-        }
-
-        .contact-info {
-          display: flex;
-          flex-direction: column;
-          gap: 15px;
-        }
-
-        .contact-item {
-          display: flex;
-          align-items: center;
-          gap: 10px;
-          color: #ccc;
-        }
-
-        .contact-item i {
-          color: rgb(247, 51, 18);
-          width: 16px;
-        }
-
-        .footer-bottom {
-          border-top: 1px solid rgb(60, 60, 61);
-          padding: 20px 0;
-        }
-
-        .footer-bottom-container {
-          max-width: 1200px;
-          margin: 0 auto;
-          padding: 0 20px;
-          display: flex;
-          justify-content: space-between;
-          align-items: center;
-          flex-wrap: wrap;
-          gap: 15px;
-        }
-
-        .footer-bottom-left p {
-          margin: 0;
-          color: #ccc;
-          font-size: 14px;
-        }
-
-        .footer-bottom-right {
-          display: flex;
-          gap: 20px;
-        }
-
-        .footer-bottom-right a {
-          color: #ccc;
-          text-decoration: none;
-          font-size: 14px;
-          transition: color 0.3s ease;
-        }
-
-        .footer-bottom-right a:hover {
+        .footer-links-list a:hover {
           color: rgb(247, 51, 18);
         }
 
