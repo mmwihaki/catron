@@ -382,16 +382,9 @@ export default function CatronHomePage() {
                   value={vehicleBrand}
                   onChange={(e) => setVehicleBrand(e.target.value)}
                   className="form-select"
+                  disabled
                 >
-                  <option value="">Select Brand</option>
-                  <option value="nissan">Nissan</option>
-                  <option value="toyota">Toyota</option>
-                  <option value="honda">Honda</option>
-                  <option value="ford">Ford</option>
-                  <option value="chevrolet">Chevrolet</option>
-                  <option value="bmw">BMW</option>
-                  <option value="mercedes">Mercedes</option>
-                  <option value="audi">Audi</option>
+                  <option value="Nissan">Nissan</option>
                 </select>
               </div>
 
@@ -404,11 +397,11 @@ export default function CatronHomePage() {
                   className="form-select"
                 >
                   <option value="">Select Model</option>
-                  <option value="sedan">Sedan</option>
-                  <option value="suv">SUV</option>
-                  <option value="hatchback">Hatchback</option>
-                  <option value="coupe">Coupe</option>
-                  <option value="wagon">Wagon</option>
+                  {nissanModels.map((model, index) => (
+                    <option key={index} value={model.name}>
+                      {model.name}
+                    </option>
+                  ))}
                 </select>
               </div>
 
@@ -421,12 +414,15 @@ export default function CatronHomePage() {
                   className="form-select"
                 >
                   <option value="">Select Engine</option>
-                  <option value="1.4L">1.4L</option>
-                  <option value="1.6L">1.6L</option>
-                  <option value="2.0L">2.0L</option>
-                  <option value="2.4L">2.4L</option>
-                  <option value="3.0L">3.0L</option>
-                  <option value="3.5L">3.5L</option>
+                  <option value="HR12DDR">HR12DDR (1198cc)</option>
+                  <option value="HR12DE">HR12DE (1198cc)</option>
+                  <option value="HR16DE">HR16DE (1597cc)</option>
+                  <option value="MRA8DE">MRA8DE (1797cc)</option>
+                  <option value="MR18DE">MR18DE (1800cc)</option>
+                  <option value="MR20DE">MR20DE (1997cc)</option>
+                  <option value="QR25DE">QR25DE (2488cc)</option>
+                  <option value="VQ25DE">VQ25DE (2495cc)</option>
+                  <option value="HR15DE">HR15DE (1498cc)</option>
                 </select>
               </div>
 
