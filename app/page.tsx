@@ -344,14 +344,11 @@ export default function BratorHomePage() {
       <header className="main-header">
         <div className="header-container">
           <div className="logo">
-            <div className="logo-icon">
-              <div className="logo-bars">
-                <div className="bar bar-1"></div>
-                <div className="bar bar-2"></div>
-                <div className="bar bar-3"></div>
-              </div>
-            </div>
-            <span className="logo-text">Brator</span>
+            <img
+              src="https://cdn.builder.io/api/v1/image/assets%2F8f459f15ef394aad9ce0a61c2623ab76%2Fa58133469a5d4546b773640e12edeb86?format=webp&width=800"
+              alt="Catron Auto Parts - Happy car ownership"
+              className="logo-image"
+            />
           </div>
 
           <div className="search-section">
@@ -1735,14 +1732,11 @@ export default function BratorHomePage() {
             <div className="footer-about">
               <a href="/" className="footer-logo">
                 <div className="logo">
-                  <div className="logo-icon">
-                    <div className="logo-bars">
-                      <div className="bar bar-1"></div>
-                      <div className="bar bar-2"></div>
-                      <div className="bar bar-3"></div>
-                    </div>
-                  </div>
-                  <span className="logo-text">Brator</span>
+                  <img
+                    src="https://cdn.builder.io/api/v1/image/assets%2F8f459f15ef394aad9ce0a61c2623ab76%2Fa58133469a5d4546b773640e12edeb86?format=webp&width=800"
+                    alt="Catron Auto Parts - Happy car ownership"
+                    className="logo-image"
+                  />
                 </div>
               </a>
               <h6 className="footer-tagline">
