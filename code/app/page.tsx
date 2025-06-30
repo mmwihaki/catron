@@ -635,10 +635,10 @@ export default function CatronHomePage() {
                   .map((model, index) => (
                     <div key={index} className="model-card">
                       <a
-                        href={`#${model.toLowerCase()}`}
+                        href={`#${model.name.toLowerCase()}`}
                         className="model-link"
                       >
-                        <span>{model}</span>
+                        <span>{model.name}</span>
                       </a>
                     </div>
                   ))}
