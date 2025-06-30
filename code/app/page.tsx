@@ -226,7 +226,7 @@ export default function HomePage() {
   };
 
   return (
-    <div>
+    <div className="homepage">
       {/* Black Friday Banner */}
       <div className="promo-banner">
         <div className="promo-content">
