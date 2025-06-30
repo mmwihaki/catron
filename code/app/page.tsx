@@ -1075,11 +1075,10 @@ export default function HomePage() {
             >
               <div
                 style={{
-                  alignItems: "flex-start",
-                  display: "flex",
-                  flexWrap: "wrap",
+                  display: "grid",
+                  gridTemplateColumns: "repeat(auto-fit, minmax(200px, 1fr))",
                   gap: "30px",
-                  justifyContent: "center",
+                  justifyItems: "center",
                 }}
               >
                 {/* Auto Parts */}
