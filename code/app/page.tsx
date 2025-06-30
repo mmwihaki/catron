@@ -2335,6 +2335,75 @@ export default function CatronHomePage() {
           .essential-items-title {
             font-size: 24px;
           }
+
+          .best-sellers-header,
+          .new-arrivals-header .header-content {
+            flex-direction: column;
+            gap: 15px;
+            text-align: center;
+          }
+
+          .header-left {
+            flex-direction: column;
+            gap: 15px;
+          }
+
+          .countdown-timer {
+            justify-content: center;
+          }
+
+          .category-tabs {
+            flex-wrap: wrap;
+            justify-content: center;
+          }
+
+          .tab-link {
+            font-size: 12px;
+            padding: 8px 15px;
+          }
+
+          .tips-guides-content {
+            grid-template-columns: 1fr;
+            gap: 30px;
+          }
+
+          .small-article {
+            flex-direction: column;
+            text-align: center;
+          }
+
+          .small-article-image {
+            width: 100%;
+            height: 200px;
+          }
+
+          .footer-container {
+            grid-template-columns: 1fr;
+            gap: 30px;
+            text-align: center;
+          }
+
+          .footer-bottom-container {
+            flex-direction: column;
+            text-align: center;
+          }
+
+          .brands-grid {
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+          }
+
+          .makes-grid,
+          .models-grid {
+            grid-template-columns: repeat(2, 1fr);
+            gap: 10px;
+          }
+
+          .make-button,
+          .model-button {
+            padding: 10px 15px;
+            font-size: 14px;
+          }
         }
       `}</style>
     </div>
