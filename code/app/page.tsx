@@ -1665,9 +1665,9 @@ export default function HomePage() {
       >
         <div
           style={{
-            maxWidth: "1200px",
+            maxWidth: "100%",
             margin: "0 auto",
-            padding: "0 20px",
+            padding: "0",
           }}
         >
           <h2
@@ -1794,9 +1794,9 @@ export default function HomePage() {
       >
         <div
           style={{
-            maxWidth: "1200px",
+            maxWidth: "100%",
             margin: "0 auto",
-            padding: "0 20px",
+            padding: "0",
           }}
         >
           <h2
@@ -1954,9 +1954,9 @@ export default function HomePage() {
       >
         <div
           style={{
-            maxWidth: "1200px",
+            maxWidth: "100%",
             margin: "0 auto",
-            padding: "0 20px",
+            padding: "0",
           }}
         >
           <h2
