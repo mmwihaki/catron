@@ -3152,9 +3152,7 @@ export default function BratorHomePage() {
             width: 100%;
           }
 
-          .carousel-nav {
-            display: none;
-          }
+
 
           .essential-items-section {
             padding: 40px 0 5px 0;
