@@ -7,7 +7,7 @@ export default function HomePage() {
   const [cart, setCart] = useState<any[]>([]);
   const [cartVisible, setCartVisible] = useState(false);
 
-  // Real product data from your inventory with actual image URLs
+  // Featured products - LIMITED TO EXACTLY 4 PRODUCTS
   const featuredProducts = [
     {
       id: 1,
@@ -65,300 +65,28 @@ export default function HomePage() {
         "https://cdn.sparkplugs.co.uk/images/products/large/ngk-spark-plug-dilkar7e11hs-97439.jpg",
       badge: "IN STOCK",
     },
-    {
-      id: 5,
-      name: "KAVO Cabin Filter",
-      category: "Cabin Filter",
-      model: "Teana L33 QR25de",
-      sku: "NC-2037",
-      brand: "KAVO",
-      stock: 2,
-      price: 4000,
-      description: "Aftermarket OE Quality - up-to 15k kms",
-      image: "https://images.autodoc.co.uk/images/parts/big/13863570.jpg",
-      badge: "LIMITED",
-    },
-    {
-      id: 6,
-      name: "LPR Brake Pads",
-      category: "Brake Pads",
-      model: "E12/K13/N17",
-      sku: "05P1686",
-      brand: "LPR",
-      stock: 1,
-      price: 7500,
-      description: "Aftermarket OE Quality - 15k - 30k kms",
-      image: "https://images.autodoc.co.uk/images/parts/big/15833801.jpg",
-      badge: "LAST ONE",
-    },
   ];
-
-  // Add to cart function
-  const addToCart = (product: any, quantity = 1) => {
-    setCart((prevCart) => {
-      const existingItem = prevCart.find((item) => item.id === product.id);
-      if (existingItem) {
-        return prevCart.map((item) =>
-          item.id === product.id
-            ? { ...item, quantity: item.quantity + quantity }
-            : item,
-        );
-      }
-      return [...prevCart, { ...product, quantity }];
-    });
-  };
-
-  // Remove from cart function
-  const removeFromCart = (productId: number) => {
-    setCart((prevCart) => prevCart.filter((item) => item.id !== productId));
-  };
-
-  // Update quantity
-  const updateQuantity = (productId: number, newQuantity: number) => {
-    if (newQuantity <= 0) {
-      removeFromCart(productId);
-      return;
-    }
-    setCart((prevCart) =>
-      prevCart.map((item) =>
-        item.id === productId ? { ...item, quantity: newQuantity } : item,
-      ),
-    );
-  };
-
-  // Get cart total
-  const getCartTotal = () => {
-    return cart.reduce((total, item) => total + item.price * item.quantity, 0);
-  };
-
-  // WhatsApp checkout
-  const checkoutViaWhatsApp = () => {
-    const total = getCartTotal();
-    let message = "Hi! I'd like to order the following items:\n\n";
-
-    cart.forEach((item, index) => {
-      message += `${index + 1}. ${item.name} (${item.sku})\n`;
-      message += `   Quantity: ${item.quantity}\n`;
-      message += `   Price: KES ${item.price.toLocaleString()}\n`;
-      message += `   Subtotal: KES ${(item.price * item.quantity).toLocaleString()}\n\n`;
-    });
-
-    message += `Total: KES ${total.toLocaleString()}\n\n`;
-    message += "Please confirm availability and delivery details.";
-
-    const encodedMessage = encodeURIComponent(message);
-    const whatsappUrl = `https://wa.me/254700000000?text=${encodedMessage}`;
-    window.open(whatsappUrl, "_blank");
-  };
 
   return (
     <div
       style={{
         fontFamily: '"DM Sans", sans-serif',
-        lineHeight: "1.6",
+        margin: 0,
+        padding: 0,
         overflowX: "hidden",
-        width: "100vw",
+        width: "100%",
         maxWidth: "100%",
+        boxSizing: "border-box",
       }}
     >
-      {/* Cart Sidebar */}
-      {cartVisible && (
-        <div
-          style={{
-            position: "fixed",
-            top: "0",
-            right: "0",
-            width: "400px",
-            height: "100vh",
-            background: "white",
-            boxShadow: "-4px 0 20px rgba(0,0,0,0.1)",
-            zIndex: "9999",
-            padding: "20px",
-            overflowY: "auto",
-          }}
-        >
-          <div
-            style={{
-              display: "flex",
-              justifyContent: "space-between",
-              alignItems: "center",
-              marginBottom: "20px",
-              borderBottom: "1px solid #eee",
-              paddingBottom: "15px",
-            }}
-          >
-            <h3 style={{ margin: "0", fontSize: "24px", fontWeight: "700" }}>
-              Shopping Cart
-            </h3>
-            <button
-              onClick={() => setCartVisible(false)}
-              style={{
-                background: "none",
-                border: "none",
-                fontSize: "24px",
-                cursor: "pointer",
-                color: "#666",
-              }}
-            >
-              ×
-            </button>
-          </div>
-
-          {cart.length === 0 ? (
-            <p style={{ textAlign: "center", color: "#666", margin: "40px 0" }}>
-              Your cart is empty
-            </p>
-          ) : (
-            <>
-              {cart.map((item) => (
-                <div
-                  key={item.id}
-                  style={{
-                    display: "flex",
-                    gap: "15px",
-                    marginBottom: "20px",
-                    padding: "15px",
-                    border: "1px solid #eee",
-                    borderRadius: "8px",
-                  }}
-                >
-                  <img
-                    src={item.image}
-                    alt={item.name}
-                    style={{
-                      width: "60px",
-                      height: "60px",
-                      objectFit: "cover",
-                      borderRadius: "6px",
-                    }}
-                  />
-                  <div style={{ flex: "1" }}>
-                    <h4 style={{ margin: "0 0 5px 0", fontSize: "16px" }}>
-                      {item.name}
-                    </h4>
-                    <p
-                      style={{
-                        margin: "0 0 10px 0",
-                        color: "#666",
-                        fontSize: "14px",
-                      }}
-                    >
-                      {item.sku}
-                    </p>
-                    <div
-                      style={{
-                        display: "flex",
-                        justifyContent: "space-between",
-                        alignItems: "center",
-                      }}
-                    >
-                      <span style={{ fontWeight: "600" }}>
-                        KES {item.price.toLocaleString()}
-                      </span>
-                      <div
-                        style={{
-                          display: "flex",
-                          alignItems: "center",
-                          gap: "10px",
-                        }}
-                      >
-                        <button
-                          onClick={() =>
-                            updateQuantity(item.id, item.quantity - 1)
-                          }
-                          style={{
-                            background: "#f0f0f0",
-                            border: "none",
-                            width: "30px",
-                            height: "30px",
-                            borderRadius: "4px",
-                            cursor: "pointer",
-                          }}
-                        >
-                          -
-                        </button>
-                        <span>{item.quantity}</span>
-                        <button
-                          onClick={() =>
-                            updateQuantity(item.id, item.quantity + 1)
-                          }
-                          style={{
-                            background: "#f0f0f0",
-                            border: "none",
-                            width: "30px",
-                            height: "30px",
-                            borderRadius: "4px",
-                            cursor: "pointer",
-                          }}
-                        >
-                          +
-                        </button>
-                        <button
-                          onClick={() => removeFromCart(item.id)}
-                          style={{
-                            background: "none",
-                            border: "none",
-                            color: "#DC143C",
-                            cursor: "pointer",
-                            marginLeft: "5px",
-                          }}
-                        >
-                          Remove
-                        </button>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              ))}
-
-              <div
-                style={{
-                  borderTop: "2px solid #eee",
-                  paddingTop: "20px",
-                  marginTop: "20px",
-                }}
-              >
-                <div
-                  style={{
-                    display: "flex",
-                    justifyContent: "space-between",
-                    fontSize: "20px",
-                    fontWeight: "700",
-                    marginBottom: "20px",
-                  }}
-                >
-                  <span>Total:</span>
-                  <span>KES {getCartTotal().toLocaleString()}</span>
-                </div>
-                <button
-                  onClick={checkoutViaWhatsApp}
-                  style={{
-                    width: "100%",
-                    background: "#25D366",
-                    color: "white",
-                    border: "none",
-                    padding: "15px",
-                    borderRadius: "8px",
-                    fontSize: "16px",
-                    fontWeight: "600",
-                    cursor: "pointer",
-                  }}
-                >
-                  Checkout via WhatsApp
-                </button>
-              </div>
-            </>
-          )}
-        </div>
-      )}
-
       {/* Header */}
       <header
         style={{
           background: "#DC143C",
           color: "white",
           padding: "20px 0",
-          position: "relative",
+          width: "100%",
+          boxSizing: "border-box",
         }}
       >
         <div
@@ -369,20 +97,20 @@ export default function HomePage() {
             display: "flex",
             justifyContent: "space-between",
             alignItems: "center",
+            width: "100%",
+            boxSizing: "border-box",
           }}
         >
           <div style={{ display: "flex", alignItems: "center", gap: "20px" }}>
-            <h1 style={{ margin: "0", fontSize: "28px", fontWeight: "bold" }}>
-              Catron Kenya
-            </h1>
-            <span style={{ fontSize: "14px", opacity: "0.9" }}>
-              Premium Nissan Parts
-            </span>
+            <img
+              src="https://cdn.builder.io/api/v1/image/assets%2F8f459f15ef394aad9ce0a61c2623ab76%2Fa58133469a5d4546b773640e12edeb86?format=webp&width=800"
+              alt="Catron Auto Parts - Happy car ownership"
+              style={{ height: "40px", width: "auto" }}
+            />
           </div>
           <div style={{ display: "flex", alignItems: "center", gap: "20px" }}>
             <span>📞 +254 700 000 000</span>
             <button
-              onClick={() => setCartVisible(true)}
               style={{
                 background: "rgba(255,255,255,0.2)",
                 border: "1px solid rgba(255,255,255,0.3)",
@@ -390,7 +118,6 @@ export default function HomePage() {
                 padding: "10px 20px",
                 borderRadius: "25px",
                 cursor: "pointer",
-                position: "relative",
               }}
             >
               🛒 Cart ({cart.length})
@@ -406,8 +133,8 @@ export default function HomePage() {
           color: "white",
           padding: "100px 0",
           textAlign: "center",
-          position: "relative",
-          overflow: "hidden",
+          width: "100%",
+          boxSizing: "border-box",
         }}
       >
         <div
@@ -415,8 +142,8 @@ export default function HomePage() {
             maxWidth: "1200px",
             margin: "0 auto",
             padding: "0 20px",
-            position: "relative",
-            zIndex: "2",
+            width: "100%",
+            boxSizing: "border-box",
           }}
         >
           <h1
@@ -442,7 +169,12 @@ export default function HomePage() {
             vehicle in Kenya
           </p>
           <div
-            style={{ display: "flex", gap: "20px", justifyContent: "center" }}
+            style={{
+              display: "flex",
+              gap: "20px",
+              justifyContent: "center",
+              flexWrap: "wrap",
+            }}
           >
             <button
               style={{
@@ -454,7 +186,6 @@ export default function HomePage() {
                 fontSize: "18px",
                 fontWeight: "600",
                 cursor: "pointer",
-                boxShadow: "0 8px 25px rgba(247, 51, 18, 0.3)",
               }}
             >
               Shop Now
@@ -477,11 +208,13 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* Categories section */}
+      {/* Categories Section */}
       <section
         style={{
-          backgroundColor: "rgb(242, 242, 247)",
+          backgroundColor: "#f8f9fa",
           padding: "75px 0",
+          width: "100%",
+          boxSizing: "border-box",
         }}
       >
         <div
@@ -489,13 +222,14 @@ export default function HomePage() {
             maxWidth: "1200px",
             margin: "0 auto",
             padding: "0 20px",
+            width: "100%",
+            boxSizing: "border-box",
           }}
         >
           <h2
             style={{
               fontSize: "42px",
               fontWeight: "800",
-              lineHeight: "1.2",
               marginBottom: "35px",
               color: "#000000",
               textAlign: "center",
@@ -507,8 +241,9 @@ export default function HomePage() {
             style={{
               display: "grid",
               gridTemplateColumns: "repeat(auto-fit, minmax(200px, 1fr))",
-              gap: "30px",
-              justifyItems: "center",
+              gap: "20px",
+              width: "100%",
+              boxSizing: "border-box",
             }}
           >
             {[
@@ -547,76 +282,59 @@ export default function HomePage() {
                 key={index}
                 style={{
                   backgroundColor: "white",
-                  borderRadius: "5px",
-                  display: "flex",
-                  flexDirection: "column",
-                  marginBottom: "30px",
-                  paddingBottom: "25px",
-                  paddingLeft: "17px",
-                  paddingRight: "17px",
-                  paddingTop: "60px",
+                  borderRadius: "12px",
+                  padding: "30px 20px",
                   textAlign: "center",
                   transition: "all 0.3s ease",
-                  width: "100%",
                   cursor: "pointer",
                   border: "2px solid transparent",
+                  boxShadow: "0 4px 15px rgba(0,0,0,0.1)",
+                  width: "100%",
+                  boxSizing: "border-box",
                 }}
               >
-                <div
+                <img
+                  src={category.image}
+                  alt={category.name}
                   style={{
-                    alignItems: "center",
-                    display: "flex",
+                    width: "80px",
                     height: "60px",
-                    justifyContent: "center",
-                    marginBottom: "30px",
+                    objectFit: "contain",
+                    marginBottom: "20px",
+                  }}
+                />
+                <h3
+                  style={{
+                    fontSize: "16px",
+                    fontWeight: "600",
+                    color: "#333",
+                    margin: 0,
                   }}
                 >
-                  <img
-                    src={category.image}
-                    alt={category.name}
-                    width="107"
-                    height="71"
-                    style={{
-                      cursor: "pointer",
-                      marginLeft: "auto",
-                      marginRight: "auto",
-                      maxWidth: "114px",
-                      textAlign: "center",
-                      width: "107px",
-                    }}
-                  />
-                </div>
-                <div style={{ marginTop: "auto", textAlign: "center" }}>
-                  <h3
-                    style={{
-                      color: "#000000",
-                      fontSize: "14px",
-                      lineHeight: "1.7",
-                      textAlign: "center",
-                      margin: "0",
-                    }}
-                  >
-                    {category.name}
-                  </h3>
-                </div>
+                  {category.name}
+                </h3>
               </div>
             ))}
           </div>
         </div>
       </section>
 
-      {/* Essential Items for New Car */}
+      {/* Essential Items Section */}
       <section
         style={{
-          background: "#f8f9fa",
+          background: "white",
           padding: "80px 0",
+          width: "100%",
+          boxSizing: "border-box",
         }}
       >
         <div
           style={{
-            maxWidth: "100%",
+            maxWidth: "1200px",
             margin: "0 auto",
-            padding: "0",
+            padding: "0 20px",
+            width: "100%",
+            boxSizing: "border-box",
           }}
         >
           <h2
@@ -645,7 +363,9 @@ export default function HomePage() {
               display: "grid",
               gridTemplateColumns: "repeat(auto-fit, minmax(250px, 1fr))",
               gap: "20px",
-              padding: "0 20px",
+              width: "100%",
+              maxWidth: "100%",
+              boxSizing: "border-box",
             }}
           >
             {[
@@ -682,6 +402,8 @@ export default function HomePage() {
                   padding: "25px",
                   boxShadow: "0 8px 25px rgba(0,0,0,0.1)",
                   textAlign: "center",
+                  width: "100%",
+                  boxSizing: "border-box",
                 }}
               >
                 <div
@@ -736,18 +458,22 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* Best Seller */}
+      {/* Best Seller Section */}
       <section
         style={{
-          background: "white",
+          background: "#f8f9fa",
           padding: "80px 0",
+          width: "100%",
+          boxSizing: "border-box",
         }}
       >
         <div
           style={{
-            maxWidth: "100%",
+            maxWidth: "1200px",
             margin: "0 auto",
-            padding: "0",
+            padding: "0 20px",
+            width: "100%",
+            boxSizing: "border-box",
           }}
         >
           <h2
@@ -776,28 +502,15 @@ export default function HomePage() {
               display: "grid",
               gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))",
               gap: "20px",
-              padding: "0 20px",
+              width: "100%",
+              maxWidth: "100%",
+              boxSizing: "border-box",
             }}
           >
             {[
-              {
-                name: "RIDEX Oil Filter",
-                bestseller: true,
-                price: 1300,
-                originalPrice: 1500,
-              },
-              {
-                name: "NGK Spark Plugs",
-                bestseller: true,
-                price: 4600,
-                originalPrice: 5200,
-              },
-              {
-                name: "OSRAM Headlights",
-                bestseller: true,
-                price: 7500,
-                originalPrice: 8500,
-              },
+              { name: "RIDEX Oil Filter", price: 1300, originalPrice: 1500 },
+              { name: "NGK Spark Plugs", price: 4600, originalPrice: 5200 },
+              { name: "OSRAM Headlights", price: 7500, originalPrice: 8500 },
             ].map((item, index) => (
               <div
                 key={index}
@@ -808,6 +521,8 @@ export default function HomePage() {
                   boxShadow: "0 12px 30px rgba(0,0,0,0.1)",
                   position: "relative",
                   border: "1px solid #f1f2f6",
+                  width: "100%",
+                  boxSizing: "border-box",
                 }}
               >
                 <div
@@ -862,17 +577,15 @@ export default function HomePage() {
                     >
                       KES {item.price.toLocaleString()}
                     </span>
-                    {item.originalPrice && (
-                      <span
-                        style={{
-                          fontSize: "16px",
-                          color: "#999",
-                          textDecoration: "line-through",
-                        }}
-                      >
-                        KES {item.originalPrice.toLocaleString()}
-                      </span>
-                    )}
+                    <span
+                      style={{
+                        fontSize: "16px",
+                        color: "#999",
+                        textDecoration: "line-through",
+                      }}
+                    >
+                      KES {item.originalPrice.toLocaleString()}
+                    </span>
                   </div>
                   <button
                     style={{
@@ -896,18 +609,22 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* New Arrivals */}
+      {/* New Arrivals Section */}
       <section
         style={{
-          background: "#f8f9fa",
+          background: "white",
           padding: "80px 0",
+          width: "100%",
+          boxSizing: "border-box",
         }}
       >
         <div
           style={{
-            maxWidth: "100%",
+            maxWidth: "1200px",
             margin: "0 auto",
-            padding: "0",
+            padding: "0 20px",
+            width: "100%",
+            boxSizing: "border-box",
           }}
         >
           <h2
@@ -936,14 +653,16 @@ export default function HomePage() {
               display: "grid",
               gridTemplateColumns: "repeat(auto-fit, minmax(250px, 1fr))",
               gap: "20px",
-              padding: "0 20px",
+              width: "100%",
+              maxWidth: "100%",
+              boxSizing: "border-box",
             }}
           >
             {[
-              { name: "LED Headlight Kit", isNew: true, price: 12500 },
-              { name: "Performance Air Filter", isNew: true, price: 5800 },
-              { name: "Brake Disc Set", isNew: true, price: 9200 },
-              { name: "Cabin Filter", isNew: true, price: 2800 },
+              { name: "LED Headlight Kit", price: 12500 },
+              { name: "Performance Air Filter", price: 5800 },
+              { name: "Brake Disc Set", price: 9200 },
+              { name: "Cabin Filter", price: 2800 },
             ].map((item, index) => (
               <div
                 key={index}
@@ -954,6 +673,8 @@ export default function HomePage() {
                   boxShadow: "0 8px 25px rgba(0,0,0,0.1)",
                   textAlign: "center",
                   position: "relative",
+                  width: "100%",
+                  boxSizing: "border-box",
                 }}
               >
                 <div
@@ -1025,12 +746,13 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* Footer */}
-      <footer
+      {/* FEATURED PRODUCTS - EXACTLY 4 PRODUCTS, NO SCROLLING */}
+      <section
         style={{
-          background: "#1a1a1a",
-          color: "white",
-          padding: "80px 0 40px 0",
+          background: "#f8f9fa",
+          padding: "80px 0",
+          width: "100%",
+          boxSizing: "border-box",
         }}
       >
         <div
@@ -1038,6 +760,219 @@ export default function HomePage() {
             maxWidth: "1200px",
             margin: "0 auto",
             padding: "0 20px",
+            width: "100%",
+            boxSizing: "border-box",
+          }}
+        >
+          <h2
+            style={{
+              fontSize: "42px",
+              fontWeight: "800",
+              marginBottom: "20px",
+              color: "#2c3e50",
+              textAlign: "center",
+            }}
+          >
+            Featured Products
+          </h2>
+          <p
+            style={{
+              fontSize: "18px",
+              color: "#7f8c8d",
+              textAlign: "center",
+              marginBottom: "50px",
+            }}
+          >
+            Premium quality Nissan parts from trusted brands
+          </p>
+          <div
+            style={{
+              display: "grid",
+              gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))",
+              gap: "20px",
+              width: "100%",
+              maxWidth: "100%",
+              boxSizing: "border-box",
+            }}
+          >
+            {featuredProducts.map((product, index) => (
+              <div
+                key={index}
+                style={{
+                  background: "white",
+                  borderRadius: "16px",
+                  overflow: "hidden",
+                  boxShadow: "0 12px 30px rgba(0,0,0,0.1)",
+                  position: "relative",
+                  border: "1px solid #f1f2f6",
+                  width: "100%",
+                  boxSizing: "border-box",
+                }}
+              >
+                <div
+                  style={{
+                    position: "absolute",
+                    top: "15px",
+                    left: "15px",
+                    background:
+                      product.badge === "BEST SELLER"
+                        ? "#e74c3c"
+                        : product.badge === "TOP RATED"
+                          ? "#f39c12"
+                          : product.badge === "PREMIUM"
+                            ? "#9b59b6"
+                            : "#27ae60",
+                    color: "white",
+                    padding: "6px 12px",
+                    borderRadius: "20px",
+                    fontSize: "11px",
+                    fontWeight: "700",
+                    zIndex: "2",
+                  }}
+                >
+                  {product.badge}
+                </div>
+                <div
+                  style={{
+                    position: "absolute",
+                    top: "15px",
+                    right: "15px",
+                    background:
+                      product.stock > 10
+                        ? "#27ae60"
+                        : product.stock > 0
+                          ? "#f39c12"
+                          : "#e74c3c",
+                    color: "white",
+                    padding: "4px 8px",
+                    borderRadius: "12px",
+                    fontSize: "10px",
+                    fontWeight: "600",
+                    zIndex: "2",
+                  }}
+                >
+                  {product.stock > 10
+                    ? "In Stock"
+                    : product.stock > 0
+                      ? `${product.stock} Left`
+                      : "Out of Stock"}
+                </div>
+                <div
+                  style={{
+                    height: "200px",
+                    backgroundImage: `url(${product.image})`,
+                    backgroundSize: "cover",
+                    backgroundPosition: "center",
+                  }}
+                ></div>
+                <div style={{ padding: "25px" }}>
+                  <div
+                    style={{
+                      fontSize: "12px",
+                      color: "#666",
+                      textTransform: "uppercase",
+                      fontWeight: "600",
+                      marginBottom: "8px",
+                    }}
+                  >
+                    {product.category}
+                  </div>
+                  <h3
+                    style={{
+                      fontSize: "18px",
+                      fontWeight: "700",
+                      marginBottom: "8px",
+                      color: "#2c3e50",
+                    }}
+                  >
+                    {product.name}
+                  </h3>
+                  <p
+                    style={{
+                      fontSize: "14px",
+                      color: "#666",
+                      marginBottom: "5px",
+                    }}
+                  >
+                    Model: {product.model}
+                  </p>
+                  <p
+                    style={{
+                      fontSize: "12px",
+                      color: "#999",
+                      marginBottom: "15px",
+                    }}
+                  >
+                    SKU: {product.sku} | {product.description}
+                  </p>
+                  <div
+                    style={{
+                      display: "flex",
+                      alignItems: "center",
+                      gap: "10px",
+                      marginBottom: "20px",
+                    }}
+                  >
+                    <span
+                      style={{
+                        fontSize: "24px",
+                        fontWeight: "800",
+                        color: "#DC143C",
+                      }}
+                    >
+                      KES {product.price.toLocaleString()}
+                    </span>
+                    {product.originalPrice && (
+                      <span
+                        style={{
+                          fontSize: "16px",
+                          color: "#999",
+                          textDecoration: "line-through",
+                        }}
+                      >
+                        KES {product.originalPrice.toLocaleString()}
+                      </span>
+                    )}
+                  </div>
+                  <button
+                    style={{
+                      width: "100%",
+                      background: "#DC143C",
+                      color: "white",
+                      border: "none",
+                      padding: "15px",
+                      borderRadius: "8px",
+                      fontSize: "16px",
+                      fontWeight: "600",
+                      cursor: "pointer",
+                    }}
+                  >
+                    Add to Cart
+                  </button>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Footer */}
+      <footer
+        style={{
+          background: "#1a1a1a",
+          color: "white",
+          padding: "80px 0 40px 0",
+          width: "100%",
+          boxSizing: "border-box",
+        }}
+      >
+        <div
+          style={{
+            maxWidth: "1200px",
+            margin: "0 auto",
+            padding: "0 20px",
+            width: "100%",
+            boxSizing: "border-box",
           }}
         >
           <div
@@ -1056,41 +991,11 @@ export default function HomePage() {
                   marginBottom: "25px",
                 }}
               >
-                <div
-                  style={{
-                    background:
-                      "linear-gradient(135deg, rgb(247, 51, 18), rgb(220, 40, 15))",
-                    width: "50px",
-                    height: "50px",
-                    borderRadius: "12px",
-                    display: "flex",
-                    alignItems: "center",
-                    justifyContent: "center",
-                    fontSize: "24px",
-                    marginRight: "15px",
-                    color: "white",
-                    fontWeight: "bold",
-                  }}
-                >
-                  C
-                </div>
-                <div>
-                  <h3
-                    style={{
-                      fontSize: "28px",
-                      fontWeight: "800",
-                      margin: "0",
-                      color: "rgb(247, 51, 18)",
-                    }}
-                  >
-                    Catron Kenya
-                  </h3>
-                  <p
-                    style={{ fontSize: "12px", margin: "0", color: "#bdc3c7" }}
-                  >
-                    Premium Nissan Parts
-                  </p>
-                </div>
+                <img
+                  src="https://cdn.builder.io/api/v1/image/assets%2F8f459f15ef394aad9ce0a61c2623ab76%2Fa58133469a5d4546b773640e12edeb86?format=webp&width=800"
+                  alt="Catron Auto Parts - Happy car ownership"
+                  style={{ height: "50px", width: "auto" }}
+                />
               </div>
               <p
                 style={{
@@ -1104,7 +1009,6 @@ export default function HomePage() {
                 components specifically for Nissan vehicles.
               </p>
             </div>
-
             <div>
               <h4
                 style={{
@@ -1140,7 +1044,6 @@ export default function HomePage() {
                 </a>
               ))}
             </div>
-
             <div>
               <h4
                 style={{
@@ -1178,7 +1081,6 @@ export default function HomePage() {
               ))}
             </div>
           </div>
-
           <div
             style={{
               borderTop: "1px solid #333",
