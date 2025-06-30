@@ -1138,8 +1138,16 @@ export default function CatronHomePage() {
       </footer>
 
       <style jsx>{`
+        @import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap");
+
         .homepage {
-          font-family: Arial, sans-serif;
+          font-family:
+            "Inter",
+            -apple-system,
+            BlinkMacSystemFont,
+            "Segoe UI",
+            Roboto,
+            sans-serif;
           line-height: 1.6;
           color: #333;
         }
