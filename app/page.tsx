@@ -3078,8 +3078,8 @@ export default function BratorHomePage() {
             grid-template-columns: repeat(3, 1fr);
           }
 
-          .best-seller-product-card {
-            width: calc((100% - 40px) / 2);
+          .products-grid {
+            grid-template-columns: repeat(2, 1fr);
           }
 
           .essential-items-section {
