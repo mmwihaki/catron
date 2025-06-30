@@ -905,9 +905,9 @@ export default function CatronHomePage() {
           </div>
           <div className="footer-bottom">
             <p className="copyright">
-              © 2022{" "}
+              © 2024{" "}
               <a href="/" className="brand-link">
-                Brator Inc.
+                Catron Auto Parts
               </a>{" "}
               All Rights Reserved
             </p>
