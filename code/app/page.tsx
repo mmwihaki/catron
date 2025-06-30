@@ -2,7 +2,7 @@
 
 import React, { useState, useEffect } from "react";
 
-export default function CatronHomePage() {
+export default function HomePage() {
   const [searchCategory, setSearchCategory] = useState("All");
   const [searchQuery, setSearchQuery] = useState("");
   const [vehicleYear, setVehicleYear] = useState("");
