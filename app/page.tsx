@@ -3083,11 +3083,11 @@ export default function BratorHomePage() {
         }
 
         .carousel-prev {
-          left: -100px;
+          left: 10px;
         }
 
         .carousel-next {
-          right: -100px;
+          right: 10px;
         }
 
         .products-carousel-container {
