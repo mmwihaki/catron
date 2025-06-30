@@ -1019,51 +1019,18 @@ export default function HomePage() {
             width: "100%",
           }}
         >
-            <div
-              style={{
-                flexShrink: 0,
-                maxWidth: "100%",
-                paddingLeft: "12px",
-                paddingRight: "12px",
-                width: "100%",
-              }}
-            >
-              <div
-                style={{
-                  alignItems: "center",
-                  display: "flex",
-                  justifyContent: "center",
-                  marginBottom: "35px",
-                  width: "100%",
-                }}
-              >
-                <div>
-                  <h2
-                    style={{
-                      fontSize: "42px",
-                      fontWeight: "800",
-                      lineHeight: "1.2",
-                      marginRight: "35px",
-                      position: "relative",
-                      color: "#000000",
-                      textAlign: "center",
-                    }}
-                  >
-                    Shop by Categories
-                  </h2>
-                </div>
-              </div>
-            </div>
-
-            <div
-              style={{
-                flexShrink: 0,
-                maxWidth: "100%",
-                paddingLeft: "12px",
-                paddingRight: "12px",
-                width: "100%",
-              }}
-            >
+          <h2
+            style={{
+              fontSize: "42px",
+              fontWeight: "800",
+              lineHeight: "1.2",
+              marginBottom: "35px",
+              color: "#000000",
+              textAlign: "center",
+            }}
+          >
+            Shop by Categories
+          </h2>
               <div
                 style={{
                   display: "grid",
