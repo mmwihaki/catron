@@ -995,6 +995,48 @@ export default function CatronHomePage() {
         </div>
       </section>
 
+      {/* Newsletter Section */}
+      <section className="newsletter-section">
+        <div className="newsletter-container">
+          <div className="newsletter-content">
+            <div className="newsletter-text">
+              <h2 className="newsletter-title">Subscribe To Our Newsletter</h2>
+              <p className="newsletter-description">
+                Register now to get latest updates on promotions &amp; coupons.
+                Don't worry, we not spam!
+              </p>
+            </div>
+            <div className="newsletter-form-wrapper">
+              <form
+                className="newsletter-form"
+                action="/#newsletter"
+                method="post"
+              >
+                <div className="form-input-group">
+                  <input
+                    type="email"
+                    name="email"
+                    placeholder="Enter your email"
+                    className="newsletter-input"
+                    required
+                    aria-label="Email address"
+                  />
+                  <button type="submit" className="newsletter-submit">
+                    Subscribe
+                  </button>
+                </div>
+                <p className="newsletter-policy">
+                  <span>By subscribing, you accepted the our</span>
+                  <a href="/privacy-policy" className="policy-link">
+                    Policy
+                  </a>
+                </p>
+              </form>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* Footer */}
       <footer className="footer">
         <div className="footer-container">
