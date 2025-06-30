@@ -2998,10 +2998,8 @@ export default function BratorHomePage() {
         }
 
         .best-seller-product-card {
-          flex: 0 0 auto;
-          margin-right: 20px;
           position: relative;
-          width: calc((100% - 100px) / 4);
+          width: 100%;
         }
 
         /* New Arrivals Section */
