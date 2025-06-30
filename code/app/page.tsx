@@ -2980,6 +2980,8 @@ export default function CatronHomePage() {
           width: max-content;
           will-change: transform;
           transform: matrix(1, 0, 0, 1, 0, 0);
+          justify-content: center;
+          margin: 0 auto;
         }
 
         .product-card {
