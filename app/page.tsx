@@ -1345,6 +1345,11 @@ export default function BratorHomePage() {
                     </div>
                   ))}
                 </div>
+                <div className="view-more-container">
+                  <a href="/shop?search_type=parts" className="view-more-btn">
+                    View More Products
+                  </a>
+                </div>
               </div>
             </div>
           </div>
