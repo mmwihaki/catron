@@ -781,28 +781,7 @@ export default function CatronHomePage() {
           </div>
         </div>
       </section>
-          <div className="section-content">
-            <div className="section-header">
-              <div className="header-content">
-                <div>
-                  <h2 className="section-title">Essential Items for New Car</h2>
-                </div>
-                <a href="/shop" className="see-all-link">
-                  <span>See All Products</span>
-                  <svg
-                    width="16"
-                    height="16"
-                    fill="currentColor"
-                    viewBox="0 0 16 16"
-                  >
-                    <path
-                      fillRule="evenodd"
-                      d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708z"
-                    />
-                  </svg>
-                </a>
-              </div>
-            </div>
+
 
             <div className="products-carousel">
               <div className="carousel-container">
