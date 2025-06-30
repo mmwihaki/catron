@@ -2669,6 +2669,32 @@ export default function CatronHomePage() {
             height: 200px;
           }
 
+          .newsletter-content {
+            flex-direction: column;
+            gap: 30px;
+            text-align: center;
+          }
+
+          .newsletter-text,
+          .newsletter-form-wrapper {
+            width: 100%;
+            margin-left: 0;
+          }
+
+          .newsletter-title {
+            font-size: 24px;
+          }
+
+          .form-input-group {
+            flex-direction: column;
+            gap: 15px;
+          }
+
+          .newsletter-submit {
+            left: 0;
+            border-radius: 4px;
+          }
+
           .footer-main {
             flex-direction: column;
             gap: 40px;
