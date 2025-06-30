@@ -330,12 +330,15 @@ export default function CatronHomePage() {
       {/* Hero Section */}
       <section className="hero-section">
         <div className="hero-content">
-          <div className="hero-badge">NEW COLLECTION</div>
+          <div className="hero-badge">PREMIUM NISSAN PARTS</div>
           <h1 className="hero-title">
-            Find the Parts
+            Quality Parts for
             <br />
-            Your Car Needs
+            Your Nissan
           </h1>
+          <p className="hero-subtitle">
+            Premium OEM & Aftermarket Parts - Happy Car Ownership
+          </p>
         </div>
       </section>
 
