@@ -226,9 +226,11 @@ export default function HomePage() {
   };
 
   return (
-    <div className="homepage">
-      {/* Black Friday Banner */}
-      <div className="promo-banner">
+    <div>
+      <h1>Test Page</h1>
+    </div>
+  );
+}
         <div className="promo-content">
           <span className="promo-text">
             <span className="black-friday">SPECIAL OFFER</span> | Premium Nissan
