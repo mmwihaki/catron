@@ -184,20 +184,20 @@ export default function CatronHomePage() {
   };
 
   const categories = [
-    "Home & Garden",
-    "Men's Fashion",
-    "Women's Fashion",
-    "Kid's Fashion",
-    "Sports & Entertainment",
-    "Computer, Office & Security",
-    "Consumer Electronics",
-    "Jewelry & Watches",
-    "Automobiles & Motorcycles",
-    "Home Improvement",
-    "Appliances",
-    "Weddings & Events",
-    "Shoes",
-    "Mother & Kids",
+    "Engine Parts",
+    "Air Filters",
+    "Oil Filters",
+    "Cabin Filters",
+    "Spark Plugs",
+    "Brake System",
+    "Suspension",
+    "Exhaust System",
+    "Electrical",
+    "Cooling System",
+    "Transmission",
+    "Headlight Bulbs",
+    "Exterior Parts",
+    "Interior Parts",
   ];
 
   const navLinks = [
