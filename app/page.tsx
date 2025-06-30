@@ -3131,6 +3131,10 @@ export default function BratorHomePage() {
             grid-template-columns: 1fr;
           }
 
+          .products-grid {
+            grid-template-columns: 1fr;
+          }
+
           .makes-grid,
           .models-grid {
             grid-template-columns: repeat(2, 1fr);
