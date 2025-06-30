@@ -1695,7 +1695,8 @@ export default function HomePage() {
             style={{
               display: "grid",
               gridTemplateColumns: "repeat(auto-fit, minmax(250px, 1fr))",
-              gap: "30px",
+              gap: "20px",
+              padding: "0 20px",
             }}
           >
             {[
@@ -1985,7 +1986,8 @@ export default function HomePage() {
             style={{
               display: "grid",
               gridTemplateColumns: "repeat(auto-fit, minmax(250px, 1fr))",
-              gap: "30px",
+              gap: "20px",
+              padding: "0 20px",
             }}
           >
             {[
