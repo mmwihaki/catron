@@ -1,56 +1,553 @@
 "use client";
 
-import React from "react";
+import React, { useState, useEffect } from "react";
 
-export default function HomePage() {
+export default function CatronHomePage() {
+  const [searchCategory, setSearchCategory] = useState("All");
+  const [searchQuery, setSearchQuery] = useState("");
+  const [vehicleYear, setVehicleYear] = useState("");
+  const [vehicleBrand, setVehicleBrand] = useState("Nissan");
+  const [vehicleModel, setVehicleModel] = useState("");
+  const [vehicleEngine, setVehicleEngine] = useState("");
+  const [vehicleFuelType, setVehicleFuelType] = useState("");
+  const [cartItems, setCartItems] = useState(0);
+  const [activeTab, setActiveTab] = useState("models");
+  const [showMoreMakes, setShowMoreMakes] = useState(false);
+  const [showMoreModels, setShowMoreModels] = useState(false);
+  const [showMoreCategories, setShowMoreCategories] = useState(false);
+
+  const nissanMakes = ["Nissan"];
+
+  const nissanModels = [
+    {
+      name: "Note",
+      generations: ["E11", "E12 DIG-S", "E12 e-Power", "E12 Puredrive", "E12"],
+    },
+    { name: "Sylphy", generations: ["B17"] },
+    { name: "Serena", generations: ["C27 e-Power", "C25"] },
+    { name: "AdVan", generations: ["Y12"] },
+    { name: "Wingroad", generations: ["Y12"] },
+    { name: "NV200 Vanette", generations: ["M20"] },
+    { name: "Kicks", generations: ["D15 e-Power"] },
+    { name: "X-Trail", generations: ["T31", "T32"] },
+    { name: "March", generations: ["K13", "K12"] },
+    { name: "Tiida", generations: ["C11"] },
+    { name: "TiidaLatio", generations: ["SC11"] },
+    { name: "Latio", generations: ["N17"] },
+    { name: "Bluebird Sylphy", generations: ["G11"] },
+    { name: "Dualis", generations: ["J10"] },
+    { name: "Teana", generations: ["J32", "L33"] },
+    { name: "NV350 Caravan", generations: ["E26"] },
+    { name: "Elgrand", generations: ["E52"] },
+    { name: "Murano", generations: ["Z50"] },
+    { name: "Lafesta", generations: ["B30"] },
+    { name: "Juke", generations: ["F15"] },
+    { name: "Cube", generations: ["Z11", "Z12"] },
+  ];
+
+  const engineSpecs = {
+    HR12DDR: "1198cc",
+    HR13DE: "1329cc",
+    HR15DE: "1498cc",
+    HR16DE: "1597cc",
+    HR16DDR: "1597cc Turbo",
+    QR25DE: "2488cc",
+    VQ25DE: "2495cc",
+    VQ35DE: "3498cc",
+    VQ37VHR: "3696cc",
+  };
+
+  const essentialProducts = [
+    {
+      id: 1,
+      name: "KAVO Cabin Filter",
+      category: "Air Filters",
+      image:
+        "https://images.pexels.com/photos/3642618/pexels-photo-3642618.jpeg?auto=compress&cs=tinysrgb&w=300",
+      price: 2500,
+      originalPrice: 3000,
+      rating: 4.5,
+      reviews: 12,
+      link: "https://www.trodo.com/air-filter-cabin-kavo-dcf-1023",
+    },
+    {
+      id: 2,
+      name: "KAVO Cabin Filter Premium",
+      category: "Air Filters",
+      image:
+        "https://images.pexels.com/photos/5835359/pexels-photo-5835359.jpeg?auto=compress&cs=tinysrgb&w=300",
+      price: 3200,
+      originalPrice: 3800,
+      rating: 4.7,
+      reviews: 8,
+      link: "https://www.trodo.com/air-filter-cabin-kavo-dcf-1024k",
+    },
+    {
+      id: 3,
+      name: "OSRAM Night Breaker 200 H4",
+      category: "Headlight Bulbs",
+      image:
+        "https://images.pexels.com/photos/162553/keys-workshop-mechanic-tools-162553.jpeg?auto=compress&cs=tinysrgb&w=300",
+      price: 4500,
+      rating: 4.9,
+      reviews: 15,
+      link: "https://www.osram.com/ecat/NIGHT%20BREAKER%20200-Halogen%20headlight%20lamps-Car%20lighting-Automotive/com/en/GPS01_3495633/ZMP_4062357/",
+    },
+    {
+      id: 4,
+      name: "NGK Spark Plug DIG-S",
+      category: "Spark Plugs",
+      image:
+        "https://images.pexels.com/photos/190570/pexels-photo-190570.jpeg?auto=compress&cs=tinysrgb&w=600",
+      price: 1800,
+      rating: 4.6,
+      reviews: 20,
+      link: "https://www.sparkplugs.co.uk/ngk-spark-plug-dilkar7e11hs-97439",
+    },
+  ];
+
+  const renderStars = (rating) => {
+    const stars = [];
+    const fullStars = Math.floor(rating);
+    const hasHalfStar = rating % 1 !== 0;
+
+    for (let i = 0; i < 5; i++) {
+      if (i < fullStars) {
+        stars.push("★");
+      } else if (i === fullStars && hasHalfStar) {
+        stars.push("☆");
+      } else {
+        stars.push("☆");
+      }
+    }
+    return stars.join("");
+  };
+
+  const categories = [
+    "Engine Parts",
+    "Air Filters",
+    "Oil Filters",
+    "Cabin Filters",
+    "Spark Plugs",
+    "Brake System",
+    "Suspension",
+    "Exhaust System",
+    "Electrical",
+    "Cooling System",
+    "Transmission",
+    "Headlight Bulbs",
+    "Exterior Parts",
+    "Interior Parts",
+  ];
+
+  const navLinks = [
+    "Home",
+    "Shop",
+    "Product",
+    "Vendor",
+    "Mega Menu",
+    "Blog",
+    "Pages",
+    "Contact Us",
+  ];
+
+  const handleSearch = () => {
+    console.log("Searching for:", searchQuery, "in category:", searchCategory);
+  };
+
+  const handleVehicleSearch = () => {
+    console.log("Vehicle search:", {
+      year: vehicleYear,
+      brand: vehicleBrand,
+      model: vehicleModel,
+      engine: vehicleEngine,
+      fuelType: vehicleFuelType,
+    });
+  };
+
   return (
     <div className="homepage">
-      <header className="header">
-        <div className="container">
-          <h1>Brator Auto Parts</h1>
-          <p>Premium Nissan Parts & Accessories</p>
+      {/* Black Friday Banner */}
+      <div className="promo-banner">
+        <div className="promo-content">
+          <span className="promo-text">
+            <span className="black-friday">SPECIAL OFFER</span> | Premium Auto
+            Parts
+            <span className="discount">Quality Guaranteed</span> | Free shipping
+            on orders over <span className="promo-code">KES 5,000</span>
+          </span>
+          <div className="language-selector">
+            Language: <span className="current-lang">EN</span> ▼
+          </div>
+        </div>
+      </div>
+
+      {/* Main Header */}
+      <header className="main-header">
+        <div className="header-container">
+          <div className="logo">
+            <img
+              src="https://images.pexels.com/photos/3642618/pexels-photo-3642618.jpeg?auto=compress&cs=tinysrgb&w=100&h=50"
+              alt="Catron Auto Parts"
+              className="logo-image"
+            />
+            <span className="logo-text">CATRON</span>
+          </div>
+
+          <div className="search-section">
+            <div className="search-bar">
+              <select className="search-category">
+                <option value="All">All Categories</option>
+                {categories.map((cat) => (
+                  <option key={cat} value={cat}>
+                    {cat}
+                  </option>
+                ))}
+              </select>
+              <input
+                type="text"
+                placeholder="Search for products..."
+                className="search-input"
+                value={searchQuery}
+                onChange={(e) => setSearchQuery(e.target.value)}
+              />
+              <button className="search-button" onClick={handleSearch}>
+                🔍
+              </button>
+            </div>
+          </div>
+
+          <div className="header-actions">
+            <div className="action-item">
+              <span className="action-icon">💗</span>
+              <span className="action-text">Wishlist</span>
+            </div>
+            <div className="action-item">
+              <span className="action-icon">🛒</span>
+              <span className="action-text">Cart ({cartItems})</span>
+            </div>
+            <div className="action-item">
+              <span className="action-icon">👤</span>
+              <span className="action-text">Sign In</span>
+            </div>
+          </div>
         </div>
       </header>
 
-      <main className="main-content">
-        <section className="hero">
-          <div className="container">
-            <h2>Quality Auto Parts for Your Vehicle</h2>
-            <p>
-              Find the perfect parts for your car with our comprehensive
-              selection.
-            </p>
+      {/* Navigation */}
+      <nav className="main-navigation">
+        <div className="nav-container">
+          <div className="categories-dropdown">
+            <button className="categories-btn">☰ All Categories</button>
           </div>
-        </section>
 
-        <section className="featured-products">
-          <div className="container">
-            <h2>Featured Products</h2>
-            <div className="products-grid">
-              <div className="product-card">
-                <h3>Premium Air Filter</h3>
-                <p>High-quality air filter for optimal engine performance</p>
-                <span className="price">$25.99</span>
-              </div>
-              <div className="product-card">
-                <h3>Brake Pads Set</h3>
-                <p>Reliable brake pads for safe driving</p>
-                <span className="price">$89.99</span>
-              </div>
-              <div className="product-card">
-                <h3>Oil Filter</h3>
-                <p>Professional grade oil filter</p>
-                <span className="price">$15.99</span>
-              </div>
-              <div className="product-card">
-                <h3>Spark Plugs</h3>
-                <p>High-performance spark plugs set</p>
-                <span className="price">$45.99</span>
-              </div>
+          <div className="nav-links">
+            {navLinks.map((link) => (
+              <a
+                key={link}
+                href={`#${link.toLowerCase()}`}
+                className="nav-link"
+              >
+                {link}
+              </a>
+            ))}
+          </div>
+
+          <div className="nav-actions">
+            <a href="#order-tracking" className="nav-action">
+              Order Tracking
+            </a>
+            <a href="#compare" className="nav-action">
+              Compare (0)
+            </a>
+          </div>
+        </div>
+      </nav>
+
+      {/* Hero Section */}
+      <section className="hero-section">
+        <div className="hero-content">
+          <div className="hero-badge">PREMIUM AUTO PARTS</div>
+          <h1 className="hero-title">
+            Quality Parts for
+            <br />
+            Your Vehicle
+          </h1>
+          <p className="hero-subtitle">
+            Find OEM and aftermarket parts for all vehicle makes and models
+          </p>
+
+          <div className="vehicle-search-form">
+            <h3>Search by Vehicle</h3>
+            <div className="form-row">
+              <select
+                value={vehicleYear}
+                onChange={(e) => setVehicleYear(e.target.value)}
+              >
+                <option value="">Select Year</option>
+                {Array.from({ length: 25 }, (_, i) => {
+                  const year = new Date().getFullYear() - i;
+                  return (
+                    <option key={year} value={year}>
+                      {year}
+                    </option>
+                  );
+                })}
+              </select>
+
+              <select
+                value={vehicleBrand}
+                onChange={(e) => setVehicleBrand(e.target.value)}
+              >
+                <option value="">Select Brand</option>
+                <option value="Nissan">Nissan</option>
+                <option value="Toyota">Toyota</option>
+                <option value="Honda">Honda</option>
+                <option value="Mazda">Mazda</option>
+                <option value="Subaru">Subaru</option>
+              </select>
+
+              <select
+                value={vehicleModel}
+                onChange={(e) => setVehicleModel(e.target.value)}
+              >
+                <option value="">Select Model</option>
+                {nissanModels.map((model) => (
+                  <option key={model.name} value={model.name}>
+                    {model.name}
+                  </option>
+                ))}
+              </select>
+
+              <select
+                value={vehicleEngine}
+                onChange={(e) => setVehicleEngine(e.target.value)}
+              >
+                <option value="">Select Engine</option>
+                {Object.entries(engineSpecs).map(([code, spec]) => (
+                  <option key={code} value={code}>
+                    {code} - {spec}
+                  </option>
+                ))}
+              </select>
+
+              <select
+                value={vehicleFuelType}
+                onChange={(e) => setVehicleFuelType(e.target.value)}
+              >
+                <option value="">Fuel Type</option>
+                <option value="Petrol">Petrol</option>
+                <option value="Diesel">Diesel</option>
+                <option value="Hybrid">Hybrid</option>
+                <option value="Electric">Electric</option>
+              </select>
+
+              <button
+                className="search-submit-btn"
+                onClick={handleVehicleSearch}
+              >
+                Search Parts
+              </button>
             </div>
           </div>
-        </section>
-      </main>
+        </div>
+      </section>
+
+      {/* Categories Section */}
+      <section className="categories-section">
+        <div className="categories-container">
+          <h2 className="section-title">Shop by Categories</h2>
+          <div className="categories-grid">
+            {[
+              {
+                name: "Engine Parts",
+                image:
+                  "https://images.pexels.com/photos/3642618/pexels-photo-3642618.jpeg?auto=compress&cs=tinysrgb&w=300",
+                count: "245 Products",
+              },
+              {
+                name: "Air Filters",
+                image:
+                  "https://images.pexels.com/photos/5835359/pexels-photo-5835359.jpeg?auto=compress&cs=tinysrgb&w=300",
+                count: "189 Products",
+              },
+              {
+                name: "Oil Filters",
+                image:
+                  "https://images.pexels.com/photos/190570/pexels-photo-190570.jpeg?auto=compress&cs=tinysrgb&w=300",
+                count: "167 Products",
+              },
+              {
+                name: "Brake System",
+                image:
+                  "https://images.pexels.com/photos/162553/keys-workshop-mechanic-tools-162553.jpeg?auto=compress&cs=tinysrgb&w=300",
+                count: "234 Products",
+              },
+              {
+                name: "Suspension",
+                image:
+                  "https://images.pexels.com/photos/244824/pexels-photo-244824.jpeg?auto=compress&cs=tinysrgb&w=300",
+                count: "145 Products",
+              },
+              {
+                name: "Electrical",
+                image:
+                  "https://images.pexels.com/photos/13065690/pexels-photo-13065690.jpeg?auto=compress&cs=tinysrgb&w=300",
+                count: "267 Products",
+              },
+            ]
+              .slice(0, showMoreCategories ? 6 : 4)
+              .map((category, index) => (
+                <div key={index} className="category-card">
+                  <a
+                    href={`#category-${category.name.toLowerCase().replace(/\s+/g, "-")}`}
+                    className="category-link"
+                  >
+                    <div className="category-image">
+                      <img src={category.image} alt={category.name} />
+                    </div>
+                    <div className="category-info">
+                      <h3 className="category-name">{category.name}</h3>
+                      <p className="category-count">{category.count}</p>
+                    </div>
+                  </a>
+                </div>
+              ))}
+          </div>
+          <div className="load-more-container">
+            <button
+              className="load-more-button"
+              onClick={() => setShowMoreCategories(!showMoreCategories)}
+            >
+              {showMoreCategories ? "Show Less" : "Load More"}
+            </button>
+          </div>
+        </div>
+      </section>
+
+      {/* Essential Items for New Car Section */}
+      <section className="essential-items-section">
+        <div className="essential-items-container">
+          <div className="essential-items-header">
+            <div className="header-content">
+              <h2 className="essential-items-title">
+                Essential Items for New Car
+              </h2>
+              <a href="/shop?search_type=parts" className="see-all-link">
+                <span>View More Products</span>
+                <i className="fas fa-chevron-right"></i>
+              </a>
+            </div>
+          </div>
+
+          <div className="products-static-grid">
+            <div className="products-grid-container">
+              {essentialProducts.map((product) => (
+                <div key={product.id} className="product-card">
+                  <div className="product-card-inner">
+                    {product.originalPrice && (
+                      <div className="product-discount-badge">
+                        {Math.round(
+                          ((product.originalPrice - product.price) /
+                            product.originalPrice) *
+                            100,
+                        )}
+                        % OFF
+                      </div>
+                    )}
+
+                    <div className="product-image-container">
+                      <a href={product.link} className="product-image-link">
+                        <img
+                          src={product.image}
+                          alt={product.name}
+                          className="product-image"
+                          loading="lazy"
+                          width="225"
+                          height="225"
+                        />
+                      </a>
+                    </div>
+
+                    <div className="product-info">
+                      <div className="product-category">
+                        <a
+                          href={`#category-${product.category.toLowerCase().replace(/\s+/g, "-")}`}
+                          className="category-link"
+                        >
+                          {product.category}
+                        </a>
+                      </div>
+
+                      <div className="product-name">
+                        <h5>
+                          <a href={product.link} className="product-name-link">
+                            {product.name}
+                          </a>
+                        </h5>
+                      </div>
+
+                      <div className="product-rating">
+                        <div className="rating-stars">
+                          <div
+                            className="stars"
+                            title={`Rated ${product.rating} out of 5`}
+                          >
+                            <span className="star-display">
+                              {renderStars(product.rating)}
+                            </span>
+                            <span className="rating-text">
+                              Rated <strong>{product.rating.toFixed(2)}</strong>{" "}
+                              out of 5
+                            </span>
+                          </div>
+                        </div>
+                        <div className="reviews-count">
+                          <p>
+                            {product.reviews} Review
+                            {product.reviews !== 1 ? "s" : ""}
+                          </p>
+                        </div>
+                      </div>
+
+                      <div className="product-price">
+                        <p className="price-container">
+                          {product.originalPrice && (
+                            <del className="original-price">
+                              <span>
+                                <span className="currency">KES </span>
+                                <span>
+                                  {product.originalPrice.toLocaleString()}
+                                </span>
+                              </span>
+                            </del>
+                          )}
+                          <span
+                            className={
+                              product.originalPrice
+                                ? "sale-price"
+                                : "regular-price"
+                            }
+                          >
+                            <span className="currency">KES </span>
+                            <span>{product.price.toLocaleString()}</span>
+                          </span>
+                        </p>
+                      </div>
+
+                      <div className="product-actions">
+                        <a href={product.link} className="add-to-cart-btn">
+                          Add to cart
+                        </a>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      </section>
 
       <style jsx>{`
         .homepage {
@@ -59,71 +556,406 @@ export default function HomePage() {
           color: #333;
         }
 
-        .container {
+        /* Promo Banner */
+        .promo-banner {
+          background-color: rgb(30, 30, 31);
+          color: white;
+          padding: 10px 0;
+          font-size: 14px;
+        }
+
+        .promo-content {
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
           max-width: 1200px;
           margin: 0 auto;
           padding: 0 20px;
         }
 
-        .header {
-          background-color: #f73312;
+        .black-friday {
+          color: rgb(247, 51, 18);
+          font-weight: bold;
+        }
+        .discount {
+          color: rgb(247, 51, 18);
+          font-weight: bold;
+        }
+        .promo-code {
+          color: rgb(247, 51, 18);
+          font-weight: bold;
+        }
+
+        /* Main Header */
+        .main-header {
+          background-color: rgb(38, 38, 39);
           color: white;
-          padding: 60px 0;
-          text-align: center;
+          padding: 15px 0;
         }
 
-        .header h1 {
-          font-size: 3rem;
-          margin-bottom: 10px;
+        .header-container {
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          max-width: 1200px;
+          margin: 0 auto;
+          padding: 0 20px;
+          gap: 30px;
         }
 
-        .header p {
-          font-size: 1.2rem;
-          opacity: 0.9;
+        .logo {
+          display: flex;
+          align-items: center;
+          gap: 10px;
         }
 
-        .hero {
-          padding: 80px 0;
-          background-color: #f8f9fa;
-          text-align: center;
+        .logo-image {
+          width: 40px;
+          height: 40px;
+          border-radius: 4px;
+        }
+        .logo-text {
+          font-size: 24px;
+          font-weight: bold;
+          color: rgb(247, 51, 18);
         }
 
-        .hero h2 {
-          font-size: 2.5rem;
-          margin-bottom: 20px;
+        .search-section {
+          flex: 1;
+          max-width: 500px;
+        }
+
+        .search-bar {
+          display: flex;
+          background: white;
+          border-radius: 4px;
+          overflow: hidden;
+        }
+
+        .search-category {
+          padding: 10px;
+          border: none;
+          background: rgb(242, 242, 247);
           color: #333;
         }
 
-        .hero p {
-          font-size: 1.1rem;
-          color: #666;
+        .search-input {
+          flex: 1;
+          padding: 10px;
+          border: none;
+          outline: none;
         }
 
-        .featured-products {
+        .search-button {
+          padding: 10px 15px;
+          background: rgb(247, 51, 18);
+          color: white;
+          border: none;
+          cursor: pointer;
+        }
+
+        .header-actions {
+          display: flex;
+          gap: 20px;
+        }
+
+        .action-item {
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          cursor: pointer;
+          font-size: 12px;
+        }
+
+        .action-icon {
+          font-size: 18px;
+          margin-bottom: 2px;
+        }
+
+        /* Navigation */
+        .main-navigation {
+          background-color: rgb(42, 42, 43);
+          color: white;
+          padding: 0;
+        }
+
+        .nav-container {
+          display: flex;
+          align-items: center;
+          max-width: 1200px;
+          margin: 0 auto;
+          padding: 0 20px;
+        }
+
+        .categories-btn {
+          background: rgb(247, 51, 18);
+          color: white;
+          border: none;
+          padding: 15px 20px;
+          cursor: pointer;
+          font-weight: 600;
+        }
+
+        .nav-links {
+          display: flex;
+          gap: 30px;
+          margin-left: 30px;
+          flex: 1;
+        }
+
+        .nav-link {
+          color: white;
+          text-decoration: none;
+          padding: 15px 0;
+          font-size: 14px;
+          font-weight: 600;
+        }
+
+        .nav-link:hover {
+          color: rgb(247, 51, 18);
+        }
+
+        .nav-actions {
+          display: flex;
+          gap: 20px;
+        }
+
+        .nav-action {
+          color: white;
+          text-decoration: none;
+          font-size: 12px;
+        }
+
+        /* Hero Section */
+        .hero-section {
+          background: linear-gradient(
+            135deg,
+            rgb(247, 51, 18) 0%,
+            rgb(220, 40, 15) 100%
+          );
+          color: white;
           padding: 80px 0;
+          text-align: center;
         }
 
-        .featured-products h2 {
+        .hero-content {
+          max-width: 1200px;
+          margin: 0 auto;
+          padding: 0 20px;
+        }
+
+        .hero-badge {
+          background: rgba(255, 255, 255, 0.2);
+          display: inline-block;
+          padding: 8px 16px;
+          border-radius: 20px;
+          margin-bottom: 20px;
+          font-size: 14px;
+          font-weight: 600;
+        }
+
+        .hero-title {
+          font-size: 60px;
+          font-weight: 800;
+          margin-bottom: 20px;
+          line-height: 1.1;
+        }
+
+        .hero-subtitle {
+          font-size: 18px;
+          margin-bottom: 40px;
+          opacity: 0.9;
+        }
+
+        /* Vehicle Search Form */
+        .vehicle-search-form {
+          background: white;
+          border-radius: 8px;
+          padding: 30px;
+          color: #333;
+          max-width: 800px;
+          margin: 0 auto;
+        }
+
+        .vehicle-search-form h3 {
+          margin-bottom: 20px;
+          color: rgb(247, 51, 18);
+          font-size: 20px;
+        }
+
+        .form-row {
+          display: grid;
+          grid-template-columns: repeat(3, 1fr);
+          gap: 15px;
+        }
+
+        .form-row select {
+          padding: 12px;
+          border: 1px solid #ddd;
+          border-radius: 4px;
+          font-size: 14px;
+        }
+
+        .search-submit-btn {
+          grid-column: span 3;
+          background: rgb(247, 51, 18);
+          color: white;
+          border: none;
+          padding: 15px;
+          border-radius: 4px;
+          font-size: 16px;
+          font-weight: 600;
+          cursor: pointer;
+          margin-top: 10px;
+        }
+
+        .search-submit-btn:hover {
+          background: rgb(220, 40, 15);
+        }
+
+        /* Categories Section */
+        .categories-section {
+          padding: 65px 0;
+          background: white;
+        }
+
+        .categories-container {
+          max-width: 1200px;
+          margin: 0 auto;
+          padding: 0 20px;
+        }
+
+        .section-title {
+          font-size: 35px;
+          font-weight: 700;
           text-align: center;
-          font-size: 2.2rem;
           margin-bottom: 50px;
           color: #333;
         }
 
-        .products-grid {
+        .categories-grid {
           display: grid;
           grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
           gap: 30px;
+          margin-bottom: 40px;
+        }
+
+        .category-card {
+          background: white;
+          border-radius: 8px;
+          box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+          overflow: hidden;
+          transition: transform 0.3s ease;
+        }
+
+        .category-card:hover {
+          transform: translateY(-5px);
+        }
+
+        .category-link {
+          text-decoration: none;
+          color: inherit;
+          display: block;
+        }
+
+        .category-image {
+          height: 200px;
+          overflow: hidden;
+        }
+
+        .category-image img {
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+        }
+
+        .category-info {
+          padding: 20px;
+          text-align: center;
+        }
+
+        .category-name {
+          font-size: 18px;
+          font-weight: 600;
+          margin-bottom: 5px;
+          color: #333;
+        }
+
+        .category-count {
+          color: #666;
+          font-size: 14px;
+        }
+
+        .load-more-container {
+          text-align: center;
+        }
+
+        .load-more-button {
+          background: rgb(247, 51, 18);
+          color: white;
+          border: none;
+          padding: 12px 30px;
+          border-radius: 4px;
+          cursor: pointer;
+          font-weight: 600;
+        }
+
+        /* Essential Items Section */
+        .essential-items-section {
+          background: rgb(242, 242, 247);
+          padding: 65px 0;
+        }
+
+        .essential-items-container {
+          max-width: 1200px;
+          margin: 0 auto;
+          padding: 0 20px;
+        }
+
+        .essential-items-header {
+          margin-bottom: 40px;
+        }
+
+        .header-content {
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+        }
+
+        .essential-items-title {
+          font-size: 30px;
+          font-weight: 700;
+          color: #333;
+          margin: 0;
+        }
+
+        .see-all-link {
+          color: rgb(247, 51, 18);
+          text-decoration: none;
+          font-weight: 600;
+          display: flex;
+          align-items: center;
+          gap: 5px;
+        }
+
+        .products-static-grid {
+          position: relative;
+        }
+
+        .products-grid-container {
+          display: grid;
+          grid-template-columns: repeat(4, 1fr);
+          gap: 20px;
           max-width: 1200px;
           margin: 0 auto;
         }
 
         .product-card {
+          position: relative;
           background: white;
-          padding: 30px;
           border-radius: 8px;
+          overflow: hidden;
           box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-          text-align: center;
           transition: transform 0.3s ease;
         }
 
@@ -131,39 +963,219 @@ export default function HomePage() {
           transform: translateY(-5px);
         }
 
-        .product-card h3 {
-          font-size: 1.3rem;
+        .product-card-inner {
+          padding: 20px;
+          position: relative;
+          height: 100%;
+        }
+
+        .product-discount-badge {
+          position: absolute;
+          top: 10px;
+          right: 10px;
+          background: rgb(247, 51, 18);
+          color: white;
+          padding: 5px 8px;
+          border-radius: 3px;
+          font-size: 12px;
+          font-weight: 600;
+          z-index: 1;
+        }
+
+        .product-image-container {
           margin-bottom: 15px;
-          color: #333;
+          text-align: center;
         }
 
-        .product-card p {
+        .product-image {
+          width: 100%;
+          height: 200px;
+          object-fit: cover;
+          border-radius: 4px;
+        }
+
+        .product-category {
+          margin-bottom: 8px;
+        }
+
+        .category-link {
           color: #666;
-          margin-bottom: 20px;
+          text-decoration: none;
+          font-size: 12px;
+          text-transform: uppercase;
         }
 
-        .price {
-          font-size: 1.5rem;
-          font-weight: bold;
-          color: #f73312;
+        .product-name {
+          margin-bottom: 10px;
+        }
+
+        .product-name h5 {
+          margin: 0;
+          font-size: 16px;
+          line-height: 1.3;
+        }
+
+        .product-name-link {
+          color: #333;
+          text-decoration: none;
+        }
+
+        .product-name-link:hover {
+          color: rgb(247, 51, 18);
+        }
+
+        .product-rating {
+          display: flex;
+          align-items: center;
+          gap: 10px;
+          margin-bottom: 10px;
+        }
+
+        .rating-stars {
+          position: relative;
+        }
+
+        .stars {
+          color: rgb(255, 186, 0);
+          font-size: 14px;
+        }
+
+        .star-display {
+          color: rgb(255, 186, 0);
+        }
+
+        .rating-text {
+          position: absolute;
+          left: -10000px;
+          width: 1px;
+          height: 1px;
+          overflow: hidden;
+        }
+
+        .reviews-count p {
+          margin: 0;
+          font-size: 12px;
+          color: #666;
+        }
+
+        .product-price {
+          margin-bottom: 15px;
+        }
+
+        .price-container {
+          margin: 0;
+          display: flex;
+          align-items: center;
+          gap: 10px;
+        }
+
+        .original-price {
+          color: #999;
+          font-size: 14px;
+          text-decoration: line-through;
+        }
+
+        .sale-price,
+        .regular-price {
+          color: rgb(247, 51, 18);
+          font-size: 18px;
+          font-weight: 600;
+        }
+
+        .currency {
+          color: inherit;
+        }
+
+        .product-actions {
+          margin-top: 15px;
+        }
+
+        .add-to-cart-btn {
+          background: rgb(247, 51, 18);
+          color: white;
+          border: none;
+          padding: 10px 20px;
+          border-radius: 4px;
+          cursor: pointer;
+          font-weight: 600;
+          text-decoration: none;
+          display: inline-block;
+          width: 100%;
+          text-align: center;
+          transition: background 0.3s ease;
+        }
+
+        .add-to-cart-btn:hover {
+          background: rgb(220, 40, 15);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 1024px) {
+          .form-row {
+            grid-template-columns: repeat(2, 1fr);
+          }
+
+          .search-submit-btn {
+            grid-column: span 2;
+          }
+
+          .products-grid-container {
+            grid-template-columns: repeat(2, 1fr);
+          }
+
+          .categories-grid {
+            grid-template-columns: repeat(2, 1fr);
+          }
         }
 
         @media (max-width: 768px) {
-          .header h1 {
-            font-size: 2rem;
+          .header-container {
+            flex-wrap: wrap;
+            gap: 15px;
           }
 
-          .hero h2 {
-            font-size: 2rem;
+          .search-section {
+            order: 3;
+            width: 100%;
+            max-width: none;
           }
 
-          .products-grid {
+          .nav-container {
+            flex-wrap: wrap;
+            gap: 15px;
+          }
+
+          .nav-links {
+            order: 3;
+            width: 100%;
+            justify-content: center;
+          }
+
+          .hero-title {
+            font-size: 36px;
+          }
+
+          .form-row {
             grid-template-columns: 1fr;
-            gap: 20px;
           }
 
-          .container {
-            padding: 0 15px;
+          .search-submit-btn {
+            grid-column: span 1;
+          }
+
+          .categories-grid,
+          .products-grid-container {
+            grid-template-columns: 1fr;
+          }
+
+          .header-content {
+            flex-direction: column;
+            gap: 15px;
+            text-align: center;
+          }
+
+          .essential-items-title {
+            font-size: 24px;
           }
         }
       `}</style>
