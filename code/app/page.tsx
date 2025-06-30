@@ -231,9 +231,10 @@ export default function CatronHomePage() {
       <div className="promo-banner">
         <div className="promo-content">
           <span className="promo-text">
-            <span className="black-friday">BLACK FRIDAY</span> | Discount up to{" "}
-            <span className="discount">50%</span> use code:{" "}
-            <span className="promo-code">Brator50</span>
+            <span className="black-friday">SPECIAL OFFER</span> | Premium Nissan
+            Parts <span className="discount">Quality Guaranteed</span> | Free
+            shipping on orders over{" "}
+            <span className="promo-code">KES 5,000</span>
           </span>
           <div className="language-selector">
             Language: <span className="current-lang">EN</span> ▼
@@ -245,14 +246,11 @@ export default function CatronHomePage() {
       <header className="main-header">
         <div className="header-container">
           <div className="logo">
-            <div className="logo-icon">
-              <div className="logo-bars">
-                <div className="bar bar-1"></div>
-                <div className="bar bar-2"></div>
-                <div className="bar bar-3"></div>
-              </div>
-            </div>
-            <span className="logo-text">Brator</span>
+            <img
+              src="https://cdn.builder.io/api/v1/image/assets%2F8ddb623b8e0840ee8617de2665c350a4%2F761030a73ad740c583f563b441ecf7a9?format=webp&width=800"
+              alt="Catron Auto Parts"
+              className="logo-image"
+            />
           </div>
 
           <div className="search-section">
