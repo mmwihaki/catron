@@ -2222,6 +2222,164 @@ export default function CatronHomePage() {
           color: #333;
         }
 
+        /* Newsletter Section */
+        .newsletter-section {
+          position: relative;
+          background: rgb(255, 255, 255);
+        }
+
+        .newsletter-container {
+          display: flex;
+          margin-left: auto;
+          margin-right: auto;
+          position: relative;
+        }
+
+        .newsletter-content {
+          display: flex;
+          min-height: 1px;
+          position: relative;
+          width: 100%;
+          background: rgb(246, 247, 250);
+          border-color: rgb(229, 229, 229);
+          border-top: 0.8px solid rgb(229, 229, 229);
+          padding: 90px 0;
+        }
+
+        .newsletter-container {
+          max-width: 1320px;
+          padding: 0 12px;
+          width: 100%;
+        }
+
+        .newsletter-content {
+          display: flex;
+          flex-wrap: wrap;
+          margin-left: -12px;
+          margin-right: -12px;
+        }
+
+        .newsletter-text {
+          flex-shrink: 0;
+          max-width: 100%;
+          padding-left: 12px;
+          padding-right: 12px;
+          width: 41.6667%;
+        }
+
+        .newsletter-title {
+          font-size: 30px;
+          font-weight: 700;
+          line-height: 36px;
+          margin-bottom: 15px;
+          position: relative;
+          transition-duration: 0.6s;
+        }
+
+        .newsletter-description {
+          color: rgb(102, 102, 102);
+          font-size: 14px;
+          line-height: 28px;
+          margin-bottom: 15px;
+        }
+
+        .newsletter-form-wrapper {
+          flex-shrink: 0;
+          max-width: 100%;
+          padding-left: 12px;
+          padding-right: 12px;
+          width: 50%;
+          margin-left: 8.33333%;
+        }
+
+        .newsletter-form {
+          display: block;
+        }
+
+        .form-input-group {
+          display: inline-flex;
+          align-items: flex-start;
+          justify-content: flex-start;
+          margin-bottom: 15px;
+          margin-top: 5px;
+          position: relative;
+          width: 100%;
+        }
+
+        .newsletter-input {
+          appearance: auto;
+          background-color: rgb(255, 255, 255);
+          border: 0.8px solid rgb(204, 204, 204);
+          border-radius: 4px;
+          color: rgb(153, 153, 153);
+          cursor: text;
+          display: inline-block;
+          font-family:
+            "Inter",
+            -apple-system,
+            BlinkMacSystemFont,
+            "Segoe UI",
+            Roboto,
+            sans-serif;
+          font-size: 15px;
+          height: 52px;
+          line-height: 27.855px;
+          overflow: clip;
+          padding: 12px 17px;
+          width: 100%;
+        }
+
+        .newsletter-submit {
+          appearance: auto;
+          background-color: rgb(247, 51, 18);
+          border: 1.6px solid rgb(247, 51, 18);
+          border-radius: 0 4px 4px 0;
+          color: rgb(255, 255, 255);
+          cursor: pointer;
+          font-family:
+            "Inter",
+            -apple-system,
+            BlinkMacSystemFont,
+            "Segoe UI",
+            Roboto,
+            sans-serif;
+          font-weight: 700;
+          height: 52px;
+          left: -5px;
+          line-height: 16px;
+          padding: 15px 20px;
+          position: relative;
+          text-align: center;
+          text-transform: capitalize;
+          transition-duration: 0.3s;
+        }
+
+        .newsletter-submit:hover {
+          background-color: rgb(220, 45, 16);
+          border-color: rgb(220, 45, 16);
+        }
+
+        .newsletter-policy {
+          color: rgb(102, 102, 102);
+          font-size: 14px;
+          line-height: 28px;
+          margin-bottom: 15px;
+          margin-top: 5px;
+        }
+
+        .policy-link {
+          cursor: pointer;
+          display: inline-block;
+          font-size: 14px;
+          margin-left: 5px;
+          text-decoration: underline;
+          color: rgb(102, 102, 102);
+        }
+
+        .policy-link:hover {
+          color: rgb(247, 51, 18);
+        }
+
         /* Footer */
         .footer {
           background: rgb(246, 247, 250);
