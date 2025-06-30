@@ -3749,8 +3749,9 @@ export default function BratorHomePage() {
             text-align: center;
           }
 
-          .logo-text {
-            font-size: 24px;
+          .logo-image {
+            height: 40px;
+            max-width: 150px;
           }
 
           .hero-title {
