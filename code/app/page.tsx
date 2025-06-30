@@ -548,6 +548,595 @@ export default function CatronHomePage() {
         </div>
       </section>
 
+      {/* Featured Makes/Models Section */}
+      <section className="featured-makes-section">
+        <div className="featured-makes-container">
+          <div className="featured-header">
+            <div className="tab-buttons">
+              <button
+                className={`tab-button ${activeTab === "makes" ? "active" : ""}`}
+                onClick={() => setActiveTab("makes")}
+              >
+                <span>Featured Makes</span>
+              </button>
+              <button
+                className={`tab-button ${activeTab === "models" ? "active" : ""}`}
+                onClick={() => setActiveTab("models")}
+              >
+                <span>Featured Models</span>
+              </button>
+            </div>
+          </div>
+
+          <div className="featured-content">
+            {activeTab === "makes" && (
+              <div className="makes-grid">
+                {[
+                  "Nissan",
+                  "Toyota",
+                  "Honda",
+                  "Mazda",
+                  "Subaru",
+                  "Mitsubishi",
+                  "Suzuki",
+                  "Daihatsu",
+                ]
+                  .slice(0, showMoreMakes ? 8 : 6)
+                  .map((make) => (
+                    <button key={make} className="make-button">
+                      {make}
+                    </button>
+                  ))}
+              </div>
+            )}
+
+            {activeTab === "models" && (
+              <div className="models-grid">
+                {nissanModels.slice(0, showMoreModels ? 12 : 8).map((model) => (
+                  <button key={model.name} className="model-button">
+                    {model.name}
+                  </button>
+                ))}
+              </div>
+            )}
+
+            <div className="view-more-container">
+              <button
+                className="view-more-button"
+                onClick={() => {
+                  if (activeTab === "makes") {
+                    setShowMoreMakes(!showMoreMakes);
+                  } else {
+                    setShowMoreModels(!showMoreModels);
+                  }
+                }}
+              >
+                {(activeTab === "makes" ? showMoreMakes : showMoreModels)
+                  ? "Show Less"
+                  : "View More"}
+              </button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Best Sellers Section */}
+      <section className="best-sellers-section">
+        <div className="best-sellers-container">
+          <div className="best-sellers-header">
+            <div className="header-left">
+              <h2 className="best-sellers-title">Best Sellers</h2>
+              <div className="countdown-timer">
+                <span className="timer-label">Expires in:</span>
+                <div className="timer-display">
+                  <span className="timer-item">124D :</span>
+                  <span className="timer-item">14H :</span>
+                  <span className="timer-item">13M :</span>
+                  <span className="timer-item">49S</span>
+                </div>
+              </div>
+            </div>
+            <div className="header-right">
+              <div className="category-tabs">
+                <button className="tab-link active">Top 10</button>
+                <button className="tab-link">Top Air Filters</button>
+                <button className="tab-link">Top Auto Parts</button>
+                <button className="tab-link">Top Exteriors</button>
+              </div>
+            </div>
+          </div>
+
+          <div className="products-grid-container">
+            {essentialProducts.map((product) => (
+              <div key={`bestseller-${product.id}`} className="product-card">
+                <div className="product-card-inner">
+                  <div className="product-discount-badge">
+                    {Math.round(
+                      (((product.originalPrice || product.price + 500) -
+                        product.price) /
+                        (product.originalPrice || product.price + 500)) *
+                        100,
+                    )}
+                    % OFF
+                  </div>
+
+                  <div className="product-image-container">
+                    <a href={product.link} className="product-image-link">
+                      <img
+                        src={product.image}
+                        alt={product.name}
+                        className="product-image"
+                        loading="lazy"
+                        width="225"
+                        height="225"
+                      />
+                    </a>
+                  </div>
+
+                  <div className="product-info">
+                    <div className="product-category">
+                      <a
+                        href={`#category-${product.category.toLowerCase().replace(/\s+/g, "-")}`}
+                        className="category-link"
+                      >
+                        {product.category}
+                      </a>
+                    </div>
+
+                    <div className="product-name">
+                      <h5>
+                        <a href={product.link} className="product-name-link">
+                          {product.name}
+                        </a>
+                      </h5>
+                    </div>
+
+                    <div className="product-rating">
+                      <div className="rating-stars">
+                        <div
+                          className="stars"
+                          title={`Rated ${product.rating} out of 5`}
+                        >
+                          <span className="star-display">
+                            {renderStars(product.rating)}
+                          </span>
+                        </div>
+                      </div>
+                      <div className="reviews-count">
+                        <p>{product.reviews} Reviews</p>
+                      </div>
+                    </div>
+
+                    <div className="product-price">
+                      <p className="price-container">
+                        {product.originalPrice && (
+                          <del className="original-price">
+                            <span className="currency">KES </span>
+                            <span>
+                              {product.originalPrice.toLocaleString()}
+                            </span>
+                          </del>
+                        )}
+                        <span
+                          className={
+                            product.originalPrice
+                              ? "sale-price"
+                              : "regular-price"
+                          }
+                        >
+                          <span className="currency">KES </span>
+                          <span>{product.price.toLocaleString()}</span>
+                        </span>
+                      </p>
+                    </div>
+
+                    <div className="product-actions">
+                      <a href={product.link} className="add-to-cart-btn">
+                        Add to cart
+                      </a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+
+          <div className="view-more-container">
+            <a href="/shop?search_type=bestsellers" className="view-more-btn">
+              View More Products
+            </a>
+          </div>
+        </div>
+      </section>
+
+      {/* New Arrivals Section */}
+      <section className="new-arrivals-section">
+        <div className="new-arrivals-container">
+          <div className="new-arrivals-header">
+            <div className="header-content">
+              <h2 className="new-arrivals-title">New Arrivals</h2>
+              <a href="/shop?search_type=new-arrivals" className="see-all-link">
+                <span>See All Products</span>
+                <i className="fas fa-chevron-right"></i>
+              </a>
+            </div>
+          </div>
+
+          <div className="products-grid-container">
+            {essentialProducts.map((product) => (
+              <div key={`new-arrival-${product.id}`} className="product-card">
+                <div className="product-card-inner">
+                  <div className="new-badge">NEW</div>
+
+                  <div className="product-image-container">
+                    <a href={product.link} className="product-image-link">
+                      <img
+                        src={product.image}
+                        alt={product.name}
+                        className="product-image"
+                        loading="lazy"
+                        width="225"
+                        height="225"
+                      />
+                    </a>
+                  </div>
+
+                  <div className="product-info">
+                    <div className="product-category">
+                      <a
+                        href={`#category-${product.category.toLowerCase().replace(/\s+/g, "-")}`}
+                        className="category-link"
+                      >
+                        {product.category}
+                      </a>
+                    </div>
+
+                    <div className="product-name">
+                      <h5>
+                        <a href={product.link} className="product-name-link">
+                          {product.name}
+                        </a>
+                      </h5>
+                    </div>
+
+                    <div className="product-rating">
+                      <div className="rating-stars">
+                        <div
+                          className="stars"
+                          title={`Rated ${product.rating} out of 5`}
+                        >
+                          <span className="star-display">
+                            {renderStars(product.rating)}
+                          </span>
+                        </div>
+                      </div>
+                      <div className="reviews-count">
+                        <p>{product.reviews} Reviews</p>
+                      </div>
+                    </div>
+
+                    <div className="product-price">
+                      <p className="price-container">
+                        <span className="regular-price">
+                          <span className="currency">KES </span>
+                          <span>{product.price.toLocaleString()}</span>
+                        </span>
+                      </p>
+                    </div>
+
+                    <div className="product-actions">
+                      <a href={product.link} className="add-to-cart-btn">
+                        Add to cart
+                      </a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+
+          <div className="view-more-container">
+            <a href="/shop?search_type=new-arrivals" className="view-more-btn">
+              View More Products
+            </a>
+          </div>
+        </div>
+      </section>
+
+      {/* Tips & Guides Section */}
+      <section className="tips-guides-section">
+        <div className="tips-guides-container">
+          <div className="section-header">
+            <h2 className="section-title">Tips & Guides</h2>
+            <a href="/blog" className="view-all-link">
+              See All Articles
+              <i className="fas fa-chevron-right"></i>
+            </a>
+          </div>
+
+          <div className="tips-guides-content">
+            <div className="featured-article">
+              <div className="article-image">
+                <a href="/blog/vehicle-maintenance">
+                  <img
+                    src="https://images.pexels.com/photos/3642618/pexels-photo-3642618.jpeg?auto=compress&cs=tinysrgb&w=600&h=400"
+                    alt="Vehicle maintenance tips"
+                  />
+                </a>
+              </div>
+              <div className="article-content">
+                <h3 className="article-title">
+                  <a href="/blog/vehicle-maintenance">
+                    Essential Vehicle Maintenance Tips for Optimal Performance
+                  </a>
+                </h3>
+                <p className="article-excerpt">
+                  Keep your vehicle running smoothly with these essential
+                  maintenance tips. From regular oil changes to brake
+                  inspections, learn how to extend your car's lifespan...
+                </p>
+                <div className="article-meta">
+                  <div className="author">
+                    <i className="fas fa-user"></i>
+                    <span>By Catron Team</span>
+                  </div>
+                  <div className="date">
+                    <i className="fas fa-calendar"></i>
+                    <span>Dec 15, 2024</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div className="article-list">
+              {[
+                {
+                  title: "How to Choose the Right Air Filter for Your Car",
+                  excerpt:
+                    "Air filters play a crucial role in engine performance. Learn how to select the best one...",
+                  image:
+                    "https://images.pexels.com/photos/5835359/pexels-photo-5835359.jpeg?auto=compress&cs=tinysrgb&w=300&h=200",
+                  date: "Dec 12, 2024",
+                },
+                {
+                  title: "Understanding Your Vehicle's Brake System",
+                  excerpt:
+                    "A comprehensive guide to brake components and maintenance for optimal safety...",
+                  image:
+                    "https://images.pexels.com/photos/162553/keys-workshop-mechanic-tools-162553.jpeg?auto=compress&cs=tinysrgb&w=300&h=200",
+                  date: "Dec 10, 2024",
+                },
+                {
+                  title: "The Importance of Regular Oil Changes",
+                  excerpt:
+                    "Why timely oil changes are essential for your engine's health and longevity...",
+                  image:
+                    "https://images.pexels.com/photos/190570/pexels-photo-190570.jpeg?auto=compress&cs=tinysrgb&w=300&h=200",
+                  date: "Dec 8, 2024",
+                },
+              ].map((article, index) => (
+                <div key={index} className="small-article">
+                  <div className="small-article-image">
+                    <a href={`/blog/article-${index + 1}`}>
+                      <img src={article.image} alt={article.title} />
+                    </a>
+                  </div>
+                  <div className="small-article-content">
+                    <h4 className="small-article-title">
+                      <a href={`/blog/article-${index + 1}`}>{article.title}</a>
+                    </h4>
+                    <p className="small-article-excerpt">{article.excerpt}</p>
+                    <div className="article-meta">
+                      <div className="date">
+                        <i className="fas fa-calendar"></i>
+                        <span>{article.date}</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Featured Brands Section */}
+      <section className="featured-brands-section">
+        <div className="featured-brands-container">
+          <h2 className="section-title">Featured Brands</h2>
+          <div className="brands-grid">
+            {[
+              {
+                name: "NGK",
+                image:
+                  "https://images.pexels.com/photos/190570/pexels-photo-190570.jpeg?auto=compress&cs=tinysrgb&w=200&h=100",
+              },
+              {
+                name: "OSRAM",
+                image:
+                  "https://images.pexels.com/photos/162553/keys-workshop-mechanic-tools-162553.jpeg?auto=compress&cs=tinysrgb&w=200&h=100",
+              },
+              {
+                name: "KAVO",
+                image:
+                  "https://images.pexels.com/photos/3642618/pexels-photo-3642618.jpeg?auto=compress&cs=tinysrgb&w=200&h=100",
+              },
+              {
+                name: "DENSO",
+                image:
+                  "https://images.pexels.com/photos/5835359/pexels-photo-5835359.jpeg?auto=compress&cs=tinysrgb&w=200&h=100",
+              },
+              {
+                name: "BOSCH",
+                image:
+                  "https://images.pexels.com/photos/244824/pexels-photo-244824.jpeg?auto=compress&cs=tinysrgb&w=200&h=100",
+              },
+              {
+                name: "MANN",
+                image:
+                  "https://images.pexels.com/photos/13065690/pexels-photo-13065690.jpeg?auto=compress&cs=tinysrgb&w=200&h=100",
+              },
+            ].map((brand) => (
+              <div key={brand.name} className="brand-card">
+                <a
+                  href={`/brands/${brand.name.toLowerCase()}`}
+                  className="brand-link"
+                >
+                  <img
+                    src={brand.image}
+                    alt={brand.name}
+                    className="brand-image"
+                  />
+                  <span className="brand-name">{brand.name}</span>
+                </a>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Footer */}
+      <footer className="footer">
+        <div className="footer-content">
+          <div className="footer-container">
+            <div className="footer-section">
+              <div className="footer-logo">
+                <img
+                  src="https://cdn.builder.io/api/v1/image/assets%2F16c4d8eebb6943b4be5a75c55b5cdffd%2F5d8fbe0d7a4c4e1a9a82d71637d82593?format=webp&width=150"
+                  alt="Catron Auto Parts"
+                  className="footer-logo-image"
+                />
+                <p className="footer-description">
+                  Your trusted partner for premium auto parts and accessories.
+                  Quality guaranteed with every purchase.
+                </p>
+                <div className="social-links">
+                  <a href="#" className="social-link">
+                    📘
+                  </a>
+                  <a href="#" className="social-link">
+                    📷
+                  </a>
+                  <a href="#" className="social-link">
+                    🐦
+                  </a>
+                  <a href="#" className="social-link">
+                    📺
+                  </a>
+                </div>
+              </div>
+            </div>
+
+            <div className="footer-section">
+              <h4 className="footer-title">Quick Links</h4>
+              <ul className="footer-links">
+                <li>
+                  <a href="/">Home</a>
+                </li>
+                <li>
+                  <a href="/shop">Shop</a>
+                </li>
+                <li>
+                  <a href="/categories">Categories</a>
+                </li>
+                <li>
+                  <a href="/brands">Brands</a>
+                </li>
+                <li>
+                  <a href="/about">About Us</a>
+                </li>
+                <li>
+                  <a href="/contact">Contact</a>
+                </li>
+              </ul>
+            </div>
+
+            <div className="footer-section">
+              <h4 className="footer-title">Categories</h4>
+              <ul className="footer-links">
+                <li>
+                  <a href="/category/engine-parts">Engine Parts</a>
+                </li>
+                <li>
+                  <a href="/category/air-filters">Air Filters</a>
+                </li>
+                <li>
+                  <a href="/category/brake-system">Brake System</a>
+                </li>
+                <li>
+                  <a href="/category/suspension">Suspension</a>
+                </li>
+                <li>
+                  <a href="/category/electrical">Electrical</a>
+                </li>
+                <li>
+                  <a href="/category/exhaust">Exhaust System</a>
+                </li>
+              </ul>
+            </div>
+
+            <div className="footer-section">
+              <h4 className="footer-title">Customer Service</h4>
+              <ul className="footer-links">
+                <li>
+                  <a href="/help">Help Center</a>
+                </li>
+                <li>
+                  <a href="/shipping">Shipping Info</a>
+                </li>
+                <li>
+                  <a href="/returns">Returns</a>
+                </li>
+                <li>
+                  <a href="/warranty">Warranty</a>
+                </li>
+                <li>
+                  <a href="/track-order">Track Your Order</a>
+                </li>
+                <li>
+                  <a href="/support">Support</a>
+                </li>
+              </ul>
+            </div>
+
+            <div className="footer-section">
+              <h4 className="footer-title">Contact Info</h4>
+              <div className="contact-info">
+                <div className="contact-item">
+                  <i className="fas fa-map-marker-alt"></i>
+                  <span>Nairobi, Kenya</span>
+                </div>
+                <div className="contact-item">
+                  <i className="fas fa-phone"></i>
+                  <span>+254 700 000 000</span>
+                </div>
+                <div className="contact-item">
+                  <i className="fas fa-envelope"></i>
+                  <span>info@catron.co.ke</span>
+                </div>
+                <div className="contact-item">
+                  <i className="fas fa-clock"></i>
+                  <span>Mon-Fri: 8AM-6PM</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div className="footer-bottom">
+            <div className="footer-bottom-container">
+              <div className="footer-bottom-left">
+                <p>&copy; 2024 Catron Auto Parts. All rights reserved.</p>
+              </div>
+              <div className="footer-bottom-right">
+                <a href="/privacy">Privacy Policy</a>
+                <a href="/terms">Terms of Service</a>
+                <a href="/cookies">Cookie Policy</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </footer>
+
       <style jsx>{`
         .homepage {
           font-family: Arial, sans-serif;
