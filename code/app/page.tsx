@@ -781,10 +781,6 @@ export default function CatronHomePage() {
           </div>
         </div>
       </section>
-
-      {/* Essential Items for New Car Section */}
-      <section className="essential-items-section">
-        <div className="container">
           <div className="section-content">
             <div className="section-header">
               <div className="header-content">
