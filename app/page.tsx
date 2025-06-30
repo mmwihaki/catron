@@ -1167,17 +1167,8 @@ export default function BratorHomePage() {
           </div>
 
           <div className="new-arrivals-products">
-            <div className="products-carousel-wrapper">
-              <button className="carousel-nav carousel-prev disabled">
-                <i className="fas fa-chevron-left"></i>
-              </button>
-
-              <button className="carousel-nav carousel-next">
-                <i className="fas fa-chevron-right"></i>
-              </button>
-
-              <div className="products-carousel-container">
-                <div className="products-carousel-track">
+            <div className="products-grid-container">
+              <div className="products-grid">
                   {[
                     {
                       id: 1,
