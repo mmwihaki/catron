@@ -997,140 +997,189 @@ export default function CatronHomePage() {
 
       {/* Footer */}
       <footer className="footer">
-        <div className="footer-content">
-          <div className="footer-container">
-            <div className="footer-section">
-              <div className="footer-logo">
-                <img
-                  src="https://cdn.builder.io/api/v1/image/assets%2F16c4d8eebb6943b4be5a75c55b5cdffd%2F5d8fbe0d7a4c4e1a9a82d71637d82593?format=webp&width=150"
-                  alt="Catron Auto Parts"
-                  className="footer-logo-image"
-                />
-                <p className="footer-description">
-                  Your trusted partner for premium auto parts and accessories.
-                  Quality guaranteed with every purchase.
-                </p>
-                <div className="social-links">
-                  <a href="#" className="social-link">
-                    📘
+        <div className="footer-container">
+          <div className="footer-content">
+            <div className="footer-main">
+              <div className="footer-brand-section">
+                <div className="footer-brand-content">
+                  <a href="/" className="footer-logo-link">
+                    <img
+                      src="https://cdn.builder.io/api/v1/image/assets%2F16c4d8eebb6943b4be5a75c55b5cdffd%2F5d8fbe0d7a4c4e1a9a82d71637d82593?format=webp&width=191"
+                      alt="Catron Auto Parts"
+                      className="footer-logo"
+                    />
                   </a>
-                  <a href="#" className="social-link">
-                    📷
-                  </a>
-                  <a href="#" className="social-link">
-                    🐦
-                  </a>
-                  <a href="#" className="social-link">
-                    📺
-                  </a>
+                  <div className="footer-brand-description">
+                    <h6 className="footer-tagline">
+                      #1 Kenya's biggest online marketplace for car spare OEM &
+                      Aftermarkets.
+                    </h6>
+                    <p className="footer-disclaimer">
+                      All manufacturer names, symbols, and descriptions, used in
+                      our images and text are used solely for identification
+                      purposes only. It is neither inferred nor implied that any
+                      item sold by Catron.co.ke is a product authorized by or in
+                      any way connected with any vehicle manufacturers displayed
+                      on this page
+                    </p>
+                    <div className="footer-social">
+                      <a href="https://twitter.com/" className="social-icon">
+                        <svg
+                          xmlns="http://www.w3.org/2000/svg"
+                          x="0px"
+                          y="0px"
+                          viewBox="0 0 64 64"
+                          width="18"
+                          height="18"
+                        >
+                          <path d="M56.9,14.8l3.9-4.9C62,8.6,62.3,7.6,62.4,7c-3,1.9-5.9,2.5-7.9,2.5h-0.8L53.2,9c-2.5-2.2-5.5-3.4-8.9-3.4c-7.2,0-13,5.9-13,13c0,0.5,0,1,0.1,1.5l0.3,2.1l-2.2-0.1C16.3,21.8,5.5,10.5,3.7,8.5c-2.9,5.3-1.3,10.2,0.5,13.3l3.5,5.8l-5.5-3c0.1,4.3,1.8,7.7,4.9,10.2l2.7,2L7,37.9c1.8,5.3,5.6,7.4,8.6,8.3l3.8,1l-3.3,2.3c-5.7,4-13,3.8-16.1,3.5c6.6,4.5,14.2,5.5,19.7,5.5c4,0,7-0.5,7.7-0.7c29-6.8,30.3-32.6,30.2-37.8v-0.8l0.6-0.5c3.5-3.3,5-5.1,5.8-6.1c-0.3,0.2-0.7,0.3-1.2,0.4L56.9,14.8z"></path>
+                        </svg>
+                      </a>
+                      <a href="https://facebook.com/" className="social-icon">
+                        <svg
+                          xmlns="http://www.w3.org/2000/svg"
+                          x="0px"
+                          y="0px"
+                          viewBox="0 0 64 64"
+                          width="18"
+                          height="18"
+                        >
+                          <path d="M47.9,25.6L47.9,25.6h-5.8H40v-2.1v-6.4v-2.1h2.1h4.4c1.1,0,2-0.9,2-2V2c0-1.1-0.9-2-2-2h-7.6c-8.2,0-13.9,5.9-13.9,14.4v9.1v2.1h-2.1H16c-1.5,0-2.7,1.2-2.7,2.8v7.4c0,1.5,1.2,2.7,2.7,2.7h6.9h2.1v2.1v20.8c0,1.5,1.2,2.7,2.7,2.7h9.8c0.6,0,1.2-0.3,1.6-0.7c0.5-0.5,0.7-1.2,0.7-1.8l0,0v0V40.5v-2.1H42h4.6c1.3,0,2.4-0.9,2.6-2.1l0-0.1l0-0.1l1.4-7.1c0.2-0.8,0-1.6-0.6-2.4C49.6,26.1,48.8,25.7,47.9,25.6z"></path>
+                        </svg>
+                      </a>
+                      <a href="https://youtube.com/" className="social-icon">
+                        <svg
+                          xmlns="http://www.w3.org/2000/svg"
+                          x="0px"
+                          y="0px"
+                          viewBox="0 0 64 64"
+                          width="18"
+                          height="18"
+                        >
+                          <path d="M62.7,16.6c-0.7-2.8-2.9-4.9-5.7-5.7c-5-1.3-25-1.3-25-1.3s-20,0-25,1.3c-2.8,0.7-4.9,2.9-5.7,5.7C0,21.6,0,32,0,32  s0,10.4,1.3,15.4c0.7,2.8,2.9,4.9,5.7,5.7c5,1.3,25,1.3,25,1.3s20,0,25-1.3c2.8-0.7,4.9-2.9,5.7-5.7C64,42.4,64,32,64,32  S64,21.6,62.7,16.6z M25.6,41.6V22.4L42.2,32L25.6,41.6z"></path>
+                        </svg>
+                      </a>
+                      <a href="https://instagram.com/" className="social-icon">
+                        <svg
+                          xmlns="http://www.w3.org/2000/svg"
+                          x="0px"
+                          y="0px"
+                          viewBox="0 0 64 64"
+                          width="18"
+                          height="18"
+                        >
+                          <g>
+                            <path d="M62.9,19.2c-0.1-3.2-0.7-5.5-1.4-7.6S59.7,7.8,58,6.1s-3.4-2.7-5.4-3.5c-2-0.8-4.2-1.3-7.6-1.4C41.5,1,40.5,1,32,1s-9.4,0-12.8,0.1s-5.5,0.7-7.6,1.4S7.8,4.4,6.1,6.1s-2.8,3.4-3.5,5.5c-0.8,2-1.3,4.2-1.4,7.6S1,23.5,1,32s0,9.4,0.1,12.8c0.1,3.4,0.7,5.5,1.4,7.6c0.7,2.1,1.8,3.8,3.5,5.5s3.5,2.8,5.5,3.5c2,0.7,4.2,1.3,7.6,1.4C22.5,63,23.4,63,31.9,63s9.4,0,12.8-0.1s5.5-0.7,7.6-1.4c2.1-0.7,3.8-1.8,5.5-3.5s2.8-3.5,3.5-5.5c0.7-2,1.3-4.2,1.4-7.6c0.1-3.2,0.1-4.2,0.1-12.7S63,22.6,62.9,19.2zM57.3,44.5c-0.1,3-0.7,4.6-1.1,5.8c-0.6,1.4-1.3,2.5-2.4,3.5c-1.1,1.1-2.1,1.7-3.5,2.4c-1.1,0.4-2.7,1-5.8,1.1c-3.2,0-4.2,0-12.4,0s-9.3,0-12.5-0.1c-3-0.1-4.6-0.7-5.8-1.1c-1.4-0.6-2.5-1.3-3.5-2.4c-1.1-1.1-1.7-2.1-2.4-3.5c-0.4-1.1-1-2.7-1.1-5.8c0-3.1,0-4.1,0-12.4s0-9.3,0.1-12.5c0.1-3,0.7-4.6,1.1-5.8c0.6-1.4,1.3-2.5,2.3-3.5c1.1-1.1,2.1-1.7,3.5-2.3c1.1-0.4,2.7-1,5.8-1.1c3.2-0.1,4.2-0.1,12.5-0.1s9.3,0,12.5,0.1c3,0.1,4.6,0.7,5.8,1.1c1.4,0.6,2.5,1.3,3.5,2.3c1.1,1.1,1.7,2.1,2.4,3.5c0.4,1.1,1,2.7,1.1,5.8c0.1,3.2,0.1,4.2,0.1,12.5S57.4,41.3,57.3,44.5z"></path>
+                            <path d="M32,16.1c-8.9,0-15.9,7.2-15.9,15.9c0,8.9,7.2,15.9,15.9,15.9S48,40.9,48,32S40.9,16.1,32,16.1z M32,42.4c-5.8,0-10.4-4.7-10.4-10.4S26.3,21.6,32,21.6c5.8,0,10.4,4.6,10.4,10.4S37.8,42.4,32,42.4z"></path>
+                            <ellipse
+                              cx="48.7"
+                              cy="15.4"
+                              rx="3.7"
+                              ry="3.7"
+                            ></ellipse>
+                          </g>
+                        </svg>
+                      </a>
+                    </div>
+                  </div>
                 </div>
               </div>
-            </div>
 
-            <div className="footer-section">
-              <h4 className="footer-title">Quick Links</h4>
-              <ul className="footer-links">
-                <li>
-                  <a href="/">Home</a>
-                </li>
-                <li>
-                  <a href="/shop">Shop</a>
-                </li>
-                <li>
-                  <a href="/categories">Categories</a>
-                </li>
-                <li>
-                  <a href="/brands">Brands</a>
-                </li>
-                <li>
-                  <a href="/about">About Us</a>
-                </li>
-                <li>
-                  <a href="/contact">Contact</a>
-                </li>
-              </ul>
-            </div>
-
-            <div className="footer-section">
-              <h4 className="footer-title">Categories</h4>
-              <ul className="footer-links">
-                <li>
-                  <a href="/category/engine-parts">Engine Parts</a>
-                </li>
-                <li>
-                  <a href="/category/air-filters">Air Filters</a>
-                </li>
-                <li>
-                  <a href="/category/brake-system">Brake System</a>
-                </li>
-                <li>
-                  <a href="/category/suspension">Suspension</a>
-                </li>
-                <li>
-                  <a href="/category/electrical">Electrical</a>
-                </li>
-                <li>
-                  <a href="/category/exhaust">Exhaust System</a>
-                </li>
-              </ul>
-            </div>
-
-            <div className="footer-section">
-              <h4 className="footer-title">Customer Service</h4>
-              <ul className="footer-links">
-                <li>
-                  <a href="/help">Help Center</a>
-                </li>
-                <li>
-                  <a href="/shipping">Shipping Info</a>
-                </li>
-                <li>
-                  <a href="/returns">Returns</a>
-                </li>
-                <li>
-                  <a href="/warranty">Warranty</a>
-                </li>
-                <li>
-                  <a href="/track-order">Track Your Order</a>
-                </li>
-                <li>
-                  <a href="/support">Support</a>
-                </li>
-              </ul>
-            </div>
-
-            <div className="footer-section">
-              <h4 className="footer-title">Contact Info</h4>
-              <div className="contact-info">
-                <div className="contact-item">
-                  <i className="fas fa-map-marker-alt"></i>
-                  <span>Nairobi, Kenya</span>
-                </div>
-                <div className="contact-item">
-                  <i className="fas fa-phone"></i>
-                  <span>+254 700 000 000</span>
-                </div>
-                <div className="contact-item">
-                  <i className="fas fa-envelope"></i>
-                  <span>info@catron.co.ke</span>
-                </div>
-                <div className="contact-item">
-                  <i className="fas fa-clock"></i>
-                  <span>Mon-Fri: 8AM-6PM</span>
+              <div className="footer-links-section">
+                <div className="footer-column">
+                  <h6 className="footer-column-title">Catron's Catalog</h6>
+                  <ul className="footer-links-list">
+                    <li>
+                      <a href="/category/auto-parts">Auto Parts</a>
+                    </li>
+                    <li>
+                      <a href="/category/car-care">Car Care</a>
+                    </li>
+                    <li>
+                      <a href="/category/fluids-chemicals">
+                        Fluids & Chemicals
+                      </a>
+                    </li>
+                    <li>
+                      <a href="/category/oils-tools-supplies">
+                        Oils Tools & Supplies
+                      </a>
+                    </li>
+                    <li>
+                      <a href="/category/wheels-tires">Wheel & Tires</a>
+                    </li>
+                    <li>
+                      <a href="/category/clearance">Clearances</a>
+                    </li>
+                    <li>
+                      <a href="/faq">FAQ</a>
+                    </li>
+                  </ul>
                 </div>
               </div>
-            </div>
-          </div>
 
-          <div className="footer-bottom">
-            <div className="footer-bottom-container">
-              <div className="footer-bottom-left">
-                <p>&copy; 2024 Catron Auto Parts. All rights reserved.</p>
+              <div className="footer-links-section">
+                <div className="footer-column">
+                  <h6 className="footer-column-title">Information</h6>
+                  <ul className="footer-links-list">
+                    <li>
+                      <a href="/about-us">About Catron</a>
+                    </li>
+                    <li>
+                      <a href="/investors">Investors</a>
+                    </li>
+                    <li>
+                      <a href="/blog">Blog</a>
+                    </li>
+                    <li>
+                      <a href="/career">Career</a>
+                    </li>
+                    <li>
+                      <a href="/contact">Contact</a>
+                    </li>
+                    <li>
+                      <a href="/affiliate-program">Affiliate Program</a>
+                    </li>
+                    <li>
+                      <a href="/sell-on-catron">Sell on Catron</a>
+                    </li>
+                    <li>
+                      <a href="/partnership">Partnership</a>
+                    </li>
+                  </ul>
+                </div>
               </div>
-              <div className="footer-bottom-right">
-                <a href="/privacy">Privacy Policy</a>
-                <a href="/terms">Terms of Service</a>
-                <a href="/cookies">Cookie Policy</a>
+
+              <div className="footer-links-section">
+                <div className="footer-column">
+                  <h6 className="footer-column-title">Customer Service</h6>
+                  <ul className="footer-links-list">
+                    <li>
+                      <a href="/help-center">Help Center</a>
+                    </li>
+                    <li>
+                      <a href="/my-account">My Account</a>
+                    </li>
+                    <li>
+                      <a href="/track">Track</a>
+                    </li>
+                    <li>
+                      <a href="/my-order">My Order</a>
+                    </li>
+                    <li>
+                      <a href="/return-policy">Return Policy</a>
+                    </li>
+                    <li>
+                      <a href="/gift-cards">Gift Cards</a>
+                    </li>
+                    <li>
+                      <a href="/buy-wholesale">Buy Wholesale</a>
+                    </li>
+                    <li>
+                      <a href="/faq">FAQ</a>
+                    </li>
+                  </ul>
+                </div>
               </div>
             </div>
           </div>
