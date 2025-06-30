@@ -782,6 +782,530 @@ export default function CatronHomePage() {
         </div>
       </section>
 
+      {/* Essential Items for New Car Section */}
+      <section className="essential-items-section">
+        <div className="container">
+          <div className="section-content">
+            <div className="section-header">
+              <div className="header-content">
+                <div>
+                  <h2 className="section-title">Essential Items for New Car</h2>
+                </div>
+                <a href="/shop" className="see-all-link">
+                  <span>See All Products</span>
+                  <svg
+                    width="16"
+                    height="16"
+                    fill="currentColor"
+                    viewBox="0 0 16 16"
+                  >
+                    <path
+                      fillRule="evenodd"
+                      d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708z"
+                    />
+                  </svg>
+                </a>
+              </div>
+            </div>
+
+            <div className="products-carousel">
+              <div className="carousel-container">
+                <button className="carousel-nav prev-btn" disabled>
+                  <svg
+                    className="nav-icon"
+                    width="16"
+                    height="16"
+                    fill="currentColor"
+                    viewBox="0 0 16 16"
+                  >
+                    <path
+                      fillRule="evenodd"
+                      d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708z"
+                    />
+                  </svg>
+                </button>
+                <button className="carousel-nav next-btn">
+                  <svg
+                    className="nav-icon"
+                    width="16"
+                    height="16"
+                    fill="currentColor"
+                    viewBox="0 0 16 16"
+                  >
+                    <path
+                      fillRule="evenodd"
+                      d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708z"
+                    />
+                  </svg>
+                </button>
+              </div>
+
+              <div className="carousel-track">
+                <div className="products-grid">
+                  {essentialProducts.map((product) => (
+                    <div key={product.id} className="product-card">
+                      <div className="product-card-inner">
+                        <div className="product-badges">
+                          {product.discount && (
+                            <div className="discount-badge">
+                              {product.discount}% Off
+                            </div>
+                          )}
+                        </div>
+
+                        <div className="product-image">
+                          <a href={product.link}>
+                            <img
+                              src={product.image}
+                              alt={product.name}
+                              width="225"
+                              height="225"
+                            />
+                          </a>
+                        </div>
+
+                        <div className="product-info">
+                          <div className="product-category">
+                            <a
+                              href={`#${product.category.toLowerCase().replace(/\s+/g, "-")}`}
+                            >
+                              {product.category}
+                            </a>
+                          </div>
+
+                          <div className="product-name">
+                            <h5>
+                              <a href={product.link}>{product.name}</a>
+                            </h5>
+                          </div>
+
+                          <div className="product-rating">
+                            <div className="rating-stars">
+                              <div
+                                className="stars"
+                                title={`Rated ${product.rating} out of 5`}
+                              >
+                                <span className="star-display">
+                                  {renderStars(product.rating)}
+                                </span>
+                                <span className="rating-text">
+                                  Rated{" "}
+                                  <strong>{product.rating.toFixed(2)}</strong>{" "}
+                                  out of 5
+                                </span>
+                              </div>
+                            </div>
+                            <div className="reviews-count">
+                              <p>
+                                {product.reviews} Review
+                                {product.reviews !== 1 ? "s" : ""}
+                              </p>
+                            </div>
+                          </div>
+
+                          <div className="product-price">
+                            <p className="price-container">
+                              {product.originalPrice && (
+                                <del className="original-price">
+                                  <span>
+                                    <span className="currency">KES </span>
+                                    <span>
+                                      {product.originalPrice.toLocaleString()}
+                                    </span>
+                                  </span>
+                                </del>
+                              )}
+                              <span
+                                className={
+                                  product.originalPrice
+                                    ? "sale-price"
+                                    : "regular-price"
+                                }
+                              >
+                                <span className="currency">KES </span>
+                                <span>{product.price.toLocaleString()}</span>
+                              </span>
+                            </p>
+                          </div>
+
+                          <div className="product-actions">
+                            <a href={product.link} className="add-to-cart-btn">
+                              Add to cart
+                            </a>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Best Sellers Section with Timer */}
+      <section className="best-sellers-section">
+        <div className="container">
+          <div className="section-content">
+            <div className="section-header">
+              <div className="header-content">
+                <div className="title-with-timer">
+                  <h2 className="section-title">Best Seller</h2>
+                  <div className="countdown-timer">
+                    <div className="timer-content">
+                      <span className="timer-label">Expires in:</span>
+                      <div className="timer-display">
+                        <ul className="timer-list">
+                          <li className="timer-item">
+                            <span className="timer-value">124</span>
+                            <span>D :</span>
+                          </li>
+                          <li className="timer-item">
+                            <span className="timer-value">14</span>
+                            <span>H :</span>
+                          </li>
+                          <li className="timer-item">
+                            <span className="timer-value">13</span>
+                            <span>M :</span>
+                          </li>
+                          <li className="timer-item">
+                            <span className="timer-value">49</span>
+                            <span>S</span>
+                          </li>
+                        </ul>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <a href="/shop" className="see-all-link">
+                  <span>See All Products</span>
+                  <svg
+                    width="16"
+                    height="16"
+                    fill="currentColor"
+                    viewBox="0 0 16 16"
+                  >
+                    <path
+                      fillRule="evenodd"
+                      d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708z"
+                    />
+                  </svg>
+                </a>
+              </div>
+
+              <div className="category-tabs">
+                <ul className="tabs-list">
+                  <li className="tab-item">
+                    <a href="javascript:void(0)" className="tab-link active">
+                      Top 10
+                    </a>
+                  </li>
+                  <li className="tab-item">
+                    <a href="javascript:void(0)" className="tab-link">
+                      Top Air Filters
+                    </a>
+                  </li>
+                  <li className="tab-item">
+                    <a href="javascript:void(0)" className="tab-link">
+                      Top Auto Parts
+                    </a>
+                  </li>
+                  <li className="tab-item">
+                    <a href="javascript:void(0)" className="tab-link">
+                      Top Exteriors
+                    </a>
+                  </li>
+                  <li className="tab-item">
+                    <a href="javascript:void(0)" className="tab-link">
+                      Top Performance
+                    </a>
+                  </li>
+                </ul>
+              </div>
+            </div>
+
+            <div className="products-carousel">
+              <div className="carousel-container">
+                <button className="carousel-nav prev-btn" disabled>
+                  <svg
+                    className="nav-icon"
+                    width="16"
+                    height="16"
+                    fill="currentColor"
+                    viewBox="0 0 16 16"
+                  >
+                    <path
+                      fillRule="evenodd"
+                      d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708z"
+                    />
+                  </svg>
+                </button>
+                <button className="carousel-nav next-btn">
+                  <svg
+                    className="nav-icon"
+                    width="16"
+                    height="16"
+                    fill="currentColor"
+                    viewBox="0 0 16 16"
+                  >
+                    <path
+                      fillRule="evenodd"
+                      d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708z"
+                    />
+                  </svg>
+                </button>
+              </div>
+
+              <div className="carousel-track">
+                <div className="products-grid">
+                  {essentialProducts.slice(0, 8).map((product, index) => (
+                    <div
+                      key={`bestseller-${product.id}`}
+                      className="product-card"
+                    >
+                      <div className="product-card-inner">
+                        <div className="product-badges">
+                          <div className="discount-badge">
+                            {index === 0
+                              ? "10"
+                              : index === 1
+                                ? "11"
+                                : index === 2
+                                  ? "10"
+                                  : index === 3
+                                    ? "33"
+                                    : "7"}
+                            % Off
+                          </div>
+                        </div>
+
+                        <div className="product-image">
+                          <a href={product.link}>
+                            <img
+                              src={product.image}
+                              alt={product.name}
+                              width="225"
+                              height="225"
+                            />
+                          </a>
+                        </div>
+
+                        <div className="product-info">
+                          <div className="product-category">
+                            <a
+                              href={`#${product.category.toLowerCase().replace(/\s+/g, "-")}`}
+                            >
+                              {product.category}
+                            </a>
+                          </div>
+
+                          <div className="product-name">
+                            <h5>
+                              <a href={product.link}>{product.name}</a>
+                            </h5>
+                          </div>
+
+                          <div className="product-rating">
+                            <div className="rating-stars">
+                              <div
+                                className="stars"
+                                title={`Rated ${product.rating} out of 5`}
+                              >
+                                <span className="star-display">
+                                  {renderStars(product.rating)}
+                                </span>
+                                <span className="rating-text">
+                                  Rated{" "}
+                                  <strong>{product.rating.toFixed(2)}</strong>{" "}
+                                  out of 5
+                                </span>
+                              </div>
+                            </div>
+                            <div className="reviews-count">
+                              <p>
+                                {product.reviews} Review
+                                {product.reviews !== 1 ? "s" : ""}
+                              </p>
+                            </div>
+                          </div>
+
+                          <div className="product-price">
+                            <p className="price-container">
+                              <del className="original-price">
+                                <span>
+                                  <span className="currency">KES </span>
+                                  <span>
+                                    {Math.round(
+                                      product.price * 1.15,
+                                    ).toLocaleString()}
+                                  </span>
+                                </span>
+                              </del>
+                              <span className="sale-price">
+                                <span className="currency">KES </span>
+                                <span>{product.price.toLocaleString()}</span>
+                              </span>
+                            </p>
+                          </div>
+
+                          <div className="product-actions">
+                            <a href={product.link} className="add-to-cart-btn">
+                              Add to cart
+                            </a>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* New Arrivals Section */}
+      <section className="new-arrivals-section">
+        <div className="container">
+          <div className="section-content">
+            <div className="section-header">
+              <div className="header-content">
+                <div>
+                  <h2 className="section-title">New Arrivals</h2>
+                </div>
+                <a href="/shop" className="see-all-link">
+                  <span>See All Products</span>
+                  <svg
+                    width="16"
+                    height="16"
+                    fill="currentColor"
+                    viewBox="0 0 16 16"
+                  >
+                    <path
+                      fillRule="evenodd"
+                      d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708z"
+                    />
+                  </svg>
+                </a>
+              </div>
+            </div>
+
+            <div className="products-carousel">
+              <div className="carousel-container">
+                <button className="carousel-nav prev-btn" disabled>
+                  <svg
+                    className="nav-icon"
+                    width="16"
+                    height="16"
+                    fill="currentColor"
+                    viewBox="0 0 16 16"
+                  >
+                    <path
+                      fillRule="evenodd"
+                      d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708z"
+                    />
+                  </svg>
+                </button>
+                <button className="carousel-nav next-btn">
+                  <svg
+                    className="nav-icon"
+                    width="16"
+                    height="16"
+                    fill="currentColor"
+                    viewBox="0 0 16 16"
+                  >
+                    <path
+                      fillRule="evenodd"
+                      d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708z"
+                    />
+                  </svg>
+                </button>
+              </div>
+
+              <div className="carousel-track">
+                <div className="products-grid">
+                  {essentialProducts.map((product) => (
+                    <div
+                      key={`newarrival-${product.id}`}
+                      className="product-card"
+                    >
+                      <div className="product-card-inner">
+                        <div className="product-image">
+                          <a href={product.link}>
+                            <img
+                              src={product.image}
+                              alt={product.name}
+                              width="225"
+                              height="225"
+                            />
+                          </a>
+                        </div>
+
+                        <div className="product-info">
+                          <div className="product-category">
+                            <a
+                              href={`#${product.category.toLowerCase().replace(/\s+/g, "-")}`}
+                            >
+                              {product.category}
+                            </a>
+                          </div>
+
+                          <div className="product-name">
+                            <h5>
+                              <a href={product.link}>{product.name}</a>
+                            </h5>
+                          </div>
+
+                          <div className="product-rating">
+                            <div className="rating-stars">
+                              <div
+                                className="stars"
+                                title={`Rated ${product.rating} out of 5`}
+                              >
+                                <span className="star-display">
+                                  {renderStars(product.rating)}
+                                </span>
+                                <span className="rating-text">
+                                  Rated{" "}
+                                  <strong>{product.rating.toFixed(2)}</strong>{" "}
+                                  out of 5
+                                </span>
+                              </div>
+                            </div>
+                            <div className="reviews-count">
+                              <p>
+                                {product.reviews} Review
+                                {product.reviews !== 1 ? "s" : ""}
+                              </p>
+                            </div>
+                          </div>
+
+                          <div className="product-price">
+                            <p className="price-container">
+                              <span className="regular-price">
+                                <span className="currency">KES </span>
+                                <span>{product.price.toLocaleString()}</span>
+                              </span>
+                            </p>
+                          </div>
+
+                          <div className="product-actions">
+                            <a href={product.link} className="add-to-cart-btn">
+                              Add to cart
+                            </a>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* Footer Section */}
       <footer className="main-footer">
         <div className="footer-container">
