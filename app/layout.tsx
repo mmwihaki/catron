@@ -2,8 +2,9 @@ import "./globals.css";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Brator - Car Parts & Accessories",
-  description: "#1 Online Marketplace for Car Spares OEM & Aftermarkets",
+  title: "Catron Auto Parts - Car Parts & Accessories",
+  description:
+    "Happy car ownership. #1 Online Marketplace for Car Spares OEM & Aftermarkets",
 };
 
 export default function RootLayout({
