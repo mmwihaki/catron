@@ -2141,6 +2141,9 @@ export default function CatronHomePage() {
           grid-template-columns: repeat(4, 1fr);
           gap: 20px;
           padding: 5px 0;
+          max-width: 1200px;
+          margin: 0 auto;
+          width: 100%;
         }
 
         .product-card {
