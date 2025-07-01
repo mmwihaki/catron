@@ -1788,7 +1788,7 @@ export default function CatronHomePage() {
           align-items: flex-start;
           margin-left: auto;
           margin-right: auto;
-          max-width: 1320px;
+          max-width: 1520px;
           padding-left: 12px;
           padding-right: 12px;
           width: 100%;
@@ -1801,12 +1801,12 @@ export default function CatronHomePage() {
           flex-direction: column;
           flex-flow: column nowrap;
           margin-bottom: 30px;
-          max-width: calc(16.6667% - 30px);
+          max-width: calc(14.2857% - 30px);
           padding: 60px 17px 25px 17px;
           text-align: center;
           transition-duration: 0.3s;
           width: 100%;
-          min-width: 180px;
+          min-width: 160px;
         }
 
         .category-image-container {
