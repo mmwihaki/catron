@@ -740,11 +740,18 @@ export default function CatronHomePage() {
 
             {activeTab === "models" && (
               <div className="models-grid">
-                {nissanModels.slice(0, showMoreModels ? 12 : 8).map((model) => (
-                  <button key={model.name} className="model-button">
-                    {model.name}
-                  </button>
-                ))}
+                {nissanModels
+                  .slice(0, showMoreModels ? 12 : 8)
+                  .map((model, index) => (
+                    <button key={index} className="model-button">
+                      <div className="model-info">
+                        <div className="model-name">
+                          {model.name} {model.model}
+                        </div>
+                        <div className="model-engine">{model.engine}</div>
+                      </div>
+                    </button>
+                  ))}
               </div>
             )}
 
