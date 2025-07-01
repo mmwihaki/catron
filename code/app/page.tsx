@@ -707,22 +707,22 @@ export default function CatronHomePage() {
         </div>
       </section>
 
-      {/* Featured Makes/Models Section */}
+      {/* Featured Models/Engines Section */}
       <section className="featured-makes-section">
         <div className="featured-makes-container">
           <div className="featured-header">
             <div className="tab-buttons">
               <button
-                className={`tab-button ${activeTab === "makes" ? "active" : ""}`}
-                onClick={() => setActiveTab("makes")}
-              >
-                <span>Featured Makes</span>
-              </button>
-              <button
                 className={`tab-button ${activeTab === "models" ? "active" : ""}`}
                 onClick={() => setActiveTab("models")}
               >
                 <span>Featured Models</span>
+              </button>
+              <button
+                className={`tab-button ${activeTab === "engines" ? "active" : ""}`}
+                onClick={() => setActiveTab("engines")}
+              >
+                <span>Featured Engines</span>
               </button>
             </div>
           </div>
