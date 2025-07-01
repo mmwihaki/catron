@@ -471,84 +471,84 @@ export default function CatronHomePage() {
                 description: "Mesh, Billet, CNC",
                 image:
                   "https://brator-main.smartdemowp.com/wp-content/uploads/2021/12/categories-30.png",
-                link: "/product-category/auto-parts/",
+                slug: "auto-parts",
               },
               {
                 name: "Car Care",
                 description: "Polishes, Cleaners",
                 image:
                   "https://brator-main.smartdemowp.com/wp-content/uploads/categories-29.png",
-                link: "/product-category/car-care/",
+                slug: "car-care",
               },
               {
                 name: "Performance",
                 description: "Brakes, Batteries, Turbo",
                 image:
                   "https://brator-main.smartdemowp.com/wp-content/uploads/categories-28.png",
-                link: "/product-category/performance/",
+                slug: "performance",
               },
               {
                 name: "Wheels & Tires",
                 description: "Tires, TMPS Sensor",
                 image:
                   "https://brator-main.smartdemowp.com/wp-content/uploads/2021/11/categories-09.png",
-                link: "/product-category/wheels-tires/",
+                slug: "wheels-tires",
               },
               {
                 name: "Exteriors",
                 description: "Lighting, Body, Wipers",
                 image:
                   "https://brator-main.smartdemowp.com/wp-content/uploads/categories-27.png",
-                link: "/product-category/exteriors/",
+                slug: "exteriors",
               },
               {
                 name: "Interiors",
                 description: "Steering Wheels, Seats",
                 image:
                   "https://brator-main.smartdemowp.com/wp-content/uploads/categories-26.png",
-                link: "/product-category/interiors/",
+                slug: "interiors",
               },
               {
                 name: "Entertainment",
                 description: "Audios, Videos, GPS",
                 image:
                   "https://brator-main.smartdemowp.com/wp-content/uploads/categories-25.png",
-                link: "/product-category/entertainment/",
+                slug: "entertainment",
               },
               {
                 name: "Exhaust System",
                 description: "Headers, Mufflers",
                 image:
                   "https://brator-main.smartdemowp.com/wp-content/uploads/categories-24.png",
-                link: "/product-category/exhaust-system/",
+                slug: "exhaust-system",
               },
               {
                 name: "Air Filters",
                 description: "Air intake, filters",
                 image:
                   "https://brator-main.smartdemowp.com/wp-content/uploads/categories-23.png",
-                link: "/product-category/air-filters/",
+                slug: "air-filters",
               },
               {
                 name: "Starting & Charging",
                 description: "Batteries, Starters",
                 image:
                   "https://brator-main.smartdemowp.com/wp-content/uploads/categories-22.png",
-                link: "/product-category/starting-charging/",
+                slug: "starting-charging",
               },
               {
                 name: "Wipers & Washers",
                 description: "Wiper Blades, Cleaners",
                 image:
                   "https://brator-main.smartdemowp.com/wp-content/uploads/categories-21.png",
-                link: "/product-category/wipers-washers/",
+                slug: "wipers-washers",
               },
               {
                 name: "Fluids & Chemicals",
                 description: "Soap, Shampoo, Brushes",
                 image:
                   "https://brator-main.smartdemowp.com/wp-content/uploads/categories-20.png",
-                link: "/product-category/fluids-chemicals/",
+                slug: "fluids-chemicals",
               },
             ]
               .slice(0, showMoreCategories ? 12 : 6)
