@@ -1455,13 +1455,24 @@ export default function CatronHomePage() {
           background-size: cover;
           padding-top: 100px;
           position: relative;
-          background-color: rgb(255, 255, 255);
+          background-color: rgba(0, 0, 0, 0.5);
           transition:
             background 0.3s ease,
             border 0.3s ease,
             border-radius 0.3s ease,
             box-shadow 0.4s ease,
             transform 0.3s ease;
+        }
+
+        .hero-section::before {
+          content: "";
+          position: absolute;
+          top: 0;
+          left: 0;
+          right: 0;
+          bottom: 0;
+          background-color: rgba(0, 0, 0, 0.4);
+          z-index: 1;
         }
 
         .hero-container {
