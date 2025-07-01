@@ -236,7 +236,7 @@ export default function CatronHomePage() {
               <span className="action-text">Cart ({cartItems})</span>
             </div>
             <div className="action-item">
-              <span className="action-icon">👤</span>
+              <span className="action-icon">��</span>
               <span className="action-text">Sign In</span>
             </div>
           </div>
@@ -247,7 +247,21 @@ export default function CatronHomePage() {
       <nav className="main-navigation">
         <div className="nav-container">
           <div className="categories-dropdown">
-            <button className="categories-btn">☰ All Categories</button>
+            <button className="categories-btn">
+              <svg
+                width="16"
+                height="16"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="2"
+              >
+                <line x1="3" y1="6" x2="21" y2="6"></line>
+                <line x1="3" y1="12" x2="21" y2="12"></line>
+                <line x1="3" y1="18" x2="21" y2="18"></line>
+              </svg>
+              All Categories
+            </button>
           </div>
 
           <div className="nav-links">
