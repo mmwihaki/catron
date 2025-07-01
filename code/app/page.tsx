@@ -535,10 +535,6 @@ export default function CatronHomePage() {
               <h2 className="essential-items-title">
                 Essential Items for New Car
               </h2>
-              <a href="/shop?search_type=parts" className="see-all-link">
-                <span>View More Products</span>
-                <i className="fas fa-chevron-right"></i>
-              </a>
             </div>
           </div>
 
