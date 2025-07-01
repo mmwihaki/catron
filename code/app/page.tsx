@@ -555,20 +555,26 @@ export default function CatronHomePage() {
               .map((category, index) => (
                 <div key={index} className="category-card">
                   <div className="category-image-container">
-                    <a href={category.link} className="category-image-link">
+                    <Link
+                      href={`/category/${category.slug}`}
+                      className="category-image-link"
+                    >
                       <img
                         src={category.image}
                         alt={category.name}
                         className="category-image"
                         loading="lazy"
                       />
-                    </a>
+                    </Link>
                   </div>
                   <div className="category-content">
                     <div className="category-title">
-                      <a href={category.link} className="category-link">
+                      <Link
+                        href={`/category/${category.slug}`}
+                        className="category-link"
+                      >
                         {category.name}
-                      </a>
+                      </Link>
                     </div>
                     <div className="category-description">
                       {category.description}
