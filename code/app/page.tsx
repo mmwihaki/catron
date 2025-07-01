@@ -2911,7 +2911,15 @@ export default function CatronHomePage() {
             max-width: none;
           }
 
-          .categories-grid,
+          .categories-grid {
+            justify-content: center;
+          }
+
+          .category-card {
+            max-width: calc(50% - 15px);
+            min-width: 160px;
+          }
+
           .products-grid-container {
             grid-template-columns: 1fr;
           }
