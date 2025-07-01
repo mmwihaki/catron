@@ -1869,7 +1869,7 @@ export default function CatronHomePage() {
           text-align: center;
           margin-left: auto;
           margin-right: auto;
-          max-width: 1320px;
+          max-width: 1520px;
           padding-left: 12px;
           padding-right: 12px;
           width: 100%;
