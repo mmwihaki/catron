@@ -771,14 +771,14 @@ export default function CatronHomePage() {
               <button
                 className="view-more-button"
                 onClick={() => {
-                  if (activeTab === "makes") {
-                    setShowMoreMakes(!showMoreMakes);
-                  } else {
+                  if (activeTab === "models") {
                     setShowMoreModels(!showMoreModels);
+                  } else {
+                    setShowMoreEngines(!showMoreEngines);
                   }
                 }}
               >
-                {(activeTab === "makes" ? showMoreMakes : showMoreModels)
+                {(activeTab === "models" ? showMoreModels : showMoreEngines)
                   ? "Show Less"
                   : "View More"}
               </button>
