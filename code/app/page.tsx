@@ -2260,6 +2260,7 @@ export default function CatronHomePage() {
         .newsletter-section {
           position: relative;
           background: rgb(255, 255, 255);
+          border-bottom: 1px solid #000;
         }
 
         .newsletter-container {
