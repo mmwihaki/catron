@@ -319,13 +319,7 @@ export default function CatronHomePage() {
                     disabled={!vehicleYear}
                   >
                     <option value="">Brand</option>
-                    <option value="bosch">Bosch</option>
-                    <option value="brigdestone">Brigdestone</option>
-                    <option value="castrol">Castrol</option>
-                    <option value="dorman">Dorman</option>
-                    <option value="michelin">Michelin</option>
-                    <option value="varta">Varta</option>
-                    <option value="wruth">Wruth</option>
+                    <option value="nissan">Nissan</option>
                   </select>
 
                   <select
@@ -336,16 +330,27 @@ export default function CatronHomePage() {
                     disabled={!vehicleBrand}
                   >
                     <option value="">Model</option>
-                    <option value="a4-prestige">A4 Prestige</option>
-                    <option value="a6-quattro-premium">
-                      A6 Quattro Premium
-                    </option>
-                    <option value="cherokee">Cherokee</option>
-                    <option value="city-express">City Express</option>
-                    <option value="civic">Civic</option>
-                    <option value="colorado">Colorado</option>
-                    <option value="convertible">Convertible</option>
-                    <option value="q7-premium">Q7 Premium</option>
+                    <option value="note">Note</option>
+                    <option value="sylphy">Sylphy</option>
+                    <option value="serena">Serena</option>
+                    <option value="advan">AdVan</option>
+                    <option value="wingroad">Wingroad</option>
+                    <option value="nv200-vanette">NV200 Vanette</option>
+                    <option value="kicks">Kicks</option>
+                    <option value="x-trail">X-Trail</option>
+                    <option value="march">March</option>
+                    <option value="tiida">Tiida</option>
+                    <option value="tiida-latio">Tiida Latio</option>
+                    <option value="latio">Latio</option>
+                    <option value="bluebird-sylphy">Bluebird Sylphy</option>
+                    <option value="dualis">Dualis</option>
+                    <option value="teana">Teana</option>
+                    <option value="nv350-caravan">NV350 Caravan</option>
+                    <option value="elgrand">Elgrand</option>
+                    <option value="murano">Murano</option>
+                    <option value="lafesta">Lafesta</option>
+                    <option value="juke">Juke</option>
+                    <option value="cube">Cube</option>
                   </select>
 
                   <select
@@ -356,11 +361,17 @@ export default function CatronHomePage() {
                     disabled={!vehicleModel}
                   >
                     <option value="">Engine</option>
-                    <option value="camshaft">Camshaft</option>
-                    <option value="crankshaft">Crankshaft</option>
-                    <option value="gigabite">Gigabite</option>
-                    <option value="msi">Msi</option>
-                    <option value="valves">Valves</option>
+                    <option value="1198cc-hr12ddr">1198cc HR12DDR</option>
+                    <option value="1198cc-hr12de">1198cc HR12DE</option>
+                    <option value="1597cc-hr16de">1597cc HR16DE</option>
+                    <option value="1797cc-mra8de">1797cc MRA8DE</option>
+                    <option value="1800cc-mr18de">1800cc MR18DE</option>
+                    <option value="1598cc-hr16de">1598cc HR16DE</option>
+                    <option value="1997cc-mr20de">1997cc MR20DE</option>
+                    <option value="2488cc-qr25de">2488cc QR25DE</option>
+                    <option value="1797cc-mr18de">1797cc MR18DE</option>
+                    <option value="2495cc-vq25de">2495cc VQ25DE</option>
+                    <option value="1498cc-hr15de">1498cc HR15DE</option>
                   </select>
 
                   <select
@@ -371,9 +382,9 @@ export default function CatronHomePage() {
                     disabled={!vehicleEngine}
                   >
                     <option value="">Fuel Type</option>
-                    <option value="diesel">Diesel</option>
-                    <option value="octen">Octen</option>
                     <option value="petrol">Petrol</option>
+                    <option value="hybrid">e-Power (Hybrid)</option>
+                    <option value="electric">Electric</option>
                   </select>
 
                   <button type="submit" className="search-submit-btn">
