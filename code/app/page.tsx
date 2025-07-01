@@ -1564,40 +1564,65 @@ export default function CatronHomePage() {
           justify-content: space-between;
         }
 
-        .vehicle-search-form h3 {
-          margin-bottom: 20px;
-          color: rgb(247, 51, 18);
-          font-size: 20px;
+        .form-select {
+          background-color: rgb(255, 255, 255);
+          border: 0.8px solid rgb(212, 212, 212);
+          border-radius: 3px;
+          color: rgb(68, 68, 68);
+          cursor: pointer;
+          font-family:
+            "Inter",
+            -apple-system,
+            BlinkMacSystemFont,
+            "Segoe UI",
+            Roboto,
+            sans-serif;
+          font-size: 15px;
+          height: 50px;
+          line-height: 50px;
+          padding: 0 20px;
+          width: 100%;
+          user-select: none;
+          appearance: none;
+          background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='currentColor' class='bi bi-chevron-down' viewBox='0 0 16 16'> <path fill-rule='evenodd' d='M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z'/> </svg>");
+          background-position: 95% 16px;
+          background-repeat: no-repeat;
         }
 
-        .form-row {
-          display: grid;
-          grid-template-columns: repeat(3, 1fr);
-          gap: 15px;
-        }
-
-        .form-row select {
-          padding: 12px;
-          border: 1px solid #ddd;
-          border-radius: 4px;
-          font-size: 14px;
+        .form-select:disabled {
+          background-color: rgb(242, 242, 247);
+          opacity: 0.7;
+          cursor: default;
         }
 
         .search-submit-btn {
-          grid-column: span 3;
-          background: rgb(247, 51, 18);
-          color: white;
-          border: none;
-          padding: 15px;
+          appearance: auto;
+          background-color: rgb(247, 51, 18);
+          border: 1.6px solid rgb(247, 51, 18);
           border-radius: 4px;
-          font-size: 16px;
-          font-weight: 600;
+          color: rgb(255, 255, 255);
           cursor: pointer;
-          margin-top: 10px;
+          font-family:
+            "Inter",
+            -apple-system,
+            BlinkMacSystemFont,
+            "Segoe UI",
+            Roboto,
+            sans-serif;
+          font-weight: 700;
+          height: 52px;
+          line-height: 16px;
+          max-width: 160px;
+          padding: 15px 20px;
+          text-align: center;
+          text-transform: capitalize;
+          transition-duration: 0.3s;
+          width: 100%;
         }
 
         .search-submit-btn:hover {
-          background: rgb(220, 40, 15);
+          background-color: rgb(220, 40, 15);
+          border-color: rgb(220, 40, 15);
         }
 
         /* Categories Section */
