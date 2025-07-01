@@ -1449,53 +1449,119 @@ export default function CatronHomePage() {
 
         /* Hero Section */
         .hero-section {
-          background: linear-gradient(
-            135deg,
-            rgb(247, 51, 18) 0%,
-            rgb(220, 40, 15) 100%
-          );
-          color: white;
-          padding: 80px 0;
-          text-align: center;
+          background-image: url("https://brator-main.smartdemowp.com/wp-content/uploads/banner-1.jpg");
+          background-position: 50% 50%;
+          background-repeat: no-repeat;
+          background-size: cover;
+          padding-top: 100px;
+          position: relative;
+          background-color: rgb(255, 255, 255);
+          transition:
+            background 0.3s ease,
+            border 0.3s ease,
+            border-radius 0.3s ease,
+            box-shadow 0.4s ease,
+            transform 0.3s ease;
+        }
+
+        .hero-container {
+          display: flex;
+          margin-left: auto;
+          margin-right: auto;
+          max-width: 1520px;
+          position: relative;
         }
 
         .hero-content {
-          max-width: 1200px;
-          margin: 0 auto;
-          padding: 0 20px;
+          display: flex;
+          min-height: 1px;
+          position: relative;
+          width: 100%;
+          align-content: flex-start;
+          flex-flow: row wrap;
+          flex-wrap: wrap;
         }
 
-        .hero-badge {
-          background: rgba(255, 255, 255, 0.2);
-          display: inline-block;
-          padding: 8px 16px;
-          border-radius: 20px;
-          margin-bottom: 20px;
-          font-size: 14px;
-          font-weight: 600;
+        .hero-text-section {
+          width: 100%;
+          text-align: center;
         }
 
-        .hero-title {
-          font-size: 60px;
-          font-weight: 800;
+        .hero-text-item {
           margin-bottom: 20px;
-          line-height: 1.1;
+          position: relative;
+          text-align: center;
+          width: 100%;
+        }
+
+        .hero-search-intro {
+          margin-top: 80px;
         }
 
         .hero-subtitle {
-          font-size: 18px;
-          margin-bottom: 40px;
-          opacity: 0.9;
+          color: rgb(255, 255, 255);
+          font-size: 30px;
+          line-height: 1.2;
+          position: relative;
+          text-align: center;
+          text-transform: uppercase;
+          transition-duration: 0.6s;
+          font-weight: 400;
+          margin: 0;
+        }
+
+        .hero-title {
+          color: rgb(255, 255, 255);
+          font-size: 60px;
+          font-weight: 700;
+          line-height: 1.1;
+          position: relative;
+          text-align: center;
+          transition-duration: 0.6s;
+          margin: 0;
+        }
+
+        .hero-search-title {
+          color: rgb(255, 255, 255);
+          font-size: 30px;
+          font-weight: 700;
+          line-height: 1.2;
+          position: relative;
+          text-align: center;
+          transition-duration: 0.6s;
+          margin: 0;
+        }
+
+        .hero-search-description {
+          color: rgb(255, 255, 255);
+          line-height: 16px;
+          text-align: center;
+          margin: 15px 0 0 0;
+        }
+
+        .hero-form-section {
+          position: relative;
+          width: 100%;
         }
 
         /* Vehicle Search Form */
         .vehicle-search-form {
-          background: white;
-          border-radius: 8px;
+          background-color: rgb(255, 255, 255);
+          border: 0.8px solid rgba(0, 0, 0, 0.1);
+          border-radius: 8px 8px 0px 0px;
+          border-style: solid none none;
+          display: flex;
+          gap: 20px;
+          justify-content: space-between;
           padding: 30px;
           color: #333;
-          max-width: 800px;
-          margin: 0 auto;
+        }
+
+        .form-fields-container {
+          display: flex;
+          gap: 20px;
+          width: 100%;
+          justify-content: space-between;
         }
 
         .vehicle-search-form h3 {
