@@ -1483,6 +1483,7 @@ export default function CatronHomePage() {
           max-width: 1520px;
           position: relative;
           z-index: 2;
+          padding: 0 12px;
         }
 
         .hero-content {
