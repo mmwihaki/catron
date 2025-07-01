@@ -1481,6 +1481,7 @@ export default function CatronHomePage() {
           margin-right: auto;
           max-width: 1520px;
           position: relative;
+          z-index: 2;
         }
 
         .hero-content {
@@ -1491,6 +1492,7 @@ export default function CatronHomePage() {
           align-content: flex-start;
           flex-flow: row wrap;
           flex-wrap: wrap;
+          z-index: 2;
         }
 
         .hero-text-section {
