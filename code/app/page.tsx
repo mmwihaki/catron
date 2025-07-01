@@ -2731,12 +2731,17 @@ export default function CatronHomePage() {
             font-size: 36px;
           }
 
-          .form-row {
-            grid-template-columns: 1fr;
+          .hero-form-section {
+            margin-top: 30px;
+          }
+
+          .form-fields-container {
+            flex-direction: column;
+            gap: 15px;
           }
 
           .search-submit-btn {
-            grid-column: span 1;
+            max-width: none;
           }
 
           .categories-grid,
