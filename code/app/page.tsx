@@ -2517,32 +2517,20 @@ export default function CatronHomePage() {
         /* Newsletter Section */
         .newsletter-section {
           position: relative;
-          background: rgb(255, 255, 255);
-          border-bottom: 1px solid #000;
+          background: rgb(246, 247, 250);
+          border-top: 0.8px solid rgb(229, 229, 229);
+          border-bottom: 0.8px solid rgb(229, 229, 229);
+          padding: 90px 0;
         }
 
         .newsletter-container {
           display: flex;
           margin-left: auto;
           margin-right: auto;
-          position: relative;
-        }
-
-        .newsletter-content {
-          display: flex;
-          min-height: 1px;
-          position: relative;
-          width: 100%;
-          background: rgb(246, 247, 250);
-          border-color: rgb(229, 229, 229);
-          border-top: 0.8px solid rgb(229, 229, 229);
-          padding: 90px 0;
-        }
-
-        .newsletter-container {
           max-width: 1320px;
           padding: 0 12px;
           width: 100%;
+          position: relative;
         }
 
         .newsletter-content {
@@ -2550,6 +2538,7 @@ export default function CatronHomePage() {
           flex-wrap: wrap;
           margin-left: -12px;
           margin-right: -12px;
+          width: 100%;
         }
 
         .newsletter-text {
