@@ -2185,8 +2185,8 @@ export default function CatronHomePage() {
           box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
         }
 
-        .makes-grid,
-        .models-grid {
+        .models-grid,
+        .engines-grid {
           display: grid;
           grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
           gap: 15px;
