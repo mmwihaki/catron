@@ -1453,9 +1453,10 @@ export default function CatronHomePage() {
           background-position: 50% 50%;
           background-repeat: no-repeat;
           background-size: cover;
-          padding-top: 100px;
+          padding: 100px 0 60px 0;
           position: relative;
           background-color: rgba(0, 0, 0, 0.5);
+          min-height: 80vh;
           transition:
             background 0.3s ease,
             border 0.3s ease,
