@@ -2212,29 +2212,34 @@ export default function CatronHomePage() {
           color: rgb(247, 51, 18);
         }
 
-        .model-info {
+        .model-info,
+        .engine-info {
           display: flex;
           flex-direction: column;
           gap: 4px;
         }
 
-        .model-name {
+        .model-name,
+        .engine-name {
           font-size: 14px;
           font-weight: 600;
           color: #333;
         }
 
-        .model-engine {
+        .model-engine,
+        .engine-count {
           font-size: 12px;
           color: #666;
           font-weight: 400;
         }
 
-        .model-button:hover .model-name {
+        .model-button:hover .model-name,
+        .engine-button:hover .engine-name {
           color: rgb(247, 51, 18);
         }
 
-        .model-button:hover .model-engine {
+        .model-button:hover .model-engine,
+        .engine-button:hover .engine-count {
           color: rgb(200, 40, 15);
         }
 
