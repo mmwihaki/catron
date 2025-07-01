@@ -2193,8 +2193,8 @@ export default function CatronHomePage() {
           margin-bottom: 30px;
         }
 
-        .make-button,
-        .model-button {
+        .model-button,
+        .engine-button {
           padding: 15px 20px;
           border: 2px solid rgb(212, 212, 212);
           background: white;
@@ -2206,8 +2206,8 @@ export default function CatronHomePage() {
           text-align: left;
         }
 
-        .make-button:hover,
-        .model-button:hover {
+        .model-button:hover,
+        .engine-button:hover {
           border-color: rgb(247, 51, 18);
           color: rgb(247, 51, 18);
         }
