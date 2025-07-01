@@ -1813,38 +1813,45 @@ export default function CatronHomePage() {
           text-align: center;
         }
 
-        .category-link {
-          text-decoration: none;
-          color: inherit;
-          display: block;
-        }
-
-        .category-image {
-          height: 200px;
-          overflow: hidden;
-        }
-
-        .category-image img {
-          width: 100%;
-          height: 100%;
-          object-fit: cover;
-        }
-
-        .category-info {
-          padding: 20px;
+        .load-more-container {
+          margin-top: 50px;
           text-align: center;
+          margin-left: auto;
+          margin-right: auto;
+          max-width: 1320px;
+          padding-left: 12px;
+          padding-right: 12px;
+          width: 100%;
         }
 
-        .category-name {
-          font-size: 18px;
-          font-weight: 600;
-          margin-bottom: 5px;
+        .load-more-button {
+          appearance: auto;
+          background-color: rgb(255, 255, 255);
+          border: 0.8px solid rgb(204, 204, 204);
+          border-radius: 4px;
+          cursor: pointer;
+          display: inline-block;
+          font-family:
+            "Inter",
+            -apple-system,
+            BlinkMacSystemFont,
+            "Segoe UI",
+            Roboto,
+            sans-serif;
+          font-weight: 700;
+          height: 52px;
+          line-height: 16px;
+          padding: 15px 53px;
+          text-align: center;
+          text-transform: capitalize;
+          transition-duration: 0.3s;
           color: #333;
         }
 
-        .category-count {
-          color: #666;
-          font-size: 14px;
+        .load-more-button:hover {
+          background-color: rgb(247, 51, 18);
+          border-color: rgb(247, 51, 18);
+          color: white;
         }
 
         .load-more-container {
