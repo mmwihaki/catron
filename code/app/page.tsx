@@ -269,18 +269,18 @@ export default function CatronHomePage() {
           <div className="hero-content">
             <div className="hero-text-section">
               <div className="hero-text-item">
-                <h2 className="hero-subtitle">#1 Online Marketplace</h2>
+                <h2 className="hero-subtitle">#1 Nissan Parts Marketplace</h2>
               </div>
               <div className="hero-text-item">
                 <h1 className="hero-title">
-                  Car Spares OEM &amp; Aftermarkets
+                  Nissan OEM &amp; Aftermarket Parts
                 </h1>
               </div>
               <div className="hero-text-item hero-search-intro">
-                <h2 className="hero-search-title">Search by Vehicle</h2>
+                <h2 className="hero-search-title">Search by Nissan Model</h2>
                 <p className="hero-search-description">
-                  Filter your results by entering your Vehicle to ensure you
-                  find the parts that fit.
+                  Filter your results by entering your Nissan model to ensure
+                  you find the exact parts that fit.
                 </p>
               </div>
             </div>
