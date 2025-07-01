@@ -927,12 +927,6 @@ export default function CatronHomePage() {
               </div>
             ))}
           </div>
-
-          <div className="view-more-container">
-            <a href="/shop?search_type=new-arrivals" className="view-more-btn">
-              View More Products
-            </a>
-          </div>
         </div>
       </section>
 
