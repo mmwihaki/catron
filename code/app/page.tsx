@@ -730,22 +730,11 @@ export default function CatronHomePage() {
           <div className="featured-content">
             {activeTab === "makes" && (
               <div className="makes-grid">
-                {[
-                  "Nissan",
-                  "Toyota",
-                  "Honda",
-                  "Mazda",
-                  "Subaru",
-                  "Mitsubishi",
-                  "Suzuki",
-                  "Daihatsu",
-                ]
-                  .slice(0, showMoreMakes ? 8 : 6)
-                  .map((make) => (
-                    <button key={make} className="make-button">
-                      {make}
-                    </button>
-                  ))}
+                {["Nissan"].map((make) => (
+                  <button key={make} className="make-button">
+                    {make}
+                  </button>
+                ))}
               </div>
             )}
 
