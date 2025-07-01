@@ -728,16 +728,6 @@ export default function CatronHomePage() {
           </div>
 
           <div className="featured-content">
-            {activeTab === "makes" && (
-              <div className="makes-grid">
-                {["Nissan"].map((make) => (
-                  <button key={make} className="make-button">
-                    {make}
-                  </button>
-                ))}
-              </div>
-            )}
-
             {activeTab === "models" && (
               <div className="models-grid">
                 {nissanModels
@@ -749,6 +739,28 @@ export default function CatronHomePage() {
                           {model.name} {model.model}
                         </div>
                         <div className="model-engine">{model.engine}</div>
+                      </div>
+                    </button>
+                  ))}
+              </div>
+            )}
+
+            {activeTab === "engines" && (
+              <div className="engines-grid">
+                {[...new Set(nissanModels.map((model) => model.engine))]
+                  .slice(0, showMoreEngines ? 16 : 8)
+                  .map((engine, index) => (
+                    <button key={index} className="engine-button">
+                      <div className="engine-info">
+                        <div className="engine-name">{engine}</div>
+                        <div className="engine-count">
+                          {
+                            nissanModels.filter(
+                              (model) => model.engine === engine,
+                            ).length
+                          }{" "}
+                          Models
+                        </div>
                       </div>
                     </button>
                   ))}
