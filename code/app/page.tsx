@@ -12,8 +12,8 @@ export default function CatronHomePage() {
   const [vehicleFuelType, setVehicleFuelType] = useState("");
   const [cartItems, setCartItems] = useState(0);
   const [activeTab, setActiveTab] = useState("models");
-  const [showMoreMakes, setShowMoreMakes] = useState(false);
   const [showMoreModels, setShowMoreModels] = useState(false);
+  const [showMoreEngines, setShowMoreEngines] = useState(false);
   const [showMoreCategories, setShowMoreCategories] = useState(false);
 
   const nissanMakes = ["Nissan"];
