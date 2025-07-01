@@ -1700,41 +1700,117 @@ export default function CatronHomePage() {
 
         /* Categories Section */
         .categories-section {
-          padding: 65px 0;
-          background: white;
+          position: relative;
+          background-color: rgb(255, 255, 255);
         }
 
         .categories-container {
-          max-width: 1200px;
-          margin: 0 auto;
-          padding: 0 20px;
+          background-color: rgb(242, 242, 247);
+          padding: 75px 0;
+        }
+
+        .categories-header {
+          margin-left: auto;
+          margin-right: auto;
+          max-width: 1320px;
+          padding-left: 12px;
+          padding-right: 12px;
+          width: 100%;
         }
 
         .section-title {
-          font-size: 35px;
-          font-weight: 700;
-          text-align: center;
-          margin-bottom: 50px;
+          font-size: 30px;
+          font-weight: 600;
+          line-height: 36px;
+          margin-bottom: 35px;
+          position: relative;
+          transition-duration: 0.6s;
           color: #333;
         }
 
         .categories-grid {
-          display: grid;
-          grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+          display: flex;
+          flex-flow: row wrap;
+          flex-wrap: wrap;
           gap: 30px;
-          margin-bottom: 40px;
+          justify-content: flex-start;
+          align-items: flex-start;
+          margin-left: auto;
+          margin-right: auto;
+          max-width: 1320px;
+          padding-left: 12px;
+          padding-right: 12px;
+          width: 100%;
         }
 
         .category-card {
-          background: white;
-          border-radius: 8px;
-          box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-          overflow: hidden;
-          transition: transform 0.3s ease;
+          background-color: rgb(255, 255, 255);
+          border-radius: 5px;
+          display: flex;
+          flex-direction: column;
+          flex-flow: column nowrap;
+          margin-bottom: 30px;
+          max-width: calc(16.6667% - 30px);
+          padding: 60px 17px 25px 17px;
+          text-align: center;
+          transition-duration: 0.3s;
+          width: 100%;
+          min-width: 180px;
         }
 
-        .category-card:hover {
-          transform: translateY(-5px);
+        .category-image-container {
+          align-items: center;
+          display: flex;
+          height: 60px;
+          justify-content: center;
+          margin-bottom: 30px;
+          text-align: center;
+        }
+
+        .category-image-link {
+          cursor: pointer;
+          display: grid;
+          text-align: center;
+        }
+
+        .category-image {
+          cursor: pointer;
+          margin-left: auto;
+          margin-right: auto;
+          max-width: 114px;
+          text-align: center;
+          width: auto;
+          height: auto;
+        }
+
+        .category-content {
+          margin-top: auto;
+          text-align: center;
+        }
+
+        .category-title {
+          margin-bottom: 5px;
+        }
+
+        .category-link {
+          cursor: pointer;
+          display: inline-block;
+          font-size: 14px;
+          font-weight: 700;
+          line-height: 23.996px;
+          text-align: center;
+          text-decoration: none;
+          color: #333;
+        }
+
+        .category-link:hover {
+          color: rgb(247, 51, 18);
+        }
+
+        .category-description {
+          color: rgb(102, 102, 102);
+          font-size: 12px;
+          text-align: center;
         }
 
         .category-link {
