@@ -2191,12 +2191,39 @@ export default function CatronHomePage() {
           cursor: pointer;
           font-weight: 600;
           transition: all 0.3s ease;
+          text-align: left;
         }
 
         .make-button:hover,
         .model-button:hover {
           border-color: rgb(247, 51, 18);
           color: rgb(247, 51, 18);
+        }
+
+        .model-info {
+          display: flex;
+          flex-direction: column;
+          gap: 4px;
+        }
+
+        .model-name {
+          font-size: 14px;
+          font-weight: 600;
+          color: #333;
+        }
+
+        .model-engine {
+          font-size: 12px;
+          color: #666;
+          font-weight: 400;
+        }
+
+        .model-button:hover .model-name {
+          color: rgb(247, 51, 18);
+        }
+
+        .model-button:hover .model-engine {
+          color: rgb(200, 40, 15);
         }
 
         .view-more-container {
