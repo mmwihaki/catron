@@ -265,88 +265,122 @@ export default function CatronHomePage() {
 
       {/* Hero Section */}
       <section className="hero-section">
-        <div className="hero-content">
-          <div className="hero-badge">PREMIUM AUTO PARTS</div>
-          <h1 className="hero-title">
-            Quality Parts for
-            <br />
-            Your Vehicle
-          </h1>
-          <p className="hero-subtitle">
-            Find OEM and aftermarket parts for all vehicle makes and models
-          </p>
+        <div className="hero-container">
+          <div className="hero-content">
+            <div className="hero-text-section">
+              <div className="hero-text-item">
+                <h2 className="hero-subtitle">#1 Online Marketplace</h2>
+              </div>
+              <div className="hero-text-item">
+                <h1 className="hero-title">
+                  Car Spares OEM &amp; Aftermarkets
+                </h1>
+              </div>
+              <div className="hero-text-item hero-search-intro">
+                <h2 className="hero-search-title">Search by Vehicle</h2>
+                <p className="hero-search-description">
+                  Filter your results by entering your Vehicle to ensure you
+                  find the parts that fit.
+                </p>
+              </div>
+            </div>
 
-          <div className="vehicle-search-form">
-            <h3>Search by Vehicle</h3>
-            <div className="form-row">
-              <select
-                value={vehicleYear}
-                onChange={(e) => setVehicleYear(e.target.value)}
+            <div className="hero-form-section">
+              <form
+                className="vehicle-search-form"
+                onSubmit={(e) => {
+                  e.preventDefault();
+                  handleVehicleSearch();
+                }}
               >
-                <option value="">Select Year</option>
-                {Array.from({ length: 25 }, (_, i) => {
-                  const year = new Date().getFullYear() - i;
-                  return (
-                    <option key={year} value={year}>
-                      {year}
+                <div className="form-fields-container">
+                  <select
+                    name="year"
+                    value={vehicleYear}
+                    onChange={(e) => setVehicleYear(e.target.value)}
+                    className="form-select"
+                  >
+                    <option value="">Year</option>
+                    {Array.from({ length: 8 }, (_, i) => {
+                      const year = 2000 + i;
+                      return (
+                        <option key={year} value={year}>
+                          {year}
+                        </option>
+                      );
+                    })}
+                  </select>
+
+                  <select
+                    name="brand"
+                    value={vehicleBrand}
+                    onChange={(e) => setVehicleBrand(e.target.value)}
+                    className="form-select"
+                    disabled={!vehicleYear}
+                  >
+                    <option value="">Brand</option>
+                    <option value="bosch">Bosch</option>
+                    <option value="brigdestone">Brigdestone</option>
+                    <option value="castrol">Castrol</option>
+                    <option value="dorman">Dorman</option>
+                    <option value="michelin">Michelin</option>
+                    <option value="varta">Varta</option>
+                    <option value="wruth">Wruth</option>
+                  </select>
+
+                  <select
+                    name="model"
+                    value={vehicleModel}
+                    onChange={(e) => setVehicleModel(e.target.value)}
+                    className="form-select"
+                    disabled={!vehicleBrand}
+                  >
+                    <option value="">Model</option>
+                    <option value="a4-prestige">A4 Prestige</option>
+                    <option value="a6-quattro-premium">
+                      A6 Quattro Premium
                     </option>
-                  );
-                })}
-              </select>
+                    <option value="cherokee">Cherokee</option>
+                    <option value="city-express">City Express</option>
+                    <option value="civic">Civic</option>
+                    <option value="colorado">Colorado</option>
+                    <option value="convertible">Convertible</option>
+                    <option value="q7-premium">Q7 Premium</option>
+                  </select>
 
-              <select
-                value={vehicleBrand}
-                onChange={(e) => setVehicleBrand(e.target.value)}
-              >
-                <option value="">Select Brand</option>
-                <option value="Nissan">Nissan</option>
-                <option value="Toyota">Toyota</option>
-                <option value="Honda">Honda</option>
-                <option value="Mazda">Mazda</option>
-                <option value="Subaru">Subaru</option>
-              </select>
+                  <select
+                    name="engine"
+                    value={vehicleEngine}
+                    onChange={(e) => setVehicleEngine(e.target.value)}
+                    className="form-select"
+                    disabled={!vehicleModel}
+                  >
+                    <option value="">Engine</option>
+                    <option value="camshaft">Camshaft</option>
+                    <option value="crankshaft">Crankshaft</option>
+                    <option value="gigabite">Gigabite</option>
+                    <option value="msi">Msi</option>
+                    <option value="valves">Valves</option>
+                  </select>
 
-              <select
-                value={vehicleModel}
-                onChange={(e) => setVehicleModel(e.target.value)}
-              >
-                <option value="">Select Model</option>
-                {nissanModels.map((model) => (
-                  <option key={model.name} value={model.name}>
-                    {model.name}
-                  </option>
-                ))}
-              </select>
+                  <select
+                    name="fueltype"
+                    value={vehicleFuelType}
+                    onChange={(e) => setVehicleFuelType(e.target.value)}
+                    className="form-select"
+                    disabled={!vehicleEngine}
+                  >
+                    <option value="">Fuel Type</option>
+                    <option value="diesel">Diesel</option>
+                    <option value="octen">Octen</option>
+                    <option value="petrol">Petrol</option>
+                  </select>
 
-              <select
-                value={vehicleEngine}
-                onChange={(e) => setVehicleEngine(e.target.value)}
-              >
-                <option value="">Select Engine</option>
-                {Object.entries(engineSpecs).map(([code, spec]) => (
-                  <option key={code} value={code}>
-                    {code} - {spec}
-                  </option>
-                ))}
-              </select>
-
-              <select
-                value={vehicleFuelType}
-                onChange={(e) => setVehicleFuelType(e.target.value)}
-              >
-                <option value="">Fuel Type</option>
-                <option value="Petrol">Petrol</option>
-                <option value="Diesel">Diesel</option>
-                <option value="Hybrid">Hybrid</option>
-                <option value="Electric">Electric</option>
-              </select>
-
-              <button
-                className="search-submit-btn"
-                onClick={handleVehicleSearch}
-              >
-                Search Parts
-              </button>
+                  <button type="submit" className="search-submit-btn">
+                    Search
+                  </button>
+                </div>
+              </form>
             </div>
           </div>
         </div>
