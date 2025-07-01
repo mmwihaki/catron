@@ -389,61 +389,119 @@ export default function CatronHomePage() {
       {/* Categories Section */}
       <section className="categories-section">
         <div className="categories-container">
-          <h2 className="section-title">Shop by Categories</h2>
+          <div className="categories-header">
+            <h2 className="section-title">Shop by Categories</h2>
+          </div>
           <div className="categories-grid">
             {[
               {
-                name: "Engine Parts",
+                name: "Auto Parts",
+                description: "Mesh, Billet, CNC",
                 image:
-                  "https://images.pexels.com/photos/3642618/pexels-photo-3642618.jpeg?auto=compress&cs=tinysrgb&w=300",
-                count: "245 Products",
+                  "https://brator-main.smartdemowp.com/wp-content/uploads/2021/12/categories-30.png",
+                link: "/product-category/auto-parts/",
+              },
+              {
+                name: "Car Care",
+                description: "Polishes, Cleaners",
+                image:
+                  "https://brator-main.smartdemowp.com/wp-content/uploads/categories-29.png",
+                link: "/product-category/car-care/",
+              },
+              {
+                name: "Performance",
+                description: "Brakes, Batteries, Turbo",
+                image:
+                  "https://brator-main.smartdemowp.com/wp-content/uploads/categories-28.png",
+                link: "/product-category/performance/",
+              },
+              {
+                name: "Wheels & Tires",
+                description: "Tires, TMPS Sensor",
+                image:
+                  "https://brator-main.smartdemowp.com/wp-content/uploads/2021/11/categories-09.png",
+                link: "/product-category/wheels-tires/",
+              },
+              {
+                name: "Exteriors",
+                description: "Lighting, Body, Wipers",
+                image:
+                  "https://brator-main.smartdemowp.com/wp-content/uploads/categories-27.png",
+                link: "/product-category/exteriors/",
+              },
+              {
+                name: "Interiors",
+                description: "Steering Wheels, Seats",
+                image:
+                  "https://brator-main.smartdemowp.com/wp-content/uploads/categories-26.png",
+                link: "/product-category/interiors/",
+              },
+              {
+                name: "Entertainment",
+                description: "Audios, Videos, GPS",
+                image:
+                  "https://brator-main.smartdemowp.com/wp-content/uploads/categories-25.png",
+                link: "/product-category/entertainment/",
+              },
+              {
+                name: "Exhaust System",
+                description: "Headers, Mufflers",
+                image:
+                  "https://brator-main.smartdemowp.com/wp-content/uploads/categories-24.png",
+                link: "/product-category/exhaust-system/",
               },
               {
                 name: "Air Filters",
+                description: "Air intake, filters",
                 image:
-                  "https://images.pexels.com/photos/5835359/pexels-photo-5835359.jpeg?auto=compress&cs=tinysrgb&w=300",
-                count: "189 Products",
+                  "https://brator-main.smartdemowp.com/wp-content/uploads/categories-23.png",
+                link: "/product-category/air-filters/",
               },
               {
-                name: "Oil Filters",
+                name: "Starting & Charging",
+                description: "Batteries, Starters",
                 image:
-                  "https://images.pexels.com/photos/190570/pexels-photo-190570.jpeg?auto=compress&cs=tinysrgb&w=300",
-                count: "167 Products",
+                  "https://brator-main.smartdemowp.com/wp-content/uploads/categories-22.png",
+                link: "/product-category/starting-charging/",
               },
               {
-                name: "Brake System",
+                name: "Wipers & Washers",
+                description: "Wiper Blades, Cleaners",
                 image:
-                  "https://images.pexels.com/photos/162553/keys-workshop-mechanic-tools-162553.jpeg?auto=compress&cs=tinysrgb&w=300",
-                count: "234 Products",
+                  "https://brator-main.smartdemowp.com/wp-content/uploads/categories-21.png",
+                link: "/product-category/wipers-washers/",
               },
               {
-                name: "Suspension",
+                name: "Fluids & Chemicals",
+                description: "Soap, Shampoo, Brushes",
                 image:
-                  "https://images.pexels.com/photos/244824/pexels-photo-244824.jpeg?auto=compress&cs=tinysrgb&w=300",
-                count: "145 Products",
-              },
-              {
-                name: "Electrical",
-                image:
-                  "https://images.pexels.com/photos/13065690/pexels-photo-13065690.jpeg?auto=compress&cs=tinysrgb&w=300",
-                count: "267 Products",
+                  "https://brator-main.smartdemowp.com/wp-content/uploads/categories-20.png",
+                link: "/product-category/fluids-chemicals/",
               },
             ]
-              .slice(0, showMoreCategories ? 6 : 4)
+              .slice(0, showMoreCategories ? 12 : 6)
               .map((category, index) => (
                 <div key={index} className="category-card">
-                  <a
-                    href={`#category-${category.name.toLowerCase().replace(/\s+/g, "-")}`}
-                    className="category-link"
-                  >
-                    <div className="category-image">
-                      <img src={category.image} alt={category.name} />
+                  <div className="category-image-container">
+                    <a href={category.link} className="category-image-link">
+                      <img
+                        src={category.image}
+                        alt={category.name}
+                        className="category-image"
+                        loading="lazy"
+                      />
+                    </a>
+                  </div>
+                  <div className="category-content">
+                    <div className="category-title">
+                      <a href={category.link} className="category-link">
+                        {category.name}
+                      </a>
                     </div>
-                    <div className="category-info">
-                      <h3 className="category-name">{category.name}</h3>
-                      <p className="category-count">{category.count}</p>
+                    <div className="category-description">
+                      {category.description}
                     </div>
-                  </a>
+                  </div>
                 </div>
               ))}
           </div>
@@ -452,7 +510,7 @@ export default function CatronHomePage() {
               className="load-more-button"
               onClick={() => setShowMoreCategories(!showMoreCategories)}
             >
-              {showMoreCategories ? "Show Less" : "Load More"}
+              {showMoreCategories ? "Load Less" : "Load More"}
             </button>
           </div>
         </div>
