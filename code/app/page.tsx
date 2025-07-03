@@ -500,7 +500,7 @@ export default function CatronHomePage() {
                 slug: "brake-pads",
               },
             ]
-              .slice(0, showMoreCategories ? 12 : 6)
+              .slice(0, 6)
               .map((category, index) => (
                 <div key={index} className="category-card">
                   <div className="category-image-container">
