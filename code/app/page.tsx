@@ -459,87 +459,45 @@ export default function CatronHomePage() {
             {[
               {
                 name: "Auto Parts",
-                description: "Mesh, Billet, CNC",
+                description: "All Nissan Parts",
                 image:
                   "https://brator-main.smartdemowp.com/wp-content/uploads/2021/12/categories-30.png",
                 slug: "auto-parts",
               },
               {
-                name: "Car Care",
-                description: "Polishes, Cleaners",
+                name: "Oil Filters",
+                description: "Engine Oil Filters",
                 image:
-                  "https://brator-main.smartdemowp.com/wp-content/uploads/categories-29.png",
-                slug: "car-care",
-              },
-              {
-                name: "Performance",
-                description: "Brakes, Batteries, Turbo",
-                image:
-                  "https://brator-main.smartdemowp.com/wp-content/uploads/categories-28.png",
-                slug: "performance",
-              },
-              {
-                name: "Wheels & Tires",
-                description: "Tires, TMPS Sensor",
-                image:
-                  "https://brator-main.smartdemowp.com/wp-content/uploads/2021/11/categories-09.png",
-                slug: "wheels-tires",
-              },
-              {
-                name: "Exteriors",
-                description: "Lighting, Body, Wipers",
-                image:
-                  "https://brator-main.smartdemowp.com/wp-content/uploads/categories-27.png",
-                slug: "exteriors",
-              },
-              {
-                name: "Interiors",
-                description: "Steering Wheels, Seats",
-                image:
-                  "https://brator-main.smartdemowp.com/wp-content/uploads/categories-26.png",
-                slug: "interiors",
-              },
-              {
-                name: "Entertainment",
-                description: "Audios, Videos, GPS",
-                image:
-                  "https://brator-main.smartdemowp.com/wp-content/uploads/categories-25.png",
-                slug: "entertainment",
-              },
-              {
-                name: "Exhaust System",
-                description: "Headers, Mufflers",
-                image:
-                  "https://brator-main.smartdemowp.com/wp-content/uploads/categories-24.png",
-                slug: "exhaust-system",
+                  "https://images.pexels.com/photos/3642618/pexels-photo-3642618.jpeg?auto=compress&cs=tinysrgb&w=300",
+                slug: "oil-filter",
               },
               {
                 name: "Air Filters",
-                description: "Air intake, filters",
+                description: "Air & Cabin Filters",
                 image:
                   "https://brator-main.smartdemowp.com/wp-content/uploads/categories-23.png",
                 slug: "air-filters",
               },
               {
-                name: "Starting & Charging",
-                description: "Batteries, Starters",
+                name: "Headlight Bulbs",
+                description: "OSRAM, H4 Bulbs",
                 image:
-                  "https://brator-main.smartdemowp.com/wp-content/uploads/categories-22.png",
-                slug: "starting-charging",
+                  "https://images.pexels.com/photos/1037999/pexels-photo-1037999.jpeg?auto=compress&cs=tinysrgb&w=300",
+                slug: "headlight-bulbs",
               },
               {
-                name: "Wipers & Washers",
-                description: "Wiper Blades, Cleaners",
+                name: "Spark Plugs",
+                description: "NGK Spark Plugs",
                 image:
-                  "https://brator-main.smartdemowp.com/wp-content/uploads/categories-21.png",
-                slug: "wipers-washers",
+                  "https://images.pexels.com/photos/3846527/pexels-photo-3846527.jpeg?auto=compress&cs=tinysrgb&w=300",
+                slug: "spark-plugs",
               },
               {
-                name: "Fluids & Chemicals",
-                description: "Soap, Shampoo, Brushes",
+                name: "Brake Pads",
+                description: "LPR, JAPKO Brake Pads",
                 image:
-                  "https://brator-main.smartdemowp.com/wp-content/uploads/categories-20.png",
-                slug: "fluids-chemicals",
+                  "https://images.pexels.com/photos/13065690/pexels-photo-13065690.jpeg?auto=compress&cs=tinysrgb&w=300",
+                slug: "brake-pads",
               },
             ]
               .slice(0, showMoreCategories ? 12 : 6)
