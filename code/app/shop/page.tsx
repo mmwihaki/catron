@@ -640,7 +640,7 @@ export default function ShopPage() {
                   </div>
 
                   <div className="products-grid-container shop-grid">
-                    {essentialProducts.map((product) => (
+                    {getDisplayedProducts().map((product) => (
                       <div
                         key={`bestseller-${product.id}`}
                         className="product-card"
