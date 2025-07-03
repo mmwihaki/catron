@@ -1852,6 +1852,8 @@ export default function ShopPage() {
           }
         }
       `}</style>
+
+      <CartSidebar isOpen={isCartOpen} onClose={() => setIsCartOpen(false)} />
     </div>
   );
 }
