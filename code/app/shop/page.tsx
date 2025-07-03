@@ -40,25 +40,74 @@ export default function ShopPage() {
   }, [showCategoriesDropdown]);
 
   const categories = [
-    { name: "All Parts", count: 1205 },
-    { name: "Auto Care", count: 85 },
-    { name: "Auto Electronics", count: 120 },
-    { name: "Batteries", count: 45 },
-    { name: "Body Parts", count: 200 },
-    { name: "Brakes", count: 150 },
-    { name: "Car Audio", count: 75 },
-    { name: "Engine Components", count: 300 },
-    { name: "Exhaust", count: 65 },
-    { name: "Filters", count: 90 },
-    { name: "Fluids & Chemicals", count: 55 },
-    { name: "Fuel System", count: 80 },
-    { name: "Lights & Lighting", count: 110 },
-    { name: "Performance", count: 40 },
-    { name: "Steering & Suspension", count: 180 },
-    { name: "Tires & Rims", count: 95 },
-    { name: "Tools & Equipment", count: 70 },
-    { name: "Transmission", count: 85 },
+    "Oil Filters",
+    "Air Filters",
+    "Headlight Bulbs",
+    "Spark Plugs",
+    "Brake Pads",
+    "Suspension",
+    "Engine Parts",
+    "Exhaust Systems",
+    "Tires & Wheels",
+    "Electronics",
+    "Body Parts",
+    "Transmission",
   ];
+
+  const nissanMakes = ["Nissan"];
+
+  const nissanModels = [
+    "Note",
+    "Sentra",
+    "Sylphy",
+    "Serena",
+    "AdVan",
+    "Wingroad",
+    "NV200 Vanette",
+    "Kicks",
+    "X-Trail",
+    "March",
+    "Tiida",
+    "TiidaLatio",
+    "Latio",
+    "Bluebird Sylphy",
+    "Dualis",
+    "Teana",
+    "NV350 Caravan",
+    "Elgrand",
+    "Murano",
+    "Lafesta",
+    "Juke",
+    "Cube",
+  ];
+
+  const vehicleYears = [
+    "2024",
+    "2023",
+    "2022",
+    "2021",
+    "2020",
+    "2019",
+    "2018",
+    "2017",
+    "2016",
+    "2015",
+  ];
+
+  const engineTypes = [
+    "1198cc HR12DDR",
+    "1198cc HR12DE",
+    "1597cc HR16DE",
+    "1498cc HR15DE",
+    "1797cc MRA8DE",
+    "1997cc MR20DE",
+    "1800cc MR18DE",
+    "2488cc QR25DE",
+    "2495cc VQ25DE",
+    "3498cc VQ35DE",
+  ];
+
+  const brands = ["Catron", "KAVO", "OSRAM", "NGK", "NISMO", "Mugen", "HKS"];
 
   const bestSellerProducts = [
     {
