@@ -713,8 +713,8 @@ export default function CategoryPage() {
                   e.currentTarget.style.boxShadow = "none";
                 }}
               >
-                {/* Product Badge */}
-                {product.badge && (
+                {/* Product Badge - only show for low stock */}
+                {product.stock < 5 && (
                   <div
                     style={{
                       position: "absolute",
@@ -728,7 +728,7 @@ export default function CategoryPage() {
                       borderRadius: "3px",
                     }}
                   >
-                    {product.badge}
+                    Low Stock
                   </div>
                 )}
 
