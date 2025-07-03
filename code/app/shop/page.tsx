@@ -1,21 +1,43 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Link from "next/link";
 
 export default function ShopPage() {
+  const [searchCategory, setSearchCategory] = useState("All");
   const [searchQuery, setSearchQuery] = useState("");
+  const [vehicleYear, setVehicleYear] = useState("");
+  const [vehicleBrand, setVehicleBrand] = useState("Nissan");
+  const [vehicleModel, setVehicleModel] = useState("");
+  const [vehicleEngine, setVehicleEngine] = useState("");
   const [cartItems, setCartItems] = useState(3);
-  const [priceRange, setPriceRange] = useState([0, 1000]);
+  const [showCategoriesDropdown, setShowCategoriesDropdown] = useState(false);
+  const [priceRange, setPriceRange] = useState([0, 100000]);
   const [selectedCategories, setSelectedCategories] = useState<string[]>([]);
-  const [selectedDiameters, setSelectedDiameters] = useState<string[]>([]);
-  const [selectedWidths, setSelectedWidths] = useState<string[]>([]);
-  const [selectedColors, setSelectedColors] = useState<string[]>([]);
-  const [selectedBrands, setSelectedBrands] = useState<string[]>([]);
+  const [selectedMakes, setSelectedMakes] = useState<string[]>([]);
   const [selectedModels, setSelectedModels] = useState<string[]>([]);
-  const [selectedRatings, setSelectedRatings] = useState<number[]>([]);
+  const [selectedYears, setSelectedYears] = useState<string[]>([]);
+  const [selectedEngines, setSelectedEngines] = useState<string[]>([]);
+  const [selectedBrands, setSelectedBrands] = useState<string[]>([]);
   const [sortBy, setSortBy] = useState("name");
   const [currentPage, setCurrentPage] = useState(1);
+
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      const dropdown = document.querySelector(".categories-dropdown");
+      if (dropdown && !dropdown.contains(event.target as Node)) {
+        setShowCategoriesDropdown(false);
+      }
+    };
+
+    if (showCategoriesDropdown) {
+      document.addEventListener("mousedown", handleClickOutside);
+    }
+
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, [showCategoriesDropdown]);
 
   const categories = [
     { name: "All Parts", count: 1205 },
