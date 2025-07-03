@@ -827,12 +827,12 @@ export default function CatronHomePage() {
 
                   <div className="product-info">
                     <div className="product-category">
-                      <a
-                        href={`#category-${product.category.toLowerCase().replace(/\s+/g, "-")}`}
+                      <Link
+                        href={`/category/${product.category.toLowerCase().replace(/\s+/g, "-")}`}
                         className="category-link"
                       >
                         {product.category}
-                      </a>
+                      </Link>
                     </div>
 
                     <div className="product-name">
