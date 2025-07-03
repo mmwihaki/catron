@@ -791,23 +791,11 @@ export default function CategoryPage() {
 
                 {/* Price */}
                 <div style={{ marginBottom: "10px" }}>
-                  {product.originalPrice && (
-                    <span
-                      style={{
-                        fontSize: "12px",
-                        color: "#999",
-                        textDecoration: "line-through",
-                        marginRight: "8px",
-                      }}
-                    >
-                      KES {product.originalPrice.toLocaleString()}
-                    </span>
-                  )}
                   <span
                     style={{
                       fontSize: "16px",
                       fontWeight: "600",
-                      color: product.originalPrice ? "#f73312" : "#333",
+                      color: "#333",
                     }}
                   >
                     KES {product.price.toLocaleString()}
