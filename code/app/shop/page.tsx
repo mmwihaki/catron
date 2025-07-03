@@ -1650,7 +1650,7 @@ export default function ShopPage() {
           }
 
           .products-grid-container.shop-grid {
-            grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+            grid-template-columns: repeat(3, 1fr);
           }
         }
 
@@ -1699,7 +1699,7 @@ export default function ShopPage() {
           }
 
           .products-grid-container.shop-grid {
-            grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+            grid-template-columns: repeat(2, 1fr);
           }
 
           .footer-main {
@@ -1714,7 +1714,7 @@ export default function ShopPage() {
 
         @media (max-width: 480px) {
           .products-grid-container.shop-grid {
-            grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+            grid-template-columns: 1fr;
             gap: 15px;
           }
 
