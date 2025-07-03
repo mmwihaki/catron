@@ -499,38 +499,36 @@ export default function CatronHomePage() {
                   "https://images.pexels.com/photos/13065690/pexels-photo-13065690.jpeg?auto=compress&cs=tinysrgb&w=300",
                 slug: "brake-pads",
               },
-            ]
-              .slice(0, 6)
-              .map((category, index) => (
-                <div key={index} className="category-card">
-                  <div className="category-image-container">
+            ].map((category, index) => (
+              <div key={index} className="category-card">
+                <div className="category-image-container">
+                  <Link
+                    href={`/category/${category.slug}`}
+                    className="category-image-link"
+                  >
+                    <img
+                      src={category.image}
+                      alt={category.name}
+                      className="category-image"
+                      loading="lazy"
+                    />
+                  </Link>
+                </div>
+                <div className="category-content">
+                  <div className="category-title">
                     <Link
                       href={`/category/${category.slug}`}
-                      className="category-image-link"
+                      className="category-link"
                     >
-                      <img
-                        src={category.image}
-                        alt={category.name}
-                        className="category-image"
-                        loading="lazy"
-                      />
+                      {category.name}
                     </Link>
                   </div>
-                  <div className="category-content">
-                    <div className="category-title">
-                      <Link
-                        href={`/category/${category.slug}`}
-                        className="category-link"
-                      >
-                        {category.name}
-                      </Link>
-                    </div>
-                    <div className="category-description">
-                      {category.description}
-                    </div>
+                  <div className="category-description">
+                    {category.description}
                   </div>
                 </div>
-              ))}
+              </div>
+            ))}
           </div>
           <div className="load-more-container">
             <button
