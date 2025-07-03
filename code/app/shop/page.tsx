@@ -1318,8 +1318,8 @@ export default function ShopPage() {
         /* Products Grid - Smaller for Shop */
         .products-grid-container.shop-grid {
           display: grid;
-          grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-          gap: 20px;
+          grid-template-columns: repeat(4, 1fr);
+          gap: 15px;
         }
 
         .product-card {
