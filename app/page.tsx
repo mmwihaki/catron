@@ -19,6 +19,16 @@ export default function CatronHomePage() {
 
   const { addToCart, getCartCount } = useCart();
 
+  const handleAddToCart = (product: any) => {
+    addToCart({
+      id: product.id.toString(),
+      name: product.name,
+      price: product.price,
+      image: product.image,
+      category: product.category || "Auto Parts",
+    });
+  };
+
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
       const dropdown = document.querySelector(".categories-dropdown");
