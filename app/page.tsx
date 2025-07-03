@@ -13,8 +13,6 @@ export default function CatronHomePage() {
   const [vehicleFuelType, setVehicleFuelType] = useState("");
   const [cartItems, setCartItems] = useState(0);
   const [activeTab, setActiveTab] = useState("models");
-  const [showMoreModels, setShowMoreModels] = useState(false);
-  const [showMoreEngines, setShowMoreEngines] = useState(false);
   const [showCategoriesDropdown, setShowCategoriesDropdown] = useState(false);
 
   useEffect(() => {
