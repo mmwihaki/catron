@@ -421,7 +421,9 @@ export default function ShopPage() {
               <span className="action-text">Cart ({cartItems})</span>
             </div>
             <div className="action-item">
-              <span className="action-icon">👤</span>
+              <span className="action-icon">
+                <i className="fas fa-user"></i>
+              </span>
               <span className="action-text">Sign In</span>
             </div>
           </div>
@@ -448,42 +450,54 @@ export default function ShopPage() {
                 <line x1="3" y1="12" x2="21" y2="12"></line>
                 <line x1="3" y1="18" x2="21" y2="18"></line>
               </svg>
-              Browse Categories
+              All Categories
             </button>
             {showCategoriesDropdown && (
-              <div className="categories-menu">
-                {categories.map((category, index) => (
-                  <a
-                    key={index}
-                    href={`#${category.toLowerCase().replace(/\s+/g, "-")}`}
-                    className="category-menu-item"
-                  >
-                    {category}
-                  </a>
-                ))}
+              <div className="categories-dropdown-menu">
+                <Link href="/category/auto-parts">
+                  <div className="dropdown-item">Auto Parts</div>
+                </Link>
+                <Link href="/category/oil-filter">
+                  <div className="dropdown-item">Oil Filters</div>
+                </Link>
+                <Link href="/category/air-filters">
+                  <div className="dropdown-item">Air Filters</div>
+                </Link>
+                <Link href="/category/headlight-bulbs">
+                  <div className="dropdown-item">Headlight Bulbs</div>
+                </Link>
+                <Link href="/category/spark-plugs">
+                  <div className="dropdown-item">Spark Plugs</div>
+                </Link>
+                <Link href="/category/brake-pads">
+                  <div className="dropdown-item">Brake Pads</div>
+                </Link>
               </div>
             )}
           </div>
 
-          <ul className="nav-links">
-            <li>
-              <Link href="/">Home</Link>
-            </li>
-            <li>
-              <Link href="/shop" className="active">
-                Shop
-              </Link>
-            </li>
-            <li>
-              <Link href="/blog">Blog</Link>
-            </li>
-            <li>
-              <Link href="/contact">Contact Us</Link>
-            </li>
-          </ul>
+          <div className="nav-links">
+            <a href="/" className="nav-link">
+              Home
+            </a>
+            <a href="/shop" className="nav-link active">
+              Shop
+            </a>
+            <a href="/blog" className="nav-link">
+              Blog
+            </a>
+            <a href="/contact" className="nav-link">
+              Contact Us
+            </a>
+          </div>
 
-          <div className="nav-contact">
-            <span className="contact-number">📞 Call 254 728 800 826</span>
+          <div className="nav-actions">
+            <a href="#order-tracking" className="nav-action">
+              Order Tracking
+            </a>
+            <a href="#compare" className="nav-action">
+              Compare (0)
+            </a>
           </div>
         </div>
       </nav>
