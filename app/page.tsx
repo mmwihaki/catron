@@ -715,26 +715,23 @@ export default function CatronHomePage() {
           <div className="featured-content">
             {activeTab === "models" && (
               <div className="models-grid">
-                {nissanModels
-                  .slice(0, showMoreModels ? 12 : 8)
-                  .map((model, index) => (
-                    <button key={index} className="model-button">
-                      <div className="model-info">
-                        <div className="model-name">
-                          {model.name} {model.model}
-                        </div>
-                        <div className="model-engine">{model.engine}</div>
+                {nissanModels.map((model, index) => (
+                  <button key={index} className="model-button">
+                    <div className="model-info">
+                      <div className="model-name">
+                        {model.name} {model.model}
                       </div>
-                    </button>
-                  ))}
+                      <div className="model-engine">{model.engine}</div>
+                    </div>
+                  </button>
+                ))}
               </div>
             )}
 
             {activeTab === "engines" && (
               <div className="engines-grid">
-                {[...new Set(nissanModels.map((model) => model.engine))]
-                  .slice(0, showMoreEngines ? 16 : 8)
-                  .map((engine, index) => (
+                {[...new Set(nissanModels.map((model) => model.engine))].map(
+                  (engine, index) => (
                     <button key={index} className="engine-button">
                       <div className="engine-info">
                         <div className="engine-name">{engine}</div>
@@ -748,26 +745,10 @@ export default function CatronHomePage() {
                         </div>
                       </div>
                     </button>
-                  ))}
+                  ),
+                )}
               </div>
             )}
-
-            <div className="view-more-container">
-              <button
-                className="view-more-button"
-                onClick={() => {
-                  if (activeTab === "models") {
-                    setShowMoreModels(!showMoreModels);
-                  } else {
-                    setShowMoreEngines(!showMoreEngines);
-                  }
-                }}
-              >
-                {(activeTab === "models" ? showMoreModels : showMoreEngines)
-                  ? "Show Less"
-                  : "View More"}
-              </button>
-            </div>
           </div>
         </div>
       </section>
