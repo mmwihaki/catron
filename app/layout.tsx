@@ -1,5 +1,6 @@
 import "./globals.css";
 import type { Metadata } from "next";
+import { CartProvider } from "./contexts/CartContext";
 
 export const metadata: Metadata = {
   title: "Catron Auto Parts - Premium Nissan Parts Kenya",
@@ -32,7 +33,9 @@ export default function RootLayout({
           crossOrigin="anonymous"
         />
       </head>
-      <body>{children}</body>
+      <body>
+        <CartProvider>{children}</CartProvider>
+      </body>
     </html>
   );
 }
