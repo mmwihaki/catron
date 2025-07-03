@@ -1728,15 +1728,14 @@ export default function CatronHomePage() {
         }
 
         .categories-grid {
-          display: flex;
-          flex-flow: row wrap;
-          flex-wrap: wrap;
+          display: grid;
+          grid-template-columns: repeat(3, 1fr);
           gap: 30px;
-          justify-content: flex-start;
+          justify-content: center;
           align-items: flex-start;
           margin-left: auto;
           margin-right: auto;
-          max-width: 1520px;
+          max-width: 1200px;
           padding-left: 12px;
           padding-right: 12px;
           width: 100%;
@@ -1749,7 +1748,6 @@ export default function CatronHomePage() {
           flex-direction: column;
           flex-flow: column nowrap;
           margin-bottom: 30px;
-          max-width: calc(14.2857% - 30px);
           padding: 60px 17px 25px 17px;
           text-align: center;
           transition-duration: 0.3s;
