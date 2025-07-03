@@ -2919,12 +2919,8 @@ export default function CatronHomePage() {
           }
 
           .categories-grid {
-            justify-content: center;
-          }
-
-          .category-card {
-            max-width: calc(33.333% - 20px);
-            min-width: 140px;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
           }
 
           @media (max-width: 576px) {
