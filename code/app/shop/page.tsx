@@ -11,6 +11,7 @@ export default function ShopPage() {
   const [priceRange, setPriceRange] = useState([0, 100000]);
   const [selectedCategories, setSelectedCategories] = useState<string[]>([]);
   const [sortBy, setSortBy] = useState("name");
+  const [activeTab, setActiveTab] = useState("top10");
 
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
