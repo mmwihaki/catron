@@ -901,10 +901,13 @@ export default function CatronHomePage() {
           <div className="new-arrivals-header">
             <div className="header-content">
               <h2 className="new-arrivals-title">New Arrivals</h2>
-              <a href="/shop?search_type=new-arrivals" className="see-all-link">
+              <Link
+                href="/shop?search_type=new-arrivals"
+                className="see-all-link"
+              >
                 <span>See All Products</span>
                 <i className="fas fa-chevron-right"></i>
-              </a>
+              </Link>
             </div>
           </div>
 
