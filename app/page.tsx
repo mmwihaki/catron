@@ -3121,6 +3121,8 @@ export default function CatronHomePage() {
           }
         }
       `}</style>
+
+      <CartSidebar isOpen={isCartOpen} onClose={() => setIsCartOpen(false)} />
     </div>
   );
 }
