@@ -713,8 +713,8 @@ export default function CategoryPage() {
                   e.currentTarget.style.boxShadow = "none";
                 }}
               >
-                {/* Product Badge */}
-                {product.badge && (
+                {/* Product Badge - only show for low stock */}
+                {product.stock < 5 && (
                   <div
                     style={{
                       position: "absolute",
@@ -728,7 +728,7 @@ export default function CategoryPage() {
                       borderRadius: "3px",
                     }}
                   >
-                    {product.badge}
+                    Low Stock
                   </div>
                 )}
 
@@ -791,23 +791,11 @@ export default function CategoryPage() {
 
                 {/* Price */}
                 <div style={{ marginBottom: "10px" }}>
-                  {product.originalPrice && (
-                    <span
-                      style={{
-                        fontSize: "12px",
-                        color: "#999",
-                        textDecoration: "line-through",
-                        marginRight: "8px",
-                      }}
-                    >
-                      KES {product.originalPrice.toLocaleString()}
-                    </span>
-                  )}
                   <span
                     style={{
                       fontSize: "16px",
                       fontWeight: "600",
-                      color: product.originalPrice ? "#f73312" : "#333",
+                      color: "#333",
                     }}
                   >
                     KES {product.price.toLocaleString()}

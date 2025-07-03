@@ -13,8 +13,6 @@ export default function CatronHomePage() {
   const [vehicleFuelType, setVehicleFuelType] = useState("");
   const [cartItems, setCartItems] = useState(0);
   const [activeTab, setActiveTab] = useState("models");
-  const [showMoreModels, setShowMoreModels] = useState(false);
-  const [showMoreEngines, setShowMoreEngines] = useState(false);
   const [showCategoriesDropdown, setShowCategoriesDropdown] = useState(false);
 
   useEffect(() => {
@@ -136,7 +134,7 @@ export default function CatronHomePage() {
     },
   ];
 
-  const renderStars = (rating) => {
+  const renderStars = (rating: number) => {
     const stars = [];
     const fullStars = Math.floor(rating);
     const hasHalfStar = rating % 1 !== 0;
@@ -327,17 +325,19 @@ export default function CatronHomePage() {
 
           <div className="nav-links">
             {navLinks.map((link) => (
-              <a
+              <Link
                 key={link}
                 href={
                   link === "Home"
                     ? "/"
-                    : `#${link.toLowerCase().replace(/\s+/g, "-")}`
+                    : link === "Shop"
+                      ? "/shop"
+                      : `#${link.toLowerCase().replace(/\s+/g, "-")}`
                 }
                 className="nav-link"
               >
                 {link}
-              </a>
+              </Link>
             ))}
           </div>
 
@@ -612,12 +612,12 @@ export default function CatronHomePage() {
 
                     <div className="product-info">
                       <div className="product-category">
-                        <a
-                          href={`#category-${product.category.toLowerCase().replace(/\s+/g, "-")}`}
+                        <Link
+                          href={`/category/${product.category.toLowerCase().replace(/\s+/g, "-")}`}
                           className="category-link"
                         >
                           {product.category}
-                        </a>
+                        </Link>
                       </div>
 
                       <div className="product-name">
@@ -713,26 +713,23 @@ export default function CatronHomePage() {
           <div className="featured-content">
             {activeTab === "models" && (
               <div className="models-grid">
-                {nissanModels
-                  .slice(0, showMoreModels ? 12 : 8)
-                  .map((model, index) => (
-                    <button key={index} className="model-button">
-                      <div className="model-info">
-                        <div className="model-name">
-                          {model.name} {model.model}
-                        </div>
-                        <div className="model-engine">{model.engine}</div>
+                {nissanModels.map((model, index) => (
+                  <button key={index} className="model-button">
+                    <div className="model-info">
+                      <div className="model-name">
+                        {model.name} {model.model}
                       </div>
-                    </button>
-                  ))}
+                      <div className="model-engine">{model.engine}</div>
+                    </div>
+                  </button>
+                ))}
               </div>
             )}
 
             {activeTab === "engines" && (
               <div className="engines-grid">
-                {[...new Set(nissanModels.map((model) => model.engine))]
-                  .slice(0, showMoreEngines ? 16 : 8)
-                  .map((engine, index) => (
+                {[...new Set(nissanModels.map((model) => model.engine))].map(
+                  (engine, index) => (
                     <button key={index} className="engine-button">
                       <div className="engine-info">
                         <div className="engine-name">{engine}</div>
@@ -746,26 +743,10 @@ export default function CatronHomePage() {
                         </div>
                       </div>
                     </button>
-                  ))}
+                  ),
+                )}
               </div>
             )}
-
-            <div className="view-more-container">
-              <button
-                className="view-more-button"
-                onClick={() => {
-                  if (activeTab === "models") {
-                    setShowMoreModels(!showMoreModels);
-                  } else {
-                    setShowMoreEngines(!showMoreEngines);
-                  }
-                }}
-              >
-                {(activeTab === "models" ? showMoreModels : showMoreEngines)
-                  ? "Show Less"
-                  : "View More"}
-              </button>
-            </div>
           </div>
         </div>
       </section>
@@ -825,12 +806,12 @@ export default function CatronHomePage() {
 
                   <div className="product-info">
                     <div className="product-category">
-                      <a
-                        href={`#category-${product.category.toLowerCase().replace(/\s+/g, "-")}`}
+                      <Link
+                        href={`/category/${product.category.toLowerCase().replace(/\s+/g, "-")}`}
                         className="category-link"
                       >
                         {product.category}
-                      </a>
+                      </Link>
                     </div>
 
                     <div className="product-name">
@@ -899,10 +880,13 @@ export default function CatronHomePage() {
           <div className="new-arrivals-header">
             <div className="header-content">
               <h2 className="new-arrivals-title">New Arrivals</h2>
-              <a href="/shop?search_type=new-arrivals" className="see-all-link">
+              <Link
+                href="/shop?search_type=new-arrivals"
+                className="see-all-link"
+              >
                 <span>See All Products</span>
                 <i className="fas fa-chevron-right"></i>
-              </a>
+              </Link>
             </div>
           </div>
 
@@ -927,12 +911,12 @@ export default function CatronHomePage() {
 
                   <div className="product-info">
                     <div className="product-category">
-                      <a
-                        href={`#category-${product.category.toLowerCase().replace(/\s+/g, "-")}`}
+                      <Link
+                        href={`/category/${product.category.toLowerCase().replace(/\s+/g, "-")}`}
                         className="category-link"
                       >
                         {product.category}
-                      </a>
+                      </Link>
                     </div>
 
                     <div className="product-name">
@@ -986,10 +970,10 @@ export default function CatronHomePage() {
         <div className="tips-guides-container">
           <div className="section-header">
             <h2 className="section-title">Tips & Guides</h2>
-            <a href="/blog" className="view-all-link">
+            <Link href="/blog" className="view-all-link">
               See All Articles
               <i className="fas fa-chevron-right"></i>
-            </a>
+            </Link>
           </div>
 
           <div className="tips-guides-content">

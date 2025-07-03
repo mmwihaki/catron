@@ -617,11 +617,6 @@ export default function ShopPage() {
 
             {/* Main Content */}
             <div className="shop-content">
-              {/* Breadcrumb */}
-              <div className="breadcrumb">
-                <Link href="/">Home</Link> &gt; <span>Shop</span>
-              </div>
-
               {/* Best Sellers Section */}
               <section className="best-sellers-section">
                 <div className="best-sellers-container">
@@ -1363,17 +1358,6 @@ export default function ShopPage() {
         /* Shop Content */
         .shop-content {
           background: white;
-        }
-
-        .breadcrumb {
-          margin-bottom: 20px;
-          font-size: 14px;
-          color: #666;
-        }
-
-        .breadcrumb a {
-          color: rgb(247, 51, 18);
-          text-decoration: none;
         }
 
         /* Best Sellers Section */
