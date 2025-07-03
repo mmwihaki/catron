@@ -236,7 +236,7 @@ export default function CategoryPage() {
   const [selectedModels, setSelectedModels] = useState<string[]>([]);
   const [selectedRating, setSelectedRating] = useState<number | null>(null);
 
-  const brands = ["NGK", "OSRAM", "KAVO", "DENSO", "BOSCH", "MANN"];
+  const brands = ["RIDEX", "STARK", "KAVO", "OSRAM", "NGK", "LPR"];
   const models = [
     "Note E12",
     "X-Trail T31",
