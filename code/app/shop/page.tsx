@@ -159,124 +159,70 @@ export default function ShopPage() {
   ];
 
   const allProducts = [
-    ...bestSellerProducts,
+    ...essentialProducts,
     {
       id: 5,
-      name: "STEERING Pro racing steering black",
+      name: "Performance Brake Pads",
+      category: "Brake Pads",
       image:
-        "https://images.unsplash.com/photo-1544636331-e26879cd4d9b?w=300&h=200&fit=crop",
-      originalPrice: 18000,
-      salePrice: null,
+        "https://images.pexels.com/photos/3642618/pexels-photo-3642618.jpeg?auto=compress&cs=tinysrgb&w=300",
+      price: 8500,
+      originalPrice: 10000,
       rating: 4.7,
       reviews: 12,
-      sale: false,
+      link: "#",
     },
     {
       id: 6,
-      name: "AIR FILTER Racing flat bottom steering wheel",
+      name: "High Performance Oil Filter",
+      category: "Oil Filters",
       image:
-        "https://images.unsplash.com/photo-1486262715619-67b85e0b08d3?w=300&h=200&fit=crop",
-      originalPrice: 14000,
-      salePrice: null,
+        "https://images.pexels.com/photos/5835359/pexels-photo-5835359.jpeg?auto=compress&cs=tinysrgb&w=300",
+      price: 1200,
       rating: 4.4,
       reviews: 8,
-      sale: false,
+      link: "#",
     },
     {
       id: 7,
-      name: 'CARBON WHEELS 19" carbon performance wheels',
+      name: "LED Headlight Conversion Kit",
+      category: "Headlight Bulbs",
       image:
-        "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=300&h=200&fit=crop",
-      originalPrice: 85000,
-      salePrice: 74000,
+        "https://images.pexels.com/photos/162553/keys-workshop-mechanic-tools-162553.jpeg?auto=compress&cs=tinysrgb&w=300",
+      price: 12000,
+      originalPrice: 15000,
       rating: 4.9,
       reviews: 5,
-      sale: true,
+      link: "#",
     },
     {
       id: 8,
-      name: "EXHAUST SYSTEM JDM tuned exhaust with chrome tip",
+      name: "Performance Exhaust System",
+      category: "Exhaust Systems",
       image:
-        "https://images.unsplash.com/photo-1558618047-3c8c76ca7d13?w=300&h=200&fit=crop",
-      originalPrice: 9500,
-      salePrice: null,
+        "https://images.pexels.com/photos/190570/pexels-photo-190570.jpeg?auto=compress&cs=tinysrgb&w=600",
+      price: 25000,
       rating: 4.2,
       reviews: 28,
-      sale: false,
+      link: "#",
     },
-    {
-      id: 9,
-      name: "AFTERGLOW Electric wheel chair with red chrome",
-      image:
-        "https://images.unsplash.com/photo-1544636331-e26879cd4d9b?w=300&h=200&fit=crop",
-      originalPrice: 32000,
-      salePrice: null,
-      rating: 4.6,
-      reviews: 7,
-      sale: false,
-    },
-    {
-      id: 10,
-      name: "STEERING Gear with boost shock with blue chrome",
-      image:
-        "https://images.unsplash.com/photo-1486262715619-67b85e0b08d3?w=300&h=200&fit=crop",
-      originalPrice: 12000,
-      salePrice: 10800,
-      rating: 4.1,
-      reviews: 14,
-      sale: true,
-    },
-    {
-      id: 11,
-      name: "STAINLESS Stainless exhaust kit with blue chrome",
-      image:
-        "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=300&h=200&fit=crop",
-      originalPrice: 22000,
-      salePrice: null,
-      rating: 4.8,
-      reviews: 11,
-      sale: false,
-    },
-    {
-      id: 12,
-      name: "ALLOY WHEELS Ultra light racing alloy wheels",
-      image:
-        "https://images.unsplash.com/photo-1558618047-3c8c76ca7d13?w=300&h=200&fit=crop",
-      originalPrice: 65000,
-      salePrice: null,
-      rating: 4.5,
-      reviews: 9,
-      sale: false,
-    },
-  ];
-
-  const brands = [
-    "Catron",
-    "NISMO",
-    "Mugen",
-    "Spoon",
-    "HKS",
-    "Greddy",
-    "Tomei",
-    "Blitz",
-  ];
-  const models = [
-    "Note",
-    "Sentra",
-    "Altima",
-    "X-Trail",
-    "Serena",
-    "March",
-    "Juke",
-    "Teana",
   ];
 
   const renderStars = (rating: number) => {
-    return Array.from({ length: 5 }, (_, i) => (
-      <span key={i} className={`star ${i < rating ? "filled" : ""}`}>
-        ★
-      </span>
-    ));
+    const stars = [];
+    const fullStars = Math.floor(rating);
+    const hasHalfStar = rating % 1 !== 0;
+
+    for (let i = 0; i < 5; i++) {
+      if (i < fullStars) {
+        stars.push("★");
+      } else if (i === fullStars && hasHalfStar) {
+        stars.push("☆");
+      } else {
+        stars.push("☆");
+      }
+    }
+    return stars.join("");
   };
 
   return (
