@@ -11,17 +11,11 @@ export default function CategoryPage() {
   const getCategoryName = (slug: string) => {
     const categoryMap: { [key: string]: string } = {
       "auto-parts": "Auto Parts",
-      "car-care": "Car Care",
-      performance: "Performance",
-      "wheels-tires": "Wheels & Tires",
-      exteriors: "Exteriors",
-      interiors: "Interiors",
-      entertainment: "Entertainment",
-      "exhaust-system": "Exhaust System",
+      "oil-filter": "Oil Filters",
       "air-filters": "Air Filters",
-      "starting-charging": "Starting & Charging",
-      "wipers-washers": "Wipers & Washers",
-      "fluids-chemicals": "Fluids & Chemicals",
+      "headlight-bulbs": "Headlight Bulbs",
+      "spark-plugs": "Spark Plugs",
+      "brake-pads": "Brake Pads",
     };
     return categoryMap[slug] || "Category";
   };
