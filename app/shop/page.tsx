@@ -1360,17 +1360,6 @@ export default function ShopPage() {
           background: white;
         }
 
-        .breadcrumb {
-          margin-bottom: 20px;
-          font-size: 14px;
-          color: #666;
-        }
-
-        .breadcrumb a {
-          color: rgb(247, 51, 18);
-          text-decoration: none;
-        }
-
         /* Best Sellers Section */
         .best-sellers-section {
           margin-bottom: 40px;
