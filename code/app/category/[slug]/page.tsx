@@ -895,6 +895,140 @@ export default function CategoryPage() {
         </main>
       </div>
 
+      {/* Footer */}
+      <footer
+        style={{ background: "#2c2c2c", color: "white", padding: "40px 0" }}
+      >
+        <div
+          style={{ maxWidth: "1200px", margin: "0 auto", padding: "0 20px" }}
+        >
+          <div
+            style={{
+              display: "grid",
+              gridTemplateColumns: "repeat(auto-fit, minmax(250px, 1fr))",
+              gap: "30px",
+            }}
+          >
+            <div>
+              <img
+                src="https://cdn.builder.io/api/v1/image/assets%2F16c4d8eebb6943b4be5a75c55b5cdffd%2F5d8fbe0d7a4c4e1a9a82d71637d82593"
+                alt="Catron Auto Parts"
+                style={{ height: "40px", marginBottom: "20px" }}
+              />
+              <p style={{ fontSize: "14px", lineHeight: "1.6", color: "#ccc" }}>
+                Your trusted partner for genuine Nissan OEM and aftermarket
+                parts in Kenya.
+              </p>
+            </div>
+            <div>
+              <h4
+                style={{
+                  fontSize: "16px",
+                  fontWeight: "600",
+                  marginBottom: "20px",
+                }}
+              >
+                Quick Links
+              </h4>
+              <ul style={{ listStyle: "none", padding: 0 }}>
+                <li style={{ marginBottom: "10px" }}>
+                  <a
+                    href="/"
+                    style={{
+                      color: "#ccc",
+                      textDecoration: "none",
+                      fontSize: "14px",
+                    }}
+                  >
+                    Home
+                  </a>
+                </li>
+                <li style={{ marginBottom: "10px" }}>
+                  <a
+                    href="#"
+                    style={{
+                      color: "#ccc",
+                      textDecoration: "none",
+                      fontSize: "14px",
+                    }}
+                  >
+                    Shop
+                  </a>
+                </li>
+                <li style={{ marginBottom: "10px" }}>
+                  <a
+                    href="#"
+                    style={{
+                      color: "#ccc",
+                      textDecoration: "none",
+                      fontSize: "14px",
+                    }}
+                  >
+                    About
+                  </a>
+                </li>
+                <li style={{ marginBottom: "10px" }}>
+                  <a
+                    href="#"
+                    style={{
+                      color: "#ccc",
+                      textDecoration: "none",
+                      fontSize: "14px",
+                    }}
+                  >
+                    Contact
+                  </a>
+                </li>
+              </ul>
+            </div>
+            <div>
+              <h4
+                style={{
+                  fontSize: "16px",
+                  fontWeight: "600",
+                  marginBottom: "20px",
+                }}
+              >
+                Contact Info
+              </h4>
+              <p
+                style={{
+                  fontSize: "14px",
+                  color: "#ccc",
+                  marginBottom: "10px",
+                }}
+              >
+                📧 info@catron.co.ke
+              </p>
+              <p
+                style={{
+                  fontSize: "14px",
+                  color: "#ccc",
+                  marginBottom: "10px",
+                }}
+              >
+                📞 +254 700 000 000
+              </p>
+              <p style={{ fontSize: "14px", color: "#ccc" }}>
+                📍 Nairobi, Kenya
+              </p>
+            </div>
+          </div>
+          <div
+            style={{
+              borderTop: "1px solid #444",
+              marginTop: "30px",
+              paddingTop: "20px",
+              textAlign: "center",
+            }}
+          >
+            <p style={{ fontSize: "14px", color: "#ccc", margin: 0 }}>
+              © 2024 Catron Auto Parts. All rights reserved.
+            </p>
+          </div>
+        </div>
+      </footer>
+
       <style jsx>{`
         @media (max-width: 768px) {
           .main-content {
