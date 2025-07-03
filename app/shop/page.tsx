@@ -617,11 +617,6 @@ export default function ShopPage() {
 
             {/* Main Content */}
             <div className="shop-content">
-              {/* Breadcrumb */}
-              <div className="breadcrumb">
-                <Link href="/">Home</Link> &gt; <span>Shop</span>
-              </div>
-
               {/* Best Sellers Section */}
               <section className="best-sellers-section">
                 <div className="best-sellers-container">
