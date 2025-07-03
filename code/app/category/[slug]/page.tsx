@@ -436,17 +436,11 @@ export default function CategoryPage() {
               {[
                 "All Items",
                 "Auto Parts",
-                "Car Care",
-                "Performance",
-                "Wheels & Tires",
-                "Exteriors",
-                "Interiors",
-                "Entertainment",
-                "Exhaust System",
+                "Oil Filters",
                 "Air Filters",
-                "Starting & Charging",
-                "Wipers & Washers",
-                "Fluids & Chemicals",
+                "Headlight Bulbs",
+                "Spark Plugs",
+                "Brake Pads",
               ].map((category, index) => (
                 <div
                   key={index}
