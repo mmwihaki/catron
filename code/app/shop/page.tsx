@@ -109,50 +109,52 @@ export default function ShopPage() {
 
   const brands = ["Catron", "KAVO", "OSRAM", "NGK", "NISMO", "Mugen", "HKS"];
 
-  const bestSellerProducts = [
+  const essentialProducts = [
     {
       id: 1,
-      name: "EXHAUST SYSTEM Dual sports exhaust with header",
+      name: "KAVO Cabin Filter",
+      category: "Air Filters",
       image:
-        "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=300&h=200&fit=crop",
-      originalPrice: 12000,
-      salePrice: 10500,
+        "https://images.pexels.com/photos/3642618/pexels-photo-3642618.jpeg?auto=compress&cs=tinysrgb&w=300",
+      price: 2500,
+      originalPrice: 3000,
       rating: 4.5,
-      reviews: 24,
-      sale: true,
+      reviews: 12,
+      link: "#",
     },
     {
       id: 2,
-      name: "STEERING Racing steering wheel with quick release",
+      name: "KAVO Cabin Filter Premium",
+      category: "Air Filters",
       image:
-        "https://images.unsplash.com/photo-1544636331-e26879cd4d9b?w=300&h=200&fit=crop",
-      originalPrice: 8500,
-      salePrice: 7500,
-      rating: 4.8,
-      reviews: 18,
-      sale: true,
+        "https://images.pexels.com/photos/5835359/pexels-photo-5835359.jpeg?auto=compress&cs=tinysrgb&w=300",
+      price: 3200,
+      originalPrice: 3800,
+      rating: 4.7,
+      reviews: 8,
+      link: "#",
     },
     {
       id: 3,
-      name: "AIR FILTER Racing panel air filter - enhanced airflow",
+      name: "OSRAM Night Breaker 200 H4",
+      category: "Headlight Bulbs",
       image:
-        "https://images.unsplash.com/photo-1486262715619-67b85e0b08d3?w=300&h=200&fit=crop",
-      originalPrice: 4500,
-      salePrice: 4200,
-      rating: 4.6,
-      reviews: 32,
-      sale: true,
+        "https://images.pexels.com/photos/162553/keys-workshop-mechanic-tools-162553.jpeg?auto=compress&cs=tinysrgb&w=300",
+      price: 4500,
+      rating: 4.9,
+      reviews: 15,
+      link: "#",
     },
     {
       id: 4,
-      name: "CAR TIRES High performance steering wheel cover",
+      name: "NGK Spark Plug DIG-S",
+      category: "Spark Plugs",
       image:
-        "https://images.unsplash.com/photo-1558618047-3c8c76ca7d13?w=300&h=200&fit=crop",
-      originalPrice: 3500,
-      salePrice: 3200,
-      rating: 4.3,
-      reviews: 15,
-      sale: true,
+        "https://images.pexels.com/photos/190570/pexels-photo-190570.jpeg?auto=compress&cs=tinysrgb&w=600",
+      price: 1800,
+      rating: 4.6,
+      reviews: 20,
+      link: "#",
     },
   ];
 
