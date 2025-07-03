@@ -294,6 +294,17 @@ export default function ShopPage() {
     },
   ];
 
+  const getDisplayedProducts = () => {
+    switch (activeTab) {
+      case "airfilters":
+        return airFilters;
+      case "oilfilters":
+        return oilFilters;
+      default:
+        return essentialProducts;
+    }
+  };
+
   const renderStars = (rating: number) => {
     const stars = [];
     const fullStars = Math.floor(rating);
