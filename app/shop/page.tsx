@@ -2,16 +2,30 @@
 
 import React, { useState, useEffect } from "react";
 import Link from "next/link";
+import { useCart } from "../contexts/CartContext";
+import CartSidebar from "../components/CartSidebar";
 
 export default function ShopPage() {
   const [searchCategory, setSearchCategory] = useState("All");
   const [searchQuery, setSearchQuery] = useState("");
-  const [cartItems, setCartItems] = useState(3);
   const [showCategoriesDropdown, setShowCategoriesDropdown] = useState(false);
   const [priceRange, setPriceRange] = useState([0, 100000]);
   const [selectedCategories, setSelectedCategories] = useState<string[]>([]);
   const [sortBy, setSortBy] = useState("name");
   const [activeTab, setActiveTab] = useState("top10");
+  const [isCartOpen, setIsCartOpen] = useState(false);
+
+  const { addToCart, getCartCount } = useCart();
+
+  const handleAddToCart = (product: any) => {
+    addToCart({
+      id: product.id.toString(),
+      name: product.name,
+      price: product.price,
+      image: product.image,
+      category: product.category || "Auto Parts",
+    });
+  };
 
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
