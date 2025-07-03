@@ -327,17 +327,19 @@ export default function CatronHomePage() {
 
           <div className="nav-links">
             {navLinks.map((link) => (
-              <a
+              <Link
                 key={link}
                 href={
                   link === "Home"
                     ? "/"
-                    : `#${link.toLowerCase().replace(/\s+/g, "-")}`
+                    : link === "Shop"
+                      ? "/shop"
+                      : `#${link.toLowerCase().replace(/\s+/g, "-")}`
                 }
                 className="nav-link"
               >
                 {link}
-              </a>
+              </Link>
             ))}
           </div>
 
