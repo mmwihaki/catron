@@ -17,6 +17,23 @@ export default function CatronHomePage() {
   const [showMoreEngines, setShowMoreEngines] = useState(false);
   const [showCategoriesDropdown, setShowCategoriesDropdown] = useState(false);
 
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      const dropdown = document.querySelector(".categories-dropdown");
+      if (dropdown && !dropdown.contains(event.target as Node)) {
+        setShowCategoriesDropdown(false);
+      }
+    };
+
+    if (showCategoriesDropdown) {
+      document.addEventListener("mousedown", handleClickOutside);
+    }
+
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, [showCategoriesDropdown]);
+
   const nissanMakes = ["Nissan"];
 
   const nissanModels = [
