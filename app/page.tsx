@@ -2,6 +2,8 @@
 
 import React, { useState, useEffect } from "react";
 import Link from "next/link";
+import { useCart } from "./contexts/CartContext";
+import CartSidebar from "./components/CartSidebar";
 
 export default function CatronHomePage() {
   const [searchCategory, setSearchCategory] = useState("All");
@@ -11,9 +13,21 @@ export default function CatronHomePage() {
   const [vehicleModel, setVehicleModel] = useState("");
   const [vehicleEngine, setVehicleEngine] = useState("");
   const [vehicleFuelType, setVehicleFuelType] = useState("");
-  const [cartItems, setCartItems] = useState(0);
   const [activeTab, setActiveTab] = useState("models");
   const [showCategoriesDropdown, setShowCategoriesDropdown] = useState(false);
+  const [isCartOpen, setIsCartOpen] = useState(false);
+
+  const { addToCart, getCartCount } = useCart();
+
+  const handleAddToCart = (product: any) => {
+    addToCart({
+      id: product.id.toString(),
+      name: product.name,
+      price: product.price,
+      image: product.image,
+      category: product.category || "Auto Parts",
+    });
+  };
 
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
@@ -252,7 +266,11 @@ export default function CatronHomePage() {
               </span>
               <span className="action-text">Wishlist</span>
             </div>
-            <div className="action-item">
+            <div
+              className="action-item"
+              onClick={() => setIsCartOpen(true)}
+              style={{ cursor: "pointer" }}
+            >
               <span className="action-icon">
                 <svg
                   width="16"
@@ -267,7 +285,7 @@ export default function CatronHomePage() {
                   <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
                 </svg>
               </span>
-              <span className="action-text">Cart ({cartItems})</span>
+              <span className="action-text">Cart ({getCartCount()})</span>
             </div>
             <div className="action-item">
               <span className="action-icon">👤</span>
@@ -3113,6 +3131,8 @@ export default function CatronHomePage() {
           }
         }
       `}</style>
+
+      <CartSidebar isOpen={isCartOpen} onClose={() => setIsCartOpen(false)} />
     </div>
   );
 }
