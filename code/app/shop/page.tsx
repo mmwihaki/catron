@@ -1386,31 +1386,6 @@ export default function ShopPage() {
           color: #333;
         }
 
-        .countdown-timer {
-          display: flex;
-          align-items: center;
-          gap: 10px;
-        }
-
-        .timer-label {
-          font-size: 14px;
-          color: #666;
-        }
-
-        .timer-display {
-          display: flex;
-          gap: 5px;
-        }
-
-        .timer-item {
-          background: rgb(247, 51, 18);
-          color: white;
-          padding: 4px 8px;
-          border-radius: 3px;
-          font-size: 12px;
-          font-weight: bold;
-        }
-
         .category-tabs {
           display: flex;
           gap: 15px;
