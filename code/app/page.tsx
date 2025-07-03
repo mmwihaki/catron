@@ -15,6 +15,7 @@ export default function CatronHomePage() {
   const [activeTab, setActiveTab] = useState("models");
   const [showMoreModels, setShowMoreModels] = useState(false);
   const [showMoreEngines, setShowMoreEngines] = useState(false);
+  const [showCategoriesDropdown, setShowCategoriesDropdown] = useState(false);
 
   const nissanMakes = ["Nissan"];
 
@@ -264,8 +265,11 @@ export default function CatronHomePage() {
       {/* Navigation */}
       <nav className="main-navigation">
         <div className="nav-container">
-          <div className="categories-dropdown">
-            <button className="categories-btn">
+          <div className="categories-dropdown" style={{ position: "relative" }}>
+            <button
+              className="categories-btn"
+              onClick={() => setShowCategoriesDropdown(!showCategoriesDropdown)}
+            >
               <svg
                 width="16"
                 height="16"
@@ -280,6 +284,28 @@ export default function CatronHomePage() {
               </svg>
               All Categories
             </button>
+            {showCategoriesDropdown && (
+              <div className="categories-dropdown-menu">
+                <Link href="/category/auto-parts">
+                  <div className="dropdown-item">Auto Parts</div>
+                </Link>
+                <Link href="/category/oil-filter">
+                  <div className="dropdown-item">Oil Filters</div>
+                </Link>
+                <Link href="/category/air-filters">
+                  <div className="dropdown-item">Air Filters</div>
+                </Link>
+                <Link href="/category/headlight-bulbs">
+                  <div className="dropdown-item">Headlight Bulbs</div>
+                </Link>
+                <Link href="/category/spark-plugs">
+                  <div className="dropdown-item">Spark Plugs</div>
+                </Link>
+                <Link href="/category/brake-pads">
+                  <div className="dropdown-item">Brake Pads</div>
+                </Link>
+              </div>
+            )}
           </div>
 
           <div className="nav-links">
