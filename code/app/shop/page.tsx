@@ -145,6 +145,105 @@ export default function ShopPage() {
     },
   ];
 
+  const airFilters = [
+    {
+      id: 101,
+      name: "KAVO Cabin Filter",
+      category: "Air Filters",
+      image:
+        "https://images.pexels.com/photos/3642618/pexels-photo-3642618.jpeg?auto=compress&cs=tinysrgb&w=300",
+      price: 2500,
+      originalPrice: 3000,
+      rating: 4.5,
+      reviews: 12,
+      link: "#",
+    },
+    {
+      id: 102,
+      name: "Premium Air Filter Element",
+      category: "Air Filters",
+      image:
+        "https://via.placeholder.com/300x200/e0e0e0/666666?text=Air+Filter",
+      price: 1800,
+      originalPrice: 2200,
+      rating: 4.3,
+      reviews: 8,
+      link: "#",
+    },
+    {
+      id: 103,
+      name: "High Flow Air Filter",
+      category: "Air Filters",
+      image:
+        "https://via.placeholder.com/300x200/e0e0e0/666666?text=Air+Filter",
+      price: 3500,
+      rating: 4.6,
+      reviews: 15,
+      link: "#",
+    },
+    {
+      id: 104,
+      name: "OEM Replacement Air Filter",
+      category: "Air Filters",
+      image:
+        "https://via.placeholder.com/300x200/e0e0e0/666666?text=Air+Filter",
+      price: 1500,
+      originalPrice: 1800,
+      rating: 4.2,
+      reviews: 20,
+      link: "#",
+    },
+  ];
+
+  const oilFilters = [
+    {
+      id: 201,
+      name: "Premium Oil Filter",
+      category: "Oil Filters",
+      image:
+        "https://via.placeholder.com/300x200/e0e0e0/666666?text=Oil+Filter",
+      price: 1200,
+      originalPrice: 1500,
+      rating: 4.7,
+      reviews: 25,
+      link: "#",
+    },
+    {
+      id: 202,
+      name: "High Performance Oil Filter",
+      category: "Oil Filters",
+      image:
+        "https://via.placeholder.com/300x200/e0e0e0/666666?text=Oil+Filter",
+      price: 1800,
+      rating: 4.5,
+      reviews: 18,
+      link: "#",
+    },
+    {
+      id: 203,
+      name: "OEM Oil Filter Element",
+      category: "Oil Filters",
+      image:
+        "https://via.placeholder.com/300x200/e0e0e0/666666?text=Oil+Filter",
+      price: 900,
+      originalPrice: 1100,
+      rating: 4.3,
+      reviews: 30,
+      link: "#",
+    },
+    {
+      id: 204,
+      name: "Extended Life Oil Filter",
+      category: "Oil Filters",
+      image:
+        "https://via.placeholder.com/300x200/e0e0e0/666666?text=Oil+Filter",
+      price: 2200,
+      rating: 4.8,
+      reviews: 12,
+      link: "#",
+    },
+  ];
+
   const allProducts = [
     ...essentialProducts,
     {
