@@ -1448,6 +1448,9 @@ export default function ShopPage() {
             box-shadow 0.3s ease;
           position: relative;
           background: white;
+          height: 350px;
+          display: flex;
+          flex-direction: column;
         }
 
         .product-card:hover {
