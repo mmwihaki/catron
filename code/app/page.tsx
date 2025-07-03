@@ -137,20 +137,11 @@ export default function CatronHomePage() {
   };
 
   const categories = [
-    "Engine Parts",
-    "Air Filters",
     "Oil Filters",
-    "Cabin Filters",
-    "Spark Plugs",
-    "Brake System",
-    "Suspension",
-    "Exhaust System",
-    "Electrical",
-    "Cooling System",
-    "Transmission",
+    "Air Filters",
     "Headlight Bulbs",
-    "Exterior Parts",
-    "Interior Parts",
+    "Spark Plugs",
+    "Brake Pads",
   ];
 
   const navLinks = [
