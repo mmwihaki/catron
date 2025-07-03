@@ -1362,7 +1362,7 @@ export default function ShopPage() {
 
         .product-image {
           width: 100%;
-          height: 160px;
+          height: 140px;
           object-fit: cover;
           transition: transform 0.3s ease;
         }
