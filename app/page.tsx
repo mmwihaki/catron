@@ -2,6 +2,8 @@
 
 import React, { useState, useEffect } from "react";
 import Link from "next/link";
+import { useCart } from "./contexts/CartContext";
+import CartSidebar from "./components/CartSidebar";
 
 export default function CatronHomePage() {
   const [searchCategory, setSearchCategory] = useState("All");
@@ -11,9 +13,11 @@ export default function CatronHomePage() {
   const [vehicleModel, setVehicleModel] = useState("");
   const [vehicleEngine, setVehicleEngine] = useState("");
   const [vehicleFuelType, setVehicleFuelType] = useState("");
-  const [cartItems, setCartItems] = useState(0);
   const [activeTab, setActiveTab] = useState("models");
   const [showCategoriesDropdown, setShowCategoriesDropdown] = useState(false);
+  const [isCartOpen, setIsCartOpen] = useState(false);
+
+  const { addToCart, getCartCount } = useCart();
 
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
