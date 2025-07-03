@@ -35,7 +35,10 @@ export default function RootLayout({
         />
       </head>
       <body>
-        <CartProvider>{children}</CartProvider>
+        <CartProvider>
+          {children}
+          <WhatsAppSetup />
+        </CartProvider>
       </body>
     </html>
   );
