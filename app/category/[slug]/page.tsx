@@ -827,6 +827,7 @@ export default function CategoryPage() {
 
                 {/* Add to Cart Button */}
                 <button
+                  onClick={() => handleAddToCart(product)}
                   style={{
                     width: "100%",
                     background: "#f73312",
