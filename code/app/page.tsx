@@ -15,7 +15,6 @@ export default function CatronHomePage() {
   const [activeTab, setActiveTab] = useState("models");
   const [showMoreModels, setShowMoreModels] = useState(false);
   const [showMoreEngines, setShowMoreEngines] = useState(false);
-  const [showMoreCategories, setShowMoreCategories] = useState(false);
 
   const nissanMakes = ["Nissan"];
 
@@ -144,16 +143,7 @@ export default function CatronHomePage() {
     "Brake Pads",
   ];
 
-  const navLinks = [
-    "Home",
-    "Shop",
-    "Product",
-    "Vendor",
-    "Mega Menu",
-    "Blog",
-    "Pages",
-    "Contact Us",
-  ];
+  const navLinks = ["Home", "Shop", "Blog", "Contact Us"];
 
   const handleSearch = () => {
     console.log("Searching for:", searchQuery, "in category:", searchCategory);
@@ -529,14 +519,6 @@ export default function CatronHomePage() {
                 </div>
               </div>
             ))}
-          </div>
-          <div className="load-more-container">
-            <button
-              className="load-more-button"
-              onClick={() => setShowMoreCategories(!showMoreCategories)}
-            >
-              {showMoreCategories ? "Load Less" : "Load More"}
-            </button>
           </div>
         </div>
       </section>
