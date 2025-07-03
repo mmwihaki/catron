@@ -237,6 +237,19 @@ export default function CategoryPage() {
   const [selectedBrands, setSelectedBrands] = useState<string[]>([]);
   const [selectedModels, setSelectedModels] = useState<string[]>([]);
   const [selectedRating, setSelectedRating] = useState<number | null>(null);
+  const [isCartOpen, setIsCartOpen] = useState(false);
+
+  const { addToCart, getCartCount } = useCart();
+
+  const handleAddToCart = (product: any) => {
+    addToCart({
+      id: product.id.toString(),
+      name: product.name,
+      price: product.price,
+      image: product.image,
+      category: product.category || "Auto Parts",
+    });
+  };
 
   const brands = ["RIDEX", "STARK", "KAVO", "OSRAM", "NGK", "LPR"];
   const models = [
