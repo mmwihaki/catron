@@ -614,21 +614,27 @@ export default function ShopPage() {
                   <div className="best-sellers-header">
                     <div className="header-left">
                       <h2 className="best-sellers-title">Best Sellers</h2>
-                      <div className="countdown-timer">
-                        <span className="timer-label">Expires in:</span>
-                        <div className="timer-display">
-                          <span className="timer-item">124D :</span>
-                          <span className="timer-item">14H :</span>
-                          <span className="timer-item">13M :</span>
-                          <span className="timer-item">49S</span>
-                        </div>
-                      </div>
                     </div>
                     <div className="header-right">
                       <div className="category-tabs">
-                        <button className="tab-link active">Top 10</button>
-                        <button className="tab-link">Top Air Filters</button>
-                        <button className="tab-link">Top Auto Parts</button>
+                        <button
+                          className={`tab-link ${activeTab === "top10" ? "active" : ""}`}
+                          onClick={() => setActiveTab("top10")}
+                        >
+                          Top 10
+                        </button>
+                        <button
+                          className={`tab-link ${activeTab === "airfilters" ? "active" : ""}`}
+                          onClick={() => setActiveTab("airfilters")}
+                        >
+                          Top Air Filters
+                        </button>
+                        <button
+                          className={`tab-link ${activeTab === "oilfilters" ? "active" : ""}`}
+                          onClick={() => setActiveTab("oilfilters")}
+                        >
+                          Top Oil Filters
+                        </button>
                       </div>
                     </div>
                   </div>
