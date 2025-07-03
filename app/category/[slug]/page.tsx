@@ -2,6 +2,8 @@
 
 import { useState } from "react";
 import { useParams } from "next/navigation";
+import { useCart } from "../../contexts/CartContext";
+import CartSidebar from "../../components/CartSidebar";
 
 export default function CategoryPage() {
   const params = useParams();
