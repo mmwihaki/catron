@@ -882,9 +882,12 @@ export default function ShopPage() {
                           </div>
 
                           <div className="product-actions">
-                            <a href={product.link} className="add-to-cart-btn">
+                            <button
+                              onClick={() => handleAddToCart(product)}
+                              className="add-to-cart-btn"
+                            >
                               Add to cart
-                            </a>
+                            </button>
                           </div>
                         </div>
                       </div>
