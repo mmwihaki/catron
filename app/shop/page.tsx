@@ -417,7 +417,11 @@ export default function ShopPage() {
               </span>
               <span className="action-text">Wishlist</span>
             </div>
-            <div className="action-item">
+            <div
+              className="action-item"
+              onClick={() => setIsCartOpen(true)}
+              style={{ cursor: "pointer" }}
+            >
               <span className="action-icon">
                 <svg
                   width="16"
