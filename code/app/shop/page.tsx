@@ -1223,7 +1223,7 @@ export default function ShopPage() {
           font-size: 14px;
         }
 
-        .categories-menu {
+        .categories-dropdown-menu {
           position: absolute;
           top: 100%;
           left: 0;
@@ -1235,7 +1235,7 @@ export default function ShopPage() {
           min-width: 200px;
         }
 
-        .category-menu-item {
+        .dropdown-item {
           display: block;
           padding: 10px 15px;
           color: #333;
@@ -1243,35 +1243,42 @@ export default function ShopPage() {
           border-bottom: 1px solid #eee;
         }
 
-        .category-menu-item:hover {
+        .dropdown-item:hover {
           background: #f8f9fa;
           color: rgb(247, 51, 18);
         }
 
         .nav-links {
           display: flex;
-          list-style: none;
           gap: 30px;
-          margin: 0;
-          padding: 0;
         }
 
-        .nav-links a {
+        .nav-link {
           color: #333;
           text-decoration: none;
           font-weight: 500;
           padding: 8px 0;
         }
 
-        .nav-links a.active,
-        .nav-links a:hover {
+        .nav-link.active,
+        .nav-link:hover {
           color: rgb(247, 51, 18);
         }
 
-        .nav-contact {
+        .nav-actions {
           margin-left: auto;
-          font-size: 14px;
+          display: flex;
+          gap: 20px;
+        }
+
+        .nav-action {
           color: #666;
+          text-decoration: none;
+          font-size: 14px;
+        }
+
+        .nav-action:hover {
+          color: rgb(247, 51, 18);
         }
 
         /* Shop Layout */
