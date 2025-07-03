@@ -1498,6 +1498,40 @@ export default function CatronHomePage() {
           padding: 15px 20px;
           cursor: pointer;
           font-weight: 600;
+          display: flex;
+          align-items: center;
+          gap: 8px;
+        }
+
+        .categories-dropdown-menu {
+          position: absolute;
+          top: 100%;
+          left: 0;
+          background: white;
+          border: 1px solid #ddd;
+          border-radius: 4px;
+          box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+          z-index: 1000;
+          min-width: 200px;
+        }
+
+        .dropdown-item {
+          padding: 12px 16px;
+          color: #333;
+          text-decoration: none;
+          display: block;
+          border-bottom: 1px solid #f0f0f0;
+          cursor: pointer;
+          transition: background 0.2s;
+        }
+
+        .dropdown-item:hover {
+          background: #f8f9fa;
+          color: rgb(247, 51, 18);
+        }
+
+        .dropdown-item:last-child {
+          border-bottom: none;
         }
 
         .nav-links {
