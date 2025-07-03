@@ -991,10 +991,10 @@ export default function CatronHomePage() {
         <div className="tips-guides-container">
           <div className="section-header">
             <h2 className="section-title">Tips & Guides</h2>
-            <a href="/blog" className="view-all-link">
+            <Link href="/blog" className="view-all-link">
               See All Articles
               <i className="fas fa-chevron-right"></i>
-            </a>
+            </Link>
           </div>
 
           <div className="tips-guides-content">
