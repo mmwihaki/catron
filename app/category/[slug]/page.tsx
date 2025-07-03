@@ -1056,6 +1056,8 @@ export default function CategoryPage() {
           }
         }
       `}</style>
+
+      <CartSidebar isOpen={isCartOpen} onClose={() => setIsCartOpen(false)} />
     </div>
   );
 }
