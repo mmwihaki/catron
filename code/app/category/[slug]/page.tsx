@@ -28,52 +28,214 @@ export default function CategoryPage() {
 
   const categoryName = getCategoryName(categorySlug);
 
-  // Sample product data
-  const products = [
+  // Real product data from provided list
+  const allProducts = [
     {
       id: 1,
-      name: "CERAMIC PISTON KIT COMPLETE",
-      price: 8399,
-      originalPrice: 9999,
-      rating: 4.5,
-      reviews: 24,
+      name: "RIDEX Oil Filter",
+      category: "Oil Filter",
+      carModel: "E12/K13/N17",
+      sku: "7O0026",
+      brand: "RIDEX",
+      stock: 30,
+      price: 1300,
+      description: "upto 10k kms",
       image:
         "https://images.pexels.com/photos/3642618/pexels-photo-3642618.jpeg?auto=compress&cs=tinysrgb&w=300",
-      badge: "SALE",
+      rating: 4.5,
+      reviews: 24,
     },
     {
       id: 2,
-      name: "BOSCH OXY BOOSTER Spark with OEM Quality",
-      price: 1499,
-      originalPrice: 1899,
-      rating: 4.8,
-      reviews: 16,
+      name: "RIDEX Plus Oil Filter",
+      category: "Oil Filter",
+      carModel: "E12/K13/N17",
+      sku: "7O0026P",
+      brand: "Ridex Plus",
+      stock: 30,
+      price: 1800,
+      description: "Upto 15k kms",
       image:
         "https://images.pexels.com/photos/190570/pexels-photo-190570.jpeg?auto=compress&cs=tinysrgb&w=300",
-      badge: "SALE",
+      rating: 4.8,
+      reviews: 16,
     },
     {
       id: 3,
-      name: "AIR INTAKE Black Carbon Auto Parts Speed",
-      price: 3599,
-      originalPrice: 4299,
-      rating: 4.3,
-      reviews: 32,
+      name: "STARK Oil Filter",
+      category: "Oil Filter",
+      carModel: "E12/K13/N17",
+      sku: "SKOF-0860025",
+      brand: "STARK",
+      stock: 3,
+      price: 1800,
+      description: "Upto 15k kms",
       image:
         "https://images.pexels.com/photos/244824/pexels-photo-244824.jpeg?auto=compress&cs=tinysrgb&w=300",
-      badge: "SALE",
+      rating: 4.3,
+      reviews: 32,
     },
     {
       id: 4,
-      name: "LED CAR Xenon HEADLIGHT Steering",
-      price: 2099,
-      rating: 4.6,
-      reviews: 8,
+      name: "KAVO Air Filter",
+      category: "Air Filter",
+      carModel: "Teana L33 QR25de",
+      sku: "NA-2650",
+      brand: "KAVO",
+      stock: 4,
+      price: 4500,
+      description: "Aftermarket OE Quality up-to 15k kms",
       image:
         "https://images.pexels.com/photos/13065690/pexels-photo-13065690.jpeg?auto=compress&cs=tinysrgb&w=300",
-      badge: "SALE",
+      rating: 4.6,
+      reviews: 8,
+    },
+    {
+      id: 5,
+      name: "KAVO Cabin Filter",
+      category: "Cabin Filter",
+      carModel: "Teana L33 QR25de",
+      sku: "NC-2037",
+      brand: "KAVO",
+      stock: 2,
+      price: 4000,
+      description: "Aftermarket OE Quality - up-to 15k kms",
+      image:
+        "https://images.pexels.com/photos/5835359/pexels-photo-5835359.jpeg?auto=compress&cs=tinysrgb&w=300",
+      rating: 4.7,
+      reviews: 12,
+    },
+    {
+      id: 6,
+      name: "KAVO Cabin Filter Carbon",
+      category: "Cabin Filter",
+      carModel: "Teana L33 QR25de",
+      sku: "NC-2037C",
+      brand: "KAVO",
+      stock: 1,
+      price: 6500,
+      description: "Aftermarket OE Quality - up-to 30k kms",
+      image:
+        "https://images.pexels.com/photos/9489969/pexels-photo-9489969.jpeg?auto=compress&cs=tinysrgb&w=300",
+      rating: 4.9,
+      reviews: 6,
+    },
+    {
+      id: 7,
+      name: "RIDEX HEPA Cabin Filter",
+      category: "Cabin Filter",
+      carModel: "E12/K13/N17",
+      sku: "424I0259",
+      brand: "RIDEX",
+      stock: 50,
+      price: 1200,
+      description: "High efficiency particulate air filter",
+      image:
+        "https://images.pexels.com/photos/3932952/pexels-photo-3932952.jpeg?auto=compress&cs=tinysrgb&w=300",
+      rating: 4.4,
+      reviews: 18,
+    },
+    {
+      id: 8,
+      name: "OSRAM Night Breaker 200 H4",
+      category: "Headlight bulbs",
+      carModel: "H4 models",
+      sku: "NB200H4",
+      brand: "OSRAM",
+      stock: 10,
+      price: 7500,
+      description: "(pack of 2)",
+      image:
+        "https://images.pexels.com/photos/1037999/pexels-photo-1037999.jpeg?auto=compress&cs=tinysrgb&w=300",
+      rating: 4.8,
+      reviews: 35,
+    },
+    {
+      id: 9,
+      name: "OSRAM Cool Blue Intense H4",
+      category: "Headlight bulbs",
+      carModel: "H4 models",
+      sku: "CBI100H4",
+      brand: "OSRAM",
+      stock: 10,
+      price: 5500,
+      description: "(pack of 2)",
+      image:
+        "https://images.pexels.com/photos/97075/pexels-photo-97075.jpeg?auto=compress&cs=tinysrgb&w=300",
+      rating: 4.6,
+      reviews: 28,
+    },
+    {
+      id: 10,
+      name: "NGK Spark Plug DIG-S",
+      category: "Spark plugs",
+      carModel: "Note E12 DIG-S",
+      sku: "DILKAR7E11HS (97439)",
+      brand: "NGK",
+      stock: 33,
+      price: 4600,
+      description: "High performance spark plug",
+      image:
+        "https://images.pexels.com/photos/3846527/pexels-photo-3846527.jpeg?auto=compress&cs=tinysrgb&w=300",
+      rating: 4.9,
+      reviews: 42,
+    },
+    {
+      id: 11,
+      name: "NGK Spark Plug Universal",
+      category: "Spark plugs",
+      carModel: "Note E12 Puredrive, March K13",
+      sku: "DILKAR6A11 (9029)",
+      brand: "NGK",
+      stock: 18,
+      price: 4250,
+      description: "Universal fit for multiple models",
+      image:
+        "https://images.pexels.com/photos/2244746/pexels-photo-2244746.jpeg?auto=compress&cs=tinysrgb&w=300",
+      rating: 4.7,
+      reviews: 38,
+    },
+    {
+      id: 12,
+      name: "LPR Brake Pads",
+      category: "Brake Pads",
+      carModel: "E12/K13/N17",
+      sku: "LPR 05P1686",
+      brand: "LPR",
+      stock: 1,
+      price: 7500,
+      description: "Aftermarket OE Quality - 15k - 30k kms",
+      image:
+        "https://images.pexels.com/photos/13065690/pexels-photo-13065690.jpeg?auto=compress&cs=tinysrgb&w=300",
+      rating: 4.5,
+      reviews: 22,
     },
   ];
+
+  // Filter products by category
+  const getProductsForCategory = (categorySlug: string) => {
+    const categoryFilters = {
+      "oil-filter": ["Oil Filter"],
+      "air-filters": ["Air Filter", "Cabin Filter"],
+      "headlight-bulbs": ["Headlight bulbs"],
+      "spark-plugs": ["Spark plugs"],
+      "brake-pads": ["Brake Pads"],
+      "auto-parts": allProducts.map((p) => p.category), // All categories
+    };
+
+    const allowedCategories =
+      categoryFilters[categorySlug as keyof typeof categoryFilters] || [];
+
+    if (categorySlug === "auto-parts") {
+      return allProducts;
+    }
+
+    return allProducts.filter((product) =>
+      allowedCategories.includes(product.category),
+    );
+  };
+
+  const products = getProductsForCategory(categorySlug);
 
   const [priceRange, setPriceRange] = useState([0, 500]);
   const [selectedBrands, setSelectedBrands] = useState<string[]>([]);
