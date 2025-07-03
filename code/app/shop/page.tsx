@@ -1460,6 +1460,9 @@ export default function ShopPage() {
 
         .product-card-inner {
           position: relative;
+          display: flex;
+          flex-direction: column;
+          height: 100%;
         }
 
         .product-discount-badge {
