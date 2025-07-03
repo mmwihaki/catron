@@ -5,6 +5,9 @@ export const metadata: Metadata = {
   title: "Catron Auto Parts - Premium Nissan Parts Kenya",
   description:
     "Quality OEM and aftermarket parts specifically for Nissan vehicles in Kenya. Happy car ownership guaranteed.",
+  icons: {
+    icon: "/favicon.ico",
+  },
 };
 
 export default function RootLayout({
