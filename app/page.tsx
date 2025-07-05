@@ -2,6 +2,10 @@
 
 import React, { useState, useEffect } from "react";
 import Link from "next/link";
+import Header from "./components/Header";
+import ProductCard from "./components/ProductCard";
+import { products } from "./data/products";
+import { useCart } from "./context/CartContext";
 
 export default function CatronHomePage() {
   const [searchCategory, setSearchCategory] = useState("All");
