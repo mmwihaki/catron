@@ -34,23 +34,27 @@ export default function ProductCard({ product }: ProductCardProps) {
     >
       <div
         style={{
-          border: "1px solid #eee",
-          borderRadius: "8px",
-          padding: "15px",
+          background: "linear-gradient(135deg, #3A3A3A 0%, #1E1E1E 100%)",
+          border: "1px solid rgba(176, 176, 176, 0.2)",
+          borderRadius: "16px",
+          padding: "20px",
           position: "relative",
-          backgroundColor: "white",
-          transition: "transform 0.3s ease, box-shadow 0.3s ease",
+          transition: "all 0.3s ease",
           height: "100%",
           display: "flex",
           flexDirection: "column",
+          boxShadow: "0 4px 12px rgba(0,0,0,0.3)",
+          overflow: "hidden",
         }}
         onMouseEnter={(e) => {
-          e.currentTarget.style.transform = "translateY(-5px)";
-          e.currentTarget.style.boxShadow = "0 8px 25px rgba(0,0,0,0.1)";
+          e.currentTarget.style.transform = "translateY(-8px)";
+          e.currentTarget.style.boxShadow = "0 16px 32px rgba(0,0,0,0.4)";
+          e.currentTarget.style.borderColor = "rgba(229, 48, 44, 0.5)";
         }}
         onMouseLeave={(e) => {
           e.currentTarget.style.transform = "translateY(0)";
-          e.currentTarget.style.boxShadow = "none";
+          e.currentTarget.style.boxShadow = "0 4px 12px rgba(0,0,0,0.3)";
+          e.currentTarget.style.borderColor = "rgba(176, 176, 176, 0.2)";
         }}
       >
         {/* Product Badge */}
@@ -58,14 +62,19 @@ export default function ProductCard({ product }: ProductCardProps) {
           <div
             style={{
               position: "absolute",
-              top: "10px",
-              right: "10px",
-              background: "#f73312",
+              top: "16px",
+              right: "16px",
+              background: "linear-gradient(135deg, #E5302C 0%, #C4261E 100%)",
               color: "white",
-              padding: "4px 8px",
-              fontSize: "12px",
-              fontWeight: "600",
-              borderRadius: "3px",
+              padding: "6px 12px",
+              fontSize: "11px",
+              fontWeight: "700",
+              fontFamily: "'Titillium Web', sans-serif",
+              textTransform: "uppercase",
+              letterSpacing: "1px",
+              borderRadius: "6px",
+              boxShadow: "0 2px 8px rgba(229, 48, 44, 0.4)",
+              zIndex: 2,
             }}
           >
             {product.badge}
@@ -76,11 +85,18 @@ export default function ProductCard({ product }: ProductCardProps) {
         <div
           style={{
             position: "absolute",
-            top: "10px",
-            left: "10px",
-            fontSize: "11px",
-            fontWeight: "600",
+            top: "16px",
+            left: "16px",
+            fontSize: "10px",
+            fontWeight: "700",
+            fontFamily: "'Titillium Web', sans-serif",
+            textTransform: "uppercase",
+            letterSpacing: "1px",
             color: stockStatus.color,
+            background: "rgba(0,0,0,0.7)",
+            padding: "4px 8px",
+            borderRadius: "4px",
+            backdropFilter: "blur(10px)",
           }}
         >
           {stockStatus.text}
@@ -90,9 +106,10 @@ export default function ProductCard({ product }: ProductCardProps) {
         <div
           style={{
             position: "relative",
-            marginBottom: "10px",
+            marginBottom: "16px",
             overflow: "hidden",
-            borderRadius: "4px",
+            borderRadius: "12px",
+            background: "linear-gradient(135deg, #B0B0B0 0%, #FFFFFF 100%)",
           }}
         >
           <img
@@ -100,10 +117,16 @@ export default function ProductCard({ product }: ProductCardProps) {
             alt={product.name}
             style={{
               width: "100%",
-              height: "150px",
+              height: "180px",
               objectFit: "cover",
-              borderRadius: "4px",
-              marginBottom: "10px",
+              borderRadius: "12px",
+              transition: "transform 0.3s ease",
+            }}
+            onMouseEnter={(e) => {
+              e.currentTarget.style.transform = "scale(1.05)";
+            }}
+            onMouseLeave={(e) => {
+              e.currentTarget.style.transform = "scale(1)";
             }}
           />
         </div>
@@ -118,10 +141,11 @@ export default function ProductCard({ product }: ProductCardProps) {
         >
           <h3
             style={{
-              fontSize: "14px",
-              fontWeight: "600",
-              color: "#333",
-              margin: "0 0 8px 0",
+              fontSize: "16px",
+              fontWeight: "700",
+              fontFamily: "'Montserrat', sans-serif",
+              color: "#FFFFFF",
+              margin: "0 0 12px 0",
               lineHeight: "1.3",
               display: "-webkit-box",
               WebkitLineClamp: 2,
@@ -132,21 +156,38 @@ export default function ProductCard({ product }: ProductCardProps) {
             {product.name}
           </h3>
 
-          <div style={{ marginBottom: "10px" }}>
+          <div style={{ marginBottom: "16px" }}>
             <p
               style={{
-                margin: "2px 0",
-                fontSize: "12px",
-                color: "#666",
-                fontWeight: "600",
+                margin: "4px 0",
+                fontSize: "13px",
+                color: "#E5302C",
+                fontWeight: "700",
+                fontFamily: "'Titillium Web', sans-serif",
+                textTransform: "uppercase",
+                letterSpacing: "1px",
               }}
             >
               {product.brand}
             </p>
-            <p style={{ margin: "2px 0", fontSize: "12px", color: "#666" }}>
+            <p
+              style={{
+                margin: "2px 0",
+                fontSize: "11px",
+                color: "#B0B0B0",
+                fontFamily: "'Open Sans', sans-serif",
+              }}
+            >
               SKU: {product.sku}
             </p>
-            <p style={{ margin: "2px 0", fontSize: "12px", color: "#666" }}>
+            <p
+              style={{
+                margin: "2px 0",
+                fontSize: "11px",
+                color: "#B0B0B0",
+                fontFamily: "'Open Sans', sans-serif",
+              }}
+            >
               Fits: {product.carModel}
             </p>
           </div>
@@ -156,51 +197,63 @@ export default function ProductCard({ product }: ProductCardProps) {
             style={{
               display: "flex",
               alignItems: "center",
-              marginBottom: "8px",
+              marginBottom: "12px",
               gap: "8px",
             }}
           >
-            <div style={{ display: "flex", marginRight: "8px" }}>
+            <div style={{ display: "flex", gap: "2px" }}>
               {[...Array(5)].map((_, i) => (
                 <span
                   key={i}
                   style={{
-                    color: i < Math.floor(product.rating) ? "#ffc107" : "#ddd",
-                    fontSize: "12px",
+                    color:
+                      i < Math.floor(product.rating)
+                        ? "#FFC107"
+                        : "rgba(176, 176, 176, 0.3)",
+                    fontSize: "14px",
                   }}
                 >
                   ★
                 </span>
               ))}
             </div>
-            <span style={{ fontSize: "12px", color: "#666" }}>
+            <span
+              style={{
+                fontSize: "11px",
+                color: "#B0B0B0",
+                fontFamily: "'Open Sans', sans-serif",
+              }}
+            >
               ({product.reviews})
             </span>
           </div>
 
           {/* Price */}
-          <div style={{ marginBottom: "10px", marginTop: "auto" }}>
+          <div style={{ marginBottom: "16px", marginTop: "auto" }}>
             {product.originalPrice && (
               <span
                 style={{
-                  fontSize: "12px",
-                  color: "#999",
+                  fontSize: "13px",
+                  color: "#B0B0B0",
                   textDecoration: "line-through",
                   marginRight: "8px",
+                  fontFamily: "'Open Sans', sans-serif",
                 }}
               >
                 KES {product.originalPrice.toLocaleString()}
               </span>
             )}
-            <span
+            <div
               style={{
-                fontSize: "16px",
-                fontWeight: "600",
-                color: product.originalPrice ? "#f73312" : "#333",
+                fontSize: "20px",
+                fontWeight: "700",
+                fontFamily: "'Titillium Web', sans-serif",
+                color: product.originalPrice ? "#E5302C" : "#FFC107",
+                letterSpacing: "-0.5px",
               }}
             >
               KES {product.price.toLocaleString()}
-            </span>
+            </div>
           </div>
 
           {/* Add to Cart Button */}
@@ -209,28 +262,46 @@ export default function ProductCard({ product }: ProductCardProps) {
             disabled={product.stock === 0}
             style={{
               width: "100%",
-              background: product.stock === 0 ? "#9ca3af" : "#f73312",
+              background:
+                product.stock === 0
+                  ? "linear-gradient(135deg, #6C757D 0%, #495057 100%)"
+                  : "linear-gradient(135deg, #E5302C 0%, #C4261E 100%)",
               color: "white",
               border: "none",
-              padding: "8px",
-              borderRadius: "4px",
-              fontSize: "14px",
-              fontWeight: "600",
+              padding: "14px 16px",
+              borderRadius: "10px",
+              fontSize: "13px",
+              fontWeight: "700",
+              fontFamily: "'Montserrat', sans-serif",
+              textTransform: "uppercase",
+              letterSpacing: "1px",
               cursor: product.stock === 0 ? "not-allowed" : "pointer",
-              transition: "background 0.3s ease",
+              transition: "all 0.2s ease",
               display: "flex",
               alignItems: "center",
               justifyContent: "center",
-              gap: "6px",
+              gap: "8px",
+              boxShadow:
+                product.stock === 0
+                  ? "none"
+                  : "0 4px 12px rgba(229, 48, 44, 0.3)",
             }}
             onMouseEnter={(e) => {
               if (product.stock > 0) {
-                e.currentTarget.style.background = "#dc2f02";
+                e.currentTarget.style.background =
+                  "linear-gradient(135deg, #FF4639 0%, #E5302C 100%)";
+                e.currentTarget.style.transform = "translateY(-2px)";
+                e.currentTarget.style.boxShadow =
+                  "0 8px 20px rgba(229, 48, 44, 0.4)";
               }
             }}
             onMouseLeave={(e) => {
               if (product.stock > 0) {
-                e.currentTarget.style.background = "#f73312";
+                e.currentTarget.style.background =
+                  "linear-gradient(135deg, #E5302C 0%, #C4261E 100%)";
+                e.currentTarget.style.transform = "translateY(0)";
+                e.currentTarget.style.boxShadow =
+                  "0 4px 12px rgba(229, 48, 44, 0.3)";
               }
             }}
           >
