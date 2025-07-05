@@ -8,16 +8,16 @@
 
 :root {
   /* Color Palette */
-  --primary-dark: #1e1e1e;
-  --secondary-gunmetal: #3a3a3a;
-  --tertiary-silver: #b0b0b0;
+  --primary-white: #ffffff;
+  --secondary-light: #f8f9fa;
+  --tertiary-gray: #6c757d;
   --accent-red: #e5302c;
   --accent-blue: #007bff;
   --warning-yellow: #ffc107;
-  --pure-white: #ffffff;
-  --neutral-light: #f8f9fa;
+  --text-dark: #212529;
+  --neutral-light: #e9ecef;
   --neutral-medium: #6c757d;
-  --neutral-dark: #212529;
+  --neutral-dark: #343a40;
 
   /* Typography */
   --font-heading: "Montserrat", -apple-system, BlinkMacSystemFont, sans-serif;
@@ -56,24 +56,11 @@ body {
   font-family: var(--font-body);
   font-size: 16px;
   line-height: 1.5;
-  color: var(--pure-white);
-  background-color: var(--primary-dark);
+  color: var(--text-dark);
+  background-color: var(--primary-white);
   background-image:
-    radial-gradient(
-      circle at 20% 80%,
-      rgba(176, 176, 176, 0.03) 0%,
-      transparent 50%
-    ),
-    radial-gradient(
-      circle at 80% 20%,
-      rgba(176, 176, 176, 0.03) 0%,
-      transparent 50%
-    ),
-    linear-gradient(
-      135deg,
-      var(--primary-dark) 0%,
-      var(--secondary-gunmetal) 100%
-    );
+    radial-gradient(circle at 20% 80%, rgba(0, 0, 0, 0.02) 0%, transparent 50%),
+    radial-gradient(circle at 80% 20%, rgba(0, 0, 0, 0.02) 0%, transparent 50%);
   min-height: 100vh;
 }
 
@@ -84,7 +71,7 @@ body {
   font-size: clamp(32px, 5vw, 48px);
   line-height: 1.1;
   letter-spacing: -0.02em;
-  color: var(--pure-white);
+  color: var(--text-dark);
 }
 
 .heading-large {
@@ -93,7 +80,7 @@ body {
   font-size: clamp(24px, 4vw, 36px);
   line-height: 1.2;
   letter-spacing: -0.01em;
-  color: var(--pure-white);
+  color: var(--text-dark);
 }
 
 .heading-medium {
@@ -101,7 +88,7 @@ body {
   font-weight: 700;
   font-size: clamp(18px, 3vw, 24px);
   line-height: 1.3;
-  color: var(--pure-white);
+  color: var(--text-dark);
 }
 
 .heading-small {
@@ -109,28 +96,28 @@ body {
   font-weight: 600;
   font-size: 18px;
   line-height: 1.4;
-  color: var(--pure-white);
+  color: var(--text-dark);
 }
 
 .body-large {
   font-family: var(--font-body);
   font-size: 18px;
   line-height: 1.6;
-  color: var(--tertiary-silver);
+  color: var(--tertiary-gray);
 }
 
 .body-medium {
   font-family: var(--font-body);
   font-size: 16px;
   line-height: 1.5;
-  color: var(--tertiary-silver);
+  color: var(--tertiary-gray);
 }
 
 .body-small {
   font-family: var(--font-body);
   font-size: 14px;
   line-height: 1.5;
-  color: var(--tertiary-silver);
+  color: var(--tertiary-gray);
 }
 
 .tech-label {
@@ -139,7 +126,7 @@ body {
   font-weight: 600;
   text-transform: uppercase;
   letter-spacing: 2px;
-  color: var(--tertiary-silver);
+  color: var(--tertiary-gray);
 }
 
 .price-display {
@@ -209,12 +196,8 @@ body {
 
 /* Card System */
 .card {
-  background: linear-gradient(
-    135deg,
-    var(--secondary-gunmetal) 0%,
-    var(--primary-dark) 100%
-  );
-  border: 1px solid rgba(176, 176, 176, 0.2);
+  background: var(--primary-white);
+  border: 1px solid var(--neutral-light);
   border-radius: var(--radius-lg);
   padding: var(--spacing-lg);
   box-shadow: var(--shadow-md);

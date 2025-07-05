@@ -32,11 +32,11 @@ export default function Header() {
       {/* Top Header */}
       <header
         style={{
-          background: "linear-gradient(135deg, #1E1E1E 0%, #3A3A3A 100%)",
-          color: "white",
+          background: "#FFFFFF",
+          color: "#212529",
           padding: "20px 0",
-          boxShadow: "0 4px 12px rgba(0,0,0,0.3)",
-          borderBottom: "1px solid rgba(176, 176, 176, 0.2)",
+          boxShadow: "0 2px 8px rgba(0,0,0,0.1)",
+          borderBottom: "1px solid #E9ECEF",
         }}
       >
         <div
@@ -53,7 +53,7 @@ export default function Header() {
           <Link
             href="/"
             style={{
-              color: "white",
+              color: "#212529",
               textDecoration: "none",
               fontFamily: "'Montserrat', sans-serif",
               fontSize: "28px",
@@ -100,7 +100,7 @@ export default function Header() {
                 display: "flex",
                 alignItems: "center",
                 gap: "10px",
-                color: "#B0B0B0",
+                color: "#6C757D",
                 textDecoration: "none",
                 fontSize: "14px",
                 fontFamily: "'Open Sans', sans-serif",
@@ -186,11 +186,10 @@ export default function Header() {
       {/* Navigation */}
       <nav
         style={{
-          background: "linear-gradient(135deg, #3A3A3A 0%, #1E1E1E 100%)",
-          color: "white",
+          background: "#F8F9FA",
+          color: "#212529",
           padding: "16px 0",
-          borderBottom: "1px solid rgba(176, 176, 176, 0.1)",
-          backdropFilter: "blur(10px)",
+          borderBottom: "1px solid #E9ECEF",
         }}
       >
         <div
@@ -256,15 +255,14 @@ export default function Header() {
                   position: "absolute",
                   top: "100%",
                   left: 0,
-                  background:
-                    "linear-gradient(135deg, #1E1E1E 0%, #3A3A3A 100%)",
-                  boxShadow: "0 12px 32px rgba(0,0,0,0.4)",
+                  background: "#FFFFFF",
+                  boxShadow: "0 8px 24px rgba(0,0,0,0.15)",
                   borderRadius: "12px",
                   minWidth: "280px",
                   zIndex: 1000,
                   padding: "16px 0",
                   marginTop: "8px",
-                  border: "1px solid rgba(176, 176, 176, 0.2)",
+                  border: "1px solid #E9ECEF",
                 }}
               >
                 {categories.map((category) => (
@@ -280,7 +278,7 @@ export default function Header() {
                       justifyContent: "space-between",
                       alignItems: "center",
                       padding: "14px 24px",
-                      color: "#B0B0B0",
+                      color: "#6C757D",
                       textDecoration: "none",
                       fontSize: "14px",
                       fontFamily: "'Open Sans', sans-serif",
@@ -291,11 +289,11 @@ export default function Header() {
                     onMouseEnter={(e) => {
                       e.currentTarget.style.background =
                         "rgba(229, 48, 44, 0.1)";
-                      e.currentTarget.style.color = "white";
+                      e.currentTarget.style.color = "#E5302C";
                     }}
                     onMouseLeave={(e) => {
                       e.currentTarget.style.background = "transparent";
-                      e.currentTarget.style.color = "#B0B0B0";
+                      e.currentTarget.style.color = "#6C757D";
                     }}
                   >
                     <span>{category.name}</span>
@@ -319,7 +317,7 @@ export default function Header() {
             <Link
               href="/"
               style={{
-                color: "#B0B0B0",
+                color: "#6C757D",
                 textDecoration: "none",
                 fontSize: "14px",
                 fontWeight: "600",
@@ -336,7 +334,7 @@ export default function Header() {
             <Link
               href="/shop"
               style={{
-                color: "white",
+                color: "#212529",
                 textDecoration: "none",
                 fontSize: "14px",
                 fontWeight: "600",
@@ -353,7 +351,7 @@ export default function Header() {
             <Link
               href="/about"
               style={{
-                color: "#B0B0B0",
+                color: "#6C757D",
                 textDecoration: "none",
                 fontSize: "14px",
                 fontWeight: "600",
@@ -370,7 +368,7 @@ export default function Header() {
             <Link
               href="/contact"
               style={{
-                color: "#B0B0B0",
+                color: "#6C757D",
                 textDecoration: "none",
                 fontSize: "14px",
                 fontWeight: "600",
