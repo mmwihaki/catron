@@ -2,31 +2,82 @@
 
 import { useState } from "react";
 import { useParams } from "next/navigation";
-import Header from "../../components/Header";
-import ProductCard from "../../components/ProductCard";
-import { products, brands, carModels } from "../../data/products";
+import Header from '../../components/Header';
+import ProductCard from '../../components/ProductCard';
+import { products, brands, carModels } from '../../data/products';
 
 export default function CategoryPage() {
   const params = useParams();
   const categorySlug = params.slug as string;
 
+  const [priceRange, setPriceRange] = useState([0, 20000]);
+  const [selectedBrands, setSelectedBrands] = useState<string[]>([]);
+  const [selectedModels, setSelectedModels] = useState<string[]>([]);
+  const [selectedRating, setSelectedRating] = useState<number | null>(null);
+  const [sortBy, setSortBy] = useState("name");
+
   // Convert slug to readable category name
   const getCategoryName = (slug: string) => {
     const categoryMap: { [key: string]: string } = {
-      "auto-parts": "Auto Parts",
+      "all": "All Auto Parts",
       "oil-filter": "Oil Filters",
-      "air-filters": "Air Filters",
+      "air-filter": "Air Filters",
+      "cabin-filter": "Cabin Filters",
       "headlight-bulbs": "Headlight Bulbs",
       "spark-plugs": "Spark Plugs",
       "brake-pads": "Brake Pads",
+      "fuel-filter": "Fuel Filters",
+      "suspension": "Suspension"
     };
     return categoryMap[slug] || "Category";
   };
 
   const categoryName = getCategoryName(categorySlug);
 
-  // Real product data from provided list
-  const allProducts = [
+  // Filter products by category
+  const getProductsForCategory = (categorySlug: string) => {
+    if (categorySlug === "all") {
+      return products;
+    }
+
+    const categoryFilters: { [key: string]: string[] } = {
+      "oil-filter": ["Oil Filter"],
+      "air-filter": ["Air Filter"],
+      "cabin-filter": ["Cabin Filter"],
+      "headlight-bulbs": ["Headlight Bulbs"],
+      "spark-plugs": ["Spark Plugs"],
+      "brake-pads": ["Brake Pads"],
+      "fuel-filter": ["Fuel Filter"],
+      "suspension": ["Suspension"]
+    };
+
+    const allowedCategories = categoryFilters[categorySlug] || [];
+    return products.filter(product => allowedCategories.includes(product.category));
+  };
+
+  // Get filtered products
+  let filteredProducts = getProductsForCategory(categorySlug);
+
+  // Apply additional filters
+  filteredProducts = filteredProducts.filter(product => {
+    const matchesPrice = product.price >= priceRange[0] && product.price <= priceRange[1];
+    const matchesBrand = selectedBrands.length === 0 || selectedBrands.includes(product.brand);
+    const matchesModel = selectedModels.length === 0 || selectedModels.some(model => product.carModel.includes(model));
+    const matchesRating = selectedRating === null || product.rating >= selectedRating;
+
+    return matchesPrice && matchesBrand && matchesModel && matchesRating;
+  });
+
+  // Sort products
+  const sortedProducts = [...filteredProducts].sort((a, b) => {
+    switch (sortBy) {
+      case "price-low": return a.price - b.price;
+      case "price-high": return b.price - a.price;
+      case "rating": return b.rating - a.rating;
+      case "newest": return b.id - a.id;
+      default: return a.name.localeCompare(b.name);
+    }
+  });
     {
       id: 1,
       name: "RIDEX Oil Filter",
