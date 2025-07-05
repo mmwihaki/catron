@@ -2,6 +2,9 @@
 
 import { useState } from "react";
 import { useParams } from "next/navigation";
+import Header from "../../components/Header";
+import ProductCard from "../../components/ProductCard";
+import { products, brands, carModels } from "../../data/products";
 
 export default function CategoryPage() {
   const params = useParams();
