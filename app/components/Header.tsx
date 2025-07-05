@@ -31,17 +31,23 @@ export default function Header() {
     <>
       {/* Top Header */}
       <header
-        style={{ background: "#f73312", color: "white", padding: "15px 0" }}
+        style={{
+          background: "linear-gradient(135deg, #1E1E1E 0%, #3A3A3A 100%)",
+          color: "white",
+          padding: "20px 0",
+          boxShadow: "0 4px 12px rgba(0,0,0,0.3)",
+          borderBottom: "1px solid rgba(176, 176, 176, 0.2)",
+        }}
       >
         <div
           style={{
             maxWidth: "1200px",
             margin: "0 auto",
-            padding: "0 20px",
+            padding: "0 24px",
             display: "flex",
             justifyContent: "space-between",
             alignItems: "center",
-            gap: "20px",
+            gap: "32px",
           }}
         >
           <Link
@@ -49,50 +55,82 @@ export default function Header() {
             style={{
               color: "white",
               textDecoration: "none",
-              fontSize: "24px",
-              fontWeight: "700",
+              fontFamily: "'Montserrat', sans-serif",
+              fontSize: "28px",
+              fontWeight: "800",
+              letterSpacing: "-0.5px",
+              display: "flex",
+              alignItems: "center",
+              gap: "12px",
             }}
           >
-            <img
-              src="https://cdn.builder.io/api/v1/image/assets%2F16c4d8eebb6943b4be5a75c55b5cdffd%2F5d8fbe0d7a4c4e1a9a82d71637d82593"
-              alt="Catron Auto Parts"
-              style={{ height: "40px" }}
-            />
+            <div
+              style={{
+                width: "48px",
+                height: "48px",
+                background: "linear-gradient(135deg, #E5302C 0%, #C4261E 100%)",
+                borderRadius: "8px",
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+                boxShadow: "0 4px 12px rgba(229, 48, 44, 0.3)",
+              }}
+            >
+              <svg
+                width="24"
+                height="24"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="white"
+                strokeWidth="2"
+              >
+                <path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6" />
+              </svg>
+            </div>
+            <span>CATRON</span>
           </Link>
 
           {/* Search Bar */}
           <div
             style={{
               flex: 1,
-              maxWidth: "500px",
+              maxWidth: "600px",
               display: "flex",
-              background: "white",
-              borderRadius: "6px",
+              background: "rgba(255, 255, 255, 0.95)",
+              borderRadius: "12px",
               overflow: "hidden",
+              border: "1px solid rgba(176, 176, 176, 0.3)",
+              backdropFilter: "blur(10px)",
+              boxShadow: "0 4px 12px rgba(0,0,0,0.1)",
             }}
           >
             <input
               type="text"
-              placeholder="Search for auto parts..."
+              placeholder="Search parts by SKU, brand, or model..."
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
               style={{
                 flex: 1,
-                padding: "12px 16px",
+                padding: "16px 20px",
                 border: "none",
                 outline: "none",
-                fontSize: "14px",
+                fontSize: "15px",
+                fontFamily: "'Open Sans', sans-serif",
+                background: "transparent",
+                color: "#1E1E1E",
               }}
             />
             <button
               style={{
-                background: "#e63312",
+                background: "linear-gradient(135deg, #E5302C 0%, #C4261E 100%)",
                 color: "white",
                 border: "none",
-                padding: "12px 16px",
+                padding: "16px 20px",
                 cursor: "pointer",
                 display: "flex",
                 alignItems: "center",
+                transition: "all 0.2s ease",
+                minWidth: "60px",
               }}
             >
               <svg
@@ -101,7 +139,7 @@ export default function Header() {
                 viewBox="0 0 24 24"
                 fill="none"
                 stroke="currentColor"
-                strokeWidth="2"
+                strokeWidth="2.5"
               >
                 <circle cx="11" cy="11" r="8"></circle>
                 <path d="M21 21l-4.35-4.35"></path>
@@ -109,21 +147,26 @@ export default function Header() {
             </button>
           </div>
 
-          <div style={{ display: "flex", alignItems: "center", gap: "20px" }}>
+          <div style={{ display: "flex", alignItems: "center", gap: "24px" }}>
             <Link
               href="/wishlist"
               style={{
                 display: "flex",
                 alignItems: "center",
-                gap: "8px",
-                color: "white",
+                gap: "10px",
+                color: "#B0B0B0",
                 textDecoration: "none",
                 fontSize: "14px",
+                fontFamily: "'Open Sans', sans-serif",
+                fontWeight: "500",
+                padding: "8px 12px",
+                borderRadius: "8px",
+                transition: "all 0.2s ease",
               }}
             >
               <svg
-                width="20"
-                height="20"
+                width="22"
+                height="22"
                 viewBox="0 0 24 24"
                 fill="none"
                 stroke="currentColor"
@@ -138,16 +181,23 @@ export default function Header() {
               style={{
                 display: "flex",
                 alignItems: "center",
-                gap: "8px",
+                gap: "10px",
                 color: "white",
                 textDecoration: "none",
                 fontSize: "14px",
+                fontFamily: "'Open Sans', sans-serif",
+                fontWeight: "600",
+                padding: "12px 16px",
+                borderRadius: "10px",
+                background: "linear-gradient(135deg, #E5302C 0%, #C4261E 100%)",
+                boxShadow: "0 4px 12px rgba(229, 48, 44, 0.3)",
+                transition: "all 0.2s ease",
               }}
             >
               <div style={{ position: "relative" }}>
                 <svg
-                  width="20"
-                  height="20"
+                  width="22"
+                  height="22"
                   viewBox="0 0 24 24"
                   fill="none"
                   stroke="currentColor"
@@ -161,18 +211,20 @@ export default function Header() {
                   <span
                     style={{
                       position: "absolute",
-                      top: "-8px",
-                      right: "-8px",
-                      background: "#ff6b35",
-                      color: "white",
+                      top: "-10px",
+                      right: "-10px",
+                      background: "#FFC107",
+                      color: "#1E1E1E",
                       borderRadius: "50%",
-                      width: "18px",
-                      height: "18px",
+                      width: "20px",
+                      height: "20px",
                       display: "flex",
                       alignItems: "center",
                       justifyContent: "center",
-                      fontSize: "10px",
-                      fontWeight: "600",
+                      fontSize: "11px",
+                      fontWeight: "700",
+                      fontFamily: "'Titillium Web', sans-serif",
+                      border: "2px solid #1E1E1E",
                     }}
                   >
                     {state.itemCount}
@@ -186,31 +238,44 @@ export default function Header() {
       </header>
 
       {/* Navigation */}
-      <nav style={{ background: "#2c2c2c", color: "white", padding: "15px 0" }}>
+      <nav
+        style={{
+          background: "linear-gradient(135deg, #3A3A3A 0%, #1E1E1E 100%)",
+          color: "white",
+          padding: "16px 0",
+          borderBottom: "1px solid rgba(176, 176, 176, 0.1)",
+          backdropFilter: "blur(10px)",
+        }}
+      >
         <div
           style={{
             maxWidth: "1200px",
             margin: "0 auto",
-            padding: "0 20px",
+            padding: "0 24px",
             display: "flex",
             alignItems: "center",
-            gap: "30px",
+            gap: "40px",
           }}
         >
           <div style={{ position: "relative" }}>
             <button
               style={{
-                background: "#f73312",
+                background: "linear-gradient(135deg, #E5302C 0%, #C4261E 100%)",
                 color: "white",
                 border: "none",
-                padding: "12px 20px",
-                borderRadius: "6px",
+                padding: "14px 24px",
+                borderRadius: "10px",
                 display: "flex",
                 alignItems: "center",
-                gap: "10px",
+                gap: "12px",
                 cursor: "pointer",
                 fontSize: "14px",
-                fontWeight: "500",
+                fontWeight: "600",
+                fontFamily: "'Montserrat', sans-serif",
+                textTransform: "uppercase",
+                letterSpacing: "1px",
+                boxShadow: "0 4px 12px rgba(229, 48, 44, 0.3)",
+                transition: "all 0.2s ease",
               }}
               onClick={() => setShowCategoriesDropdown(!showCategoriesDropdown)}
             >
@@ -245,13 +310,15 @@ export default function Header() {
                   position: "absolute",
                   top: "100%",
                   left: 0,
-                  background: "white",
-                  boxShadow: "0 8px 25px rgba(0,0,0,0.15)",
-                  borderRadius: "6px",
-                  minWidth: "220px",
+                  background:
+                    "linear-gradient(135deg, #1E1E1E 0%, #3A3A3A 100%)",
+                  boxShadow: "0 12px 32px rgba(0,0,0,0.4)",
+                  borderRadius: "12px",
+                  minWidth: "280px",
                   zIndex: 1000,
-                  padding: "8px 0",
-                  marginTop: "4px",
+                  padding: "16px 0",
+                  marginTop: "8px",
+                  border: "1px solid rgba(176, 176, 176, 0.2)",
                 }}
               >
                 {categories.map((category) => (
@@ -266,15 +333,34 @@ export default function Header() {
                       display: "flex",
                       justifyContent: "space-between",
                       alignItems: "center",
-                      padding: "12px 20px",
-                      color: "#333",
+                      padding: "14px 24px",
+                      color: "#B0B0B0",
                       textDecoration: "none",
                       fontSize: "14px",
+                      fontFamily: "'Open Sans', sans-serif",
+                      fontWeight: "500",
+                      transition: "all 0.2s ease",
                     }}
                     onClick={() => setShowCategoriesDropdown(false)}
+                    onMouseEnter={(e) => {
+                      e.currentTarget.style.background =
+                        "rgba(229, 48, 44, 0.1)";
+                      e.currentTarget.style.color = "white";
+                    }}
+                    onMouseLeave={(e) => {
+                      e.currentTarget.style.background = "transparent";
+                      e.currentTarget.style.color = "#B0B0B0";
+                    }}
                   >
                     <span>{category.name}</span>
-                    <span style={{ color: "#666", fontSize: "12px" }}>
+                    <span
+                      style={{
+                        color: "#FFC107",
+                        fontSize: "11px",
+                        fontFamily: "'Titillium Web', sans-serif",
+                        fontWeight: "600",
+                      }}
+                    >
                       ({category.count})
                     </span>
                   </Link>
@@ -283,14 +369,20 @@ export default function Header() {
             )}
           </div>
 
-          <div style={{ display: "flex", gap: "25px" }}>
+          <div style={{ display: "flex", gap: "32px" }}>
             <Link
               href="/"
               style={{
-                color: "white",
+                color: "#B0B0B0",
                 textDecoration: "none",
                 fontSize: "14px",
-                fontWeight: "500",
+                fontWeight: "600",
+                fontFamily: "'Montserrat', sans-serif",
+                textTransform: "uppercase",
+                letterSpacing: "1px",
+                padding: "8px 0",
+                borderBottom: "2px solid transparent",
+                transition: "all 0.2s ease",
               }}
             >
               Home
@@ -301,7 +393,13 @@ export default function Header() {
                 color: "white",
                 textDecoration: "none",
                 fontSize: "14px",
-                fontWeight: "500",
+                fontWeight: "600",
+                fontFamily: "'Montserrat', sans-serif",
+                textTransform: "uppercase",
+                letterSpacing: "1px",
+                padding: "8px 0",
+                borderBottom: "2px solid #E5302C",
+                transition: "all 0.2s ease",
               }}
             >
               Shop
@@ -309,10 +407,16 @@ export default function Header() {
             <Link
               href="/about"
               style={{
-                color: "white",
+                color: "#B0B0B0",
                 textDecoration: "none",
                 fontSize: "14px",
-                fontWeight: "500",
+                fontWeight: "600",
+                fontFamily: "'Montserrat', sans-serif",
+                textTransform: "uppercase",
+                letterSpacing: "1px",
+                padding: "8px 0",
+                borderBottom: "2px solid transparent",
+                transition: "all 0.2s ease",
               }}
             >
               About
@@ -320,10 +424,16 @@ export default function Header() {
             <Link
               href="/contact"
               style={{
-                color: "white",
+                color: "#B0B0B0",
                 textDecoration: "none",
                 fontSize: "14px",
-                fontWeight: "500",
+                fontWeight: "600",
+                fontFamily: "'Montserrat', sans-serif",
+                textTransform: "uppercase",
+                letterSpacing: "1px",
+                padding: "8px 0",
+                borderBottom: "2px solid transparent",
+                transition: "all 0.2s ease",
               }}
             >
               Contact
