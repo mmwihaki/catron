@@ -34,8 +34,8 @@ export default function ProductCard({ product }: ProductCardProps) {
     >
       <div
         style={{
-          background: "linear-gradient(135deg, #3A3A3A 0%, #1E1E1E 100%)",
-          border: "1px solid rgba(176, 176, 176, 0.2)",
+          background: "#FFFFFF",
+          border: "1px solid #E9ECEF",
           borderRadius: "16px",
           padding: "20px",
           position: "relative",
@@ -43,18 +43,18 @@ export default function ProductCard({ product }: ProductCardProps) {
           height: "100%",
           display: "flex",
           flexDirection: "column",
-          boxShadow: "0 4px 12px rgba(0,0,0,0.3)",
+          boxShadow: "0 2px 8px rgba(0,0,0,0.1)",
           overflow: "hidden",
         }}
         onMouseEnter={(e) => {
           e.currentTarget.style.transform = "translateY(-8px)";
-          e.currentTarget.style.boxShadow = "0 16px 32px rgba(0,0,0,0.4)";
+          e.currentTarget.style.boxShadow = "0 8px 24px rgba(0,0,0,0.15)";
           e.currentTarget.style.borderColor = "rgba(229, 48, 44, 0.5)";
         }}
         onMouseLeave={(e) => {
           e.currentTarget.style.transform = "translateY(0)";
-          e.currentTarget.style.boxShadow = "0 4px 12px rgba(0,0,0,0.3)";
-          e.currentTarget.style.borderColor = "rgba(176, 176, 176, 0.2)";
+          e.currentTarget.style.boxShadow = "0 2px 8px rgba(0,0,0,0.1)";
+          e.currentTarget.style.borderColor = "#E9ECEF";
         }}
       >
         {/* Product Badge */}
@@ -144,7 +144,7 @@ export default function ProductCard({ product }: ProductCardProps) {
               fontSize: "16px",
               fontWeight: "700",
               fontFamily: "'Montserrat', sans-serif",
-              color: "#FFFFFF",
+              color: "#212529",
               margin: "0 0 12px 0",
               lineHeight: "1.3",
               display: "-webkit-box",
@@ -174,7 +174,7 @@ export default function ProductCard({ product }: ProductCardProps) {
               style={{
                 margin: "2px 0",
                 fontSize: "11px",
-                color: "#B0B0B0",
+                color: "#6C757D",
                 fontFamily: "'Open Sans', sans-serif",
               }}
             >
@@ -184,7 +184,7 @@ export default function ProductCard({ product }: ProductCardProps) {
               style={{
                 margin: "2px 0",
                 fontSize: "11px",
-                color: "#B0B0B0",
+                color: "#6C757D",
                 fontFamily: "'Open Sans', sans-serif",
               }}
             >
@@ -207,9 +207,7 @@ export default function ProductCard({ product }: ProductCardProps) {
                   key={i}
                   style={{
                     color:
-                      i < Math.floor(product.rating)
-                        ? "#FFC107"
-                        : "rgba(176, 176, 176, 0.3)",
+                      i < Math.floor(product.rating) ? "#FFC107" : "#E9ECEF",
                     fontSize: "14px",
                   }}
                 >
@@ -220,7 +218,7 @@ export default function ProductCard({ product }: ProductCardProps) {
             <span
               style={{
                 fontSize: "11px",
-                color: "#B0B0B0",
+                color: "#6C757D",
                 fontFamily: "'Open Sans', sans-serif",
               }}
             >
@@ -234,7 +232,7 @@ export default function ProductCard({ product }: ProductCardProps) {
               <span
                 style={{
                   fontSize: "13px",
-                  color: "#B0B0B0",
+                  color: "#6C757D",
                   textDecoration: "line-through",
                   marginRight: "8px",
                   fontFamily: "'Open Sans', sans-serif",
@@ -248,7 +246,7 @@ export default function ProductCard({ product }: ProductCardProps) {
                 fontSize: "20px",
                 fontWeight: "700",
                 fontFamily: "'Titillium Web', sans-serif",
-                color: product.originalPrice ? "#E5302C" : "#FFC107",
+                color: product.originalPrice ? "#E5302C" : "#212529",
                 letterSpacing: "-0.5px",
               }}
             >
