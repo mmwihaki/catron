@@ -27,16 +27,48 @@ export default function CartPage() {
     window.open(whatsappUrl, "_blank");
   };
 
+  const calculateShipping = () => {
+    return state.total >= 5000 ? 0 : 500; // Free shipping over KES 5,000
+  };
+
+  const calculateTax = () => {
+    return Math.round(state.total * 0.16); // 16% VAT
+  };
+
+  const finalTotal = state.total + calculateShipping() + calculateTax();
+
   if (state.items.length === 0) {
     return (
-      <div className="cart-page">
+      <div
+        style={{
+          minHeight: "100vh",
+          background: "linear-gradient(135deg, #1E1E1E 0%, #3A3A3A 100%)",
+          fontFamily: "'Open Sans', sans-serif",
+        }}
+      >
         <Header />
 
-        <div className="empty-cart">
-          <div className="empty-cart-icon">
+        <div
+          style={{
+            maxWidth: "600px",
+            margin: "80px auto",
+            padding: "80px 40px",
+            textAlign: "center",
+            background: "linear-gradient(135deg, #3A3A3A 0%, #1E1E1E 100%)",
+            borderRadius: "20px",
+            border: "1px solid rgba(176, 176, 176, 0.2)",
+            boxShadow: "0 12px 32px rgba(0,0,0,0.4)",
+          }}
+        >
+          <div
+            style={{
+              color: "#B0B0B0",
+              marginBottom: "32px",
+            }}
+          >
             <svg
-              width="80"
-              height="80"
+              width="120"
+              height="120"
               viewBox="0 0 24 24"
               fill="none"
               stroke="currentColor"
@@ -47,141 +79,348 @@ export default function CartPage() {
               <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
             </svg>
           </div>
-          <h2>Your cart is empty</h2>
-          <p>Looks like you haven't added any auto parts to your cart yet.</p>
-          <Link href="/shop" className="continue-shopping-btn">
-            Continue Shopping
+          <h2
+            style={{
+              fontFamily: "'Montserrat', sans-serif",
+              fontSize: "32px",
+              fontWeight: "800",
+              color: "#FFFFFF",
+              marginBottom: "16px",
+            }}
+          >
+            Your Cart is Empty
+          </h2>
+          <p
+            style={{
+              fontSize: "16px",
+              color: "#B0B0B0",
+              marginBottom: "40px",
+              lineHeight: "1.6",
+            }}
+          >
+            Start building your precision parts collection.
+            <br />
+            Find the perfect components for your Nissan vehicle.
+          </p>
+          <Link
+            href="/shop"
+            style={{
+              display: "inline-flex",
+              alignItems: "center",
+              gap: "12px",
+              background: "linear-gradient(135deg, #E5302C 0%, #C4261E 100%)",
+              color: "white",
+              padding: "16px 32px",
+              borderRadius: "12px",
+              textDecoration: "none",
+              fontFamily: "'Montserrat', sans-serif",
+              fontWeight: "700",
+              fontSize: "14px",
+              textTransform: "uppercase",
+              letterSpacing: "1px",
+              transition: "all 0.3s ease",
+              boxShadow: "0 8px 24px rgba(229, 48, 44, 0.4)",
+            }}
+          >
+            <svg
+              width="20"
+              height="20"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="2"
+            >
+              <circle cx="9" cy="21" r="1"></circle>
+              <circle cx="20" cy="21" r="1"></circle>
+              <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
+            </svg>
+            Start Shopping
           </Link>
         </div>
-
-        <style jsx>{`
-          .cart-page {
-            min-height: 100vh;
-            background-color: #f8f9fa;
-          }
-
-          .empty-cart {
-            max-width: 600px;
-            margin: 80px auto;
-            padding: 60px 40px;
-            text-align: center;
-            background: white;
-            border-radius: 12px;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
-          }
-
-          .empty-cart-icon {
-            color: #d1d5db;
-            margin-bottom: 24px;
-          }
-
-          .empty-cart h2 {
-            font-size: 28px;
-            font-weight: 700;
-            color: #1f2937;
-            margin-bottom: 12px;
-          }
-
-          .empty-cart p {
-            font-size: 16px;
-            color: #6b7280;
-            margin-bottom: 32px;
-          }
-
-          .continue-shopping-btn {
-            background: #f73312;
-            color: white;
-            padding: 14px 28px;
-            border-radius: 8px;
-            text-decoration: none;
-            font-weight: 600;
-            transition: background 0.3s ease;
-          }
-
-          .continue-shopping-btn:hover {
-            background: #e63312;
-          }
-        `}</style>
       </div>
     );
   }
 
   return (
-    <div className="cart-page">
+    <div
+      style={{
+        minHeight: "100vh",
+        background: "linear-gradient(135deg, #1E1E1E 0%, #3A3A3A 100%)",
+        fontFamily: "'Open Sans', sans-serif",
+      }}
+    >
       <Header />
 
-      <div className="cart-container">
-        <div className="cart-header">
-          <h1>Shopping Cart</h1>
-          <p>
-            {state.itemCount} {state.itemCount === 1 ? "item" : "items"} in your
-            cart
+      <div
+        style={{
+          maxWidth: "1200px",
+          margin: "0 auto",
+          padding: "40px 24px",
+        }}
+      >
+        <div
+          style={{
+            marginBottom: "40px",
+            textAlign: "center",
+          }}
+        >
+          <h1
+            style={{
+              fontFamily: "'Montserrat', sans-serif",
+              fontSize: "36px",
+              fontWeight: "800",
+              color: "#FFFFFF",
+              marginBottom: "12px",
+            }}
+          >
+            <span style={{ color: "#E5302C" }}>PRECISION</span> CART
+          </h1>
+          <p
+            style={{
+              color: "#B0B0B0",
+              fontSize: "16px",
+            }}
+          >
+            {state.itemCount}{" "}
+            {state.itemCount === 1 ? "component" : "components"} ready for
+            installation
           </p>
         </div>
 
-        <div className="cart-content">
-          <div className="cart-items">
+        <div
+          style={{
+            display: "grid",
+            gridTemplateColumns: "1fr 400px",
+            gap: "40px",
+          }}
+        >
+          <div
+            style={{
+              background: "linear-gradient(135deg, #3A3A3A 0%, #1E1E1E 100%)",
+              borderRadius: "16px",
+              padding: "32px",
+              border: "1px solid rgba(176, 176, 176, 0.2)",
+              boxShadow: "0 8px 24px rgba(0,0,0,0.3)",
+            }}
+          >
+            <h2
+              style={{
+                fontFamily: "'Montserrat', sans-serif",
+                fontSize: "20px",
+                fontWeight: "700",
+                color: "#FFFFFF",
+                marginBottom: "24px",
+                display: "flex",
+                alignItems: "center",
+                gap: "12px",
+              }}
+            >
+              <svg
+                width="24"
+                height="24"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="#E5302C"
+                strokeWidth="2"
+              >
+                <circle cx="9" cy="21" r="1"></circle>
+                <circle cx="20" cy="21" r="1"></circle>
+                <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
+              </svg>
+              Cart Items
+            </h2>
+
             {state.items.map((item) => (
-              <div key={item.id} className="cart-item">
-                <div className="item-image">
-                  <img src={item.image} alt={item.name} />
+              <div
+                key={item.id}
+                style={{
+                  display: "grid",
+                  gridTemplateColumns: "100px 1fr auto auto auto",
+                  gap: "20px",
+                  alignItems: "center",
+                  padding: "24px 0",
+                  borderBottom: "1px solid rgba(176, 176, 176, 0.1)",
+                }}
+              >
+                <div>
+                  <img
+                    src={item.image}
+                    alt={item.name}
+                    style={{
+                      width: "100px",
+                      height: "100px",
+                      objectFit: "cover",
+                      borderRadius: "12px",
+                      border: "2px solid rgba(176, 176, 176, 0.2)",
+                    }}
+                  />
                 </div>
 
-                <div className="item-details">
-                  <h3>{item.name}</h3>
-                  <p className="item-brand">{item.brand}</p>
-                  <p className="item-sku">SKU: {item.sku}</p>
-                  <p className="item-model">Fits: {item.carModel}</p>
+                <div>
+                  <h3
+                    style={{
+                      fontFamily: "'Montserrat', sans-serif",
+                      fontSize: "16px",
+                      fontWeight: "700",
+                      color: "#FFFFFF",
+                      marginBottom: "8px",
+                    }}
+                  >
+                    {item.name}
+                  </h3>
+                  <p
+                    style={{
+                      color: "#E5302C",
+                      fontWeight: "600",
+                      fontSize: "14px",
+                      marginBottom: "4px",
+                    }}
+                  >
+                    {item.brand}
+                  </p>
+                  <p
+                    style={{
+                      color: "#B0B0B0",
+                      fontSize: "12px",
+                      marginBottom: "2px",
+                    }}
+                  >
+                    SKU: {item.sku}
+                  </p>
+                  <p
+                    style={{
+                      color: "#B0B0B0",
+                      fontSize: "12px",
+                    }}
+                  >
+                    Fits: {item.carModel}
+                  </p>
                 </div>
 
-                <div className="item-price">
-                  <span className="price">
+                <div
+                  style={{
+                    textAlign: "right",
+                  }}
+                >
+                  <div
+                    style={{
+                      fontFamily: "'Titillium Web', sans-serif",
+                      fontSize: "16px",
+                      fontWeight: "700",
+                      color: "#FFC107",
+                    }}
+                  >
                     KES {item.price.toLocaleString()}
-                  </span>
+                  </div>
+                  <div
+                    style={{
+                      fontSize: "12px",
+                      color: "#B0B0B0",
+                    }}
+                  >
+                    per unit
+                  </div>
                 </div>
 
-                <div className="quantity-controls">
+                <div
+                  style={{
+                    display: "flex",
+                    alignItems: "center",
+                    background: "rgba(58, 58, 58, 0.8)",
+                    borderRadius: "8px",
+                    border: "1px solid rgba(176, 176, 176, 0.3)",
+                  }}
+                >
                   <button
                     onClick={() =>
                       handleQuantityChange(item.id, item.quantity - 1)
                     }
-                    className="quantity-btn"
+                    style={{
+                      background: "transparent",
+                      border: "none",
+                      color: "#FFFFFF",
+                      padding: "8px 12px",
+                      cursor: "pointer",
+                      fontSize: "16px",
+                      fontWeight: "600",
+                    }}
                   >
                     -
                   </button>
-                  <span className="quantity">{item.quantity}</span>
+                  <span
+                    style={{
+                      padding: "8px 16px",
+                      color: "#FFFFFF",
+                      fontWeight: "700",
+                      fontSize: "14px",
+                      minWidth: "50px",
+                      textAlign: "center",
+                    }}
+                  >
+                    {item.quantity}
+                  </span>
                   <button
                     onClick={() =>
                       handleQuantityChange(item.id, item.quantity + 1)
                     }
-                    className="quantity-btn"
+                    style={{
+                      background: "transparent",
+                      border: "none",
+                      color: "#FFFFFF",
+                      padding: "8px 12px",
+                      cursor: "pointer",
+                      fontSize: "16px",
+                      fontWeight: "600",
+                    }}
                   >
                     +
                   </button>
                 </div>
 
-                <div className="item-total">
-                  <span className="total">
-                    KES {(item.price * item.quantity).toLocaleString()}
-                  </span>
-                </div>
-
-                <button
-                  onClick={() => removeFromCart(item.id)}
-                  className="remove-btn"
+                <div
+                  style={{
+                    display: "flex",
+                    flexDirection: "column",
+                    alignItems: "flex-end",
+                    gap: "8px",
+                  }}
                 >
-                  <svg
-                    width="18"
-                    height="18"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    stroke="currentColor"
-                    strokeWidth="2"
+                  <div
+                    style={{
+                      fontFamily: "'Titillium Web', sans-serif",
+                      fontSize: "18px",
+                      fontWeight: "700",
+                      color: "#E5302C",
+                    }}
                   >
-                    <polyline points="3,6 5,6 21,6"></polyline>
-                    <path d="M19,6v14a2,2,0,0,1-2,2H7a2,2,0,0,1-2-2V6m3,0V4a2,2,0,0,1,2-2h4a2,2,0,0,1,2,2V6"></path>
-                  </svg>
-                </button>
+                    KES {(item.price * item.quantity).toLocaleString()}
+                  </div>
+
+                  <button
+                    onClick={() => removeFromCart(item.id)}
+                    style={{
+                      background: "transparent",
+                      border: "none",
+                      color: "#DC3545",
+                      cursor: "pointer",
+                      padding: "8px",
+                      borderRadius: "6px",
+                      transition: "all 0.2s ease",
+                    }}
+                  >
+                    <svg
+                      width="18"
+                      height="18"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      strokeWidth="2"
+                    >
+                      <polyline points="3,6 5,6 21,6"></polyline>
+                      <path d="M19,6v14a2,2,0,0,1-2,2H7a2,2,0,0,1-2-2V6m3,0V4a2,2,0,0,1,2-2h4a2,2,0,0,1,2,2V6"></path>
+                    </svg>
+                  </button>
+                </div>
               </div>
             ))}
           </div>
