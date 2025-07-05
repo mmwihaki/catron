@@ -71,6 +71,8 @@ export default function ShopPage() {
       style={{
         fontFamily:
           "'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif",
+        background: "#FFFFFF",
+        minHeight: "100vh",
       }}
     >
       <Header />
@@ -90,13 +92,14 @@ export default function ShopPage() {
           style={{
             width: "280px",
             flexShrink: 0,
-            background: "white",
-            borderRadius: "8px",
-            padding: "20px",
+            background: "#FFFFFF",
+            borderRadius: "12px",
+            padding: "24px",
             height: "fit-content",
             position: "sticky",
             top: "20px",
-            boxShadow: "0 2px 10px rgba(0,0,0,0.1)",
+            boxShadow: "0 4px 12px rgba(0,0,0,0.1)",
+            border: "1px solid #E9ECEF",
           }}
         >
           {/* Filters Header */}
@@ -115,7 +118,7 @@ export default function ShopPage() {
                 fontSize: "18px",
                 fontWeight: "600",
                 margin: "0",
-                color: "#333",
+                color: "#212529",
               }}
             >
               Filters
@@ -142,7 +145,7 @@ export default function ShopPage() {
                 fontSize: "16px",
                 fontWeight: "600",
                 marginBottom: "15px",
-                color: "#333",
+                color: "#212529",
               }}
             >
               Categories
@@ -165,12 +168,12 @@ export default function ShopPage() {
                     onChange={() => setSelectedCategory(category.slug)}
                     style={{ marginRight: "8px" }}
                   />
-                  <span style={{ color: "#666" }}>{category.name}</span>
+                  <span style={{ color: "#212529" }}>{category.name}</span>
                   <span
                     style={{
                       marginLeft: "auto",
                       fontSize: "12px",
-                      color: "#999",
+                      color: "#6C757D",
                     }}
                   >
                     ({category.count})
@@ -345,10 +348,11 @@ export default function ShopPage() {
               justifyContent: "space-between",
               alignItems: "center",
               marginBottom: "30px",
-              background: "white",
-              padding: "20px",
-              borderRadius: "8px",
-              boxShadow: "0 2px 10px rgba(0,0,0,0.1)",
+              background: "#FFFFFF",
+              padding: "24px",
+              borderRadius: "12px",
+              boxShadow: "0 4px 12px rgba(0,0,0,0.1)",
+              border: "1px solid #E9ECEF",
             }}
           >
             <div>
@@ -356,7 +360,7 @@ export default function ShopPage() {
                 style={{
                   fontSize: "24px",
                   fontWeight: "600",
-                  color: "#333",
+                  color: "#212529",
                   margin: "0 0 4px 0",
                 }}
               >
@@ -365,7 +369,7 @@ export default function ShopPage() {
               <span
                 style={{
                   fontSize: "14px",
-                  color: "#666",
+                  color: "#6C757D",
                 }}
               >
                 {sortedProducts.length} products found
