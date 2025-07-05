@@ -41,7 +41,7 @@ export default function HomePage() {
       style={{
         fontFamily:
           "'Open Sans', -apple-system, BlinkMacSystemFont, sans-serif",
-        background: "linear-gradient(135deg, #1E1E1E 0%, #3A3A3A 100%)",
+        background: "#FFFFFF",
         minHeight: "100vh",
       }}
     >
@@ -51,11 +51,11 @@ export default function HomePage() {
       <section
         style={{
           background:
-            "linear-gradient(135deg, rgba(30, 30, 30, 0.95) 0%, rgba(58, 58, 58, 0.95) 100%), url('https://images.pexels.com/photos/3642618/pexels-photo-3642618.jpeg?auto=compress&cs=tinysrgb&w=1600')",
+            "linear-gradient(135deg, rgba(248, 249, 250, 0.95) 0%, rgba(255, 255, 255, 0.95) 100%), url('https://images.pexels.com/photos/3642618/pexels-photo-3642618.jpeg?auto=compress&cs=tinysrgb&w=1600')",
           backgroundSize: "cover",
           backgroundPosition: "center",
           backgroundAttachment: "fixed",
-          color: "white",
+          color: "#212529",
           padding: "120px 0",
           position: "relative",
           overflow: "hidden",
@@ -102,7 +102,7 @@ export default function HomePage() {
                   marginBottom: "24px",
                   lineHeight: "1.1",
                   letterSpacing: "-0.02em",
-                  color: "#FFFFFF",
+                  color: "#212529",
                 }}
               >
                 <span style={{ color: "#E5302C" }}>PRECISION</span>
@@ -113,7 +113,7 @@ export default function HomePage() {
                 style={{
                   fontSize: "18px",
                   marginBottom: "40px",
-                  color: "#B0B0B0",
+                  color: "#6C757D",
                   lineHeight: "1.6",
                   fontFamily: "'Open Sans', sans-serif",
                 }}
@@ -334,7 +334,7 @@ export default function HomePage() {
       <section
         style={{
           padding: "100px 0",
-          background: "linear-gradient(135deg, #1E1E1E 0%, #3A3A3A 100%)",
+          background: "#F8F9FA",
         }}
       >
         <div
@@ -351,7 +351,7 @@ export default function HomePage() {
               fontWeight: "800",
               textAlign: "center",
               marginBottom: "64px",
-              color: "#FFFFFF",
+              color: "#212529",
               letterSpacing: "-0.01em",
             }}
           >
@@ -371,31 +371,29 @@ export default function HomePage() {
                 key={category.slug}
                 href={`/category/${category.slug}`}
                 style={{
-                  background:
-                    "linear-gradient(135deg, #3A3A3A 0%, #1E1E1E 100%)",
+                  background: "#FFFFFF",
                   padding: "40px 32px",
                   borderRadius: "20px",
                   textAlign: "center",
                   textDecoration: "none",
-                  color: "#FFFFFF",
+                  color: "#212529",
                   transition: "all 0.3s ease",
-                  border: "2px solid rgba(176, 176, 176, 0.2)",
-                  boxShadow: "0 8px 24px rgba(0,0,0,0.3)",
+                  border: "2px solid #E9ECEF",
+                  boxShadow: "0 4px 12px rgba(0,0,0,0.1)",
                   position: "relative",
                   overflow: "hidden",
                 }}
                 onMouseEnter={(e) => {
                   e.currentTarget.style.transform = "translateY(-12px)";
                   e.currentTarget.style.boxShadow =
-                    "0 20px 40px rgba(0,0,0,0.4)";
+                    "0 12px 32px rgba(0,0,0,0.15)";
                   e.currentTarget.style.borderColor = "rgba(229, 48, 44, 0.5)";
                 }}
                 onMouseLeave={(e) => {
                   e.currentTarget.style.transform = "translateY(0)";
                   e.currentTarget.style.boxShadow =
-                    "0 8px 24px rgba(0,0,0,0.3)";
-                  e.currentTarget.style.borderColor =
-                    "rgba(176, 176, 176, 0.2)";
+                    "0 4px 12px rgba(0,0,0,0.1)";
+                  e.currentTarget.style.borderColor = "#E9ECEF";
                 }}
               >
                 <div
@@ -429,14 +427,14 @@ export default function HomePage() {
                     fontSize: "20px",
                     fontWeight: "700",
                     marginBottom: "12px",
-                    color: "#FFFFFF",
+                    color: "#212529",
                   }}
                 >
                   {category.name}
                 </h3>
                 <p
                   style={{
-                    color: "#B0B0B0",
+                    color: "#6C757D",
                     fontSize: "14px",
                     fontFamily: "'Open Sans', sans-serif",
                     margin: "0",
