@@ -28,59 +28,176 @@ export default function ProductCard({ product }: ProductCardProps) {
   const stockStatus = getStockStatus(product.stock);
 
   return (
-    <Link href={`/product/${product.id}`} className="product-card-link">
-      <div className="product-card">
+    <Link
+      href={`/product/${product.id}`}
+      style={{ textDecoration: "none", color: "inherit" }}
+    >
+      <div
+        style={{
+          border: "1px solid #eee",
+          borderRadius: "8px",
+          padding: "15px",
+          position: "relative",
+          backgroundColor: "white",
+          transition: "transform 0.3s ease, box-shadow 0.3s ease",
+          height: "100%",
+          display: "flex",
+          flexDirection: "column",
+        }}
+        onMouseEnter={(e) => {
+          e.currentTarget.style.transform = "translateY(-5px)";
+          e.currentTarget.style.boxShadow = "0 8px 25px rgba(0,0,0,0.1)";
+        }}
+        onMouseLeave={(e) => {
+          e.currentTarget.style.transform = "translateY(0)";
+          e.currentTarget.style.boxShadow = "none";
+        }}
+      >
         {/* Product Badge */}
-        {product.badge && <div className="product-badge">{product.badge}</div>}
+        {product.badge && (
+          <div
+            style={{
+              position: "absolute",
+              top: "10px",
+              right: "10px",
+              background: "#f73312",
+              color: "white",
+              padding: "4px 8px",
+              fontSize: "12px",
+              fontWeight: "600",
+              borderRadius: "3px",
+            }}
+          >
+            {product.badge}
+          </div>
+        )}
 
         {/* Stock Status */}
-        <div className="stock-status" style={{ color: stockStatus.color }}>
+        <div
+          style={{
+            position: "absolute",
+            top: "10px",
+            left: "10px",
+            fontSize: "11px",
+            fontWeight: "600",
+            color: stockStatus.color,
+          }}
+        >
           {stockStatus.text}
         </div>
 
         {/* Product Image */}
-        <div className="product-image-container">
+        <div
+          style={{
+            position: "relative",
+            marginBottom: "10px",
+            overflow: "hidden",
+            borderRadius: "4px",
+          }}
+        >
           <img
             src={product.image}
             alt={product.name}
-            className="product-image"
+            style={{
+              width: "100%",
+              height: "150px",
+              objectFit: "cover",
+              borderRadius: "4px",
+              marginBottom: "10px",
+            }}
           />
         </div>
 
         {/* Product Info */}
-        <div className="product-info">
-          <h3 className="product-name">{product.name}</h3>
+        <div
+          style={{
+            flex: 1,
+            display: "flex",
+            flexDirection: "column",
+          }}
+        >
+          <h3
+            style={{
+              fontSize: "14px",
+              fontWeight: "600",
+              color: "#333",
+              margin: "0 0 8px 0",
+              lineHeight: "1.3",
+              display: "-webkit-box",
+              WebkitLineClamp: 2,
+              WebkitBoxOrient: "vertical",
+              overflow: "hidden",
+            }}
+          >
+            {product.name}
+          </h3>
 
-          <div className="product-meta">
-            <p className="product-brand">{product.brand}</p>
-            <p className="product-sku">SKU: {product.sku}</p>
-            <p className="product-model">Fits: {product.carModel}</p>
+          <div style={{ marginBottom: "10px" }}>
+            <p
+              style={{
+                margin: "2px 0",
+                fontSize: "12px",
+                color: "#666",
+                fontWeight: "600",
+              }}
+            >
+              {product.brand}
+            </p>
+            <p style={{ margin: "2px 0", fontSize: "12px", color: "#666" }}>
+              SKU: {product.sku}
+            </p>
+            <p style={{ margin: "2px 0", fontSize: "12px", color: "#666" }}>
+              Fits: {product.carModel}
+            </p>
           </div>
 
           {/* Rating */}
-          <div className="product-rating">
-            <div className="stars">
+          <div
+            style={{
+              display: "flex",
+              alignItems: "center",
+              marginBottom: "8px",
+              gap: "8px",
+            }}
+          >
+            <div style={{ display: "flex", marginRight: "8px" }}>
               {[...Array(5)].map((_, i) => (
                 <span
                   key={i}
-                  className={`star ${i < Math.floor(product.rating) ? "filled" : ""}`}
+                  style={{
+                    color: i < Math.floor(product.rating) ? "#ffc107" : "#ddd",
+                    fontSize: "12px",
+                  }}
                 >
                   ★
                 </span>
               ))}
             </div>
-            <span className="review-count">({product.reviews} reviews)</span>
+            <span style={{ fontSize: "12px", color: "#666" }}>
+              ({product.reviews})
+            </span>
           </div>
 
           {/* Price */}
-          <div className="product-price">
+          <div style={{ marginBottom: "10px", marginTop: "auto" }}>
             {product.originalPrice && (
-              <span className="original-price">
+              <span
+                style={{
+                  fontSize: "12px",
+                  color: "#999",
+                  textDecoration: "line-through",
+                  marginRight: "8px",
+                }}
+              >
                 KES {product.originalPrice.toLocaleString()}
               </span>
             )}
             <span
-              className={`current-price ${product.originalPrice ? "sale-price" : ""}`}
+              style={{
+                fontSize: "16px",
+                fontWeight: "600",
+                color: product.originalPrice ? "#f73312" : "#333",
+              }}
             >
               KES {product.price.toLocaleString()}
             </span>
@@ -88,9 +205,34 @@ export default function ProductCard({ product }: ProductCardProps) {
 
           {/* Add to Cart Button */}
           <button
-            className="add-to-cart-btn"
             onClick={handleAddToCart}
             disabled={product.stock === 0}
+            style={{
+              width: "100%",
+              background: product.stock === 0 ? "#9ca3af" : "#f73312",
+              color: "white",
+              border: "none",
+              padding: "8px",
+              borderRadius: "4px",
+              fontSize: "14px",
+              fontWeight: "600",
+              cursor: product.stock === 0 ? "not-allowed" : "pointer",
+              transition: "background 0.3s ease",
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+              gap: "6px",
+            }}
+            onMouseEnter={(e) => {
+              if (product.stock > 0) {
+                e.currentTarget.style.background = "#dc2f02";
+              }
+            }}
+            onMouseLeave={(e) => {
+              if (product.stock > 0) {
+                e.currentTarget.style.background = "#f73312";
+              }
+            }}
           >
             <svg
               width="16"
@@ -104,197 +246,10 @@ export default function ProductCard({ product }: ProductCardProps) {
               <circle cx="20" cy="21" r="1"></circle>
               <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
             </svg>
-            {product.stock === 0 ? "Out of Stock" : "Add to Cart"}
+            {product.stock === 0 ? "Out of Stock" : "Add to cart"}
           </button>
         </div>
       </div>
-
-      <style jsx>{`
-        .product-card-link {
-          text-decoration: none;
-          color: inherit;
-        }
-
-        .product-card {
-          border: 1px solid #e5e7eb;
-          border-radius: 12px;
-          padding: 16px;
-          position: relative;
-          background: white;
-          transition: all 0.3s ease;
-          height: 100%;
-          display: flex;
-          flex-direction: column;
-        }
-
-        .product-card:hover {
-          transform: translateY(-4px);
-          box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-          border-color: #f73312;
-        }
-
-        .product-badge {
-          position: absolute;
-          top: 12px;
-          left: 12px;
-          background: #f73312;
-          color: white;
-          padding: 4px 8px;
-          font-size: 11px;
-          font-weight: 600;
-          border-radius: 4px;
-          z-index: 2;
-        }
-
-        .stock-status {
-          position: absolute;
-          top: 12px;
-          right: 12px;
-          font-size: 11px;
-          font-weight: 600;
-          z-index: 2;
-        }
-
-        .product-image-container {
-          position: relative;
-          margin-bottom: 12px;
-          overflow: hidden;
-          border-radius: 8px;
-        }
-
-        .product-image {
-          width: 100%;
-          height: 180px;
-          object-fit: cover;
-          transition: transform 0.3s ease;
-        }
-
-        .product-card:hover .product-image {
-          transform: scale(1.05);
-        }
-
-        .product-info {
-          flex: 1;
-          display: flex;
-          flex-direction: column;
-        }
-
-        .product-name {
-          font-size: 14px;
-          font-weight: 600;
-          color: #1f2937;
-          margin: 0 0 8px 0;
-          line-height: 1.4;
-          display: -webkit-box;
-          -webkit-line-clamp: 2;
-          -webkit-box-orient: vertical;
-          overflow: hidden;
-        }
-
-        .product-meta {
-          margin-bottom: 10px;
-        }
-
-        .product-meta p {
-          margin: 2px 0;
-          font-size: 12px;
-          color: #6b7280;
-        }
-
-        .product-brand {
-          font-weight: 600;
-          color: #374151;
-        }
-
-        .product-rating {
-          display: flex;
-          align-items: center;
-          margin-bottom: 12px;
-          gap: 8px;
-        }
-
-        .stars {
-          display: flex;
-        }
-
-        .star {
-          color: #d1d5db;
-          font-size: 14px;
-        }
-
-        .star.filled {
-          color: #fbbf24;
-        }
-
-        .review-count {
-          font-size: 12px;
-          color: #6b7280;
-        }
-
-        .product-price {
-          margin-bottom: 16px;
-          margin-top: auto;
-        }
-
-        .original-price {
-          font-size: 12px;
-          color: #6b7280;
-          text-decoration: line-through;
-          margin-right: 8px;
-        }
-
-        .current-price {
-          font-size: 16px;
-          font-weight: 700;
-          color: #1f2937;
-        }
-
-        .current-price.sale-price {
-          color: #f73312;
-        }
-
-        .add-to-cart-btn {
-          width: 100%;
-          background: #f73312;
-          color: white;
-          border: none;
-          padding: 10px;
-          border-radius: 6px;
-          font-size: 13px;
-          font-weight: 600;
-          cursor: pointer;
-          transition: all 0.3s ease;
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          gap: 6px;
-        }
-
-        .add-to-cart-btn:hover:not(:disabled) {
-          background: #e63312;
-          transform: translateY(-1px);
-        }
-
-        .add-to-cart-btn:disabled {
-          background: #9ca3af;
-          cursor: not-allowed;
-          transform: none;
-        }
-
-        @media (max-width: 768px) {
-          .product-card {
-            padding: 12px;
-          }
-
-          .product-image {
-            height: 150px;
-          }
-
-          .product-name {
-            font-size: 13px;
-          }
-        }
-      `}</style>
     </Link>
   );
 }
