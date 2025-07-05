@@ -425,32 +425,186 @@ export default function CartPage() {
             ))}
           </div>
 
-          <div className="cart-summary">
-            <div className="summary-card">
-              <h3>Order Summary</h3>
+          <div
+            style={{
+              position: "sticky",
+              top: "20px",
+              height: "fit-content",
+            }}
+          >
+            <div
+              style={{
+                background: "linear-gradient(135deg, #1E1E1E 0%, #3A3A3A 100%)",
+                borderRadius: "16px",
+                padding: "32px",
+                border: "1px solid rgba(176, 176, 176, 0.2)",
+                boxShadow: "0 8px 24px rgba(0,0,0,0.3)",
+              }}
+            >
+              <h3
+                style={{
+                  fontFamily: "'Montserrat', sans-serif",
+                  fontSize: "20px",
+                  fontWeight: "700",
+                  color: "#FFFFFF",
+                  marginBottom: "24px",
+                  display: "flex",
+                  alignItems: "center",
+                  gap: "12px",
+                }}
+              >
+                <svg
+                  width="24"
+                  height="24"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="#FFC107"
+                  strokeWidth="2"
+                >
+                  <path d="M9 11H3v-1a4 4 0 0 1 4-4h2m8 0h2a4 4 0 0 1 4 4v1h-6m-8 0h12v5a4 4 0 0 1-4 4H7a4 4 0 0 1-4-4v-5Z" />
+                </svg>
+                Order Summary
+              </h3>
 
-              <div className="summary-line">
-                <span>Subtotal ({state.itemCount} items)</span>
-                <span>KES {state.total.toLocaleString()}</span>
+              <div
+                style={{
+                  display: "flex",
+                  justifyContent: "space-between",
+                  alignItems: "center",
+                  marginBottom: "12px",
+                  fontSize: "16px",
+                }}
+              >
+                <span style={{ color: "#B0B0B0" }}>
+                  Subtotal ({state.itemCount} items)
+                </span>
+                <span
+                  style={{
+                    color: "#FFFFFF",
+                    fontWeight: "600",
+                  }}
+                >
+                  KES {state.total.toLocaleString()}
+                </span>
               </div>
 
-              <div className="summary-line">
-                <span>Shipping</span>
-                <span className="free">Free</span>
+              <div
+                style={{
+                  display: "flex",
+                  justifyContent: "space-between",
+                  alignItems: "center",
+                  marginBottom: "12px",
+                  fontSize: "16px",
+                }}
+              >
+                <span style={{ color: "#B0B0B0" }}>Shipping</span>
+                <span
+                  style={{
+                    color: calculateShipping() === 0 ? "#28A745" : "#FFFFFF",
+                    fontWeight: "600",
+                  }}
+                >
+                  {calculateShipping() === 0
+                    ? "FREE"
+                    : `KES ${calculateShipping().toLocaleString()}`}
+                </span>
               </div>
 
-              <div className="summary-line total-line">
-                <span>Total</span>
-                <span>KES {state.total.toLocaleString()}</span>
+              <div
+                style={{
+                  display: "flex",
+                  justifyContent: "space-between",
+                  alignItems: "center",
+                  marginBottom: "20px",
+                  fontSize: "16px",
+                }}
+              >
+                <span style={{ color: "#B0B0B0" }}>VAT (16%)</span>
+                <span
+                  style={{
+                    color: "#FFFFFF",
+                    fontWeight: "600",
+                  }}
+                >
+                  KES {calculateTax().toLocaleString()}
+                </span>
+              </div>
+
+              {state.total < 5000 && (
+                <div
+                  style={{
+                    background: "rgba(255, 193, 7, 0.1)",
+                    border: "1px solid rgba(255, 193, 7, 0.3)",
+                    borderRadius: "8px",
+                    padding: "12px",
+                    marginBottom: "20px",
+                    fontSize: "13px",
+                    color: "#FFC107",
+                    textAlign: "center",
+                  }}
+                >
+                  🚚 Add KES {(5000 - state.total).toLocaleString()} more for
+                  FREE shipping!
+                </div>
+              )}
+
+              <div
+                style={{
+                  borderTop: "2px solid rgba(229, 48, 44, 0.3)",
+                  paddingTop: "20px",
+                  marginTop: "20px",
+                  marginBottom: "32px",
+                }}
+              >
+                <div
+                  style={{
+                    display: "flex",
+                    justifyContent: "space-between",
+                    alignItems: "center",
+                    fontSize: "20px",
+                    fontWeight: "700",
+                  }}
+                >
+                  <span style={{ color: "#FFFFFF" }}>Total</span>
+                  <span
+                    style={{
+                      color: "#E5302C",
+                      fontFamily: "'Titillium Web', sans-serif",
+                    }}
+                  >
+                    KES {finalTotal.toLocaleString()}
+                  </span>
+                </div>
               </div>
 
               <button
                 onClick={handleWhatsAppCheckout}
-                className="whatsapp-checkout-btn"
+                style={{
+                  width: "100%",
+                  background:
+                    "linear-gradient(135deg, #25D366 0%, #128C7E 100%)",
+                  color: "white",
+                  border: "none",
+                  padding: "18px 24px",
+                  borderRadius: "12px",
+                  fontSize: "16px",
+                  fontWeight: "700",
+                  fontFamily: "'Montserrat', sans-serif",
+                  textTransform: "uppercase",
+                  letterSpacing: "1px",
+                  cursor: "pointer",
+                  transition: "all 0.3s ease",
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "center",
+                  gap: "12px",
+                  marginBottom: "24px",
+                  boxShadow: "0 8px 24px rgba(37, 211, 102, 0.4)",
+                }}
               >
                 <svg
-                  width="20"
-                  height="20"
+                  width="24"
+                  height="24"
                   viewBox="0 0 24 24"
                   fill="currentColor"
                 >
@@ -459,13 +613,94 @@ export default function CartPage() {
                 Checkout via WhatsApp
               </button>
 
-              <div className="checkout-info">
-                <p>🔒 Secure checkout via WhatsApp</p>
-                <p>💬 Direct communication with our team</p>
-                <p>🚚 Free delivery within Nairobi</p>
+              <div
+                style={{
+                  background: "rgba(58, 58, 58, 0.5)",
+                  borderRadius: "8px",
+                  padding: "16px",
+                  marginBottom: "20px",
+                  fontSize: "13px",
+                }}
+              >
+                <div
+                  style={{
+                    display: "flex",
+                    alignItems: "center",
+                    gap: "8px",
+                    marginBottom: "8px",
+                    color: "#28A745",
+                  }}
+                >
+                  <svg
+                    width="16"
+                    height="16"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth="2"
+                  >
+                    <path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                  </svg>
+                  Secure checkout via WhatsApp
+                </div>
+                <div
+                  style={{
+                    display: "flex",
+                    alignItems: "center",
+                    gap: "8px",
+                    marginBottom: "8px",
+                    color: "#007BFF",
+                  }}
+                >
+                  <svg
+                    width="16"
+                    height="16"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth="2"
+                  >
+                    <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z" />
+                  </svg>
+                  Direct communication with experts
+                </div>
+                <div
+                  style={{
+                    display: "flex",
+                    alignItems: "center",
+                    gap: "8px",
+                    color: "#FFC107",
+                  }}
+                >
+                  <svg
+                    width="16"
+                    height="16"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth="2"
+                  >
+                    <path d="M1 3h19l-1.5 9h-15l-1.5-9zm3 0l-1 6m14-6l1 6M7 21h10" />
+                  </svg>
+                  Same-day delivery in Nairobi
+                </div>
               </div>
 
-              <button onClick={clearCart} className="clear-cart-btn">
+              <button
+                onClick={clearCart}
+                style={{
+                  width: "100%",
+                  background: "transparent",
+                  color: "#DC3545",
+                  border: "2px solid #DC3545",
+                  padding: "12px 20px",
+                  borderRadius: "8px",
+                  fontSize: "14px",
+                  fontWeight: "600",
+                  cursor: "pointer",
+                  transition: "all 0.3s ease",
+                }}
+              >
                 Clear Cart
               </button>
             </div>
