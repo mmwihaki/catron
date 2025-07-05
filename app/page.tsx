@@ -331,30 +331,133 @@ export default function HomePage() {
       </section>
 
       {/* Categories Section */}
-      <section className="categories-section">
-        <div className="container">
-          <h2>Shop by Category</h2>
-          <div className="categories-grid">
+      <section
+        style={{
+          padding: "100px 0",
+          background: "linear-gradient(135deg, #1E1E1E 0%, #3A3A3A 100%)",
+        }}
+      >
+        <div
+          style={{
+            maxWidth: "1200px",
+            margin: "0 auto",
+            padding: "0 24px",
+          }}
+        >
+          <h2
+            style={{
+              fontFamily: "'Montserrat', sans-serif",
+              fontSize: "clamp(28px, 4vw, 42px)",
+              fontWeight: "800",
+              textAlign: "center",
+              marginBottom: "64px",
+              color: "#FFFFFF",
+              letterSpacing: "-0.01em",
+            }}
+          >
+            PRECISION ENGINEERED
+            <br />
+            <span style={{ color: "#E5302C" }}>COMPONENT CATEGORIES</span>
+          </h2>
+          <div
+            style={{
+              display: "grid",
+              gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))",
+              gap: "32px",
+            }}
+          >
             {categories.slice(0, 8).map((category) => (
               <Link
                 key={category.slug}
                 href={`/category/${category.slug}`}
-                className="category-card"
+                style={{
+                  background:
+                    "linear-gradient(135deg, #3A3A3A 0%, #1E1E1E 100%)",
+                  padding: "40px 32px",
+                  borderRadius: "20px",
+                  textAlign: "center",
+                  textDecoration: "none",
+                  color: "#FFFFFF",
+                  transition: "all 0.3s ease",
+                  border: "2px solid rgba(176, 176, 176, 0.2)",
+                  boxShadow: "0 8px 24px rgba(0,0,0,0.3)",
+                  position: "relative",
+                  overflow: "hidden",
+                }}
+                onMouseEnter={(e) => {
+                  e.currentTarget.style.transform = "translateY(-12px)";
+                  e.currentTarget.style.boxShadow =
+                    "0 20px 40px rgba(0,0,0,0.4)";
+                  e.currentTarget.style.borderColor = "rgba(229, 48, 44, 0.5)";
+                }}
+                onMouseLeave={(e) => {
+                  e.currentTarget.style.transform = "translateY(0)";
+                  e.currentTarget.style.boxShadow =
+                    "0 8px 24px rgba(0,0,0,0.3)";
+                  e.currentTarget.style.borderColor =
+                    "rgba(176, 176, 176, 0.2)";
+                }}
               >
-                <div className="category-icon">
+                <div
+                  style={{
+                    width: "80px",
+                    height: "80px",
+                    background:
+                      "linear-gradient(135deg, #E5302C 0%, #C4261E 100%)",
+                    borderRadius: "20px",
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "center",
+                    margin: "0 auto 24px",
+                    boxShadow: "0 8px 20px rgba(229, 48, 44, 0.4)",
+                  }}
+                >
                   <svg
-                    width="48"
-                    height="48"
+                    width="40"
+                    height="40"
                     viewBox="0 0 24 24"
                     fill="none"
-                    stroke="currentColor"
-                    strokeWidth="1.5"
+                    stroke="white"
+                    strokeWidth="2"
                   >
                     <path d="M12 2v20m10-10H2" />
                   </svg>
                 </div>
-                <h3>{category.name}</h3>
-                <p>{category.count} products</p>
+                <h3
+                  style={{
+                    fontFamily: "'Montserrat', sans-serif",
+                    fontSize: "20px",
+                    fontWeight: "700",
+                    marginBottom: "12px",
+                    color: "#FFFFFF",
+                  }}
+                >
+                  {category.name}
+                </h3>
+                <p
+                  style={{
+                    color: "#B0B0B0",
+                    fontSize: "14px",
+                    fontFamily: "'Open Sans', sans-serif",
+                    margin: "0",
+                  }}
+                >
+                  {category.count} precision components
+                </p>
+
+                {/* Subtle gradient accent */}
+                <div
+                  style={{
+                    position: "absolute",
+                    top: 0,
+                    left: 0,
+                    right: 0,
+                    height: "3px",
+                    background:
+                      "linear-gradient(90deg, #E5302C, #007BFF, #FFC107)",
+                    opacity: 0.6,
+                  }}
+                ></div>
               </Link>
             ))}
           </div>
@@ -362,13 +465,68 @@ export default function HomePage() {
       </section>
 
       {/* Featured Products */}
-      <section className="featured-section">
-        <div className="container">
-          <div className="section-header">
-            <h2>Featured Products</h2>
-            <div className="category-tabs">
+      <section
+        style={{
+          padding: "100px 0",
+          background: "linear-gradient(135deg, #3A3A3A 0%, #1E1E1E 100%)",
+        }}
+      >
+        <div
+          style={{
+            maxWidth: "1200px",
+            margin: "0 auto",
+            padding: "0 24px",
+          }}
+        >
+          <div
+            style={{
+              textAlign: "center",
+              marginBottom: "64px",
+            }}
+          >
+            <h2
+              style={{
+                fontFamily: "'Montserrat', sans-serif",
+                fontSize: "clamp(28px, 4vw, 42px)",
+                fontWeight: "800",
+                color: "#FFFFFF",
+                marginBottom: "24px",
+                letterSpacing: "-0.01em",
+              }}
+            >
+              <span style={{ color: "#E5302C" }}>FEATURED</span> PERFORMANCE
+              PARTS
+            </h2>
+            <div
+              style={{
+                display: "flex",
+                justifyContent: "center",
+                gap: "8px",
+                marginTop: "32px",
+                flexWrap: "wrap",
+              }}
+            >
               <button
-                className={`tab-btn ${activeCategory === "all" ? "active" : ""}`}
+                style={{
+                  background:
+                    activeCategory === "all"
+                      ? "linear-gradient(135deg, #E5302C 0%, #C4261E 100%)"
+                      : "transparent",
+                  color: activeCategory === "all" ? "white" : "#B0B0B0",
+                  border:
+                    activeCategory === "all"
+                      ? "none"
+                      : "2px solid rgba(176, 176, 176, 0.3)",
+                  padding: "12px 24px",
+                  borderRadius: "8px",
+                  cursor: "pointer",
+                  fontFamily: "'Montserrat', sans-serif",
+                  fontWeight: "600",
+                  fontSize: "13px",
+                  textTransform: "uppercase",
+                  letterSpacing: "1px",
+                  transition: "all 0.2s ease",
+                }}
                 onClick={() => setActiveCategory("all")}
               >
                 All
@@ -376,7 +534,27 @@ export default function HomePage() {
               {categories.slice(1, 6).map((category) => (
                 <button
                   key={category.slug}
-                  className={`tab-btn ${activeCategory === category.slug ? "active" : ""}`}
+                  style={{
+                    background:
+                      activeCategory === category.slug
+                        ? "linear-gradient(135deg, #E5302C 0%, #C4261E 100%)"
+                        : "transparent",
+                    color:
+                      activeCategory === category.slug ? "white" : "#B0B0B0",
+                    border:
+                      activeCategory === category.slug
+                        ? "none"
+                        : "2px solid rgba(176, 176, 176, 0.3)",
+                    padding: "12px 24px",
+                    borderRadius: "8px",
+                    cursor: "pointer",
+                    fontFamily: "'Montserrat', sans-serif",
+                    fontWeight: "600",
+                    fontSize: "13px",
+                    textTransform: "uppercase",
+                    letterSpacing: "1px",
+                    transition: "all 0.2s ease",
+                  }}
                   onClick={() => setActiveCategory(category.slug)}
                 >
                   {category.name}
@@ -385,18 +563,44 @@ export default function HomePage() {
             </div>
           </div>
 
-          <div className="products-grid">
+          <div
+            style={{
+              display: "grid",
+              gridTemplateColumns: "repeat(auto-fit, minmax(300px, 1fr))",
+              gap: "32px",
+              marginBottom: "64px",
+            }}
+          >
             {displayedProducts.map((product) => (
               <ProductCard key={product.id} product={product} />
             ))}
           </div>
 
-          <div className="section-footer">
-            <Link href="/shop" className="view-all-btn">
+          <div style={{ textAlign: "center" }}>
+            <Link
+              href="/shop"
+              style={{
+                display: "inline-flex",
+                alignItems: "center",
+                gap: "12px",
+                padding: "16px 32px",
+                background: "linear-gradient(135deg, #007BFF 0%, #0056B3 100%)",
+                color: "white",
+                textDecoration: "none",
+                borderRadius: "12px",
+                fontFamily: "'Montserrat', sans-serif",
+                fontWeight: "700",
+                fontSize: "14px",
+                textTransform: "uppercase",
+                letterSpacing: "1px",
+                transition: "all 0.3s ease",
+                boxShadow: "0 8px 24px rgba(0, 123, 255, 0.4)",
+              }}
+            >
               View All Products
               <svg
-                width="16"
-                height="16"
+                width="20"
+                height="20"
                 viewBox="0 0 24 24"
                 fill="none"
                 stroke="currentColor"
