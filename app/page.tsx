@@ -51,11 +51,8 @@ export default function HomePage() {
       <section
         style={{
           background:
-            "linear-gradient(135deg, rgba(248, 249, 250, 0.95) 0%, rgba(255, 255, 255, 0.95) 100%), url('https://images.pexels.com/photos/3642618/pexels-photo-3642618.jpeg?auto=compress&cs=tinysrgb&w=1600')",
-          backgroundSize: "cover",
-          backgroundPosition: "center",
-          backgroundAttachment: "fixed",
-          color: "#212529",
+            "linear-gradient(135deg, #4A90E2 0%, #7B68EE 50%, #FF6B6B 100%)",
+          color: "white",
           padding: "120px 0",
           position: "relative",
           overflow: "hidden",
@@ -102,25 +99,25 @@ export default function HomePage() {
                   marginBottom: "24px",
                   lineHeight: "1.1",
                   letterSpacing: "-0.02em",
-                  color: "#212529",
+                  color: "white",
                 }}
               >
-                <span style={{ color: "#E5302C" }}>PRECISION</span>
+                <span style={{ color: "#FFD700" }}>PREMIUM QUALITY</span>
                 <br />
-                NISSAN AUTO PARTS
+                AUTO PARTS FOR YOUR NISSAN
               </h1>
               <p
                 style={{
-                  fontSize: "18px",
+                  fontSize: "20px",
                   marginBottom: "40px",
-                  color: "#6C757D",
+                  color: "rgba(255, 255, 255, 0.9)",
                   lineHeight: "1.6",
                   fontFamily: "'Open Sans', sans-serif",
                 }}
               >
-                Professional-grade OEM and aftermarket components engineered for
-                peak performance. Trusted by mechanics and enthusiasts for
-                uncompromising quality and reliability.
+                Discover genuine OEM and high-quality aftermarket parts that
+                keep your Nissan running at its best. Fast delivery, expert
+                support, and unbeatable prices - all in one place!
               </p>
               <div
                 style={{
@@ -135,19 +132,29 @@ export default function HomePage() {
                     display: "inline-flex",
                     alignItems: "center",
                     gap: "12px",
-                    padding: "16px 32px",
+                    padding: "18px 36px",
                     background:
-                      "linear-gradient(135deg, #E5302C 0%, #C4261E 100%)",
+                      "linear-gradient(135deg, #FF6B6B 0%, #FF8E53 100%)",
                     color: "white",
                     textDecoration: "none",
-                    borderRadius: "12px",
+                    borderRadius: "50px",
                     fontFamily: "'Montserrat', sans-serif",
                     fontWeight: "700",
-                    fontSize: "14px",
+                    fontSize: "16px",
                     textTransform: "uppercase",
                     letterSpacing: "1px",
                     transition: "all 0.3s ease",
-                    boxShadow: "0 8px 24px rgba(229, 48, 44, 0.4)",
+                    boxShadow: "0 8px 24px rgba(255, 107, 107, 0.4)",
+                  }}
+                  onMouseEnter={(e) => {
+                    e.currentTarget.style.transform = "translateY(-3px)";
+                    e.currentTarget.style.boxShadow =
+                      "0 12px 32px rgba(255, 107, 107, 0.6)";
+                  }}
+                  onMouseLeave={(e) => {
+                    e.currentTarget.style.transform = "translateY(0)";
+                    e.currentTarget.style.boxShadow =
+                      "0 8px 24px rgba(255, 107, 107, 0.4)";
                   }}
                 >
                   <svg
@@ -170,18 +177,29 @@ export default function HomePage() {
                     display: "inline-flex",
                     alignItems: "center",
                     gap: "12px",
-                    padding: "16px 32px",
-                    background: "transparent",
+                    padding: "18px 36px",
+                    background: "rgba(255, 255, 255, 0.2)",
                     color: "white",
                     textDecoration: "none",
-                    borderRadius: "12px",
-                    border: "2px solid #B0B0B0",
+                    borderRadius: "50px",
+                    border: "2px solid rgba(255, 255, 255, 0.3)",
                     fontFamily: "'Montserrat', sans-serif",
                     fontWeight: "600",
-                    fontSize: "14px",
+                    fontSize: "16px",
                     textTransform: "uppercase",
                     letterSpacing: "1px",
                     transition: "all 0.3s ease",
+                    backdropFilter: "blur(10px)",
+                  }}
+                  onMouseEnter={(e) => {
+                    e.currentTarget.style.background =
+                      "rgba(255, 255, 255, 0.3)";
+                    e.currentTarget.style.transform = "translateY(-2px)";
+                  }}
+                  onMouseLeave={(e) => {
+                    e.currentTarget.style.background =
+                      "rgba(255, 255, 255, 0.2)";
+                    e.currentTarget.style.transform = "translateY(0)";
                   }}
                 >
                   <svg
@@ -334,7 +352,8 @@ export default function HomePage() {
       <section
         style={{
           padding: "100px 0",
-          background: "#F8F9FA",
+          background: "linear-gradient(135deg, #667eea 0%, #764ba2 100%)",
+          color: "white",
         }}
       >
         <div
@@ -351,13 +370,13 @@ export default function HomePage() {
               fontWeight: "800",
               textAlign: "center",
               marginBottom: "64px",
-              color: "#212529",
+              color: "white",
               letterSpacing: "-0.01em",
             }}
           >
-            PRECISION ENGINEERED
+            FIND THE PERFECT PARTS
             <br />
-            <span style={{ color: "#E5302C" }}>COMPONENT CATEGORIES</span>
+            <span style={{ color: "#FFD700" }}>FOR YOUR NISSAN</span>
           </h2>
           <div
             style={{
@@ -371,29 +390,35 @@ export default function HomePage() {
                 key={category.slug}
                 href={`/category/${category.slug}`}
                 style={{
-                  background: "#FFFFFF",
+                  background: "rgba(255, 255, 255, 0.95)",
                   padding: "40px 32px",
                   borderRadius: "20px",
                   textAlign: "center",
                   textDecoration: "none",
                   color: "#212529",
                   transition: "all 0.3s ease",
-                  border: "2px solid #E9ECEF",
-                  boxShadow: "0 4px 12px rgba(0,0,0,0.1)",
+                  border: "2px solid rgba(255, 255, 255, 0.3)",
+                  boxShadow: "0 8px 32px rgba(0,0,0,0.2)",
                   position: "relative",
                   overflow: "hidden",
+                  backdropFilter: "blur(10px)",
                 }}
                 onMouseEnter={(e) => {
-                  e.currentTarget.style.transform = "translateY(-12px)";
+                  e.currentTarget.style.transform =
+                    "translateY(-15px) scale(1.05)";
                   e.currentTarget.style.boxShadow =
-                    "0 12px 32px rgba(0,0,0,0.15)";
-                  e.currentTarget.style.borderColor = "rgba(229, 48, 44, 0.5)";
+                    "0 20px 60px rgba(0,0,0,0.3)";
+                  e.currentTarget.style.background =
+                    "linear-gradient(135deg, #FF6B6B 0%, #4ECDC4 100%)";
+                  e.currentTarget.style.color = "white";
                 }}
                 onMouseLeave={(e) => {
-                  e.currentTarget.style.transform = "translateY(0)";
+                  e.currentTarget.style.transform = "translateY(0) scale(1)";
                   e.currentTarget.style.boxShadow =
-                    "0 4px 12px rgba(0,0,0,0.1)";
-                  e.currentTarget.style.borderColor = "#E9ECEF";
+                    "0 8px 32px rgba(0,0,0,0.2)";
+                  e.currentTarget.style.background =
+                    "rgba(255, 255, 255, 0.95)";
+                  e.currentTarget.style.color = "#212529";
                 }}
               >
                 <div
@@ -466,7 +491,6 @@ export default function HomePage() {
       <section
         style={{
           padding: "100px 0",
-          background: "linear-gradient(135deg, #3A3A3A 0%, #1E1E1E 100%)",
         }}
       >
         <div
@@ -487,12 +511,12 @@ export default function HomePage() {
                 fontFamily: "'Montserrat', sans-serif",
                 fontSize: "clamp(28px, 4vw, 42px)",
                 fontWeight: "800",
-                color: "#FFFFFF",
+                color: "#2C3E50",
                 marginBottom: "24px",
                 letterSpacing: "-0.01em",
               }}
             >
-              <span style={{ color: "#E5302C" }}>FEATURED</span> PERFORMANCE
+              <span style={{ color: "#E74C3C" }}>FEATURED</span> PERFORMANCE
               PARTS
             </h2>
             <div
@@ -508,24 +532,38 @@ export default function HomePage() {
                 style={{
                   background:
                     activeCategory === "all"
-                      ? "linear-gradient(135deg, #E5302C 0%, #C4261E 100%)"
+                      ? "linear-gradient(135deg, #FF6B6B 0%, #4ECDC4 100%)"
                       : "transparent",
-                  color: activeCategory === "all" ? "white" : "#B0B0B0",
+                  color: activeCategory === "all" ? "white" : "#2C3E50",
                   border:
-                    activeCategory === "all"
-                      ? "none"
-                      : "2px solid rgba(176, 176, 176, 0.3)",
-                  padding: "12px 24px",
-                  borderRadius: "8px",
+                    activeCategory === "all" ? "none" : "2px solid #BDC3C7",
+                  padding: "14px 28px",
+                  borderRadius: "25px",
                   cursor: "pointer",
                   fontFamily: "'Montserrat', sans-serif",
                   fontWeight: "600",
-                  fontSize: "13px",
+                  fontSize: "14px",
                   textTransform: "uppercase",
                   letterSpacing: "1px",
-                  transition: "all 0.2s ease",
+                  transition: "all 0.3s ease",
+                  boxShadow:
+                    activeCategory === "all"
+                      ? "0 4px 15px rgba(255, 107, 107, 0.4)"
+                      : "none",
                 }}
                 onClick={() => setActiveCategory("all")}
+                onMouseEnter={(e) => {
+                  if (activeCategory !== "all") {
+                    e.currentTarget.style.borderColor = "#3498DB";
+                    e.currentTarget.style.color = "#3498DB";
+                  }
+                }}
+                onMouseLeave={(e) => {
+                  if (activeCategory !== "all") {
+                    e.currentTarget.style.borderColor = "#BDC3C7";
+                    e.currentTarget.style.color = "#2C3E50";
+                  }
+                }}
               >
                 All
               </button>
@@ -535,25 +573,41 @@ export default function HomePage() {
                   style={{
                     background:
                       activeCategory === category.slug
-                        ? "linear-gradient(135deg, #E5302C 0%, #C4261E 100%)"
+                        ? "linear-gradient(135deg, #FF6B6B 0%, #4ECDC4 100%)"
                         : "transparent",
                     color:
-                      activeCategory === category.slug ? "white" : "#B0B0B0",
+                      activeCategory === category.slug ? "white" : "#2C3E50",
                     border:
                       activeCategory === category.slug
                         ? "none"
-                        : "2px solid rgba(176, 176, 176, 0.3)",
-                    padding: "12px 24px",
-                    borderRadius: "8px",
+                        : "2px solid #BDC3C7",
+                    padding: "14px 28px",
+                    borderRadius: "25px",
                     cursor: "pointer",
                     fontFamily: "'Montserrat', sans-serif",
                     fontWeight: "600",
-                    fontSize: "13px",
+                    fontSize: "14px",
                     textTransform: "uppercase",
                     letterSpacing: "1px",
-                    transition: "all 0.2s ease",
+                    transition: "all 0.3s ease",
+                    boxShadow:
+                      activeCategory === category.slug
+                        ? "0 4px 15px rgba(255, 107, 107, 0.4)"
+                        : "none",
                   }}
                   onClick={() => setActiveCategory(category.slug)}
+                  onMouseEnter={(e) => {
+                    if (activeCategory !== category.slug) {
+                      e.currentTarget.style.borderColor = "#3498DB";
+                      e.currentTarget.style.color = "#3498DB";
+                    }
+                  }}
+                  onMouseLeave={(e) => {
+                    if (activeCategory !== category.slug) {
+                      e.currentTarget.style.borderColor = "#BDC3C7";
+                      e.currentTarget.style.color = "#2C3E50";
+                    }
+                  }}
                 >
                   {category.name}
                 </button>
@@ -581,18 +635,28 @@ export default function HomePage() {
                 display: "inline-flex",
                 alignItems: "center",
                 gap: "12px",
-                padding: "16px 32px",
-                background: "linear-gradient(135deg, #007BFF 0%, #0056B3 100%)",
+                padding: "18px 36px",
+                background: "linear-gradient(135deg, #667eea 0%, #764ba2 100%)",
                 color: "white",
                 textDecoration: "none",
-                borderRadius: "12px",
+                borderRadius: "50px",
                 fontFamily: "'Montserrat', sans-serif",
                 fontWeight: "700",
-                fontSize: "14px",
+                fontSize: "16px",
                 textTransform: "uppercase",
                 letterSpacing: "1px",
                 transition: "all 0.3s ease",
-                boxShadow: "0 8px 24px rgba(0, 123, 255, 0.4)",
+                boxShadow: "0 8px 24px rgba(102, 126, 234, 0.4)",
+              }}
+              onMouseEnter={(e) => {
+                e.currentTarget.style.transform = "translateY(-3px)";
+                e.currentTarget.style.boxShadow =
+                  "0 12px 32px rgba(102, 126, 234, 0.6)";
+              }}
+              onMouseLeave={(e) => {
+                e.currentTarget.style.transform = "translateY(0)";
+                e.currentTarget.style.boxShadow =
+                  "0 8px 24px rgba(102, 126, 234, 0.4)";
               }}
             >
               View All Products
