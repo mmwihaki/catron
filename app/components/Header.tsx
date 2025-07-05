@@ -4,11 +4,11 @@ import React, { useState, useEffect } from "react";
 import Link from "next/link";
 import { useCart } from "../context/CartContext";
 import { categories } from "../data/products";
+import SearchBar from "./SearchBar";
 
 export default function Header() {
   const { state } = useCart();
   const [showCategoriesDropdown, setShowCategoriesDropdown] = useState(false);
-  const [searchQuery, setSearchQuery] = useState("");
 
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
@@ -90,62 +90,8 @@ export default function Header() {
             <span>CATRON</span>
           </Link>
 
-          {/* Search Bar */}
-          <div
-            style={{
-              flex: 1,
-              maxWidth: "600px",
-              display: "flex",
-              background: "rgba(255, 255, 255, 0.95)",
-              borderRadius: "12px",
-              overflow: "hidden",
-              border: "1px solid rgba(176, 176, 176, 0.3)",
-              backdropFilter: "blur(10px)",
-              boxShadow: "0 4px 12px rgba(0,0,0,0.1)",
-            }}
-          >
-            <input
-              type="text"
-              placeholder="Search parts by SKU, brand, or model..."
-              value={searchQuery}
-              onChange={(e) => setSearchQuery(e.target.value)}
-              style={{
-                flex: 1,
-                padding: "16px 20px",
-                border: "none",
-                outline: "none",
-                fontSize: "15px",
-                fontFamily: "'Open Sans', sans-serif",
-                background: "transparent",
-                color: "#1E1E1E",
-              }}
-            />
-            <button
-              style={{
-                background: "linear-gradient(135deg, #E5302C 0%, #C4261E 100%)",
-                color: "white",
-                border: "none",
-                padding: "16px 20px",
-                cursor: "pointer",
-                display: "flex",
-                alignItems: "center",
-                transition: "all 0.2s ease",
-                minWidth: "60px",
-              }}
-            >
-              <svg
-                width="20"
-                height="20"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth="2.5"
-              >
-                <circle cx="11" cy="11" r="8"></circle>
-                <path d="M21 21l-4.35-4.35"></path>
-              </svg>
-            </button>
-          </div>
+          {/* Enhanced Search Bar */}
+          <SearchBar />
 
           <div style={{ display: "flex", alignItems: "center", gap: "24px" }}>
             <Link
