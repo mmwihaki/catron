@@ -138,10 +138,17 @@ export default function CategoryPage() {
               {/* Price Filter */}
               <div className="filter-group">
                 <h3>Price Range</h3>
-                <div className="price-inputs">
+                <div
+                  style={{
+                    display: "flex",
+                    flexDirection: "column",
+                    gap: "12px",
+                    marginBottom: "12px",
+                  }}
+                >
                   <input
                     type="number"
-                    placeholder="Min"
+                    placeholder="Min Price"
                     value={priceRange[0] || ""}
                     onChange={(e) =>
                       setPriceRange([
@@ -149,12 +156,30 @@ export default function CategoryPage() {
                         priceRange[1],
                       ])
                     }
-                    className="price-input"
+                    style={{
+                      width: "100%",
+                      padding: "10px 12px",
+                      border: "1px solid #d1d5db",
+                      borderRadius: "6px",
+                      fontSize: "14px",
+                      boxSizing: "border-box",
+                    }}
                   />
-                  <span>-</span>
+                  <div
+                    style={{
+                      textAlign: "center",
+                      color: "#6b7280",
+                      fontSize: "12px",
+                      fontWeight: "600",
+                      textTransform: "uppercase",
+                      letterSpacing: "1px",
+                    }}
+                  >
+                    TO
+                  </div>
                   <input
                     type="number"
-                    placeholder="Max"
+                    placeholder="Max Price"
                     value={priceRange[1] || ""}
                     onChange={(e) =>
                       setPriceRange([
@@ -162,10 +187,27 @@ export default function CategoryPage() {
                         Number(e.target.value) || 20000,
                       ])
                     }
-                    className="price-input"
+                    style={{
+                      width: "100%",
+                      padding: "10px 12px",
+                      border: "1px solid #d1d5db",
+                      borderRadius: "6px",
+                      fontSize: "14px",
+                      boxSizing: "border-box",
+                    }}
                   />
                 </div>
-                <div className="price-display">
+                <div
+                  style={{
+                    fontSize: "14px",
+                    color: "#6b7280",
+                    textAlign: "center",
+                    padding: "8px",
+                    background: "#f9fafb",
+                    borderRadius: "4px",
+                    border: "1px solid #e5e7eb",
+                  }}
+                >
                   KES {priceRange[0].toLocaleString()} - KES{" "}
                   {priceRange[1].toLocaleString()}
                 </div>
