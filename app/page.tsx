@@ -37,59 +37,294 @@ export default function HomePage() {
   const displayedProducts = getProductsByCategory(activeCategory);
 
   return (
-    <div className="homepage">
+    <div
+      style={{
+        fontFamily:
+          "'Open Sans', -apple-system, BlinkMacSystemFont, sans-serif",
+        background: "linear-gradient(135deg, #1E1E1E 0%, #3A3A3A 100%)",
+        minHeight: "100vh",
+      }}
+    >
       <Header />
 
       {/* Hero Section */}
-      <section className="hero-section">
-        <div className="hero-container">
-          <div className="hero-content">
-            <div className="hero-text">
-              <h1>Premium Nissan Auto Parts</h1>
-              <p>
-                Quality OEM and aftermarket parts for your Nissan vehicle. Happy
-                car ownership guaranteed with genuine parts from trusted brands.
+      <section
+        style={{
+          background:
+            "linear-gradient(135deg, rgba(30, 30, 30, 0.95) 0%, rgba(58, 58, 58, 0.95) 100%), url('https://images.pexels.com/photos/3642618/pexels-photo-3642618.jpeg?auto=compress&cs=tinysrgb&w=1600')",
+          backgroundSize: "cover",
+          backgroundPosition: "center",
+          backgroundAttachment: "fixed",
+          color: "white",
+          padding: "120px 0",
+          position: "relative",
+          overflow: "hidden",
+        }}
+      >
+        {/* Industrial Pattern Overlay */}
+        <div
+          style={{
+            position: "absolute",
+            top: 0,
+            left: 0,
+            right: 0,
+            bottom: 0,
+            backgroundImage:
+              "radial-gradient(circle at 1px 1px, rgba(176, 176, 176, 0.1) 1px, transparent 0)",
+            backgroundSize: "20px 20px",
+            opacity: 0.3,
+          }}
+        ></div>
+
+        <div
+          style={{
+            maxWidth: "1200px",
+            margin: "0 auto",
+            padding: "0 24px",
+            position: "relative",
+            zIndex: 2,
+          }}
+        >
+          <div
+            style={{
+              display: "grid",
+              gridTemplateColumns: "1fr 1fr",
+              gap: "80px",
+              alignItems: "center",
+            }}
+          >
+            <div>
+              <h1
+                style={{
+                  fontFamily: "'Montserrat', sans-serif",
+                  fontSize: "clamp(36px, 5vw, 56px)",
+                  fontWeight: "900",
+                  marginBottom: "24px",
+                  lineHeight: "1.1",
+                  letterSpacing: "-0.02em",
+                  color: "#FFFFFF",
+                }}
+              >
+                <span style={{ color: "#E5302C" }}>PRECISION</span>
+                <br />
+                NISSAN AUTO PARTS
+              </h1>
+              <p
+                style={{
+                  fontSize: "18px",
+                  marginBottom: "40px",
+                  color: "#B0B0B0",
+                  lineHeight: "1.6",
+                  fontFamily: "'Open Sans', sans-serif",
+                }}
+              >
+                Professional-grade OEM and aftermarket components engineered for
+                peak performance. Trusted by mechanics and enthusiasts for
+                uncompromising quality and reliability.
               </p>
-              <div className="hero-actions">
-                <Link href="/shop" className="btn btn-primary">
+              <div
+                style={{
+                  display: "flex",
+                  gap: "20px",
+                  flexWrap: "wrap",
+                }}
+              >
+                <Link
+                  href="/shop"
+                  style={{
+                    display: "inline-flex",
+                    alignItems: "center",
+                    gap: "12px",
+                    padding: "16px 32px",
+                    background:
+                      "linear-gradient(135deg, #E5302C 0%, #C4261E 100%)",
+                    color: "white",
+                    textDecoration: "none",
+                    borderRadius: "12px",
+                    fontFamily: "'Montserrat', sans-serif",
+                    fontWeight: "700",
+                    fontSize: "14px",
+                    textTransform: "uppercase",
+                    letterSpacing: "1px",
+                    transition: "all 0.3s ease",
+                    boxShadow: "0 8px 24px rgba(229, 48, 44, 0.4)",
+                  }}
+                >
+                  <svg
+                    width="20"
+                    height="20"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth="2"
+                  >
+                    <circle cx="9" cy="21" r="1"></circle>
+                    <circle cx="20" cy="21" r="1"></circle>
+                    <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
+                  </svg>
                   Shop Now
                 </Link>
-                <Link href="/category/oil-filter" className="btn btn-secondary">
+                <Link
+                  href="/category/oil-filter"
+                  style={{
+                    display: "inline-flex",
+                    alignItems: "center",
+                    gap: "12px",
+                    padding: "16px 32px",
+                    background: "transparent",
+                    color: "white",
+                    textDecoration: "none",
+                    borderRadius: "12px",
+                    border: "2px solid #B0B0B0",
+                    fontFamily: "'Montserrat', sans-serif",
+                    fontWeight: "600",
+                    fontSize: "14px",
+                    textTransform: "uppercase",
+                    letterSpacing: "1px",
+                    transition: "all 0.3s ease",
+                  }}
+                >
+                  <svg
+                    width="20"
+                    height="20"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth="2"
+                  >
+                    <path d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z"></path>
+                  </svg>
                   Browse Parts
                 </Link>
               </div>
             </div>
-            <div className="hero-image">
+            <div
+              style={{
+                position: "relative",
+              }}
+            >
               <img
                 src="https://images.pexels.com/photos/3642618/pexels-photo-3642618.jpeg?auto=compress&cs=tinysrgb&w=800"
                 alt="Auto Parts"
+                style={{
+                  width: "100%",
+                  height: "500px",
+                  objectFit: "cover",
+                  borderRadius: "20px",
+                  boxShadow: "0 20px 40px rgba(0,0,0,0.5)",
+                  border: "2px solid rgba(176, 176, 176, 0.2)",
+                }}
               />
             </div>
           </div>
 
           {/* Quick Search */}
-          <div className="quick-search">
-            <h3>Find Parts for Your Vehicle</h3>
-            <div className="search-form">
-              <select className="vehicle-select">
+          <div
+            style={{
+              background: "rgba(0,0,0,0.8)",
+              backdropFilter: "blur(20px)",
+              borderRadius: "20px",
+              padding: "40px",
+              marginTop: "80px",
+              border: "1px solid rgba(176, 176, 176, 0.2)",
+              boxShadow: "0 12px 32px rgba(0,0,0,0.4)",
+            }}
+          >
+            <h3
+              style={{
+                fontFamily: "'Montserrat', sans-serif",
+                fontSize: "24px",
+                fontWeight: "700",
+                marginBottom: "32px",
+                textAlign: "center",
+                color: "#FFFFFF",
+              }}
+            >
+              PRECISION PART FINDER
+            </h3>
+            <div
+              style={{
+                display: "grid",
+                gridTemplateColumns: "repeat(auto-fit, minmax(200px, 1fr))",
+                gap: "16px",
+              }}
+            >
+              <select
+                style={{
+                  padding: "16px 20px",
+                  border: "2px solid rgba(176, 176, 176, 0.3)",
+                  borderRadius: "10px",
+                  fontSize: "14px",
+                  fontFamily: "'Open Sans', sans-serif",
+                  background: "rgba(58, 58, 58, 0.8)",
+                  color: "#FFFFFF",
+                  outline: "none",
+                }}
+              >
                 <option>Select Year</option>
+                <option>2024</option>
+                <option>2023</option>
+                <option>2022</option>
+                <option>2021</option>
                 <option>2020</option>
-                <option>2019</option>
-                <option>2018</option>
               </select>
-              <select className="vehicle-select">
+              <select
+                style={{
+                  padding: "16px 20px",
+                  border: "2px solid rgba(176, 176, 176, 0.3)",
+                  borderRadius: "10px",
+                  fontSize: "14px",
+                  fontFamily: "'Open Sans', sans-serif",
+                  background: "rgba(58, 58, 58, 0.8)",
+                  color: "#FFFFFF",
+                  outline: "none",
+                }}
+              >
                 <option>Select Model</option>
                 <option>Note</option>
                 <option>March</option>
                 <option>X-Trail</option>
+                <option>Sentra</option>
+                <option>Altima</option>
               </select>
-              <select className="vehicle-select">
+              <select
+                style={{
+                  padding: "16px 20px",
+                  border: "2px solid rgba(176, 176, 176, 0.3)",
+                  borderRadius: "10px",
+                  fontSize: "14px",
+                  fontFamily: "'Open Sans', sans-serif",
+                  background: "rgba(58, 58, 58, 0.8)",
+                  color: "#FFFFFF",
+                  outline: "none",
+                }}
+              >
                 <option>Select Engine</option>
                 <option>1.2L HR12DE</option>
                 <option>1.6L HR16DE</option>
                 <option>2.0L MR20DE</option>
+                <option>2.5L QR25DE</option>
               </select>
-              <button className="search-parts-btn">Find Parts</button>
+              <button
+                style={{
+                  background:
+                    "linear-gradient(135deg, #007BFF 0%, #0056B3 100%)",
+                  color: "white",
+                  border: "none",
+                  padding: "16px 24px",
+                  borderRadius: "10px",
+                  fontFamily: "'Montserrat', sans-serif",
+                  fontWeight: "700",
+                  fontSize: "14px",
+                  textTransform: "uppercase",
+                  letterSpacing: "1px",
+                  cursor: "pointer",
+                  transition: "all 0.3s ease",
+                  boxShadow: "0 4px 12px rgba(0, 123, 255, 0.3)",
+                }}
+              >
+                Find Parts
+              </button>
             </div>
           </div>
         </div>
