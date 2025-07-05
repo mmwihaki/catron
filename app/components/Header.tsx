@@ -30,26 +30,71 @@ export default function Header() {
   return (
     <>
       {/* Top Header */}
-      <header className="top-header">
-        <div className="header-container">
-          <Link href="/" className="logo-link">
+      <header
+        style={{ background: "#f73312", color: "white", padding: "15px 0" }}
+      >
+        <div
+          style={{
+            maxWidth: "1200px",
+            margin: "0 auto",
+            padding: "0 20px",
+            display: "flex",
+            justifyContent: "space-between",
+            alignItems: "center",
+            gap: "20px",
+          }}
+        >
+          <Link
+            href="/"
+            style={{
+              color: "white",
+              textDecoration: "none",
+              fontSize: "24px",
+              fontWeight: "700",
+            }}
+          >
             <img
               src="https://cdn.builder.io/api/v1/image/assets%2F16c4d8eebb6943b4be5a75c55b5cdffd%2F5d8fbe0d7a4c4e1a9a82d71637d82593"
               alt="Catron Auto Parts"
-              className="logo"
+              style={{ height: "40px" }}
             />
           </Link>
 
           {/* Search Bar */}
-          <div className="search-container">
+          <div
+            style={{
+              flex: 1,
+              maxWidth: "500px",
+              display: "flex",
+              background: "white",
+              borderRadius: "6px",
+              overflow: "hidden",
+            }}
+          >
             <input
               type="text"
               placeholder="Search for auto parts..."
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
-              className="search-input"
+              style={{
+                flex: 1,
+                padding: "12px 16px",
+                border: "none",
+                outline: "none",
+                fontSize: "14px",
+              }}
             />
-            <button className="search-button">
+            <button
+              style={{
+                background: "#e63312",
+                color: "white",
+                border: "none",
+                padding: "12px 16px",
+                cursor: "pointer",
+                display: "flex",
+                alignItems: "center",
+              }}
+            >
               <svg
                 width="20"
                 height="20"
@@ -64,8 +109,18 @@ export default function Header() {
             </button>
           </div>
 
-          <div className="header-actions">
-            <Link href="/wishlist" className="header-action">
+          <div style={{ display: "flex", alignItems: "center", gap: "20px" }}>
+            <Link
+              href="/wishlist"
+              style={{
+                display: "flex",
+                alignItems: "center",
+                gap: "8px",
+                color: "white",
+                textDecoration: "none",
+                fontSize: "14px",
+              }}
+            >
               <svg
                 width="20"
                 height="20"
@@ -78,8 +133,18 @@ export default function Header() {
               </svg>
               <span>Wishlist</span>
             </Link>
-            <Link href="/cart" className="header-action">
-              <div className="cart-icon">
+            <Link
+              href="/cart"
+              style={{
+                display: "flex",
+                alignItems: "center",
+                gap: "8px",
+                color: "white",
+                textDecoration: "none",
+                fontSize: "14px",
+              }}
+            >
+              <div style={{ position: "relative" }}>
                 <svg
                   width="20"
                   height="20"
@@ -93,7 +158,25 @@ export default function Header() {
                   <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
                 </svg>
                 {state.itemCount > 0 && (
-                  <span className="cart-badge">{state.itemCount}</span>
+                  <span
+                    style={{
+                      position: "absolute",
+                      top: "-8px",
+                      right: "-8px",
+                      background: "#ff6b35",
+                      color: "white",
+                      borderRadius: "50%",
+                      width: "18px",
+                      height: "18px",
+                      display: "flex",
+                      alignItems: "center",
+                      justifyContent: "center",
+                      fontSize: "10px",
+                      fontWeight: "600",
+                    }}
+                  >
+                    {state.itemCount}
+                  </span>
                 )}
               </div>
               <span>Cart</span>
@@ -103,11 +186,32 @@ export default function Header() {
       </header>
 
       {/* Navigation */}
-      <nav className="navigation">
-        <div className="nav-container">
-          <div className="categories-dropdown-wrapper">
+      <nav style={{ background: "#2c2c2c", color: "white", padding: "15px 0" }}>
+        <div
+          style={{
+            maxWidth: "1200px",
+            margin: "0 auto",
+            padding: "0 20px",
+            display: "flex",
+            alignItems: "center",
+            gap: "30px",
+          }}
+        >
+          <div style={{ position: "relative" }}>
             <button
-              className="categories-button"
+              style={{
+                background: "#f73312",
+                color: "white",
+                border: "none",
+                padding: "12px 20px",
+                borderRadius: "6px",
+                display: "flex",
+                alignItems: "center",
+                gap: "10px",
+                cursor: "pointer",
+                fontSize: "14px",
+                fontWeight: "500",
+              }}
               onClick={() => setShowCategoriesDropdown(!showCategoriesDropdown)}
             >
               <svg
@@ -136,7 +240,20 @@ export default function Header() {
             </button>
 
             {showCategoriesDropdown && (
-              <div className="categories-dropdown">
+              <div
+                style={{
+                  position: "absolute",
+                  top: "100%",
+                  left: 0,
+                  background: "white",
+                  boxShadow: "0 8px 25px rgba(0,0,0,0.15)",
+                  borderRadius: "6px",
+                  minWidth: "220px",
+                  zIndex: 1000,
+                  padding: "8px 0",
+                  marginTop: "4px",
+                }}
+              >
                 {categories.map((category) => (
                   <Link
                     key={category.slug}
@@ -145,243 +262,75 @@ export default function Header() {
                         ? "/shop"
                         : `/category/${category.slug}`
                     }
-                    className="category-link"
+                    style={{
+                      display: "flex",
+                      justifyContent: "space-between",
+                      alignItems: "center",
+                      padding: "12px 20px",
+                      color: "#333",
+                      textDecoration: "none",
+                      fontSize: "14px",
+                    }}
                     onClick={() => setShowCategoriesDropdown(false)}
                   >
                     <span>{category.name}</span>
-                    <span className="category-count">({category.count})</span>
+                    <span style={{ color: "#666", fontSize: "12px" }}>
+                      ({category.count})
+                    </span>
                   </Link>
                 ))}
               </div>
             )}
           </div>
 
-          <div className="nav-links">
-            <Link href="/" className="nav-link">
+          <div style={{ display: "flex", gap: "25px" }}>
+            <Link
+              href="/"
+              style={{
+                color: "white",
+                textDecoration: "none",
+                fontSize: "14px",
+                fontWeight: "500",
+              }}
+            >
               Home
             </Link>
-            <Link href="/shop" className="nav-link">
+            <Link
+              href="/shop"
+              style={{
+                color: "white",
+                textDecoration: "none",
+                fontSize: "14px",
+                fontWeight: "500",
+              }}
+            >
               Shop
             </Link>
-            <Link href="/about" className="nav-link">
+            <Link
+              href="/about"
+              style={{
+                color: "white",
+                textDecoration: "none",
+                fontSize: "14px",
+                fontWeight: "500",
+              }}
+            >
               About
             </Link>
-            <Link href="/contact" className="nav-link">
+            <Link
+              href="/contact"
+              style={{
+                color: "white",
+                textDecoration: "none",
+                fontSize: "14px",
+                fontWeight: "500",
+              }}
+            >
               Contact
             </Link>
           </div>
         </div>
       </nav>
-
-      <style jsx>{`
-        .top-header {
-          background: #f73312;
-          color: white;
-          padding: 15px 0;
-        }
-
-        .header-container {
-          max-width: 1200px;
-          margin: 0 auto;
-          padding: 0 20px;
-          display: flex;
-          justify-content: space-between;
-          align-items: center;
-          gap: 20px;
-        }
-
-        .logo-link {
-          color: white;
-          text-decoration: none;
-          font-size: 24px;
-          font-weight: 700;
-        }
-
-        .logo {
-          height: 40px;
-        }
-
-        .search-container {
-          flex: 1;
-          max-width: 500px;
-          display: flex;
-          background: white;
-          border-radius: 6px;
-          overflow: hidden;
-        }
-
-        .search-input {
-          flex: 1;
-          padding: 12px 16px;
-          border: none;
-          outline: none;
-          font-size: 14px;
-        }
-
-        .search-button {
-          background: #e63312;
-          color: white;
-          border: none;
-          padding: 12px 16px;
-          cursor: pointer;
-          display: flex;
-          align-items: center;
-        }
-
-        .search-button:hover {
-          background: #d42f02;
-        }
-
-        .header-actions {
-          display: flex;
-          align-items: center;
-          gap: 20px;
-        }
-
-        .header-action {
-          display: flex;
-          align-items: center;
-          gap: 8px;
-          color: white;
-          text-decoration: none;
-          font-size: 14px;
-          transition: opacity 0.3s ease;
-        }
-
-        .header-action:hover {
-          opacity: 0.8;
-        }
-
-        .cart-icon {
-          position: relative;
-        }
-
-        .cart-badge {
-          position: absolute;
-          top: -8px;
-          right: -8px;
-          background: #ff6b35;
-          color: white;
-          border-radius: 50%;
-          width: 18px;
-          height: 18px;
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          font-size: 10px;
-          font-weight: 600;
-        }
-
-        .navigation {
-          background: #2c2c2c;
-          color: white;
-          padding: 15px 0;
-        }
-
-        .nav-container {
-          max-width: 1200px;
-          margin: 0 auto;
-          padding: 0 20px;
-          display: flex;
-          align-items: center;
-          gap: 30px;
-        }
-
-        .categories-dropdown-wrapper {
-          position: relative;
-        }
-
-        .categories-button {
-          background: #f73312;
-          color: white;
-          border: none;
-          padding: 12px 20px;
-          border-radius: 6px;
-          display: flex;
-          align-items: center;
-          gap: 10px;
-          cursor: pointer;
-          font-size: 14px;
-          font-weight: 500;
-          transition: background 0.3s ease;
-        }
-
-        .categories-button:hover {
-          background: #e63312;
-        }
-
-        .categories-dropdown {
-          position: absolute;
-          top: 100%;
-          left: 0;
-          background: white;
-          box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
-          border-radius: 6px;
-          min-width: 220px;
-          z-index: 1000;
-          padding: 8px 0;
-          margin-top: 4px;
-        }
-
-        .category-link {
-          display: flex;
-          justify-content: space-between;
-          align-items: center;
-          padding: 12px 20px;
-          color: #333;
-          text-decoration: none;
-          font-size: 14px;
-          transition: background 0.3s ease;
-        }
-
-        .category-link:hover {
-          background: #f8f9fa;
-        }
-
-        .category-count {
-          color: #666;
-          font-size: 12px;
-        }
-
-        .nav-links {
-          display: flex;
-          gap: 25px;
-        }
-
-        .nav-link {
-          color: white;
-          text-decoration: none;
-          font-size: 14px;
-          font-weight: 500;
-          transition: color 0.3s ease;
-        }
-
-        .nav-link:hover {
-          color: #f73312;
-        }
-
-        @media (max-width: 768px) {
-          .header-container {
-            flex-wrap: wrap;
-            gap: 15px;
-          }
-
-          .search-container {
-            order: 3;
-            flex-basis: 100%;
-          }
-
-          .nav-container {
-            flex-direction: column;
-            gap: 15px;
-          }
-
-          .nav-links {
-            flex-wrap: wrap;
-            justify-content: center;
-          }
-        }
-      `}</style>
     </>
   );
 }
