@@ -487,8 +487,7 @@ export default function HomePage() {
 
                 <button
                   type="button"
-                  className="btn btn-primary"
-                  style={{ width: "100%" }}
+                  className="w-full bg-red-600 text-white py-3 rounded-md font-semibold hover:bg-red-700 transition-colors"
                 >
                   Find Compatible Parts
                 </button>
