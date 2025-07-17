@@ -982,7 +982,7 @@ export default function ShopPage() {
                           <button
                             onClick={() => addToWhatsAppCart(product)}
                             disabled={!product.inStock}
-                            className="whatsapp-btn w-full text-sm disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2"
+                            className="bg-green-600 hover:bg-green-700 text-white w-full text-sm disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2 px-4 py-2 rounded-md transition-colors"
                           >
                             <svg
                               className="w-4 h-4"
