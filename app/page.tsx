@@ -34,7 +34,30 @@ export default function HomePage() {
   const [vehicleYear, setVehicleYear] = useState("");
   const [vehicleModel, setVehicleModel] = useState("");
   const [vehicleEngine, setVehicleEngine] = useState("");
+  const [filteredProducts, setFilteredProducts] =
+    useState<Product[]>(allProducts);
+  const [isSearchActive, setIsSearchActive] = useState(false);
   const { addToCart } = useCart();
+  const searchParams = useSearchParams();
+
+  useEffect(() => {
+    const search = searchParams.get("search");
+    const category = searchParams.get("category");
+
+    if (search) {
+      setSearchQuery(search);
+      const results = searchProducts(search);
+      setFilteredProducts(results);
+      setIsSearchActive(true);
+    } else if (category) {
+      const results = getProductsByCategory(category.replace("-", " "));
+      setFilteredProducts(results);
+      setIsSearchActive(true);
+    } else {
+      setFilteredProducts(allProducts);
+      setIsSearchActive(false);
+    }
+  }, [searchParams]);
 
   // Get different product sets
   const featuredProducts =
