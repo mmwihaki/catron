@@ -193,7 +193,10 @@ export default function Header({
       {/* Mobile Search Bar */}
       <div className="bg-white border-b border-divider md:hidden">
         <div className="max-w-7xl mx-auto px-4 py-3">
-          <div className="flex border-2 border-accent-primary rounded-lg overflow-hidden">
+          <form
+            onSubmit={handleSearch}
+            className="flex border-2 border-accent-primary rounded-lg overflow-hidden"
+          >
             <input
               type="text"
               placeholder="Search parts..."
@@ -201,10 +204,13 @@ export default function Header({
               value={searchQuery}
               onChange={(e) => setSearchQuery?.(e.target.value)}
             />
-            <button className="bg-accent-primary text-white px-6 py-3 hover:bg-accent-primary hover:opacity-90 transition-all">
+            <button
+              type="submit"
+              className="bg-accent-primary text-white px-6 py-3 hover:bg-accent-primary hover:opacity-90 transition-all"
+            >
               <Search className="w-5 h-5" />
             </button>
-          </div>
+          </form>
         </div>
       </div>
 
