@@ -126,7 +126,7 @@ export default function ProductDetailPage() {
   const addToWhatsAppCart = () => {
     if (!product) return;
 
-    const phoneNumber = "+254700000000";
+    const phoneNumber = "+254742578910";
     let message = `Hi! I'd like to order this Nissan part:\n\n`;
     message += `• ${quantity}x ${product.name}\n`;
     message += `• SKU: ${product.sku}\n`;
