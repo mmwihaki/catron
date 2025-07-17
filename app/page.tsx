@@ -528,13 +528,13 @@ export default function HomePage() {
                       <h3 className="text-xl font-bold text-gray-900 group-hover:text-red-600 transition-colors">
                         {category.name}
                       </h3>
-                      <div className="text-sm text-secondary">
+                      <div className="text-sm text-gray-500">
                         {category.count} parts available
                       </div>
                     </div>
                   </div>
-                  <p className="text-muted mb-4">{category.description}</p>
-                  <div className="flex items-center text-primary font-medium">
+                  <p className="text-gray-600 mb-4">{category.description}</p>
+                  <div className="flex items-center text-red-600 font-medium">
                     Shop Now
                     <svg
                       className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform"
