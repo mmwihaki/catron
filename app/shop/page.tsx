@@ -925,7 +925,7 @@ export default function ShopPage() {
                   />
                 </svg>
                 <h3 className="text-xl font-medium mb-2">No parts found</h3>
-                <p className="text-gray-500 mb-4">
+                <p className="text-muted mb-4">
                   Try adjusting your search or filters
                 </p>
                 <button
