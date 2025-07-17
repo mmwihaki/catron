@@ -3,39 +3,8 @@
 import React, { useState, useEffect } from "react";
 import Link from "next/link";
 import { useParams } from "next/navigation";
-
-// Types
-interface Product {
-  id: number;
-  sku: string;
-  name: string;
-  category: string;
-  subcategory: string;
-  brand: string;
-  images: string[];
-  price: number;
-  originalPrice?: number;
-  rating: number;
-  reviews: number;
-  compatibility: CompatibilityInfo[];
-  description: string;
-  specifications: { [key: string]: string };
-  warranty: string;
-  inStock: boolean;
-  stockLevel: number;
-  isNew?: boolean;
-  isFeatured?: boolean;
-  tags: string[];
-  relatedProducts: number[];
-}
-
-interface CompatibilityInfo {
-  year: number[];
-  model: string;
-  engine: string;
-  trim?: string;
-  notes?: string;
-}
+import { allProducts, getProductsBySKU, Product } from "../../data/products";
+import Header from "../../components/Header";
 
 interface VINLookup {
   vin: string;
@@ -54,7 +23,6 @@ export default function ProductDetailPage() {
   const sku = params.sku as string;
 
   const [product, setProduct] = useState<Product | null>(null);
-  const [selectedImage, setSelectedImage] = useState(0);
   const [quantity, setQuantity] = useState(1);
   const [selectedYear, setSelectedYear] = useState("");
   const [selectedModel, setSelectedModel] = useState("");
@@ -63,93 +31,19 @@ export default function ProductDetailPage() {
   const [vinLookup, setVinLookup] = useState<VINLookup | null>(null);
   const [compatibilityCheck, setCompatibilityCheck] = useState<{
     isCompatible: boolean;
-    matchedCompatibility?: CompatibilityInfo;
     message: string;
   } | null>(null);
   const [activeTab, setActiveTab] = useState("description");
   const [showFullGallery, setShowFullGallery] = useState(false);
 
-  // Sample product data - would normally come from API
-  const sampleProduct: Product = {
-    id: 1,
-    sku: "NIS-OF-001",
-    name: "NISSAN OEM Oil Filter 15208-65F0C",
-    category: "Engine",
-    subcategory: "Oil Filters",
-    brand: "Nissan OEM",
-    images: [
-      "https://images.unsplash.com/photo-1558618047-3c8c76ca7d13?w=800&h=600&fit=crop",
-      "https://images.unsplash.com/photo-1619642751034-765dfdf7c58e?w=800&h=600&fit=crop",
-      "https://images.unsplash.com/photo-1580273916550-e323be2ae537?w=800&h=600&fit=crop",
-      "https://images.unsplash.com/photo-1486754735734-325b5831c3ad?w=800&h=600&fit=crop",
-    ],
-    price: 1850,
-    originalPrice: 2200,
-    rating: 4.8,
-    reviews: 156,
-    compatibility: [
-      {
-        year: [2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019],
-        model: "Note",
-        engine: "1.2L DIG-S HR12DDR",
-        trim: "E12 DIG-S",
-        notes: "For supercharged DIG-S engine only",
-      },
-      {
-        year: [2010, 2011, 2012, 2013, 2014, 2015, 2016],
-        model: "March",
-        engine: "1.2L HR12DE",
-        trim: "K13",
-        notes: "Standard naturally aspirated engine",
-      },
-      {
-        year: [2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017],
-        model: "Micra",
-        engine: "1.2L HR12DE",
-        trim: "K13",
-        notes: "Global market version",
-      },
-    ],
-    description: `
-      Genuine NISSAN OEM oil filter designed specifically for HR12 engines. This high-quality filter ensures optimal 
-      engine protection by removing contaminants and maintaining proper oil flow. Manufactured to exact NISSAN 
-      specifications for perfect fit and reliable performance.
-      
-      Key Features:
-      • Genuine NISSAN OEM part
-      • Advanced filtration technology
-      • Perfect fit guaranteed
-      • Extended engine life
-      • Maintains optimal oil pressure
-      • Easy installation
-      
-      This oil filter is specifically designed for the HR12 series engines found in various NISSAN models including 
-      the Note DIG-S, March K13, and Micra K13. The filter features a robust construction with high-quality filter 
-      media that captures even the smallest particles while maintaining excellent oil flow characteristics.
-    `,
-    specifications: {
-      "Part Number": "15208-65F0C",
-      "Filter Type": "Spin-on Oil Filter",
-      "Thread Size": "M20 x 1.5",
-      Height: "96mm",
-      Diameter: "93mm",
-      "Filter Media": "Premium Cellulose",
-      "Bypass Valve": "Built-in",
-      "Anti-Drainback Valve": "Yes",
-      "Operating Temperature": "-40°C to +150°C",
-      "Filtration Efficiency": "99% @ 25 microns",
-      "Recommended Change Interval": "10,000 km or 6 months",
-    },
-    warranty: "12 months or 20,000 km manufacturer warranty",
-    inStock: true,
-    stockLevel: 45,
-    tags: ["OEM", "Genuine", "Economy", "HR12"],
-    relatedProducts: [2, 3, 4, 5],
-  };
-
   useEffect(() => {
-    // Simulate API call to fetch product
-    setProduct(sampleProduct);
+    // Fetch product by SKU
+    const foundProduct = getProductsBySKU(sku);
+    if (foundProduct) {
+      setProduct(foundProduct);
+    } else {
+      setProduct(null);
+    }
   }, [sku]);
 
   const performVINLookup = async () => {
@@ -160,16 +54,16 @@ export default function ProductDetailPage() {
 
     // Simulate VIN decode API call
     setTimeout(() => {
-      // Mock VIN decode result
+      // Mock VIN decode result based on product compatibility
       const mockResult: VINLookup = {
         vin: vinNumber,
         isValid: true,
         vehicleInfo: {
-          year: 2015,
+          year: product?.year?.[0] || 2015,
           make: "NISSAN",
-          model: "Note",
-          engine: "1.2L DIG-S HR12DDR",
-          trim: "E12 DIG-S",
+          model: product?.model?.[0] || "Note",
+          engine: product?.engine?.[0] || "1.2L DIG-S",
+          trim: product?.carModel || "E12",
         },
       };
       setVinLookup(mockResult);
@@ -205,19 +99,19 @@ export default function ProductDetailPage() {
     }
 
     const yearNum = parseInt(checkYear);
-    const matchedCompatibility = product.compatibility.find(
-      (comp) =>
-        comp.year.includes(yearNum) &&
-        comp.model.toLowerCase() === checkModel.toLowerCase() &&
-        comp.engine
-          .toLowerCase()
-          .includes(checkEngine.toLowerCase().split(" ")[0]),
-    );
+    const isCompatible =
+      product.year &&
+      product.year.includes(yearNum) &&
+      product.model &&
+      product.model.some((m) => m.toLowerCase() === checkModel.toLowerCase()) &&
+      product.engine &&
+      product.engine.some((e) =>
+        e.toLowerCase().includes(checkEngine.toLowerCase().split(" ")[0]),
+      );
 
-    if (matchedCompatibility) {
+    if (isCompatible) {
       setCompatibilityCheck({
         isCompatible: true,
-        matchedCompatibility,
         message: `✅ This part is compatible with your ${checkYear} NISSAN ${checkModel} ${checkEngine}`,
       });
     } else {
@@ -237,10 +131,7 @@ export default function ProductDetailPage() {
     message += `• SKU: ${product.sku}\n`;
     message += `• Price: KES ${(product.price * quantity).toLocaleString()}\n\n`;
 
-    if (
-      compatibilityCheck?.isCompatible &&
-      compatibilityCheck.matchedCompatibility
-    ) {
+    if (compatibilityCheck?.isCompatible) {
       message += `Vehicle Compatibility:\n`;
       message += `• ${selectedYear} NISSAN ${selectedModel}\n`;
       message += `• Engine: ${selectedEngine}\n\n`;
@@ -258,83 +149,66 @@ export default function ProductDetailPage() {
 
   if (!product) {
     return (
-      <div className="min-h-screen flex items-center justify-center">
-        <div className="text-center">
-          <div className="animate-spin rounded-full h-32 w-32 border-b-2 border-primary mx-auto"></div>
-          <p className="mt-4 text-silver">Loading product details...</p>
+      <div className="min-h-screen bg-gray-50">
+        <Header
+          searchQuery=""
+          setSearchQuery={() => {}}
+          currentPage="product"
+        />
+        <div className="flex items-center justify-center min-h-[60vh]">
+          <div className="text-center">
+            <div className="text-6xl mb-4">🔍</div>
+            <h1 className="text-2xl font-bold mb-4">Product Not Found</h1>
+            <p className="text-gray-600 mb-8">
+              The product with SKU "{sku}" could not be found.
+            </p>
+            <Link
+              href="/shop"
+              className="bg-red-600 text-white px-6 py-3 rounded-lg hover:bg-red-700 transition-colors"
+            >
+              Browse All Products
+            </Link>
+          </div>
         </div>
       </div>
     );
   }
 
-  const availableYears = [
-    ...new Set(product.compatibility.flatMap((c) => c.year)),
-  ].sort((a, b) => b - a);
-  const availableModels = [
-    ...new Set(product.compatibility.map((c) => c.model)),
-  ];
-  const availableEngines = [
-    ...new Set(product.compatibility.map((c) => c.engine)),
-  ];
+  const availableYears = product.year
+    ? [...new Set(product.year)].sort((a, b) => b - a)
+    : [];
+  const availableModels = product.model ? [...new Set(product.model)] : [];
+  const availableEngines = product.engine ? [...new Set(product.engine)] : [];
 
   return (
-    <div className="product-detail-page">
-      {/* Header */}
-      <header className="header bg-white shadow-md">
-        <div className="container">
-          <div className="flex items-center justify-between py-4">
-            <div className="logo">
-              <Link href="/" className="flex items-center gap-3">
-                <div className="w-12 h-12 bg-primary rounded-lg flex items-center justify-center text-white font-bold text-xl">
-                  B
-                </div>
-                <div>
-                  <div className="text-2xl font-bold text-charcoal">BRATOR</div>
-                  <div className="text-xs text-silver">
-                    Nissan Parts Specialist
-                  </div>
-                </div>
-              </Link>
-            </div>
-
-            <div className="flex items-center gap-6">
-              <Link href="/" className="text-charcoal hover:text-primary">
-                Home
-              </Link>
-              <Link href="/shop" className="text-charcoal hover:text-primary">
-                Shop
-              </Link>
-              <span className="text-primary font-medium">Product Details</span>
-            </div>
-          </div>
-        </div>
-      </header>
+    <div className="min-h-screen bg-gray-50">
+      <Header searchQuery="" setSearchQuery={() => {}} currentPage="product" />
 
       {/* Breadcrumb */}
-      <div className="bg-background-gray py-4">
-        <div className="container">
-          <div className="flex items-center gap-2 text-sm text-silver">
-            <Link href="/" className="hover:text-primary">
+      <div className="bg-gray-100 py-4">
+        <div className="max-w-7xl mx-auto px-4">
+          <div className="flex items-center gap-2 text-sm text-gray-600">
+            <Link href="/" className="hover:text-red-600">
               Home
             </Link>
             <span>›</span>
-            <Link href="/shop" className="hover:text-primary">
+            <Link href="/shop" className="hover:text-red-600">
               Shop
             </Link>
             <span>›</span>
             <Link
-              href={`/shop?category=${product.category}`}
-              className="hover:text-primary"
+              href={`/shop?category=${encodeURIComponent(product.category)}`}
+              className="hover:text-red-600"
             >
               {product.category}
             </Link>
             <span>›</span>
-            <span className="text-charcoal">{product.name}</span>
+            <span className="text-gray-900">{product.name}</span>
           </div>
         </div>
       </div>
 
-      <div className="container py-8">
+      <div className="max-w-7xl mx-auto px-4 py-8">
         <div className="grid lg:grid-cols-2 gap-12">
           {/* Product Images */}
           <div>
@@ -342,75 +216,26 @@ export default function ProductDetailPage() {
               {/* Main Image */}
               <div className="aspect-square bg-gray-100 rounded-xl overflow-hidden relative group">
                 <img
-                  src={product.images[selectedImage]}
+                  src={product.image}
                   alt={product.name}
                   className="w-full h-full object-cover cursor-zoom-in"
                   onClick={() => setShowFullGallery(true)}
                 />
 
-                {/* Image Navigation */}
-                {product.images.length > 1 && (
-                  <>
-                    <button
-                      onClick={() =>
-                        setSelectedImage(Math.max(0, selectedImage - 1))
-                      }
-                      className="absolute left-4 top-1/2 -translate-y-1/2 bg-white bg-opacity-80 hover:bg-opacity-100 rounded-full p-2 opacity-0 group-hover:opacity-100 transition-opacity"
-                      disabled={selectedImage === 0}
-                    >
-                      <svg
-                        className="w-5 h-5"
-                        fill="none"
-                        stroke="currentColor"
-                        viewBox="0 0 24 24"
-                      >
-                        <path
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                          strokeWidth={2}
-                          d="M15 19l-7-7 7-7"
-                        />
-                      </svg>
-                    </button>
-                    <button
-                      onClick={() =>
-                        setSelectedImage(
-                          Math.min(
-                            product.images.length - 1,
-                            selectedImage + 1,
-                          ),
-                        )
-                      }
-                      className="absolute right-4 top-1/2 -translate-y-1/2 bg-white bg-opacity-80 hover:bg-opacity-100 rounded-full p-2 opacity-0 group-hover:opacity-100 transition-opacity"
-                      disabled={selectedImage === product.images.length - 1}
-                    >
-                      <svg
-                        className="w-5 h-5"
-                        fill="none"
-                        stroke="currentColor"
-                        viewBox="0 0 24 24"
-                      >
-                        <path
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                          strokeWidth={2}
-                          d="M9 5l7 7-7 7"
-                        />
-                      </svg>
-                    </button>
-                  </>
-                )}
-
                 {/* Badges */}
                 <div className="absolute top-4 left-4 flex gap-2">
                   {product.isNew && (
-                    <div className="badge badge-success">NEW</div>
+                    <div className="bg-green-600 text-white px-2 py-1 rounded-md text-xs font-medium">
+                      NEW
+                    </div>
                   )}
                   {product.isFeatured && (
-                    <div className="badge badge-warning">FEATURED</div>
+                    <div className="bg-yellow-500 text-white px-2 py-1 rounded-md text-xs font-medium">
+                      FEATURED
+                    </div>
                   )}
                   {product.originalPrice && (
-                    <div className="badge badge-primary">
+                    <div className="bg-red-600 text-white px-2 py-1 rounded-md text-xs font-medium">
                       {Math.round(
                         ((product.originalPrice - product.price) /
                           product.originalPrice) *
@@ -421,29 +246,6 @@ export default function ProductDetailPage() {
                   )}
                 </div>
               </div>
-
-              {/* Thumbnail Images */}
-              {product.images.length > 1 && (
-                <div className="flex gap-2 overflow-x-auto">
-                  {product.images.map((image, index) => (
-                    <button
-                      key={index}
-                      onClick={() => setSelectedImage(index)}
-                      className={`w-20 h-20 rounded-lg overflow-hidden border-2 flex-shrink-0 ${
-                        selectedImage === index
-                          ? "border-primary"
-                          : "border-gray-200"
-                      }`}
-                    >
-                      <img
-                        src={image}
-                        alt={`${product.name} ${index + 1}`}
-                        className="w-full h-full object-cover"
-                      />
-                    </button>
-                  ))}
-                </div>
-              )}
             </div>
           </div>
 
@@ -452,10 +254,11 @@ export default function ProductDetailPage() {
             <div className="space-y-6">
               {/* Basic Info */}
               <div>
-                <div className="text-sm text-primary font-medium mb-2">
-                  {product.category} › {product.subcategory}
+                <div className="text-sm text-red-600 font-medium mb-2">
+                  {product.category}
+                  {product.subcategory ? ` › ${product.subcategory}` : ""}
                 </div>
-                <h1 className="text-3xl font-bold text-charcoal mb-4">
+                <h1 className="text-3xl font-bold text-gray-900 mb-4">
                   {product.name}
                 </h1>
 
@@ -464,12 +267,14 @@ export default function ProductDetailPage() {
                     <div className="text-yellow-400 text-lg">
                       {renderStars(product.rating)}
                     </div>
-                    <span className="text-sm text-silver">
+                    <span className="text-sm text-gray-500">
                       ({product.reviews} reviews)
                     </span>
                   </div>
-                  <div className="text-sm text-silver">SKU: {product.sku}</div>
-                  <div className="text-sm font-medium text-charcoal">
+                  <div className="text-sm text-gray-500">
+                    SKU: {product.sku}
+                  </div>
+                  <div className="text-sm font-medium text-gray-900">
                     Brand: {product.brand}
                   </div>
                 </div>
@@ -477,11 +282,11 @@ export default function ProductDetailPage() {
                 {/* Pricing */}
                 <div className="flex items-center gap-4 mb-6">
                   {product.originalPrice && (
-                    <span className="text-xl text-silver line-through">
+                    <span className="text-xl text-gray-500 line-through">
                       KES {product.originalPrice.toLocaleString()}
                     </span>
                   )}
-                  <span className="text-3xl font-bold text-primary">
+                  <span className="text-3xl font-bold text-red-600">
                     KES {product.price.toLocaleString()}
                   </span>
                   {product.originalPrice && (
@@ -509,28 +314,28 @@ export default function ProductDetailPage() {
                         : "In Stock"
                       : "Out of Stock"}
                   </div>
-                  {product.warranty && (
-                    <div className="text-sm text-silver">
-                      🛡️ {product.warranty}
-                    </div>
-                  )}
+                  <div className="text-sm text-gray-500">
+                    🛡️ Warranty included
+                  </div>
                 </div>
               </div>
 
               {/* Compatibility Checker */}
-              <div className="bg-background-gray rounded-xl p-6">
+              <div className="bg-gray-100 rounded-xl p-6">
                 <h3 className="text-xl font-bold mb-4">
                   Vehicle Compatibility Checker
                 </h3>
 
                 {/* VIN Lookup */}
                 <div className="mb-6">
-                  <label className="form-label">VIN Number (Quick Check)</label>
+                  <label className="block text-sm font-medium text-gray-700 mb-1">
+                    VIN Number (Quick Check)
+                  </label>
                   <div className="flex gap-2">
                     <input
                       type="text"
                       placeholder="Enter 17-character VIN number"
-                      className="form-input flex-1"
+                      className="flex-1 px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-red-500"
                       value={vinNumber}
                       onChange={(e) =>
                         setVinNumber(e.target.value.toUpperCase())
@@ -540,7 +345,7 @@ export default function ProductDetailPage() {
                     <button
                       onClick={performVINLookup}
                       disabled={vinNumber.length !== 17}
-                      className="btn btn-primary disabled:opacity-50"
+                      className="bg-red-600 text-white px-4 py-2 rounded-md hover:bg-red-700 disabled:opacity-50 disabled:cursor-not-allowed"
                     >
                       Lookup
                     </button>
@@ -565,9 +370,11 @@ export default function ProductDetailPage() {
                 {/* Manual Selection */}
                 <div className="grid md:grid-cols-3 gap-4 mb-4">
                   <div>
-                    <label className="form-label">Year</label>
+                    <label className="block text-sm font-medium text-gray-700 mb-1">
+                      Year
+                    </label>
                     <select
-                      className="form-select w-full"
+                      className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-red-500"
                       value={selectedYear}
                       onChange={(e) => {
                         setSelectedYear(e.target.value);
@@ -588,9 +395,11 @@ export default function ProductDetailPage() {
                   </div>
 
                   <div>
-                    <label className="form-label">Model</label>
+                    <label className="block text-sm font-medium text-gray-700 mb-1">
+                      Model
+                    </label>
                     <select
-                      className="form-select w-full"
+                      className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-red-500"
                       value={selectedModel}
                       onChange={(e) => {
                         setSelectedModel(e.target.value);
@@ -611,9 +420,11 @@ export default function ProductDetailPage() {
                   </div>
 
                   <div>
-                    <label className="form-label">Engine</label>
+                    <label className="block text-sm font-medium text-gray-700 mb-1">
+                      Engine
+                    </label>
                     <select
-                      className="form-select w-full"
+                      className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-red-500"
                       value={selectedEngine}
                       onChange={(e) => {
                         setSelectedEngine(e.target.value);
@@ -644,11 +455,6 @@ export default function ProductDetailPage() {
                     }`}
                   >
                     <p className="font-medium">{compatibilityCheck.message}</p>
-                    {compatibilityCheck.matchedCompatibility?.notes && (
-                      <p className="text-sm mt-2">
-                        Note: {compatibilityCheck.matchedCompatibility.notes}
-                      </p>
-                    )}
                   </div>
                 )}
 
@@ -667,7 +473,9 @@ export default function ProductDetailPage() {
               <div className="bg-white border rounded-xl p-6">
                 <div className="flex items-center gap-4 mb-6">
                   <div>
-                    <label className="form-label">Quantity</label>
+                    <label className="block text-sm font-medium text-gray-700 mb-1">
+                      Quantity
+                    </label>
                     <div className="flex items-center border rounded-lg">
                       <button
                         onClick={() => setQuantity(Math.max(1, quantity - 1))}
@@ -720,8 +528,8 @@ export default function ProductDetailPage() {
                   </div>
 
                   <div className="flex-1">
-                    <div className="text-sm text-silver">Total Price</div>
-                    <div className="text-2xl font-bold text-primary">
+                    <div className="text-sm text-gray-500">Total Price</div>
+                    <div className="text-2xl font-bold text-red-600">
                       KES {(product.price * quantity).toLocaleString()}
                     </div>
                   </div>
@@ -730,7 +538,7 @@ export default function ProductDetailPage() {
                 <button
                   onClick={addToWhatsAppCart}
                   disabled={!product.inStock}
-                  className="btn whatsapp-btn w-full text-lg py-4 disabled:opacity-50 disabled:cursor-not-allowed"
+                  className="bg-green-600 hover:bg-green-700 text-white w-full text-lg py-4 rounded-md disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2"
                 >
                   <svg
                     className="w-6 h-6"
@@ -742,7 +550,7 @@ export default function ProductDetailPage() {
                   {product.inStock ? "Order via WhatsApp" : "Out of Stock"}
                 </button>
 
-                <div className="flex items-center justify-center gap-6 mt-4 text-sm text-silver">
+                <div className="flex items-center justify-center gap-6 mt-4 text-sm text-gray-500">
                   <div className="flex items-center gap-1">
                     <svg
                       className="w-4 h-4"
@@ -803,7 +611,6 @@ export default function ProductDetailPage() {
             <div className="flex gap-8">
               {[
                 { id: "description", label: "Description" },
-                { id: "specifications", label: "Specifications" },
                 { id: "compatibility", label: "Compatibility" },
                 { id: "reviews", label: "Reviews" },
               ].map((tab) => (
@@ -812,8 +619,8 @@ export default function ProductDetailPage() {
                   onClick={() => setActiveTab(tab.id)}
                   className={`py-4 px-2 border-b-2 font-medium ${
                     activeTab === tab.id
-                      ? "border-primary text-primary"
-                      : "border-transparent text-silver hover:text-charcoal"
+                      ? "border-red-600 text-red-600"
+                      : "border-transparent text-gray-500 hover:text-gray-900"
                   }`}
                 >
                   {tab.label}
@@ -825,55 +632,8 @@ export default function ProductDetailPage() {
           <div className="py-8">
             {activeTab === "description" && (
               <div className="prose max-w-none">
-                <div className="whitespace-pre-line text-charcoal-light leading-relaxed">
+                <div className="whitespace-pre-line text-gray-700 leading-relaxed">
                   {product.description}
-                </div>
-              </div>
-            )}
-
-            {activeTab === "specifications" && (
-              <div className="grid md:grid-cols-2 gap-8">
-                <div>
-                  <h3 className="text-xl font-bold mb-4">
-                    Technical Specifications
-                  </h3>
-                  <div className="space-y-3">
-                    {Object.entries(product.specifications).map(
-                      ([key, value]) => (
-                        <div key={key} className="flex">
-                          <span className="font-medium text-charcoal w-48">
-                            {key}:
-                          </span>
-                          <span className="text-charcoal-light">{value}</span>
-                        </div>
-                      ),
-                    )}
-                  </div>
-                </div>
-
-                <div>
-                  <h3 className="text-xl font-bold mb-4">Installation Notes</h3>
-                  <div className="bg-background-gray rounded-lg p-6">
-                    <ul className="space-y-2 text-charcoal-light">
-                      <li>
-                        • Always use a proper oil filter wrench for removal
-                      </li>
-                      <li>
-                        • Apply a thin layer of clean oil to the new filter's
-                        rubber gasket
-                      </li>
-                      <li>
-                        • Hand tighten plus 3/4 turn - do not over-tighten
-                      </li>
-                      <li>
-                        • Check for leaks after installation and first startup
-                      </li>
-                      <li>
-                        • Dispose of old filter in an environmentally
-                        responsible manner
-                      </li>
-                    </ul>
-                  </div>
                 </div>
               </div>
             )}
@@ -882,30 +642,28 @@ export default function ProductDetailPage() {
               <div>
                 <h3 className="text-xl font-bold mb-6">Compatible Vehicles</h3>
                 <div className="grid gap-6">
-                  {product.compatibility.map((comp, index) => (
-                    <div key={index} className="border rounded-lg p-6">
-                      <div className="flex items-start justify-between mb-4">
-                        <div>
-                          <h4 className="text-lg font-semibold text-charcoal">
-                            NISSAN {comp.model} {comp.trim && `(${comp.trim})`}
-                          </h4>
-                          <p className="text-charcoal-light">
-                            Engine: {comp.engine}
+                  <div className="border rounded-lg p-6">
+                    <div className="flex items-start justify-between mb-4">
+                      <div>
+                        <h4 className="text-lg font-semibold text-gray-900">
+                          NISSAN {product.carModel}
+                        </h4>
+                        <p className="text-gray-600">
+                          Compatible Models: {product.compatibility.join(", ")}
+                        </p>
+                        {product.engine && (
+                          <p className="text-gray-600">
+                            Engines: {product.engine.join(", ")}
                           </p>
-                        </div>
-                        <div className="text-sm text-silver">
-                          Years: {comp.year.join(", ")}
-                        </div>
+                        )}
                       </div>
-                      {comp.notes && (
-                        <div className="bg-blue-50 border border-blue-200 rounded-lg p-3">
-                          <p className="text-sm text-blue-800">
-                            <strong>Note:</strong> {comp.notes}
-                          </p>
+                      {product.year && (
+                        <div className="text-sm text-gray-500">
+                          Years: {product.year.join(", ")}
                         </div>
                       )}
                     </div>
-                  ))}
+                  </div>
                 </div>
 
                 <div className="mt-8 p-6 bg-yellow-50 border border-yellow-200 rounded-lg">
@@ -928,14 +686,14 @@ export default function ProductDetailPage() {
                 <div className="flex items-center justify-between mb-8">
                   <h3 className="text-xl font-bold">Customer Reviews</h3>
                   <div className="flex items-center gap-4">
-                    <div className="text-3xl font-bold text-primary">
+                    <div className="text-3xl font-bold text-red-600">
                       {product.rating}
                     </div>
                     <div>
                       <div className="text-yellow-400 text-lg mb-1">
                         {renderStars(product.rating)}
                       </div>
-                      <div className="text-sm text-silver">
+                      <div className="text-sm text-gray-500">
                         {product.reviews} reviews
                       </div>
                     </div>
@@ -950,8 +708,7 @@ export default function ProductDetailPage() {
                       rating: 5,
                       date: "2024-01-15",
                       verified: true,
-                      review:
-                        "Perfect fit for my 2015 Note DIG-S. Installation was straightforward and the quality is excellent. Genuine NISSAN part as advertised.",
+                      review: `Perfect fit for my ${product.carModel}. Installation was straightforward and the quality is excellent. Genuine ${product.brand} part as advertised.`,
                     },
                     {
                       name: "Sarah K.",
@@ -959,15 +716,14 @@ export default function ProductDetailPage() {
                       date: "2024-01-10",
                       verified: true,
                       review:
-                        "Good quality filter, fast delivery. Only minor issue was the packaging could be better protected.",
+                        "Good quality part, fast delivery. Only minor issue was the packaging could be better protected.",
                     },
                     {
                       name: "David R.",
                       rating: 5,
                       date: "2024-01-05",
                       verified: true,
-                      review:
-                        "Excellent service from Brator. Part arrived quickly and fits perfectly on my March K13. Will definitely order again.",
+                      review: `Excellent service from Brator. Part arrived quickly and fits perfectly on my ${product.compatibility[0]}. Will definitely order again.`,
                     },
                   ].map((review, index) => (
                     <div key={index} className="border-b pb-6">
@@ -985,13 +741,13 @@ export default function ProductDetailPage() {
                             <div className="text-yellow-400">
                               {renderStars(review.rating)}
                             </div>
-                            <span className="text-sm text-silver">
+                            <span className="text-sm text-gray-500">
                               {review.date}
                             </span>
                           </div>
                         </div>
                       </div>
-                      <p className="text-charcoal-light">{review.review}</p>
+                      <p className="text-gray-700">{review.review}</p>
                     </div>
                   ))}
                 </div>
@@ -1002,12 +758,12 @@ export default function ProductDetailPage() {
       </div>
 
       {/* Footer */}
-      <footer className="bg-charcoal text-white mt-16">
-        <div className="container py-12">
+      <footer className="bg-gray-900 text-white mt-16">
+        <div className="max-w-7xl mx-auto px-4 py-12">
           <div className="grid md:grid-cols-3 gap-8">
             <div>
               <div className="flex items-center gap-3 mb-4">
-                <div className="w-10 h-10 bg-primary rounded-lg flex items-center justify-center text-white font-bold">
+                <div className="w-10 h-10 bg-red-600 rounded-lg flex items-center justify-center text-white font-bold">
                   B
                 </div>
                 <div>
@@ -1088,21 +844,10 @@ export default function ProductDetailPage() {
               </svg>
             </button>
             <img
-              src={product.images[selectedImage]}
+              src={product.image}
               alt={product.name}
               className="w-full h-auto max-h-[80vh] object-contain"
             />
-            <div className="flex justify-center gap-2 mt-4">
-              {product.images.map((_, index) => (
-                <button
-                  key={index}
-                  onClick={() => setSelectedImage(index)}
-                  className={`w-3 h-3 rounded-full ${
-                    selectedImage === index ? "bg-white" : "bg-gray-600"
-                  }`}
-                />
-              ))}
-            </div>
           </div>
         </div>
       )}
