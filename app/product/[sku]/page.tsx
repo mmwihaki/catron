@@ -5,6 +5,7 @@ import Link from "next/link";
 import { useParams } from "next/navigation";
 import { allProducts, getProductsBySKU, Product } from "../../data/products";
 import Header from "../../components/Header";
+import Footer from "../../components/Footer";
 
 interface VINLookup {
   vin: string;
