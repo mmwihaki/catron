@@ -299,7 +299,7 @@ export default function HomePage() {
               <div className="relative">
                 <button
                   onClick={() => setShowCategories(!showCategories)}
-                  className="btn btn-primary"
+                  className="flex items-center gap-2 bg-red-600 text-white px-4 py-2 rounded-lg hover:bg-red-700 transition-colors"
                 >
                   <svg
                     className="w-5 h-5"
