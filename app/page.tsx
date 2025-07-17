@@ -27,6 +27,7 @@ export default function HomePage() {
   const [vehicleYear, setVehicleYear] = useState("");
   const [vehicleModel, setVehicleModel] = useState("");
   const [vehicleEngine, setVehicleEngine] = useState("");
+  const { addToCart } = useCart();
 
   // Get different product sets
   const featuredProducts =
