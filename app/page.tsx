@@ -453,7 +453,7 @@ export default function HomePage() {
                       Model
                     </label>
                     <select
-                      className="form-select"
+                      className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-red-500"
                       value={vehicleModel}
                       onChange={(e) => setVehicleModel(e.target.value)}
                     >
