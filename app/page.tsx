@@ -293,8 +293,8 @@ export default function HomePage() {
         </div>
 
         {/* Navigation */}
-        <nav className="bg-secondary border-b">
-          <div className="container">
+        <nav className="bg-gray-50 border-b">
+          <div className="max-w-7xl mx-auto px-4">
             <div className="flex items-center gap-8 py-3">
               <div className="relative">
                 <button
