@@ -12,6 +12,12 @@
   font-feature-settings:
     "kern" 1,
     "liga" 1;
+  /* Pixel-perfect rendering */
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+  transform-style: preserve-3d;
+  /* Eliminate sub-pixel rendering issues */
+  contain: layout style paint;
 }
 
 html {
@@ -56,6 +62,7 @@ img {
   image-rendering: -webkit-optimize-contrast;
   image-rendering: crisp-edges;
   image-rendering: -moz-crisp-edges;
+  image-rendering: optimizeQuality;
   /* Prevent blurry scaling */
   -ms-interpolation-mode: bicubic;
   /* Sharp edges */
@@ -64,6 +71,31 @@ img {
   /* Perfect pixel alignment */
   transform: translateZ(0);
   -webkit-transform: translateZ(0);
+  /* Prevent layout shifts */
+  contain: layout;
+  /* Optimize for sharp scaling */
+  object-fit: cover;
+  object-position: center;
+  /* Ensure pixel boundaries */
+  display: block;
+  height: auto;
+  max-width: 100%;
+}
+
+/* Lazy loading optimization */
+img[loading="lazy"] {
+  opacity: 0;
+  transition: opacity 0.3s ease-in-out;
+}
+
+img[loading="lazy"].loaded {
+  opacity: 1;
+}
+
+/* Hi-DPI srcset optimization */
+img[srcset] {
+  image-rendering: auto;
+  image-rendering: crisp-edges;
 }
 
 /* SVG optimization */
