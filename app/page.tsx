@@ -485,11 +485,11 @@ export default function HomePage() {
             {/* Brand Column */}
             <div className="md:col-span-2">
               <div className="flex items-center gap-3 mb-6">
-                <div className="w-12 h-12 bg-primary rounded-lg flex items-center justify-center text-white font-bold text-xl">
-                  B
+                <div className="w-12 h-12 bg-red-600 rounded-lg flex items-center justify-center text-white font-bold text-xl">
+                  C
                 </div>
                 <div>
-                  <div className="text-2xl font-bold">BRATOR</div>
+                  <div className="text-2xl font-bold">CATRON</div>
                   <div className="text-sm text-gray-300">
                     Nissan Parts Specialist
                   </div>
@@ -655,7 +655,7 @@ export default function HomePage() {
           <div className="border-t border-charcoal-light mt-12 pt-8">
             <div className="flex flex-col md:flex-row justify-between items-center gap-4">
               <div className="text-gray-300 text-sm">
-                © 2024 Brator Auto Parts. All rights reserved.
+                © 2024 Catron Auto Parts. All rights reserved.
               </div>
               <div className="flex gap-6 text-sm text-gray-300">
                 <Link
