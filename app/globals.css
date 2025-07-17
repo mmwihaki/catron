@@ -10,6 +10,10 @@
   --accent-secondary: #007bff;
   --white: #ffffff;
   --divider: #b0b0b0;
+
+  /* Enterprise-grade header styling */
+  --header-muted: #757575;
+  --header-hover: #007bff;
 }
 
 /* High-quality font rendering and crisp display optimizations */
