@@ -956,9 +956,7 @@ export default function ShopPage() {
                       {/* Product Badges */}
                       <div className="absolute top-4 left-4 z-10 flex gap-2">
                         {product.isNew && (
-                          <div className="bg-green-500 text-white px-2 py-1 rounded-md text-xs font-medium">
-                            NEW
-                          </div>
+                          <div className="badge badge-success">NEW</div>
                         )}
                         {product.isFeatured && (
                           <div className="bg-yellow-500 text-white px-2 py-1 rounded-md text-xs font-medium">
