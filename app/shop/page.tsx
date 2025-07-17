@@ -185,13 +185,6 @@ export default function ShopPage() {
     return "★".repeat(Math.floor(rating)) + "☆".repeat(5 - Math.floor(rating));
   };
 
-  const addToWhatsAppCart = (product: Product) => {
-    const phoneNumber = "+254700000000";
-    const message = `Hi! I'd like to order this Nissan part:\n\n• ${product.name} (SKU: ${product.sku})\n• Price: KES ${product.price.toLocaleString()}\n\nPlease confirm availability & payment details.`;
-    const whatsappUrl = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
-    window.open(whatsappUrl, "_blank");
-  };
-
   return (
     <div className="min-h-screen bg-gray-50">
       <Header
