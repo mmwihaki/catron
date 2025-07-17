@@ -221,19 +221,6 @@ export default function SupportPage() {
     <div className="min-h-screen bg-white">
       <Header currentPage="support" />
 
-      {/* Breadcrumb */}
-      <div className="bg-background-gray py-4">
-        <div className="container">
-          <div className="flex items-center gap-2 text-sm text-silver">
-            <Link href="/" className="hover:text-primary">
-              Home
-            </Link>
-            <span>›</span>
-            <span className="text-charcoal">Support & FAQs</span>
-          </div>
-        </div>
-      </div>
-
       {/* Hero Section */}
       <section className="hero-section py-16 bg-gradient-to-r from-charcoal to-charcoal-light text-white">
         <div className="container text-center">
