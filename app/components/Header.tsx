@@ -170,13 +170,13 @@ export default function Header({
       </div>
 
       {/* Navigation */}
-      <nav className="bg-gray-50 border-b">
+      <nav className="bg-primary border-b border-divider">
         <div className="max-w-7xl mx-auto px-4">
           <div className="flex items-center gap-8 py-3">
             <div className="relative">
               <button
                 onClick={() => setShowCategories(!showCategories)}
-                className="flex items-center gap-2 bg-red-600 text-white px-4 py-2 rounded-lg hover:bg-red-700 transition-colors"
+                className="btn-primary"
               >
                 <Menu className="w-5 h-5" />
                 All Categories
@@ -184,18 +184,18 @@ export default function Header({
               </button>
 
               {showCategories && (
-                <div className="absolute top-full left-0 mt-2 w-64 bg-white shadow-xl rounded-lg border z-50">
+                <div className="absolute top-full left-0 mt-2 w-64 bg-white shadow-xl rounded-lg border border-divider z-50">
                   {categories.map((category) => (
                     <Link
                       key={category.slug}
                       href={`/category/${category.slug}`}
-                      className="flex items-center gap-3 px-4 py-3 hover:bg-gray-50 border-b last:border-b-0"
+                      className="flex items-center gap-3 px-4 py-3 hover:bg-primary border-b border-divider last:border-b-0 transition-colors"
                     >
                       <div>
-                        <div className="font-medium text-gray-900">
+                        <div className="font-medium text-primary">
                           {category.name}
                         </div>
-                        <div className="text-xs text-gray-500">
+                        <div className="text-xs text-secondary">
                           {category.count} items
                         </div>
                       </div>
@@ -210,8 +210,8 @@ export default function Header({
                 href="/"
                 className={`font-medium transition-colors ${
                   currentPage === "home"
-                    ? "text-red-600"
-                    : "text-gray-700 hover:text-red-600"
+                    ? "text-accent-primary"
+                    : "text-primary hover:text-accent-secondary"
                 }`}
               >
                 Home
@@ -220,8 +220,8 @@ export default function Header({
                 href="/shop"
                 className={`font-medium transition-colors ${
                   currentPage === "shop"
-                    ? "text-red-600"
-                    : "text-gray-700 hover:text-red-600"
+                    ? "text-accent-primary"
+                    : "text-primary hover:text-accent-secondary"
                 }`}
               >
                 Shop
@@ -230,8 +230,8 @@ export default function Header({
                 href="/about"
                 className={`font-medium transition-colors ${
                   currentPage === "about"
-                    ? "text-red-600"
-                    : "text-gray-700 hover:text-red-600"
+                    ? "text-accent-primary"
+                    : "text-primary hover:text-accent-secondary"
                 }`}
               >
                 About
@@ -240,8 +240,8 @@ export default function Header({
                 href="/support"
                 className={`font-medium transition-colors ${
                   currentPage === "support"
-                    ? "text-red-600"
-                    : "text-gray-700 hover:text-red-600"
+                    ? "text-accent-primary"
+                    : "text-primary hover:text-accent-secondary"
                 }`}
               >
                 Support
@@ -250,21 +250,21 @@ export default function Header({
                 href="/contact"
                 className={`font-medium transition-colors ${
                   currentPage === "contact"
-                    ? "text-red-600"
-                    : "text-gray-700 hover:text-red-600"
+                    ? "text-accent-primary"
+                    : "text-primary hover:text-accent-secondary"
                 }`}
               >
                 Contact
               </Link>
             </div>
 
-            <div className="ml-auto flex items-center gap-4 text-sm text-gray-500">
+            <div className="ml-auto flex items-center gap-4 text-sm text-secondary">
               <span className="flex items-center gap-1">
-                <ShoppingCart className="w-4 h-4" />
+                <ShoppingCart className="w-4 h-4 text-accent-secondary" />
                 Free shipping on orders over KES 5,000
               </span>
               <span className="flex items-center gap-1">
-                <User className="w-4 h-4" />
+                <User className="w-4 h-4 text-accent-secondary" />
                 Expert fitment support
               </span>
             </div>
