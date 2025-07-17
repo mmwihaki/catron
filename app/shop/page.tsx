@@ -446,7 +446,7 @@ export default function ShopPage() {
   };
 
   return (
-    <div className="shop-page bg-secondary">
+    <div className="shop-page bg-gray-50">
       {/* Header - Same as homepage */}
       <header className="bg-white shadow-lg">
         <div className="bg-dark text-white">
