@@ -212,35 +212,69 @@ export default function HomePage() {
           }}
         ></div>
 
-        <div className="relative z-10 max-w-7xl mx-auto px-4 py-12 md:py-20">
-          <div className="text-center mb-8 md:mb-12">
-            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-4 md:mb-6 leading-tight">
-              Premium <span className="text-accent-primary">Nissan</span> Parts
-            </h1>
-            <p className="text-lg md:text-xl mb-6 md:mb-8 text-white max-w-3xl mx-auto">
-              Kenya's #1 marketplace for genuine OEM and performance parts.
-              Quality guaranteed, expert fitment support, fast delivery
-              nationwide.
-            </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center mb-8 md:mb-12">
-              <Link href="/shop" className="btn-primary text-lg px-8 py-4">
-                Shop Nissan Parts
-              </Link>
-              <Link
-                href="/support"
-                className="btn-outline text-lg px-8 py-4 border-white text-white hover:bg-white hover:text-primary"
-              >
-                Fitment Guide
-              </Link>
+                <div className="relative z-10 max-w-7xl mx-auto px-4 py-12 md:py-20">
+          {/* Mobile Layout - Centered */}
+          <div className="block lg:hidden">
+            <div className="text-center mb-8 md:mb-12">
+              <h1 className="text-4xl md:text-5xl font-bold mb-4 md:mb-6 leading-tight">
+                Premium <span className="text-accent-primary">Nissan</span> Parts
+              </h1>
+              <p className="text-lg md:text-xl mb-6 md:mb-8 text-white max-w-3xl mx-auto">
+                Kenya's #1 marketplace for genuine OEM and performance parts.
+                Quality guaranteed, expert fitment support, fast delivery
+                nationwide.
+              </p>
+              <div className="flex flex-col sm:flex-row gap-4 justify-center mb-8 md:mb-12">
+                <Link href="/shop" className="btn-primary text-lg px-8 py-4">
+                  Shop Nissan Parts
+                </Link>
+                <Link
+                  href="/support"
+                  className="btn-outline text-lg px-8 py-4 border-white text-white hover:bg-white hover:text-primary"
+                >
+                  Fitment Guide
+                </Link>
+              </div>
             </div>
-          </div>
 
-          {/* Vehicle Selector - Centered */}
-          <div className="max-w-2xl mx-auto">
-            <div className="card-white">
-              <h3 className="text-xl md:text-2xl font-bold mb-6 text-center text-primary">
-                Find Parts for Your Nissan
-              </h3>
+            <div className="max-w-2xl mx-auto">
+              <div className="card-white">
+                <h3 className="text-xl md:text-2xl font-bold mb-6 text-center text-primary">
+                  Find Parts for Your Nissan
+                </h3>
+
+          {/* Desktop Layout - Left/Right Split */}
+          <div className="hidden lg:block">
+            <div className="grid lg:grid-cols-2 gap-12 items-center">
+              {/* Left Content */}
+              <div className="text-left">
+                <h1 className="text-5xl lg:text-6xl font-bold mb-6 leading-tight">
+                  Premium <span className="text-accent-primary">Nissan</span> Parts
+                </h1>
+                <p className="text-xl mb-8 text-white">
+                  Kenya's #1 marketplace for genuine OEM and performance parts.
+                  Quality guaranteed, expert fitment support, fast delivery
+                  nationwide.
+                </p>
+                <div className="flex gap-4">
+                  <Link href="/shop" className="btn-primary text-lg px-8 py-4">
+                    Shop Nissan Parts
+                  </Link>
+                  <Link
+                    href="/support"
+                    className="btn-outline text-lg px-8 py-4 border-white text-white hover:bg-white hover:text-primary"
+                  >
+                    Fitment Guide
+                  </Link>
+                </div>
+              </div>
+
+              {/* Right Form */}
+              <div>
+                <div className="card-white">
+                  <h3 className="text-xl md:text-2xl font-bold mb-6 text-center text-primary">
+                    Find Parts for Your Nissan
+                  </h3>
 
               <form className="space-y-4">
                 <div className="grid grid-cols-2 gap-4">
