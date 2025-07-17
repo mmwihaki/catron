@@ -184,17 +184,14 @@ export default function HomePage() {
               {/* Logo */}
               <div className="logo">
                 <Link href="/" className="flex items-center gap-3">
-                  <div className="w-12 h-12 bg-primary rounded-lg flex items-center justify-center text-white font-bold text-xl">
+                  <div className="w-12 h-12 bg-red-600 rounded-lg flex items-center justify-center text-white font-bold text-xl">
                     B
                   </div>
                   <div>
-                    <div
-                      className="text-2xl font-bold"
-                      style={{ color: "var(--charcoal)" }}
-                    >
+                    <div className="text-2xl font-bold text-gray-800">
                       BRATOR
                     </div>
-                    <div className="text-xs text-secondary">
+                    <div className="text-xs text-gray-500">
                       Nissan Parts Specialist
                     </div>
                   </div>
