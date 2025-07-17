@@ -1,23 +1,4 @@
 @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap");
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
-
-:root {
-  /* Nissan Brand Colors - Industrial Palette */
-  --primary-red: #dc2626; /* Nissan Red Accent */
-  --charcoal: #1f2937; /* Dark Charcoal */
-  --charcoal-light: #374151; /* Light Charcoal */
-  --silver: #9ca3af; /* Silver Gray */
-  --silver-light: #e5e7eb; /* Light Silver */
-  --white: #ffffff;
-  --background-gray: #f9fafb;
-  --border-gray: #d1d5db;
-
-  /* Typography */
-  --font-primary:
-    "Poppins", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-}
 
 * {
   margin: 0;
@@ -25,43 +6,12 @@
   box-sizing: border-box;
 }
 
-html {
-  scroll-behavior: smooth;
-}
-
 body {
-  font-family: var(--font-primary);
-  font-weight: 400;
+  font-family:
+    "Poppins",
+    -apple-system,
+    BlinkMacSystemFont,
+    "Segoe UI",
+    sans-serif;
   line-height: 1.6;
-  color: var(--charcoal);
-  background-color: var(--white);
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
-
-/* Custom utility classes that work with Tailwind */
-@layer utilities {
-  .text-charcoal {
-    color: var(--charcoal);
-  }
-
-  .text-charcoal-light {
-    color: var(--charcoal-light);
-  }
-
-  .text-silver {
-    color: var(--silver);
-  }
-
-  .bg-charcoal {
-    background-color: var(--charcoal);
-  }
-
-  .bg-primary {
-    background-color: var(--primary-red);
-  }
-
-  .bg-secondary {
-    background-color: var(--background-gray);
-  }
 }
