@@ -80,40 +80,44 @@ ${formData.message}
 
   const contactMethods = [
     {
-      icon: "📱",
+      icon: MessageSquare,
       title: "WhatsApp Support",
       description: "Instant support via WhatsApp",
       details: "+254 700 000 000",
       action: "Chat Now",
       link: "https://wa.me/+254700000000",
       available: "24/7 Support",
+      color: "text-green-600",
     },
     {
-      icon: "📞",
+      icon: Phone,
       title: "Phone Support",
       description: "Speak with our technical team",
       details: "+254 700 000 000",
       action: "Call Now",
       link: "tel:+254700000000",
       available: "Mon-Sat: 8AM-6PM",
+      color: "text-blue-600",
     },
     {
-      icon: "✉️",
+      icon: Mail,
       title: "Email Support",
       description: "Send us detailed inquiries",
       details: "info@brator.co.ke",
       action: "Send Email",
       link: "mailto:info@brator.co.ke",
       available: "Response within 2 hours",
+      color: "text-purple-600",
     },
     {
-      icon: "📍",
+      icon: MapPin,
       title: "Visit Our Store",
       description: "Physical location in Nairobi",
       details: "Industrial Area, Nairobi",
       action: "Get Directions",
       link: "#map",
       available: "Mon-Sat: 8AM-6PM",
+      color: "text-red-600",
     },
   ];
 
