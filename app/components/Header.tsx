@@ -73,7 +73,7 @@ export default function Header({
   return (
     <header className="bg-white shadow-lg">
       {/* Top Bar */}
-      <div className="bg-surface-dark text-white">
+      <div className="bg-surface-dark text-white header-top">
         <div className="max-w-7xl mx-auto px-4">
           <div className="flex justify-between items-center text-sm py-2">
             <div className="flex items-center gap-6">
