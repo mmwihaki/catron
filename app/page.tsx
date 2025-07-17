@@ -413,8 +413,7 @@ export default function HomePage() {
                 </Link>
                 <Link
                   href="/support"
-                  className="btn btn-secondary btn-lg"
-                  style={{ borderColor: "white", color: "white" }}
+                  className="border-2 border-white text-white px-8 py-4 rounded-lg font-semibold hover:bg-white hover:text-gray-900 transition-colors"
                 >
                   Fitment Guide
                 </Link>
