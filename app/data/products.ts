@@ -59,7 +59,11 @@ export const allProducts: Product[] = [
     carModel: "E12/K13/N17",
     brand: "Ridex Plus",
     image:
-      "https://images.unsplash.com/photo-1558618047-3c8c76ca7d13?w=400&h=300&fit=crop",
+      "https://cdn.builder.io/api/v1/image/assets%2F9067eeb573a94c11b62f6ab0ba539c7c%2Fc17721f3d91d4e33a6b8eade39abad37?format=webp&width=800",
+    images: [
+      "https://cdn.builder.io/api/v1/image/assets%2F9067eeb573a94c11b62f6ab0ba539c7c%2Fc17721f3d91d4e33a6b8eade39abad37?format=webp&width=800",
+      "https://cdn.builder.io/api/v1/image/assets%2F9067eeb573a94c11b62f6ab0ba539c7c%2F73765e7657e44cc2a9529e38089d5bd7?format=webp&width=800",
+    ],
     price: 1800,
     rating: 4.8,
     reviews: 65,
