@@ -218,7 +218,11 @@ export default function ProductDetailPage() {
               {/* Main Image */}
               <div className="aspect-square bg-gray-100 rounded-xl overflow-hidden relative group">
                 <img
-                  src={product.image}
+                  src={
+                    product.images && product.images.length > 0
+                      ? product.images[selectedImageIndex]
+                      : product.image
+                  }
                   alt={product.name}
                   className="w-full h-full object-cover cursor-zoom-in"
                   onClick={() => setShowFullGallery(true)}
@@ -248,6 +252,29 @@ export default function ProductDetailPage() {
                   )}
                 </div>
               </div>
+
+              {/* Thumbnail Images */}
+              {product.images && product.images.length > 1 && (
+                <div className="flex gap-2 overflow-x-auto">
+                  {product.images.map((image, index) => (
+                    <button
+                      key={index}
+                      onClick={() => setSelectedImageIndex(index)}
+                      className={`flex-shrink-0 w-20 h-20 bg-gray-100 rounded-lg overflow-hidden border-2 transition-colors ${
+                        selectedImageIndex === index
+                          ? "border-red-600"
+                          : "border-transparent hover:border-gray-300"
+                      }`}
+                    >
+                      <img
+                        src={image}
+                        alt={`${product.name} - Image ${index + 1}`}
+                        className="w-full h-full object-cover"
+                      />
+                    </button>
+                  ))}
+                </div>
+              )}
             </div>
           </div>
 
