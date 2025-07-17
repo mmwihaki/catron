@@ -36,6 +36,7 @@ export default function ProductDetailPage() {
   } | null>(null);
   const [activeTab, setActiveTab] = useState("description");
   const [showFullGallery, setShowFullGallery] = useState(false);
+  const [selectedImageIndex, setSelectedImageIndex] = useState(0);
 
   useEffect(() => {
     // Fetch product by SKU
