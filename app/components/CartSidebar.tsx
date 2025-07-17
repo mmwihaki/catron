@@ -61,7 +61,7 @@ Please confirm availability and payment details.`;
     clearCart();
     setIsCartOpen(false);
     setShowCheckout(false);
-    setCustomerDetails({ name: "", phone: "", email: "", address: "" });
+    setCustomerDetails({ name: "", phone: "", address: "" });
   };
 
   const handleCustomerDetailsChange = (
