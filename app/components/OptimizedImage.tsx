@@ -159,7 +159,6 @@ const OptimizedImage: React.FC<OptimizedImageProps> = ({
         decoding="async"
         style={{
           imageRendering: "crisp-edges",
-          imageRendering: "-webkit-optimize-contrast",
           backfaceVisibility: "hidden",
           transform: "translateZ(0)",
         }}
