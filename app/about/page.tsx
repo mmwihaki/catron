@@ -76,34 +76,39 @@ export default function AboutPage() {
 
   const values = [
     {
-      icon: "🎯",
+      icon: Target,
       title: "Quality First",
       description:
         "We source only genuine OEM and certified aftermarket parts to ensure your Nissan performs at its best.",
+      color: "text-blue-600",
     },
     {
-      icon: "🤝",
+      icon: Users,
       title: "Customer Trust",
       description:
         "Building long-term relationships through transparency, reliability, and exceptional service.",
+      color: "text-green-600",
     },
     {
-      icon: "⚡",
+      icon: Zap,
       title: "Fast Delivery",
       description:
         "Same-day processing and Kenya-wide delivery to get you back on the road quickly.",
+      color: "text-yellow-600",
     },
     {
-      icon: "🔧",
+      icon: Wrench,
       title: "Expert Support",
       description:
         "Technical expertise and fitment guidance from certified Nissan specialists.",
+      color: "text-purple-600",
     },
     {
-      icon: "💚",
+      icon: Heart,
       title: "Sustainability",
       description:
         "Promoting proper parts recycling and environmental responsibility in automotive maintenance.",
+      color: "text-red-600",
     },
     {
       icon: "📱",
