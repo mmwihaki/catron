@@ -45,7 +45,6 @@ export default function CartSidebar() {
 *Customer Details:*
 Name: ${customerDetails.name}
 Phone: ${customerDetails.phone}
-Email: ${customerDetails.email}
 Address: ${customerDetails.address}
 
 *Order Items:*
