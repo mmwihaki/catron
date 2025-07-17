@@ -211,11 +211,7 @@ export default function Footer() {
             <div className="space-y-3">
               <div className="flex items-center space-x-3">
                 <Phone className="h-5 w-5 text-accent-primary" />
-                <span className="text-secondary">+254 712 345 678</span>
-              </div>
-              <div className="flex items-center space-x-3">
-                <Mail className="h-5 w-5 text-accent-primary" />
-                <span className="text-secondary">info@catron.co.ke</span>
+                <span className="text-secondary">0742578910</span>
               </div>
               <div className="flex items-center space-x-3">
                 <MapPin className="h-5 w-5 text-accent-primary" />
