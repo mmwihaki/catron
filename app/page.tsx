@@ -255,18 +255,18 @@ export default function HomePage() {
 
             {/* Vehicle Selector */}
             <div className="card-white">
-              <h3 className="text-2xl font-bold mb-6 text-center">
+              <h3 className="text-2xl font-bold mb-6 text-center text-primary">
                 Find Parts for Your Nissan
               </h3>
 
               <form className="space-y-4">
                 <div className="grid grid-cols-2 gap-4">
                   <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-1">
+                    <label className="block text-sm font-medium text-secondary mb-1">
                       Year
                     </label>
                     <select
-                      className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-red-500"
+                      className="form-input w-full"
                       value={vehicleYear}
                       onChange={(e) => setVehicleYear(e.target.value)}
                     >
@@ -282,11 +282,11 @@ export default function HomePage() {
                   </div>
 
                   <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-1">
+                    <label className="block text-sm font-medium text-secondary mb-1">
                       Model
                     </label>
                     <select
-                      className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-red-500"
+                      className="form-input w-full"
                       value={vehicleModel}
                       onChange={(e) => setVehicleModel(e.target.value)}
                     >
@@ -301,11 +301,11 @@ export default function HomePage() {
                 </div>
 
                 <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-1">
+                  <label className="block text-sm font-medium text-secondary mb-1">
                     Engine
                   </label>
                   <select
-                    className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-red-500"
+                    className="form-input w-full"
                     value={vehicleEngine}
                     onChange={(e) => setVehicleEngine(e.target.value)}
                   >
@@ -318,10 +318,7 @@ export default function HomePage() {
                   </select>
                 </div>
 
-                <button
-                  type="button"
-                  className="w-full bg-red-600 text-white py-3 rounded-md font-semibold hover:bg-red-700 transition-colors"
-                >
+                <button type="button" className="btn-primary w-full py-3">
                   Find Compatible Parts
                 </button>
               </form>
@@ -331,11 +328,13 @@ export default function HomePage() {
       </section>
 
       {/* Shop by Category */}
-      <section className="py-16 bg-gray-50">
+      <section className="py-16 bg-white">
         <div className="max-w-7xl mx-auto px-4">
           <div className="text-center mb-12">
-            <h2 className="text-4xl font-bold mb-4">Shop by Category</h2>
-            <p className="text-xl text-gray-600">
+            <h2 className="text-4xl font-bold mb-4 text-primary">
+              Shop by Category
+            </h2>
+            <p className="text-xl text-secondary">
               Find the exact parts you need for your Nissan
             </p>
           </div>
@@ -347,16 +346,16 @@ export default function HomePage() {
                 <Link
                   key={category.slug}
                   href={`/category/${category.slug}`}
-                  className="group bg-white rounded-xl shadow-md hover:shadow-xl transition-all duration-300 p-6 text-center border border-gray-200"
+                  className="group card-white hover:shadow-xl transition-all duration-300 text-center"
                 >
-                  <div className="w-16 h-16 bg-red-100 text-red-600 rounded-full flex items-center justify-center mx-auto mb-4 group-hover:bg-red-600 group-hover:text-white transition-colors">
+                  <div className="w-16 h-16 bg-primary bg-opacity-10 text-accent-primary rounded-full flex items-center justify-center mx-auto mb-4 group-hover:bg-accent-primary group-hover:text-white transition-colors">
                     <IconComponent className="w-8 h-8" />
                   </div>
-                  <h3 className="text-xl font-bold text-gray-900 group-hover:text-red-600 transition-colors mb-2">
+                  <h3 className="text-xl font-bold text-primary group-hover:text-accent-primary transition-colors mb-2">
                     {category.name}
                   </h3>
-                  <p className="text-gray-600 mb-4">{category.description}</p>
-                  <div className="text-sm text-gray-500 mb-4">
+                  <p className="text-secondary mb-4">{category.description}</p>
+                  <div className="text-sm text-secondary mb-4">
                     {category.count} parts available
                   </div>
                   <div className="flex items-center justify-center text-red-600 font-medium">
