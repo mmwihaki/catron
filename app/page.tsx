@@ -567,7 +567,10 @@ export default function HomePage() {
                 Most popular Nissan parts this month
               </p>
             </div>
-            <Link href="/shop?sort=popular" className="btn btn-outline">
+            <Link
+              href="/shop?sort=popular"
+              className="border-2 border-gray-300 text-gray-700 px-6 py-3 rounded-lg font-medium hover:border-red-600 hover:text-red-600 transition-colors"
+            >
               View All Best Sellers
             </Link>
           </div>
