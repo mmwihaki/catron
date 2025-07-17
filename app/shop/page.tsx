@@ -554,7 +554,7 @@ export default function ShopPage() {
               </div>
 
               {/* Vehicle Selector */}
-              <div className="mb-6 p-4 bg-gray-50 rounded-lg">
+              <div className="mb-6 p-4 bg-light rounded-lg">
                 <h4 className="font-medium mb-3">Find Parts By Vehicle</h4>
                 <div className="space-y-3">
                   <select
