@@ -74,11 +74,12 @@ export default function Header({
     }));
   };
 
-    const categories = getProductCategories();
+  const categories = getProductCategories();
 
   // Ensure we have categories
   if (categories.length === 0) {
     console.warn("No categories found. Products might not be loaded properly.");
+  }
 
   const handleSearch = (e: React.FormEvent) => {
     e.preventDefault();
@@ -226,7 +227,7 @@ export default function Header({
         <div className="max-w-7xl mx-auto px-4">
           <div className="flex flex-col md:flex-row items-start md:items-center gap-4 md:gap-8 py-3">
             <div className="relative" ref={categoriesRef}>
-                                          <button
+              <button
                 onClick={() => setShowCategories(!showCategories)}
                 className="btn-primary"
               >
@@ -235,7 +236,7 @@ export default function Header({
                 <ChevronDown className="w-4 h-4" />
               </button>
 
-                                          {showCategories && (
+              {showCategories && (
                 <div className="absolute top-full left-0 mt-2 w-64 bg-white shadow-xl rounded-lg border border-divider z-[9999] max-h-96 overflow-y-auto">
                   {categories.map((category) => (
                     <Link
