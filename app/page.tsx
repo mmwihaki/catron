@@ -63,11 +63,9 @@ export default function HomePage() {
       setFilteredProducts(results);
       setIsSearchActive(true);
     } else if (category) {
-      // Convert slug back to category name by replacing hyphens with spaces and capitalizing
-      const categoryName = category.replace(/-/g, " ");
-      console.log("Category filter:", category, "->", categoryName);
+      // Decode URL-encoded category name
+      const categoryName = decodeURIComponent(category);
       const results = getProductsByCategory(categoryName);
-      console.log("Results found:", results.length);
       setFilteredProducts(results);
       setIsSearchActive(true);
     } else {
