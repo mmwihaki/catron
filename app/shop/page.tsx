@@ -558,7 +558,7 @@ export default function ShopPage() {
                 <h4 className="font-medium mb-3">Find Parts By Vehicle</h4>
                 <div className="space-y-3">
                   <select
-                    className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-red-500 focus:border-transparent"
+                    className="form-select"
                     value={filters.year}
                     onChange={(e) => updateFilter("year", e.target.value)}
                   >
