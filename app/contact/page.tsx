@@ -2,6 +2,17 @@
 
 import React, { useState } from "react";
 import Link from "next/link";
+import Header from "../components/Header";
+import {
+  Phone,
+  Mail,
+  MapPin,
+  Clock,
+  MessageSquare,
+  Headphones,
+  Globe,
+  AlertCircle,
+} from "lucide-react";
 
 export default function ContactPage() {
   const [formData, setFormData] = useState({
