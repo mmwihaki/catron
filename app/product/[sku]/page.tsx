@@ -758,69 +758,7 @@ export default function ProductDetailPage() {
         </div>
       </div>
 
-      {/* Footer */}
-      <footer className="bg-gray-900 text-white mt-16">
-        <div className="max-w-7xl mx-auto px-4 py-12">
-          <div className="grid md:grid-cols-3 gap-8">
-            <div>
-              <div className="flex items-center gap-3 mb-4">
-                <div className="w-10 h-10 bg-red-600 rounded-lg flex items-center justify-center text-white font-bold">
-                  B
-                </div>
-                <div>
-                  <div className="text-xl font-bold">BRATOR</div>
-                  <div className="text-xs text-gray-400">
-                    Nissan Parts Specialist
-                  </div>
-                </div>
-              </div>
-              <p className="text-gray-300 text-sm">
-                Kenya's premier destination for genuine Nissan OEM and
-                performance parts.
-              </p>
-            </div>
-
-            <div>
-              <h3 className="font-bold mb-4">Quick Links</h3>
-              <ul className="space-y-2 text-sm text-gray-300">
-                <li>
-                  <Link href="/shop" className="hover:text-white">
-                    Shop All Parts
-                  </Link>
-                </li>
-                <li>
-                  <Link href="/support" className="hover:text-white">
-                    Fitment Guide
-                  </Link>
-                </li>
-                <li>
-                  <Link href="/about" className="hover:text-white">
-                    About Us
-                  </Link>
-                </li>
-                <li>
-                  <Link href="/contact" className="hover:text-white">
-                    Contact
-                  </Link>
-                </li>
-              </ul>
-            </div>
-
-            <div>
-              <h3 className="font-bold mb-4">Contact Info</h3>
-              <div className="space-y-2 text-sm text-gray-300">
-                <div>📞 +254 700 000 000</div>
-                <div>✉️ info@brator.co.ke</div>
-                <div>📍 Nairobi, Kenya</div>
-              </div>
-            </div>
-          </div>
-
-          <div className="border-t border-gray-700 mt-8 pt-6 text-center text-sm text-gray-400">
-            © 2024 Brator Auto Parts. All rights reserved.
-          </div>
-        </div>
-      </footer>
+      <Footer />
 
       {/* Full Gallery Modal */}
       {showFullGallery && (
