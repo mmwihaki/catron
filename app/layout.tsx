@@ -202,7 +202,7 @@ export default function RootLayout({
               logo: "https://catron.co.ke/logo.png",
               contactPoint: {
                 "@type": "ContactPoint",
-                telephone: "+254700000000",
+                telephone: "+254742578910",
                 contactType: "customer service",
                 availableLanguage: "English",
               },
