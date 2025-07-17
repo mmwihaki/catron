@@ -2,6 +2,7 @@
 
 import React, { useState } from "react";
 import Link from "next/link";
+import Header from "./components/Header";
 
 interface Product {
   id: number;
