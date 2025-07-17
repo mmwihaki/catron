@@ -159,10 +159,8 @@ const OptimizedImage: React.FC<OptimizedImageProps> = ({
         decoding="async"
         style={{
           imageRendering: "crisp-edges",
-          width: undefined,
-          height: undefined,
         }}
-        data-pixel-perfect
+        data-optimized-image
       />
     </div>
   );
