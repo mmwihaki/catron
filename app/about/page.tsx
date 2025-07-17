@@ -113,49 +113,8 @@ export default function AboutPage() {
   ];
 
   return (
-    <div className="about-page">
-      {/* Header */}
-      <header className="header bg-white shadow-md">
-        <div className="container">
-          <div className="flex items-center justify-between py-4">
-            <div className="logo">
-              <Link href="/" className="flex items-center gap-3">
-                <div className="w-12 h-12 bg-primary rounded-lg flex items-center justify-center text-white font-bold text-xl">
-                  B
-                </div>
-                <div>
-                  <div className="text-2xl font-bold text-charcoal">BRATOR</div>
-                  <div className="text-xs text-silver">
-                    Nissan Parts Specialist
-                  </div>
-                </div>
-              </Link>
-            </div>
-
-            <nav className="flex items-center gap-6">
-              <Link href="/" className="text-charcoal hover:text-primary">
-                Home
-              </Link>
-              <Link href="/shop" className="text-charcoal hover:text-primary">
-                Shop
-              </Link>
-              <span className="text-primary font-medium">About</span>
-              <Link
-                href="/support"
-                className="text-charcoal hover:text-primary"
-              >
-                Support
-              </Link>
-              <Link
-                href="/contact"
-                className="text-charcoal hover:text-primary"
-              >
-                Contact
-              </Link>
-            </nav>
-          </div>
-        </div>
-      </header>
+    <div className="min-h-screen bg-white">
+      <Header currentPage="about" />
 
       {/* Breadcrumb */}
       <div className="bg-background-gray py-4">
