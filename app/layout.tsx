@@ -1,5 +1,6 @@
 import "./globals.css";
 import type { Metadata } from "next";
+import { CartProvider } from "./context/CartContext";
 
 export const metadata: Metadata = {
   title: "Catron - Premium Nissan OEM & Performance Parts Kenya",
