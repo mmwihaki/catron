@@ -261,7 +261,11 @@ export const allProducts: Product[] = [
     carModel: "Teana L33 QR25de",
     brand: "KAVO",
     image:
-      "https://images.unsplash.com/photo-1619642751034-765dfdf7c58e?w=400&h=300&fit=crop",
+      "https://cdn.builder.io/api/v1/image/assets%2F9067eeb573a94c11b62f6ab0ba539c7c%2F4f708519aa574b72840ccbf786e00a36?format=webp&width=800",
+    images: [
+      "https://cdn.builder.io/api/v1/image/assets%2F9067eeb573a94c11b62f6ab0ba539c7c%2F4f708519aa574b72840ccbf786e00a36?format=webp&width=800",
+      "https://cdn.builder.io/api/v1/image/assets%2F9067eeb573a94c11b62f6ab0ba539c7c%2Ffa041b36e7354dbfa57df34b49735105?format=webp&width=800",
+    ],
     price: 4000,
     rating: 4.6,
     reviews: 45,
