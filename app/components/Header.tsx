@@ -236,7 +236,7 @@ export default function Header({
                   {categories.map((category) => (
                     <Link
                       key={category.slug}
-                      href={`/?category=${category.slug}`}
+                      href={`/?category=${encodeURIComponent(category.name)}`}
                       className="flex items-center justify-between px-4 py-3 hover:bg-primary border-b border-divider last:border-b-0 transition-colors"
                       onClick={() => setShowCategories(false)}
                     >
