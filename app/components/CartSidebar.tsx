@@ -6,7 +6,6 @@ import { useCart } from "../context/CartContext";
 interface CustomerDetails {
   name: string;
   phone: string;
-  email: string;
   address: string;
 }
 
