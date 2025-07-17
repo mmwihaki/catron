@@ -71,30 +71,30 @@ export default function Header({
   return (
     <header className="bg-white shadow-lg">
       {/* Top Bar */}
-      <div className="bg-gray-800 text-white">
+      <div className="bg-surface-dark text-white">
         <div className="max-w-7xl mx-auto px-4">
           <div className="flex justify-between items-center text-sm py-2">
             <div className="flex items-center gap-6">
-              <span className="flex items-center gap-1">
-                <Phone className="w-4 h-4" />
+              <span className="flex items-center gap-1 text-secondary">
+                <Phone className="w-4 h-4 text-accent-primary" />
                 +254 700 000 000
               </span>
-              <span className="flex items-center gap-1">
-                <Mail className="w-4 h-4" />
+              <span className="flex items-center gap-1 text-secondary">
+                <Mail className="w-4 h-4 text-accent-primary" />
                 info@catron.co.ke
               </span>
-              <span className="flex items-center gap-1">
-                <Clock className="w-4 h-4" />
+              <span className="flex items-center gap-1 text-secondary">
+                <Clock className="w-4 h-4 text-accent-primary" />
                 Mon-Sat: 8AM-6PM
               </span>
             </div>
             <div className="flex items-center gap-4">
-              <span className="flex items-center gap-1">
-                <Globe className="w-4 h-4" />
+              <span className="flex items-center gap-1 text-secondary">
+                <Globe className="w-4 h-4 text-accent-primary" />
                 Kenya Wide Delivery
               </span>
-              <span className="flex items-center gap-1">
-                <MapPin className="w-4 h-4" />
+              <span className="flex items-center gap-1 text-secondary">
+                <MapPin className="w-4 h-4 text-accent-primary" />
                 Nairobi, Kenya
               </span>
             </div>
@@ -109,14 +109,14 @@ export default function Header({
             {/* Logo */}
             <div className="logo">
               <Link href="/" className="flex items-center gap-3">
-                <div className="w-12 h-12 bg-red-600 rounded-lg flex items-center justify-center text-white font-bold text-xl shadow-sm">
+                <div className="w-12 h-12 bg-accent-primary rounded-lg flex items-center justify-center text-white font-bold text-xl shadow-sm">
                   C
                 </div>
                 <div>
-                  <div className="text-2xl font-bold text-gray-800 tracking-tight">
+                  <div className="text-2xl font-bold text-primary tracking-tight">
                     CATRON
                   </div>
-                  <div className="text-xs text-gray-500 font-medium tracking-wide">
+                  <div className="text-xs text-secondary font-medium tracking-wide">
                     Nissan Parts Specialist
                   </div>
                 </div>
@@ -125,15 +125,15 @@ export default function Header({
 
             {/* Search Bar */}
             <div className="flex-1 max-w-2xl mx-8">
-              <div className="flex border-2 border-red-600 rounded-lg overflow-hidden">
+              <div className="flex border-2 border-accent-primary rounded-lg overflow-hidden">
                 <input
                   type="text"
                   placeholder="Search by part number, model, or keyword..."
-                  className="flex-1 px-4 py-3 outline-none"
+                  className="flex-1 px-4 py-3 outline-none form-input"
                   value={searchQuery}
                   onChange={(e) => setSearchQuery?.(e.target.value)}
                 />
-                <button className="bg-red-600 text-white px-6 py-3 hover:bg-red-700 transition-colors">
+                <button className="bg-accent-primary text-white px-6 py-3 hover:bg-accent-primary hover:opacity-90 transition-all">
                   <Search className="w-5 h-5" />
                 </button>
               </div>
@@ -143,7 +143,7 @@ export default function Header({
             <div className="flex items-center gap-6">
               <Link
                 href="/wishlist"
-                className="flex items-center gap-2 text-gray-700 hover:text-red-600"
+                className="flex items-center gap-2 text-secondary hover:text-accent-secondary transition-colors"
               >
                 <Heart className="w-6 h-6" />
                 <span className="hidden md:block">Wishlist</span>
@@ -151,7 +151,7 @@ export default function Header({
 
               <Link
                 href="/cart"
-                className="flex items-center gap-2 text-gray-700 hover:text-red-600 relative"
+                className="flex items-center gap-2 text-secondary hover:text-accent-secondary transition-colors relative"
               >
                 <ShoppingCart className="w-6 h-6" />
                 <span className="hidden md:block">Cart</span>
@@ -159,7 +159,7 @@ export default function Header({
 
               <Link
                 href="/account"
-                className="flex items-center gap-2 text-gray-700 hover:text-red-600"
+                className="flex items-center gap-2 text-secondary hover:text-accent-secondary transition-colors"
               >
                 <User className="w-6 h-6" />
                 <span className="hidden md:block">Account</span>
