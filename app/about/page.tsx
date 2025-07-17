@@ -212,23 +212,37 @@ export default function AboutPage() {
       </section>
 
       {/* Values */}
-      <section className="section bg-background-gray">
-        <div className="container">
+      <section className="py-16 bg-gray-50">
+        <div className="max-w-7xl mx-auto px-4">
           <div className="text-center mb-12">
-            <h2 className="text-4xl font-bold mb-4">Our Core Values</h2>
-            <p className="text-xl text-silver max-w-2xl mx-auto">
+            <h2 className="text-4xl font-bold mb-4 text-gray-900">
+              Our Core Values
+            </h2>
+            <p className="text-xl text-gray-600 max-w-2xl mx-auto">
               The principles that guide everything we do at Brator Auto Parts
             </p>
           </div>
 
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {values.map((value, index) => (
-              <div key={index} className="card text-center">
-                <div className="text-4xl mb-4">{value.icon}</div>
-                <h3 className="text-xl font-bold mb-3">{value.title}</h3>
-                <p className="text-charcoal-light">{value.description}</p>
-              </div>
-            ))}
+            {values.map((value, index) => {
+              const IconComponent = value.icon;
+              return (
+                <div
+                  key={index}
+                  className="bg-white rounded-lg shadow-md border border-gray-200 p-6 text-center"
+                >
+                  <div
+                    className={`inline-flex items-center justify-center w-16 h-16 rounded-full bg-gray-100 mb-4 ${value.color}`}
+                  >
+                    <IconComponent className="w-8 h-8" />
+                  </div>
+                  <h3 className="text-xl font-bold mb-3 text-gray-900">
+                    {value.title}
+                  </h3>
+                  <p className="text-gray-600">{value.description}</p>
+                </div>
+              );
+            })}
           </div>
         </div>
       </section>
