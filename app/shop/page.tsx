@@ -1016,7 +1016,7 @@ export default function ShopPage() {
                           </span>
                         </div>
 
-                        <div className="text-xs text-gray-500 mb-3">
+                        <div className="text-xs text-secondary mb-3">
                           <strong>Compatible:</strong>{" "}
                           {product.compatibility.slice(0, 2).join(", ")}
                           {product.compatibility.length > 2 &&
