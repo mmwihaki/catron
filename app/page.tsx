@@ -157,7 +157,7 @@ export default function HomePage() {
   };
 
   return (
-    <div className="min-h-screen bg-yellow-300 border-8 border-red-600">
+    <div className="min-h-screen bg-white">
       {/* Header */}
       <header className="bg-white shadow-lg">
         {/* Top Bar */}
