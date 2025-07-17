@@ -30,6 +30,23 @@ export default function Header({
 }: HeaderProps) {
   const [showCategories, setShowCategories] = useState(false);
   const { getTotalItems, setIsCartOpen } = useCart();
+  const categoriesRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    function handleClickOutside(event: MouseEvent) {
+      if (
+        categoriesRef.current &&
+        !categoriesRef.current.contains(event.target as Node)
+      ) {
+        setShowCategories(false);
+      }
+    }
+
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, []);
 
   const categories = [
     {
