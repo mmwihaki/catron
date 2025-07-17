@@ -197,7 +197,7 @@ export default function ShopPage() {
         <div className="flex gap-8">
           {/* Sidebar Filters */}
           <aside
-            className={`w-80 ${showFilters ? "block" : "hidden lg:block"}`}
+            className={`w-full lg:w-80 ${showFilters ? "block" : "hidden lg:block"}`}
           >
             <div className="bg-white rounded-lg shadow-md border border-gray-200 p-6 sticky top-4">
               <div className="flex items-center justify-between mb-6">
