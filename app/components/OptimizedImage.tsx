@@ -155,7 +155,7 @@ const OptimizedImage: React.FC<OptimizedImageProps> = ({
         } transition-opacity duration-300`}
         onLoad={handleLoad}
         onError={handleError}
-        loading={priority ? "eager" : "lazy"}
+        loading={priority ? "eager" : lazy ? "lazy" : "eager"}
         decoding="async"
         style={{
           imageRendering: "crisp-edges",
