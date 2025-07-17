@@ -1318,9 +1318,21 @@ export const allProducts: Product[] = [
 
 // Helper functions for filtering and searching
 export const getProductsByCategory = (category: string): Product[] => {
-  return allProducts.filter((product) =>
-    product.category.toLowerCase().includes(category.toLowerCase()),
-  );
+  return allProducts.filter((product) => {
+    const productCategory = product.category.toLowerCase();
+    const searchCategory = category.toLowerCase();
+
+    // Try exact match first
+    if (productCategory === searchCategory) {
+      return true;
+    }
+
+    // Try partial match
+    return (
+      productCategory.includes(searchCategory) ||
+      searchCategory.includes(productCategory)
+    );
+  });
 };
 
 export const getProductsBySKU = (sku: string): Product | undefined => {
