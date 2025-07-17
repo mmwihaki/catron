@@ -533,10 +533,13 @@ export default function ShopPage() {
 
               {/* Categories */}
               <div className="mb-6">
-                <h4 className="font-medium mb-3">Categories</h4>
+                <h4 className="font-medium mb-3 text-gray-800">Categories</h4>
                 <div className="space-y-2">
                   {categories.map((category) => (
-                    <label key={category} className="flex items-center gap-2">
+                    <label
+                      key={category}
+                      className="flex items-center gap-2 cursor-pointer hover:bg-gray-50 p-2 rounded"
+                    >
                       <input
                         type="checkbox"
                         checked={filters.category.includes(category)}
@@ -555,8 +558,8 @@ export default function ShopPage() {
                         }}
                         className="rounded border-gray-300 text-red-600 focus:ring-red-500"
                       />
-                      <span className="text-sm">{category}</span>
-                      <span className="text-xs text-gray-400 ml-auto">
+                      <span className="text-sm text-gray-700">{category}</span>
+                      <span className="text-xs text-gray-500 ml-auto">
                         (
                         {
                           allProducts.filter((p) => p.category === category)
