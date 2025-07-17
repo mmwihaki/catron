@@ -218,7 +218,7 @@ export default function RootLayout({
         {/* WhatsApp Business Integration */}
         <meta
           property="business:contact_data:phone_number"
-          content="+254700000000"
+          content="+254742578910"
         />
         <meta
           property="business:contact_data:website"
