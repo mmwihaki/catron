@@ -525,10 +525,7 @@ export default function HomePage() {
                   <div className="flex items-center gap-3 mb-3">
                     <span className="text-3xl">{category.icon}</span>
                     <div>
-                      <h3
-                        className="text-xl font-bold group-hover:text-primary transition-colors"
-                        style={{ color: "var(--charcoal)" }}
-                      >
+                      <h3 className="text-xl font-bold text-gray-900 group-hover:text-red-600 transition-colors">
                         {category.name}
                       </h3>
                       <div className="text-sm text-secondary">
