@@ -76,11 +76,6 @@ export default function Header({
 
   const categories = getProductCategories();
 
-  // Ensure we have categories
-  if (categories.length === 0) {
-    console.warn("No categories found. Products might not be loaded properly.");
-  }
-
   const handleSearch = (e: React.FormEvent) => {
     e.preventDefault();
     if (searchQuery.trim()) {
