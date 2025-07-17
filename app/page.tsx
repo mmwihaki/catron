@@ -341,19 +341,34 @@ export default function HomePage() {
               </div>
 
               <div className="flex items-center gap-6">
-                <Link href="/" className="font-medium text-muted">
+                <Link
+                  href="/"
+                  className="font-medium text-gray-700 hover:text-red-600"
+                >
                   Home
                 </Link>
-                <Link href="/shop" className="font-medium text-muted">
+                <Link
+                  href="/shop"
+                  className="font-medium text-gray-700 hover:text-red-600"
+                >
                   Shop
                 </Link>
-                <Link href="/about" className="font-medium text-muted">
+                <Link
+                  href="/about"
+                  className="font-medium text-gray-700 hover:text-red-600"
+                >
                   About
                 </Link>
-                <Link href="/support" className="font-medium text-muted">
+                <Link
+                  href="/support"
+                  className="font-medium text-gray-700 hover:text-red-600"
+                >
                   Support
                 </Link>
-                <Link href="/contact" className="font-medium text-muted">
+                <Link
+                  href="/contact"
+                  className="font-medium text-gray-700 hover:text-red-600"
+                >
                   Contact
                 </Link>
               </div>
