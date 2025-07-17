@@ -797,6 +797,7 @@ export default function ShopPage() {
       </div>
 
       <Footer />
+      <CartSidebar />
     </div>
   );
 }
