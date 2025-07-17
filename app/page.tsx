@@ -383,7 +383,7 @@ export default function HomePage() {
       </header>
 
       {/* Hero Section */}
-      <section className="relative bg-dark text-white overflow-hidden">
+      <section className="relative bg-gradient-to-r from-gray-900 to-gray-800 text-white overflow-hidden">
         <div className="absolute inset-0 bg-black bg-opacity-40"></div>
         <div
           className="absolute inset-0 bg-cover bg-center"
@@ -393,7 +393,7 @@ export default function HomePage() {
           }}
         ></div>
 
-        <div className="relative z-10 container py-20">
+        <div className="relative z-10 max-w-7xl mx-auto px-4 py-20">
           <div className="grid lg:grid-cols-2 gap-12 items-center">
             <div>
               <h1 className="text-5xl lg:text-6xl font-bold mb-6 leading-tight">
