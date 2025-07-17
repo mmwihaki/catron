@@ -217,7 +217,7 @@ export default function HomePage() {
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-4 md:mb-6 leading-tight">
               Premium <span className="text-accent-primary">Nissan</span> Parts
             </h1>
-            <p className="text-lg md:text-xl mb-6 md:mb-8 text-secondary max-w-3xl mx-auto">
+            <p className="text-lg md:text-xl mb-6 md:mb-8 text-white max-w-3xl mx-auto">
               Kenya's #1 marketplace for genuine OEM and performance parts.
               Quality guaranteed, expert fitment support, fast delivery
               nationwide.
