@@ -370,18 +370,19 @@ export default function HomePage() {
             </Link>
           </div>
 
-          <div className="overflow-x-auto">
-            <div className="flex md:grid md:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6 pb-4 md:pb-0">
-              <div className="flex md:contents gap-4 md:gap-6">
-                {bestSellers.slice(0, 4).map((product, index) => (
-                  <div
-                    key={product.id}
-                    className="flex-shrink-0 w-64 md:w-auto"
-                  >
-                    <ProductCard product={product} />
-                  </div>
-                ))}
-              </div>
+          {/* Mobile: Single column with 4 products, Tablet+: Grid layout */}
+          <div className="block md:hidden">
+            <div className="space-y-4">
+              {bestSellers.slice(0, 4).map((product) => (
+                <ProductCard key={product.id} product={product} />
+              ))}
+            </div>
+          </div>
+          <div className="hidden md:block">
+            <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+              {bestSellers.map((product) => (
+                <ProductCard key={product.id} product={product} />
+              ))}
             </div>
           </div>
         </div>
