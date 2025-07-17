@@ -4,8 +4,10 @@ import React, { useState } from "react";
 import Link from "next/link";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
+import CartSidebar from "./components/CartSidebar";
 import OptimizedImage from "./components/OptimizedImage";
 import { allProducts, getFeaturedProducts, Product } from "./data/products";
+import { useCart } from "./context/CartContext";
 import {
   Filter,
   Wind,
