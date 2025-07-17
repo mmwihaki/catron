@@ -179,7 +179,7 @@ export default function HomePage() {
 
         {/* Main Header */}
         <div className="bg-white shadow-md">
-          <div className="container">
+          <div className="max-w-7xl mx-auto px-4">
             <div className="flex items-center justify-between py-4">
               {/* Logo */}
               <div className="logo">
