@@ -214,34 +214,33 @@ export default function HomePage() {
           }}
         ></div>
 
-        <div className="relative z-10 max-w-7xl mx-auto px-4 py-20">
-          <div className="grid lg:grid-cols-2 gap-12 items-center">
-            <div>
-              <h1 className="text-5xl lg:text-6xl font-bold mb-6 leading-tight">
-                Premium <span className="text-accent-primary">Nissan</span>{" "}
-                Parts
-              </h1>
-              <p className="text-xl mb-8 text-secondary">
-                Kenya's #1 marketplace for genuine OEM and performance parts.
-                Quality guaranteed, expert fitment support, fast delivery
-                nationwide.
-              </p>
-              <div className="flex gap-4">
-                <Link href="/shop" className="btn-primary text-lg px-8 py-4">
-                  Shop Nissan Parts
-                </Link>
-                <Link
-                  href="/support"
-                  className="btn-outline text-lg px-8 py-4 border-white text-white hover:bg-white hover:text-primary"
-                >
-                  Fitment Guide
-                </Link>
-              </div>
+        <div className="relative z-10 max-w-7xl mx-auto px-4 py-12 md:py-20">
+          <div className="text-center mb-8 md:mb-12">
+            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-4 md:mb-6 leading-tight">
+              Premium <span className="text-accent-primary">Nissan</span> Parts
+            </h1>
+            <p className="text-lg md:text-xl mb-6 md:mb-8 text-secondary max-w-3xl mx-auto">
+              Kenya's #1 marketplace for genuine OEM and performance parts.
+              Quality guaranteed, expert fitment support, fast delivery
+              nationwide.
+            </p>
+            <div className="flex flex-col sm:flex-row gap-4 justify-center mb-8 md:mb-12">
+              <Link href="/shop" className="btn-primary text-lg px-8 py-4">
+                Shop Nissan Parts
+              </Link>
+              <Link
+                href="/support"
+                className="btn-outline text-lg px-8 py-4 border-white text-white hover:bg-white hover:text-primary"
+              >
+                Fitment Guide
+              </Link>
             </div>
+          </div>
 
-            {/* Vehicle Selector */}
+          {/* Vehicle Selector - Centered */}
+          <div className="max-w-2xl mx-auto">
             <div className="card-white">
-              <h3 className="text-2xl font-bold mb-6 text-center text-primary">
+              <h3 className="text-xl md:text-2xl font-bold mb-6 text-center text-primary">
                 Find Parts for Your Nissan
               </h3>
 
@@ -325,7 +324,7 @@ export default function HomePage() {
             </p>
           </div>
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-3 gap-4 md:gap-6">
             {categories.map((category) => {
               const IconComponent = category.icon;
               return (
@@ -373,10 +372,19 @@ export default function HomePage() {
             </Link>
           </div>
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-            {bestSellers.map((product) => (
-              <ProductCard key={product.id} product={product} />
-            ))}
+          <div className="overflow-x-auto">
+            <div className="flex md:grid md:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6 pb-4 md:pb-0">
+              <div className="flex md:contents gap-4 md:gap-6">
+                {bestSellers.slice(0, 4).map((product, index) => (
+                  <div
+                    key={product.id}
+                    className="flex-shrink-0 w-64 md:w-auto"
+                  >
+                    <ProductCard product={product} />
+                  </div>
+                ))}
+              </div>
+            </div>
           </div>
         </div>
       </section>
@@ -399,10 +407,19 @@ export default function HomePage() {
             </Link>
           </div>
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-            {essentials.map((product) => (
-              <ProductCard key={product.id} product={product} />
-            ))}
+          <div className="overflow-x-auto">
+            <div className="flex md:grid md:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6 pb-4 md:pb-0">
+              <div className="flex md:contents gap-4 md:gap-6">
+                {essentials.slice(0, 4).map((product, index) => (
+                  <div
+                    key={product.id}
+                    className="flex-shrink-0 w-64 md:w-auto"
+                  >
+                    <ProductCard product={product} />
+                  </div>
+                ))}
+              </div>
+            </div>
           </div>
         </div>
       </section>
@@ -425,22 +442,27 @@ export default function HomePage() {
             </Link>
           </div>
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-            {newArrivals.length > 0
-              ? newArrivals.map((product) => (
-                  <ProductCard key={product.id} product={product} />
-                ))
-              : // Fallback to some products if no new arrivals
-                allProducts
+          <div className="overflow-x-auto">
+            <div className="flex md:grid md:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6 pb-4 md:pb-0">
+              <div className="flex md:contents gap-4 md:gap-6">
+                {(newArrivals.length > 0 ? newArrivals : allProducts)
                   .slice(0, 4)
-                  .map((product) => (
-                    <ProductCard key={product.id} product={product} />
+                  .map((product, index) => (
+                    <div
+                      key={product.id}
+                      className="flex-shrink-0 w-64 md:w-auto"
+                    >
+                      <ProductCard product={product} />
+                    </div>
                   ))}
+              </div>
+            </div>
           </div>
         </div>
       </section>
 
       <Footer />
+      <CartSidebar />
     </div>
   );
 }
