@@ -447,9 +447,12 @@ export default function ShopPage() {
   };
 
   return (
-    <div className="shop-page bg-gray-50">
-      {/* Header - Same as homepage */}
-      <header className="bg-white shadow-lg">
+        <div className="min-h-screen bg-gray-50">
+      <Header
+        searchQuery={searchQuery}
+        setSearchQuery={setSearchQuery}
+        currentPage="shop"
+      />
         <div className="bg-gray-800 text-white">
           <div className="max-w-7xl mx-auto px-4">
             <div className="flex justify-between items-center text-sm py-2">
