@@ -208,7 +208,7 @@ export default function HomePage() {
                     value={searchQuery}
                     onChange={(e) => setSearchQuery(e.target.value)}
                   />
-                  <button className="bg-primary text-white px-6 py-3 btn-primary">
+                  <button className="bg-red-600 text-white px-6 py-3 hover:bg-red-700 transition-colors">
                     <svg
                       className="w-5 h-5"
                       fill="none"
