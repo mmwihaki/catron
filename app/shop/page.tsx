@@ -966,7 +966,7 @@ export default function ShopPage() {
                           </div>
                         )}
                         {product.originalPrice && (
-                          <div className="bg-red-600 text-white px-2 py-1 rounded-md text-xs font-medium">
+                          <div className="badge badge-primary">
                             {Math.round(
                               ((product.originalPrice - product.price) /
                                 product.originalPrice) *
