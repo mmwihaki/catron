@@ -1,786 +1,898 @@
 "use client";
 
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useMemo } from "react";
 import Link from "next/link";
+import Header from "../components/Header";
+
+// Types
+interface Product {
+  id: number;
+  sku: string;
+  name: string;
+  category: string;
+  subcategory: string;
+  brand: string;
+  image: string;
+  price: number;
+  originalPrice?: number;
+  rating: number;
+  reviews: number;
+  compatibility: string[];
+  year: number[];
+  model: string[];
+  engine: string[];
+  inStock: boolean;
+  stockLevel: number;
+  isNew?: boolean;
+  isFeatured?: boolean;
+  tags: string[];
+}
+
+interface FilterState {
+  category: string[];
+  brand: string[];
+  priceRange: [number, number];
+  year: string;
+  model: string;
+  engine: string;
+  availability: string;
+}
 
 export default function ShopPage() {
-  const [searchCategory, setSearchCategory] = useState("All");
   const [searchQuery, setSearchQuery] = useState("");
-  const [cartItems, setCartItems] = useState(3);
-  const [showCategoriesDropdown, setShowCategoriesDropdown] = useState(false);
-  const [priceRange, setPriceRange] = useState([0, 100000]);
-  const [selectedCategories, setSelectedCategories] = useState<string[]>([]);
-  const [sortBy, setSortBy] = useState("name");
-  const [activeTab, setActiveTab] = useState("top10");
+  const [sortBy, setSortBy] = useState("relevance");
+  const [viewMode, setViewMode] = useState<"grid" | "list">("grid");
+  const [currentPage, setCurrentPage] = useState(1);
+  const [showFilters, setShowFilters] = useState(false);
+  const itemsPerPage = 20;
 
-  useEffect(() => {
-    const handleClickOutside = (event: MouseEvent) => {
-      const dropdown = document.querySelector(".categories-dropdown");
-      if (dropdown && !dropdown.contains(event.target as Node)) {
-        setShowCategoriesDropdown(false);
-      }
-    };
+  const [filters, setFilters] = useState<FilterState>({
+    category: [],
+    brand: [],
+    priceRange: [0, 100000],
+    year: "",
+    model: "",
+    engine: "",
+    availability: "all",
+  });
 
-    if (showCategoriesDropdown) {
-      document.addEventListener("mousedown", handleClickOutside);
-    }
-
-    return () => {
-      document.removeEventListener("mousedown", handleClickOutside);
-    };
-  }, [showCategoriesDropdown]);
-
-  const categories = [
-    "Oil Filters",
-    "Air Filters",
-    "Headlight Bulbs",
-    "Spark Plugs",
-    "Brake Pads",
-    "Suspension",
-    "Engine Parts",
-    "Exhaust Systems",
-    "Tires & Wheels",
-    "Electronics",
-    "Body Parts",
-    "Transmission",
-  ];
-
-  const nissanMakes = ["Nissan"];
-  const nissanModels = [
-    "Note",
-    "Sentra",
-    "Sylphy",
-    "Serena",
-    "AdVan",
-    "Wingroad",
-    "NV200 Vanette",
-    "Kicks",
-    "X-Trail",
-    "March",
-    "Tiida",
-    "TiidaLatio",
-    "Latio",
-    "Bluebird Sylphy",
-    "Dualis",
-    "Teana",
-    "NV350 Caravan",
-    "Elgrand",
-    "Murano",
-    "Lafesta",
-    "Juke",
-    "Cube",
-  ];
-  const vehicleYears = [
-    "2024",
-    "2023",
-    "2022",
-    "2021",
-    "2020",
-    "2019",
-    "2018",
-    "2017",
-    "2016",
-    "2015",
-  ];
-  const engineTypes = [
-    "1198cc HR12DDR",
-    "1198cc HR12DE",
-    "1597cc HR16DE",
-    "1498cc HR15DE",
-    "1797cc MRA8DE",
-    "1997cc MR20DE",
-    "1800cc MR18DE",
-    "2488cc QR25DE",
-    "2495cc VQ25DE",
-    "3498cc VQ35DE",
-  ];
-  const brands = ["Catron", "KAVO", "OSRAM", "NGK", "NISMO", "Mugen", "HKS"];
-
-  const essentialProducts = [
+  // Sample product data - would come from API/database
+  const allProducts: Product[] = [
     {
       id: 1,
-      name: "KAVO Cabin Filter",
-      category: "Air Filters",
+      sku: "NIS-OF-001",
+      name: "NISSAN OEM Oil Filter 15208-65F0C",
+      category: "Engine",
+      subcategory: "Oil Filters",
+      brand: "Nissan OEM",
       image:
-        "https://images.pexels.com/photos/3642618/pexels-photo-3642618.jpeg?auto=compress&cs=tinysrgb&w=300",
-      price: 2500,
-      originalPrice: 3000,
-      rating: 4.5,
-      reviews: 12,
-      link: "#",
+        "https://images.unsplash.com/photo-1558618047-3c8c76ca7d13?w=400&h=300&fit=crop",
+      price: 1850,
+      originalPrice: 2200,
+      rating: 4.8,
+      reviews: 156,
+      compatibility: ["Note E12", "March K13", "Micra K13"],
+      year: [2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019],
+      model: ["Note", "March", "Micra"],
+      engine: ["1.2L DIG-S", "1.0L"],
+      inStock: true,
+      stockLevel: 45,
+      tags: ["OEM", "Genuine", "Economy"],
     },
     {
       id: 2,
-      name: "KAVO Cabin Filter Premium",
-      category: "Air Filters",
+      sku: "NIS-AF-002",
+      name: "NISSAN Cabin Air Filter 27277-1HM0A",
+      category: "Engine",
+      subcategory: "Air Filters",
+      brand: "Nissan OEM",
       image:
-        "https://images.pexels.com/photos/5835359/pexels-photo-5835359.jpeg?auto=compress&cs=tinysrgb&w=300",
+        "https://images.unsplash.com/photo-1619642751034-765dfdf7c58e?w=400&h=300&fit=crop",
       price: 3200,
       originalPrice: 3800,
       rating: 4.7,
-      reviews: 8,
-      link: "#",
+      reviews: 89,
+      compatibility: ["X-Trail T32", "Qashqai J11"],
+      year: [2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021, 2022],
+      model: ["X-Trail", "Qashqai"],
+      engine: ["2.0L", "2.5L"],
+      inStock: true,
+      stockLevel: 23,
+      tags: ["OEM", "Cabin Filter"],
     },
     {
       id: 3,
-      name: "OSRAM Night Breaker 200 H4",
-      category: "Headlight Bulbs",
+      sku: "NIS-SP-003",
+      name: "NGK Spark Plug DILKAR7E11HS for DIG-S",
+      category: "Engine",
+      subcategory: "Spark Plugs",
+      brand: "NGK",
       image:
-        "https://images.pexels.com/photos/162553/keys-workshop-mechanic-tools-162553.jpeg?auto=compress&cs=tinysrgb&w=300",
-      price: 4500,
+        "https://images.unsplash.com/photo-1580273916550-e323be2ae537?w=400&h=300&fit=crop",
+      price: 2400,
       rating: 4.9,
-      reviews: 15,
-      link: "#",
+      reviews: 203,
+      compatibility: ["Note DIG-S", "March DIG-S"],
+      year: [2012, 2013, 2014, 2015, 2016, 2017],
+      model: ["Note", "March"],
+      engine: ["1.2L DIG-S"],
+      inStock: true,
+      stockLevel: 67,
+      tags: ["NGK", "Performance", "DIG-S"],
     },
     {
       id: 4,
-      name: "NGK Spark Plug DIG-S",
-      category: "Spark Plugs",
+      sku: "NIS-BP-004",
+      name: "NISSAN OEM Brake Pads Front D4060-1HM0A",
+      category: "Brakes",
+      subcategory: "Brake Pads",
+      brand: "Nissan OEM",
       image:
-        "https://images.pexels.com/photos/190570/pexels-photo-190570.jpeg?auto=compress&cs=tinysrgb&w=600",
-      price: 1800,
+        "https://images.unsplash.com/photo-1621839673705-6617adf9e890?w=400&h=300&fit=crop",
+      price: 8500,
+      originalPrice: 9800,
       rating: 4.6,
-      reviews: 20,
-      link: "#",
+      reviews: 134,
+      compatibility: ["X-Trail T32", "Qashqai J11"],
+      year: [2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021],
+      model: ["X-Trail", "Qashqai"],
+      engine: ["2.0L", "2.5L"],
+      inStock: true,
+      stockLevel: 12,
+      tags: ["OEM", "Safety", "Front"],
     },
-  ];
-
-  const airFilters = [
-    {
-      id: 101,
-      name: "KAVO Cabin Filter",
-      category: "Air Filters",
-      image:
-        "https://images.pexels.com/photos/3642618/pexels-photo-3642618.jpeg?auto=compress&cs=tinysrgb&w=300",
-      price: 2500,
-      originalPrice: 3000,
-      rating: 4.5,
-      reviews: 12,
-      link: "#",
-    },
-    {
-      id: 102,
-      name: "Premium Air Filter Element",
-      category: "Air Filters",
-      image:
-        "https://via.placeholder.com/300x200/e0e0e0/666666?text=Air+Filter",
-      price: 1800,
-      originalPrice: 2200,
-      rating: 4.3,
-      reviews: 8,
-      link: "#",
-    },
-    {
-      id: 103,
-      name: "High Flow Air Filter",
-      category: "Air Filters",
-      image:
-        "https://via.placeholder.com/300x200/e0e0e0/666666?text=Air+Filter",
-      price: 3500,
-      rating: 4.6,
-      reviews: 15,
-      link: "#",
-    },
-    {
-      id: 104,
-      name: "OEM Replacement Air Filter",
-      category: "Air Filters",
-      image:
-        "https://via.placeholder.com/300x200/e0e0e0/666666?text=Air+Filter",
-      price: 1500,
-      originalPrice: 1800,
-      rating: 4.2,
-      reviews: 20,
-      link: "#",
-    },
-  ];
-
-  const oilFilters = [
-    {
-      id: 201,
-      name: "Premium Oil Filter",
-      category: "Oil Filters",
-      image:
-        "https://via.placeholder.com/300x200/e0e0e0/666666?text=Oil+Filter",
-      price: 1200,
-      originalPrice: 1500,
-      rating: 4.7,
-      reviews: 25,
-      link: "#",
-    },
-    {
-      id: 202,
-      name: "High Performance Oil Filter",
-      category: "Oil Filters",
-      image:
-        "https://via.placeholder.com/300x200/e0e0e0/666666?text=Oil+Filter",
-      price: 1800,
-      rating: 4.5,
-      reviews: 18,
-      link: "#",
-    },
-    {
-      id: 203,
-      name: "OEM Oil Filter Element",
-      category: "Oil Filters",
-      image:
-        "https://via.placeholder.com/300x200/e0e0e0/666666?text=Oil+Filter",
-      price: 900,
-      originalPrice: 1100,
-      rating: 4.3,
-      reviews: 30,
-      link: "#",
-    },
-    {
-      id: 204,
-      name: "Extended Life Oil Filter",
-      category: "Oil Filters",
-      image:
-        "https://via.placeholder.com/300x200/e0e0e0/666666?text=Oil+Filter",
-      price: 2200,
-      rating: 4.8,
-      reviews: 12,
-      link: "#",
-    },
-  ];
-
-  const allProducts = [
-    ...essentialProducts,
     {
       id: 5,
-      name: "Performance Brake Pads",
-      category: "Brake Pads",
+      sku: "NIS-HB-005",
+      name: "OSRAM Night Breaker 200 H4 Headlight Bulb",
+      category: "Electrical",
+      subcategory: "Headlight Bulbs",
+      brand: "OSRAM",
       image:
-        "https://images.pexels.com/photos/3642618/pexels-photo-3642618.jpeg?auto=compress&cs=tinysrgb&w=300",
-      price: 8500,
-      originalPrice: 10000,
-      rating: 4.7,
-      reviews: 12,
-      link: "#",
+        "https://images.unsplash.com/photo-1552664688-cf412ec27db2?w=400&h=300&fit=crop",
+      price: 4500,
+      rating: 4.8,
+      reviews: 67,
+      compatibility: ["Note E11/E12", "March K12/K13"],
+      year: [2006, 2007, 2008, 2009, 2010, 2011, 2012, 2013, 2014, 2015, 2016],
+      model: ["Note", "March"],
+      engine: ["1.4L", "1.5L", "1.2L"],
+      inStock: true,
+      stockLevel: 34,
+      isNew: true,
+      tags: ["OSRAM", "Performance", "Bright"],
     },
     {
       id: 6,
-      name: "High Performance Oil Filter",
-      category: "Oil Filters",
+      sku: "NIS-SP-006",
+      name: "NISSAN Suspension Strut Front 54303-3TA0A",
+      category: "Suspension",
+      subcategory: "Struts",
+      brand: "Nissan OEM",
       image:
-        "https://images.pexels.com/photos/5835359/pexels-photo-5835359.jpeg?auto=compress&cs=tinysrgb&w=300",
-      price: 1200,
-      rating: 4.4,
-      reviews: 8,
-      link: "#",
+        "https://images.unsplash.com/photo-1486754735734-325b5831c3ad?w=400&h=300&fit=crop",
+      price: 12500,
+      rating: 4.7,
+      reviews: 45,
+      compatibility: ["Serena C26"],
+      year: [2010, 2011, 2012, 2013, 2014, 2015, 2016],
+      model: ["Serena"],
+      engine: ["2.0L"],
+      inStock: true,
+      stockLevel: 8,
+      isNew: true,
+      tags: ["OEM", "Comfort", "Front"],
     },
     {
       id: 7,
-      name: "LED Headlight Conversion Kit",
-      category: "Headlight Bulbs",
+      sku: "NIS-EL-007",
+      name: "NISSAN Alternator 23100-3TA0B",
+      category: "Electrical",
+      subcategory: "Alternators",
+      brand: "Nissan OEM",
       image:
-        "https://images.pexels.com/photos/162553/keys-workshop-mechanic-tools-162553.jpeg?auto=compress&cs=tinysrgb&w=300",
-      price: 12000,
-      originalPrice: 15000,
-      rating: 4.9,
-      reviews: 5,
-      link: "#",
+        "https://images.unsplash.com/photo-1502920917128-1aa500764cbd?w=400&h=300&fit=crop",
+      price: 18500,
+      originalPrice: 21000,
+      rating: 4.5,
+      reviews: 23,
+      compatibility: ["Serena C26", "NV200"],
+      year: [2009, 2010, 2011, 2012, 2013, 2014, 2015],
+      model: ["Serena", "NV200"],
+      engine: ["2.0L"],
+      inStock: true,
+      stockLevel: 5,
+      isNew: true,
+      tags: ["OEM", "Electrical", "Charging"],
     },
     {
       id: 8,
-      name: "Performance Exhaust System",
-      category: "Exhaust Systems",
+      sku: "NIS-BT-008",
+      name: "NISSAN Door Handle Outer Chrome 80607-1HM0A",
+      category: "Body & Trim",
+      subcategory: "Door Handles",
+      brand: "Nissan OEM",
       image:
-        "https://images.pexels.com/photos/190570/pexels-photo-190570.jpeg?auto=compress&cs=tinysrgb&w=600",
-      price: 25000,
-      rating: 4.2,
-      reviews: 28,
-      link: "#",
+        "https://images.unsplash.com/photo-1544829099-b9a0c5303bea?w=400&h=300&fit=crop",
+      price: 5800,
+      rating: 4.4,
+      reviews: 12,
+      compatibility: ["X-Trail T32"],
+      year: [2014, 2015, 2016, 2017, 2018, 2019, 2020],
+      model: ["X-Trail"],
+      engine: ["2.0L", "2.5L"],
+      inStock: true,
+      stockLevel: 15,
+      isNew: true,
+      tags: ["OEM", "Chrome", "Exterior"],
+    },
+    {
+      id: 9,
+      sku: "NIS-BP-009",
+      name: "BREMBO Performance Brake Discs Front",
+      category: "Brakes",
+      subcategory: "Brake Discs",
+      brand: "Brembo",
+      image:
+        "https://images.unsplash.com/photo-1621839673705-6617adf9e890?w=400&h=300&fit=crop",
+      price: 15500,
+      originalPrice: 18000,
+      rating: 4.9,
+      reviews: 78,
+      compatibility: ["370Z Z34", "GT-R R35"],
+      year: [
+        2009, 2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020,
+      ],
+      model: ["370Z", "GT-R"],
+      engine: ["3.7L V6", "3.8L V6 Twin Turbo"],
+      inStock: true,
+      stockLevel: 6,
+      isFeatured: true,
+      tags: ["Brembo", "Performance", "Sport"],
+    },
+    {
+      id: 10,
+      sku: "NIS-EG-010",
+      name: "NISSAN Timing Chain Kit QR25DE",
+      category: "Engine",
+      subcategory: "Timing Components",
+      brand: "Nissan OEM",
+      image:
+        "https://images.unsplash.com/photo-1487754180451-c456f719a1fc?w=400&h=300&fit=crop",
+      price: 22500,
+      rating: 4.6,
+      reviews: 34,
+      compatibility: ["Altima L33", "X-Trail T32", "Qashqai J11"],
+      year: [2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021],
+      model: ["Altima", "X-Trail", "Qashqai"],
+      engine: ["2.5L QR25DE"],
+      inStock: true,
+      stockLevel: 3,
+      tags: ["OEM", "Timing", "Engine"],
     },
   ];
 
-  const getDisplayedProducts = () => {
-    switch (activeTab) {
-      case "airfilters":
-        return airFilters;
-      case "oilfilters":
-        return oilFilters;
-      default:
-        return essentialProducts;
+  const categories = [
+    "Engine",
+    "Brakes",
+    "Suspension",
+    "Electrical",
+    "Body & Trim",
+  ];
+  const brands = ["Nissan OEM", "NGK", "OSRAM", "Brembo", "DENSO", "Bosch"];
+  const nissanModels = [
+    "Note",
+    "March",
+    "Micra",
+    "X-Trail",
+    "Qashqai",
+    "Serena",
+    "NV200",
+    "370Z",
+    "GT-R",
+    "Altima",
+  ];
+  const engineOptions = [
+    "1.0L",
+    "1.2L DIG-S",
+    "1.4L",
+    "1.5L",
+    "2.0L",
+    "2.5L QR25DE",
+    "3.7L V6",
+    "3.8L V6 Twin Turbo",
+  ];
+  const years = Array.from({ length: 20 }, (_, i) => 2024 - i);
+
+  // Filter and search logic
+  const filteredProducts = useMemo(() => {
+    let filtered = allProducts;
+
+    // Search query
+    if (searchQuery) {
+      const query = searchQuery.toLowerCase();
+      filtered = filtered.filter(
+        (product) =>
+          product.name.toLowerCase().includes(query) ||
+          product.sku.toLowerCase().includes(query) ||
+          product.category.toLowerCase().includes(query) ||
+          product.brand.toLowerCase().includes(query) ||
+          product.tags.some((tag) => tag.toLowerCase().includes(query)) ||
+          product.compatibility.some((comp) =>
+            comp.toLowerCase().includes(query),
+          ),
+      );
     }
+
+    // Category filter
+    if (filters.category.length > 0) {
+      filtered = filtered.filter((product) =>
+        filters.category.includes(product.category),
+      );
+    }
+
+    // Brand filter
+    if (filters.brand.length > 0) {
+      filtered = filtered.filter((product) =>
+        filters.brand.includes(product.brand),
+      );
+    }
+
+    // Price range filter
+    filtered = filtered.filter(
+      (product) =>
+        product.price >= filters.priceRange[0] &&
+        product.price <= filters.priceRange[1],
+    );
+
+    // Year filter
+    if (filters.year) {
+      const year = parseInt(filters.year);
+      filtered = filtered.filter((product) => product.year.includes(year));
+    }
+
+    // Model filter
+    if (filters.model) {
+      filtered = filtered.filter((product) =>
+        product.model.includes(filters.model),
+      );
+    }
+
+    // Engine filter
+    if (filters.engine) {
+      filtered = filtered.filter((product) =>
+        product.engine.includes(filters.engine),
+      );
+    }
+
+    // Availability filter
+    if (filters.availability === "in-stock") {
+      filtered = filtered.filter((product) => product.inStock);
+    } else if (filters.availability === "low-stock") {
+      filtered = filtered.filter(
+        (product) => product.inStock && product.stockLevel <= 10,
+      );
+    }
+
+    return filtered;
+  }, [searchQuery, filters, allProducts]);
+
+  // Sorting logic
+  const sortedProducts = useMemo(() => {
+    const sorted = [...filteredProducts];
+
+    switch (sortBy) {
+      case "price-low":
+        return sorted.sort((a, b) => a.price - b.price);
+      case "price-high":
+        return sorted.sort((a, b) => b.price - a.price);
+      case "rating":
+        return sorted.sort((a, b) => b.rating - a.rating);
+      case "reviews":
+        return sorted.sort((a, b) => b.reviews - a.reviews);
+      case "newest":
+        return sorted.sort((a, b) => (b.isNew ? 1 : 0) - (a.isNew ? 1 : 0));
+      case "name":
+        return sorted.sort((a, b) => a.name.localeCompare(b.name));
+      default: // relevance
+        return sorted.sort((a, b) => {
+          // Prioritize featured, then new, then by rating
+          if (a.isFeatured && !b.isFeatured) return -1;
+          if (!a.isFeatured && b.isFeatured) return 1;
+          if (a.isNew && !b.isNew) return -1;
+          if (!a.isNew && b.isNew) return 1;
+          return b.rating - a.rating;
+        });
+    }
+  }, [filteredProducts, sortBy]);
+
+  // Pagination
+  const totalPages = Math.ceil(sortedProducts.length / itemsPerPage);
+  const paginatedProducts = sortedProducts.slice(
+    (currentPage - 1) * itemsPerPage,
+    currentPage * itemsPerPage,
+  );
+
+  const updateFilter = (key: keyof FilterState, value: any) => {
+    setFilters((prev) => ({
+      ...prev,
+      [key]: value,
+    }));
+    setCurrentPage(1);
+  };
+
+  const clearFilters = () => {
+    setFilters({
+      category: [],
+      brand: [],
+      priceRange: [0, 100000],
+      year: "",
+      model: "",
+      engine: "",
+      availability: "all",
+    });
+    setSearchQuery("");
+    setCurrentPage(1);
   };
 
   const renderStars = (rating: number) => {
-    const stars = [];
-    const fullStars = Math.floor(rating);
-    const hasHalfStar = rating % 1 !== 0;
+    return "★".repeat(Math.floor(rating)) + "☆".repeat(5 - Math.floor(rating));
+  };
 
-    for (let i = 0; i < 5; i++) {
-      if (i < fullStars) {
-        stars.push("★");
-      } else if (i === fullStars && hasHalfStar) {
-        stars.push("☆");
-      } else {
-        stars.push("☆");
-      }
-    }
-    return stars.join("");
+  const addToWhatsAppCart = (product: Product) => {
+    const phoneNumber = "+254700000000";
+    const message = `Hi! I'd like to order this Nissan part:\n\n• ${product.name} (SKU: ${product.sku})\n• Price: KES ${product.price.toLocaleString()}\n\nPlease confirm availability & payment details.`;
+    const whatsappUrl = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
+    window.open(whatsappUrl, "_blank");
   };
 
   return (
-    <div className="homepage">
-      {/* Black Friday Banner */}
-      <div className="promo-banner">
-        <div className="promo-content">
-          <span className="promo-text">
-            <span className="black-friday">SPECIAL OFFER</span> | Premium Auto
-            Parts
-            <span className="discount">Quality Guaranteed</span> | Free shipping
-            on orders over <span className="promo-code">KES 5,000</span>
-          </span>
-          <div className="language-selector">
-            Language: <span className="current-lang">EN</span> ▼
-          </div>
-        </div>
-      </div>
+    <div className="min-h-screen bg-gray-50">
+      <Header
+        searchQuery={searchQuery}
+        setSearchQuery={setSearchQuery}
+        currentPage="shop"
+      />
 
-      {/* Main Header */}
-      <header className="main-header">
-        <div className="header-container">
-          <div className="logo">
-            <img
-              src="https://cdn.builder.io/api/v1/image/assets%2F16c4d8eebb6943b4be5a75c55b5cdffd%2F5d8fbe0d7a4c4e1a9a82d71637d82593?format=webp&width=200"
-              alt="Catron Auto Parts"
-              className="logo-image"
-            />
-          </div>
-
-          <div className="search-section">
-            <div className="search-bar">
-              <select
-                className="search-category"
-                value={searchCategory}
-                onChange={(e) => setSearchCategory(e.target.value)}
-              >
-                <option value="All">All Categories</option>
-                {categories.map((cat) => (
-                  <option key={cat} value={cat}>
-                    {cat}
-                  </option>
-                ))}
-              </select>
-              <input
-                type="text"
-                placeholder="Search for products..."
-                className="search-input"
-                value={searchQuery}
-                onChange={(e) => setSearchQuery(e.target.value)}
-              />
-              <button className="search-button">
-                <svg
-                  width="16"
-                  height="16"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  strokeWidth="2"
+      <div className="max-w-7xl mx-auto px-4 py-8">
+        <div className="flex gap-8">
+          {/* Sidebar Filters */}
+          <aside
+            className={`w-80 ${showFilters ? "block" : "hidden lg:block"}`}
+          >
+            <div className="bg-white rounded-lg shadow-md border border-gray-200 p-6 sticky top-4">
+              <div className="flex items-center justify-between mb-6">
+                <h3 className="text-lg font-bold text-gray-900">Filters</h3>
+                <button
+                  onClick={clearFilters}
+                  className="text-sm text-red-600 hover:underline"
                 >
-                  <circle cx="11" cy="11" r="8"></circle>
-                  <path d="M21 21l-4.35-4.35"></path>
-                </svg>
-              </button>
-            </div>
-          </div>
-
-          <div className="header-actions">
-            <div className="action-item">
-              <span className="action-icon">
-                <svg
-                  width="16"
-                  height="16"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  strokeWidth="2"
-                >
-                  <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>
-                </svg>
-              </span>
-              <span className="action-text">Wishlist</span>
-            </div>
-            <div className="action-item">
-              <span className="action-icon">
-                <svg
-                  width="16"
-                  height="16"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  strokeWidth="2"
-                >
-                  <circle cx="9" cy="21" r="1"></circle>
-                  <circle cx="20" cy="21" r="1"></circle>
-                  <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
-                </svg>
-              </span>
-              <span className="action-text">Cart ({cartItems})</span>
-            </div>
-            <div className="action-item">
-              <span className="action-icon">
-                <i className="fas fa-user"></i>
-              </span>
-              <span className="action-text">Sign In</span>
-            </div>
-          </div>
-        </div>
-      </header>
-
-      {/* Navigation */}
-      <nav className="main-navigation">
-        <div className="nav-container">
-          <div className="categories-dropdown" style={{ position: "relative" }}>
-            <button
-              className="categories-btn"
-              onClick={() => setShowCategoriesDropdown(!showCategoriesDropdown)}
-            >
-              <svg
-                width="16"
-                height="16"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth="2"
-              >
-                <line x1="3" y1="6" x2="21" y2="6"></line>
-                <line x1="3" y1="12" x2="21" y2="12"></line>
-                <line x1="3" y1="18" x2="21" y2="18"></line>
-              </svg>
-              All Categories
-            </button>
-            {showCategoriesDropdown && (
-              <div className="categories-dropdown-menu">
-                <Link href="/category/auto-parts">
-                  <div className="dropdown-item">Auto Parts</div>
-                </Link>
-                <Link href="/category/oil-filter">
-                  <div className="dropdown-item">Oil Filters</div>
-                </Link>
-                <Link href="/category/air-filters">
-                  <div className="dropdown-item">Air Filters</div>
-                </Link>
-                <Link href="/category/headlight-bulbs">
-                  <div className="dropdown-item">Headlight Bulbs</div>
-                </Link>
-                <Link href="/category/spark-plugs">
-                  <div className="dropdown-item">Spark Plugs</div>
-                </Link>
-                <Link href="/category/brake-pads">
-                  <div className="dropdown-item">Brake Pads</div>
-                </Link>
+                  Clear All
+                </button>
               </div>
-            )}
-          </div>
 
-          <div className="nav-links">
-            <a href="/" className="nav-link">
-              Home
-            </a>
-            <a href="/shop" className="nav-link active">
-              Shop
-            </a>
-            <a href="/blog" className="nav-link">
-              Blog
-            </a>
-            <a href="/contact" className="nav-link">
-              Contact Us
-            </a>
-          </div>
+              {/* Vehicle Selector */}
+              <div className="mb-6 p-4 bg-gray-50 rounded-lg">
+                <h4 className="font-medium mb-3 text-gray-800">
+                  Find Parts By Vehicle
+                </h4>
+                <div className="space-y-3">
+                  <select
+                    className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-red-500"
+                    value={filters.year}
+                    onChange={(e) => updateFilter("year", e.target.value)}
+                  >
+                    <option value="">Any Year</option>
+                    {years.map((year) => (
+                      <option key={year} value={year}>
+                        {year}
+                      </option>
+                    ))}
+                  </select>
 
-          <div className="nav-actions">
-            <a href="#order-tracking" className="nav-action">
-              Order Tracking
-            </a>
-            <a href="#compare" className="nav-action">
-              Compare (0)
-            </a>
-          </div>
-        </div>
-      </nav>
+                  <select
+                    className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-red-500"
+                    value={filters.model}
+                    onChange={(e) => updateFilter("model", e.target.value)}
+                  >
+                    <option value="">Any Model</option>
+                    {nissanModels.map((model) => (
+                      <option key={model} value={model}>
+                        {model}
+                      </option>
+                    ))}
+                  </select>
 
-      {/* Shop Content */}
-      <main className="shop-main">
-        <div className="shop-container">
-          <div className="shop-layout">
-            {/* Sidebar */}
-            <aside className="shop-sidebar">
-              <div className="filter-section">
-                <h3>Categories</h3>
-                <div className="filter-list">
-                  {categories.map((category, index) => (
-                    <label key={index} className="filter-item">
+                  <select
+                    className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-red-500"
+                    value={filters.engine}
+                    onChange={(e) => updateFilter("engine", e.target.value)}
+                  >
+                    <option value="">Any Engine</option>
+                    {engineOptions.map((engine) => (
+                      <option key={engine} value={engine}>
+                        {engine}
+                      </option>
+                    ))}
+                  </select>
+                </div>
+              </div>
+
+              {/* Categories */}
+              <div className="mb-6">
+                <h4 className="font-medium mb-3 text-gray-800">Categories</h4>
+                <div className="space-y-2">
+                  {categories.map((category) => (
+                    <label
+                      key={category}
+                      className="flex items-center gap-2 cursor-pointer hover:bg-gray-50 p-2 rounded"
+                    >
                       <input
                         type="checkbox"
-                        checked={selectedCategories.includes(category)}
+                        checked={filters.category.includes(category)}
                         onChange={(e) => {
                           if (e.target.checked) {
-                            setSelectedCategories([
-                              ...selectedCategories,
+                            updateFilter("category", [
+                              ...filters.category,
                               category,
                             ]);
                           } else {
-                            setSelectedCategories(
-                              selectedCategories.filter((c) => c !== category),
+                            updateFilter(
+                              "category",
+                              filters.category.filter((c) => c !== category),
                             );
                           }
                         }}
+                        className="rounded border-gray-300 text-red-600 focus:ring-red-500"
                       />
-                      <span>{category}</span>
+                      <span className="text-sm text-gray-700">{category}</span>
+                      <span className="text-xs text-gray-500 ml-auto">
+                        (
+                        {
+                          allProducts.filter((p) => p.category === category)
+                            .length
+                        }
+                        )
+                      </span>
                     </label>
                   ))}
                 </div>
               </div>
 
-              <div className="filter-section">
-                <h3>Make</h3>
-                <div className="filter-list">
-                  {nissanMakes.map((make) => (
-                    <label key={make} className="filter-item">
-                      <input type="checkbox" />
-                      <span>{make}</span>
+              {/* Brands */}
+              <div className="mb-6">
+                <h4 className="font-medium mb-3 text-gray-800">Brands</h4>
+                <div className="space-y-2">
+                  {brands.map((brand) => (
+                    <label
+                      key={brand}
+                      className="flex items-center gap-2 cursor-pointer hover:bg-gray-50 p-2 rounded"
+                    >
+                      <input
+                        type="checkbox"
+                        checked={filters.brand.includes(brand)}
+                        onChange={(e) => {
+                          if (e.target.checked) {
+                            updateFilter("brand", [...filters.brand, brand]);
+                          } else {
+                            updateFilter(
+                              "brand",
+                              filters.brand.filter((b) => b !== brand),
+                            );
+                          }
+                        }}
+                        className="rounded border-gray-300 text-red-600 focus:ring-red-500"
+                      />
+                      <span className="text-sm text-gray-700">{brand}</span>
+                      <span className="text-xs text-gray-500 ml-auto">
+                        ({allProducts.filter((p) => p.brand === brand).length})
+                      </span>
                     </label>
                   ))}
                 </div>
               </div>
 
-              <div className="filter-section">
-                <h3>Model</h3>
-                <div className="filter-list scrollable">
-                  {nissanModels.slice(0, 8).map((model) => (
-                    <label key={model} className="filter-item">
-                      <input type="checkbox" />
-                      <span>{model}</span>
-                    </label>
-                  ))}
-                </div>
-              </div>
-
-              <div className="filter-section">
-                <h3>Year</h3>
-                <div className="filter-list">
-                  {vehicleYears.slice(0, 6).map((year) => (
-                    <label key={year} className="filter-item">
-                      <input type="checkbox" />
-                      <span>{year}</span>
-                    </label>
-                  ))}
-                </div>
-              </div>
-
-              <div className="filter-section">
-                <h3>Engine</h3>
-                <div className="filter-list">
-                  {engineTypes.slice(0, 5).map((engine) => (
-                    <label key={engine} className="filter-item">
-                      <input type="checkbox" />
-                      <span>{engine}</span>
-                    </label>
-                  ))}
-                </div>
-              </div>
-
-              <div className="filter-section">
-                <h3>Price</h3>
-                <div className="price-filter">
+              {/* Price Range */}
+              <div className="mb-6">
+                <h4 className="font-medium mb-3 text-gray-800">Price Range</h4>
+                <div className="space-y-3">
                   <input
                     type="range"
                     min="0"
                     max="100000"
-                    value={priceRange[1]}
+                    step="500"
+                    value={filters.priceRange[1]}
                     onChange={(e) =>
-                      setPriceRange([0, parseInt(e.target.value)])
+                      updateFilter("priceRange", [0, parseInt(e.target.value)])
                     }
-                    className="price-slider"
+                    className="w-full accent-red-600"
                   />
-                  <div className="price-display">
-                    KES 0 - KES {priceRange[1].toLocaleString()}
+                  <div className="flex justify-between text-sm text-gray-500">
+                    <span>KES 0</span>
+                    <span>KES {filters.priceRange[1].toLocaleString()}</span>
                   </div>
                 </div>
               </div>
 
-              <div className="filter-section">
-                <h3>Brand</h3>
-                <div className="filter-list">
-                  {brands.map((brand) => (
-                    <label key={brand} className="filter-item">
-                      <input type="checkbox" />
-                      <span>{brand}</span>
+              {/* Availability */}
+              <div className="mb-6">
+                <h4 className="font-medium mb-3">Availability</h4>
+                <div className="space-y-2">
+                  {[
+                    { value: "all", label: "All Items" },
+                    { value: "in-stock", label: "In Stock" },
+                    { value: "low-stock", label: "Low Stock" },
+                  ].map((option) => (
+                    <label
+                      key={option.value}
+                      className="flex items-center gap-2"
+                    >
+                      <input
+                        type="radio"
+                        name="availability"
+                        value={option.value}
+                        checked={filters.availability === option.value}
+                        onChange={(e) =>
+                          updateFilter("availability", e.target.value)
+                        }
+                        className="border-gray-300"
+                      />
+                      <span className="text-sm">{option.label}</span>
                     </label>
                   ))}
                 </div>
               </div>
-            </aside>
+            </div>
+          </aside>
 
-            {/* Main Content */}
-            <div className="shop-content">
-              {/* Best Sellers Section */}
-              <section className="best-sellers-section">
-                <div className="best-sellers-container">
-                  <div className="best-sellers-header">
-                    <div className="header-left">
-                      <h2 className="best-sellers-title">Best Sellers</h2>
-                    </div>
-                    <div className="header-right">
-                      <div className="category-tabs">
-                        <button
-                          className={`tab-link ${activeTab === "top10" ? "active" : ""}`}
-                          onClick={() => setActiveTab("top10")}
-                        >
-                          Top 10
-                        </button>
-                        <button
-                          className={`tab-link ${activeTab === "airfilters" ? "active" : ""}`}
-                          onClick={() => setActiveTab("airfilters")}
-                        >
-                          Top Air Filters
-                        </button>
-                        <button
-                          className={`tab-link ${activeTab === "oilfilters" ? "active" : ""}`}
-                          onClick={() => setActiveTab("oilfilters")}
-                        >
-                          Top Oil Filters
-                        </button>
-                      </div>
-                    </div>
-                  </div>
+          {/* Main Content */}
+          <main className="flex-1">
+            {/* Results Header */}
+            <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-4 mb-6">
+              <div className="flex items-center gap-4">
+                <button
+                  onClick={() => setShowFilters(!showFilters)}
+                  className="lg:hidden px-4 py-2 border border-gray-300 rounded-md text-gray-700 hover:bg-gray-50"
+                >
+                  <svg
+                    className="w-4 h-4 mr-2"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M3 4a1 1 0 011-1h16a1 1 0 011 1v2.586a1 1 0 01-.293.707l-6.414 6.414a1 1 0 00-.293.707V17l-4 4v-6.586a1 1 0 00-.293-.707L3.293 7.707A1 1 0 013 7V4z"
+                    />
+                  </svg>
+                  Filters
+                </button>
 
-                  <div className="products-grid-container shop-grid">
-                    {getDisplayedProducts().map((product) => (
-                      <div
-                        key={`bestseller-${product.id}`}
-                        className="product-card"
-                      >
-                        <div className="product-card-inner">
-                          <div className="product-discount-badge">
-                            {Math.round(
-                              (((product.originalPrice || product.price + 500) -
-                                product.price) /
-                                (product.originalPrice ||
-                                  product.price + 500)) *
-                                100,
-                            )}
-                            % OFF
-                          </div>
-
-                          <div className="product-image-container">
-                            <a
-                              href={product.link}
-                              className="product-image-link"
-                            >
-                              <img
-                                src={product.image}
-                                alt={product.name}
-                                className="product-image"
-                                loading="lazy"
-                                width="180"
-                                height="180"
-                              />
-                            </a>
-                          </div>
-
-                          <div className="product-info">
-                            <div className="product-category">
-                              <a
-                                href={`#category-${product.category.toLowerCase().replace(/\s+/g, "-")}`}
-                                className="category-link"
-                              >
-                                {product.category}
-                              </a>
-                            </div>
-
-                            <div className="product-name">
-                              <h5>
-                                <a
-                                  href={product.link}
-                                  className="product-name-link"
-                                >
-                                  {product.name}
-                                </a>
-                              </h5>
-                            </div>
-
-                            <div className="product-rating">
-                              <div className="rating-stars">
-                                <div
-                                  className="stars"
-                                  title={`Rated ${product.rating} out of 5`}
-                                >
-                                  <span className="star-display">
-                                    {renderStars(product.rating)}
-                                  </span>
-                                </div>
-                              </div>
-                              <div className="reviews-count">
-                                <p>{product.reviews} Reviews</p>
-                              </div>
-                            </div>
-
-                            <div className="product-price">
-                              <p className="price-container">
-                                {product.originalPrice && (
-                                  <del className="original-price">
-                                    <span className="currency">KES </span>
-                                    <span>
-                                      {product.originalPrice.toLocaleString()}
-                                    </span>
-                                  </del>
-                                )}
-                                <span
-                                  className={
-                                    product.originalPrice
-                                      ? "sale-price"
-                                      : "regular-price"
-                                  }
-                                >
-                                  <span className="currency">KES </span>
-                                  <span>{product.price.toLocaleString()}</span>
-                                </span>
-                              </p>
-                            </div>
-
-                            <div className="product-actions">
-                              <a
-                                href={product.link}
-                                className="add-to-cart-btn"
-                              >
-                                Add to cart
-                              </a>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    ))}
-                  </div>
+                <div className="text-lg">
+                  <span className="font-bold">{sortedProducts.length}</span>
+                  <span className="text-secondary ml-1">parts found</span>
+                  {searchQuery && (
+                    <span className="text-sm text-secondary ml-2">
+                      for "{searchQuery}"
+                    </span>
+                  )}
                 </div>
-              </section>
+              </div>
 
-              {/* All Products Section */}
-              <section className="all-products-section">
-                <div className="all-products-header">
-                  <h2>All Products</h2>
-                  <div className="sort-options">
-                    <select
-                      value={sortBy}
-                      onChange={(e) => setSortBy(e.target.value)}
+              <div className="flex items-center gap-4">
+                {/* View Mode Toggle */}
+                <div className="flex border rounded-lg overflow-hidden">
+                  <button
+                    onClick={() => setViewMode("grid")}
+                    className={`p-2 ${viewMode === "grid" ? "bg-red-600 text-white" : "bg-white text-gray-700"}`}
+                  >
+                    <svg
+                      className="w-5 h-5"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
                     >
-                      <option value="name">Sort by Name</option>
-                      <option value="price-low">Price: Low to High</option>
-                      <option value="price-high">Price: High to Low</option>
-                      <option value="rating">Sort by Rating</option>
-                    </select>
-                  </div>
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth={2}
+                        d="M4 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2V6zM14 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V6zM4 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2v-2zM14 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2v-2z"
+                      />
+                    </svg>
+                  </button>
+                  <button
+                    onClick={() => setViewMode("list")}
+                    className={`p-2 ${viewMode === "list" ? "bg-red-600 text-white" : "bg-white text-gray-700"}`}
+                  >
+                    <svg
+                      className="w-5 h-5"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth={2}
+                        d="M4 6h16M4 10h16M4 14h16M4 18h16"
+                      />
+                    </svg>
+                  </button>
                 </div>
 
-                <div className="products-grid-container shop-grid">
-                  {allProducts.map((product) => (
-                    <div key={`all-${product.id}`} className="product-card">
-                      <div className="product-card-inner">
+                {/* Sort Dropdown */}
+                <select
+                  value={sortBy}
+                  onChange={(e) => setSortBy(e.target.value)}
+                  className="px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-red-500"
+                >
+                  <option value="relevance">Sort by Relevance</option>
+                  <option value="price-low">Price: Low to High</option>
+                  <option value="price-high">Price: High to Low</option>
+                  <option value="rating">Highest Rated</option>
+                  <option value="reviews">Most Reviews</option>
+                  <option value="newest">Newest First</option>
+                  <option value="name">Name A-Z</option>
+                </select>
+              </div>
+            </div>
+
+            {/* Active Filters */}
+            {(filters.category.length > 0 ||
+              filters.brand.length > 0 ||
+              filters.year ||
+              filters.model ||
+              filters.engine ||
+              searchQuery) && (
+              <div className="mb-6">
+                <div className="flex flex-wrap gap-2">
+                  {searchQuery && (
+                    <div className="flex items-center gap-2 bg-red-600 text-white px-3 py-1 rounded-full text-sm">
+                      Search: {searchQuery}
+                      <button onClick={() => setSearchQuery("")}>
+                        <svg
+                          className="w-4 h-4"
+                          fill="none"
+                          stroke="currentColor"
+                          viewBox="0 0 24 24"
+                        >
+                          <path
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                            strokeWidth={2}
+                            d="M6 18L18 6M6 6l12 12"
+                          />
+                        </svg>
+                      </button>
+                    </div>
+                  )}
+
+                  {filters.category.map((cat) => (
+                    <div
+                      key={cat}
+                      className="flex items-center gap-2 bg-gray-200 text-gray-700 px-3 py-1 rounded-full text-sm"
+                    >
+                      {cat}
+                      <button
+                        onClick={() =>
+                          updateFilter(
+                            "category",
+                            filters.category.filter((c) => c !== cat),
+                          )
+                        }
+                      >
+                        <svg
+                          className="w-4 h-4"
+                          fill="none"
+                          stroke="currentColor"
+                          viewBox="0 0 24 24"
+                        >
+                          <path
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                            strokeWidth={2}
+                            d="M6 18L18 6M6 6l12 12"
+                          />
+                        </svg>
+                      </button>
+                    </div>
+                  ))}
+
+                  {filters.brand.map((brand) => (
+                    <div
+                      key={brand}
+                      className="flex items-center gap-2 bg-gray-200 text-gray-700 px-3 py-1 rounded-full text-sm"
+                    >
+                      {brand}
+                      <button
+                        onClick={() =>
+                          updateFilter(
+                            "brand",
+                            filters.brand.filter((b) => b !== brand),
+                          )
+                        }
+                      >
+                        <svg
+                          className="w-4 h-4"
+                          fill="none"
+                          stroke="currentColor"
+                          viewBox="0 0 24 24"
+                        >
+                          <path
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                            strokeWidth={2}
+                            d="M6 18L18 6M6 6l12 12"
+                          />
+                        </svg>
+                      </button>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            )}
+
+            {/* Products Grid/List */}
+            {paginatedProducts.length === 0 ? (
+              <div className="text-center py-12">
+                <svg
+                  className="w-16 h-16 text-gray-400 mx-auto mb-4"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M20 13V6a2 2 0 00-2-2H6a2 2 0 00-2 2v7m16 0v5a2 2 0 01-2 2H6a2 2 0 01-2-2v-5m16 0h-2.586a1 1 0 00-.707.293l-2.414 2.414a1 1 0 01-.707.293h-4.172a1 1 0 01-.707-.293l-2.414-2.414A1 1 0 009.586 13H7"
+                  />
+                </svg>
+                <h3 className="text-xl font-medium mb-2">No parts found</h3>
+                <p className="text-muted mb-4">
+                  Try adjusting your search or filters
+                </p>
+                <button
+                  onClick={clearFilters}
+                  className="bg-red-600 text-white px-6 py-2 rounded-md hover:bg-red-700 transition-colors"
+                >
+                  Clear Filters
+                </button>
+              </div>
+            ) : (
+              <>
+                <div
+                  className={
+                    viewMode === "grid"
+                      ? "grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6"
+                      : "space-y-4"
+                  }
+                >
+                  {paginatedProducts.map((product) => (
+                    <div
+                      key={product.id}
+                      className={
+                        viewMode === "grid"
+                          ? "bg-white rounded-lg shadow-md border border-gray-200 p-4 hover:shadow-lg transition-all duration-300 group relative"
+                          : "bg-white rounded-lg shadow-md border border-gray-200 p-4 hover:shadow-lg transition-all duration-300 group relative flex gap-4"
+                      }
+                    >
+                      {/* Product Badges */}
+                      <div className="absolute top-4 left-4 z-10 flex gap-2">
+                        {product.isNew && (
+                          <div className="bg-green-600 text-white px-2 py-1 rounded-md text-xs font-medium">
+                            NEW
+                          </div>
+                        )}
+                        {product.isFeatured && (
+                          <div className="bg-yellow-500 text-white px-2 py-1 rounded-md text-xs font-medium">
+                            FEATURED
+                          </div>
+                        )}
                         {product.originalPrice && (
-                          <div className="product-discount-badge">
+                          <div className="bg-red-600 text-white px-2 py-1 rounded-md text-xs font-medium">
                             {Math.round(
                               ((product.originalPrice - product.price) /
                                 product.originalPrice) *
@@ -789,85 +901,104 @@ export default function ShopPage() {
                             % OFF
                           </div>
                         )}
+                      </div>
 
-                        <div className="product-image-container">
-                          <a href={product.link} className="product-image-link">
-                            <img
-                              src={product.image}
-                              alt={product.name}
-                              className="product-image"
-                              loading="lazy"
-                              width="180"
-                              height="180"
-                            />
-                          </a>
+                      {/* Product Image */}
+                      <div
+                        className={`${viewMode === "grid" ? "aspect-square mb-4" : "w-32 h-32 flex-shrink-0"} overflow-hidden rounded-lg bg-gray-100 relative`}
+                      >
+                        <Link href={`/product/${product.sku}`}>
+                          <img
+                            src={product.image}
+                            alt={product.name}
+                            className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                          />
+                        </Link>
+                      </div>
+
+                      {/* Product Info */}
+                      <div className={`${viewMode === "grid" ? "" : "flex-1"}`}>
+                        <div className="text-xs text-red-600 font-medium mb-1">
+                          {product.category} › {product.subcategory}
                         </div>
 
-                        <div className="product-info">
-                          <div className="product-category">
-                            <a
-                              href={`#category-${product.category.toLowerCase().replace(/\s+/g, "-")}`}
-                              className="category-link"
+                        <Link href={`/product/${product.sku}`}>
+                          <h3 className="font-semibold text-gray-900 mb-2 hover:text-red-600 transition-colors line-clamp-2">
+                            {product.name}
+                          </h3>
+                        </Link>
+
+                        <div className="text-xs text-gray-500 mb-2">
+                          SKU: {product.sku} | Brand: {product.brand}
+                        </div>
+
+                        <div className="flex items-center gap-2 mb-3">
+                          <div className="text-yellow-400 text-sm">
+                            {renderStars(product.rating)}
+                          </div>
+                          <span className="text-xs text-gray-500">
+                            ({product.reviews} reviews)
+                          </span>
+                        </div>
+
+                        <div className="text-xs text-gray-500 mb-3">
+                          <strong>Compatible:</strong>{" "}
+                          {product.compatibility.slice(0, 2).join(", ")}
+                          {product.compatibility.length > 2 &&
+                            ` +${product.compatibility.length - 2} more`}
+                        </div>
+
+                        <div className="flex items-center gap-2 mb-4">
+                          {product.originalPrice && (
+                            <span className="text-sm text-gray-500 line-through">
+                              KES {product.originalPrice.toLocaleString()}
+                            </span>
+                          )}
+                          <span className="text-lg font-bold text-red-600">
+                            KES {product.price.toLocaleString()}
+                          </span>
+                        </div>
+
+                        <div className="flex items-center justify-between mb-4">
+                          <div
+                            className={`text-xs px-2 py-1 rounded ${product.inStock ? "bg-green-100 text-green-800" : "bg-red-100 text-red-800"}`}
+                          >
+                            {product.inStock
+                              ? product.stockLevel <= 10
+                                ? `Low Stock (${product.stockLevel})`
+                                : "In Stock"
+                              : "Out of Stock"}
+                          </div>
+                        </div>
+
+                        <div
+                          className={`${viewMode === "grid" ? "" : "flex gap-2"}`}
+                        >
+                          <button
+                            onClick={() => addToWhatsAppCart(product)}
+                            disabled={!product.inStock}
+                            className="bg-green-600 hover:bg-green-700 text-white w-full text-sm disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2 px-4 py-2 rounded-md transition-colors"
+                          >
+                            <svg
+                              className="w-4 h-4"
+                              fill="currentColor"
+                              viewBox="0 0 24 24"
                             >
-                              {product.category}
-                            </a>
-                          </div>
+                              <path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981z" />
+                            </svg>
+                            {product.inStock
+                              ? "Order via WhatsApp"
+                              : "Out of Stock"}
+                          </button>
 
-                          <div className="product-name">
-                            <h5>
-                              <a
-                                href={product.link}
-                                className="product-name-link"
-                              >
-                                {product.name}
-                              </a>
-                            </h5>
-                          </div>
-
-                          <div className="product-rating">
-                            <div className="rating-stars">
-                              <div
-                                className="stars"
-                                title={`Rated ${product.rating} out of 5`}
-                              >
-                                <span className="star-display">
-                                  {renderStars(product.rating)}
-                                </span>
-                              </div>
-                            </div>
-                            <div className="reviews-count">
-                              <p>{product.reviews} Reviews</p>
-                            </div>
-                          </div>
-
-                          <div className="product-price">
-                            <p className="price-container">
-                              {product.originalPrice && (
-                                <del className="original-price">
-                                  <span className="currency">KES </span>
-                                  <span>
-                                    {product.originalPrice.toLocaleString()}
-                                  </span>
-                                </del>
-                              )}
-                              <span
-                                className={
-                                  product.originalPrice
-                                    ? "sale-price"
-                                    : "regular-price"
-                                }
-                              >
-                                <span className="currency">KES </span>
-                                <span>{product.price.toLocaleString()}</span>
-                              </span>
-                            </p>
-                          </div>
-
-                          <div className="product-actions">
-                            <a href={product.link} className="add-to-cart-btn">
-                              Add to cart
-                            </a>
-                          </div>
+                          {viewMode === "list" && (
+                            <Link
+                              href={`/product/${product.sku}`}
+                              className="border border-gray-300 text-gray-700 px-4 py-2 rounded-md hover:bg-gray-50 transition-colors text-sm"
+                            >
+                              View Details
+                            </Link>
+                          )}
                         </div>
                       </div>
                     </div>
@@ -875,962 +1006,113 @@ export default function ShopPage() {
                 </div>
 
                 {/* Pagination */}
-                <div className="pagination">
-                  <button className="page-btn" disabled>
-                    ‹
-                  </button>
-                  <button className="page-btn active">1</button>
-                  <button className="page-btn">2</button>
-                  <button className="page-btn">3</button>
-                  <button className="page-btn">›</button>
-                </div>
-              </section>
-            </div>
-          </div>
+                {totalPages > 1 && (
+                  <div className="flex justify-center items-center gap-2 mt-12">
+                    <button
+                      onClick={() =>
+                        setCurrentPage(Math.max(1, currentPage - 1))
+                      }
+                      disabled={currentPage === 1}
+                      className="border border-gray-300 text-gray-700 px-3 py-1 rounded-md hover:bg-gray-50 transition-colors text-sm disabled:opacity-50"
+                    >
+                      Previous
+                    </button>
+
+                    {Array.from({ length: Math.min(5, totalPages) }, (_, i) => {
+                      const page =
+                        Math.max(1, Math.min(totalPages - 4, currentPage - 2)) +
+                        i;
+                      return (
+                        <button
+                          key={page}
+                          onClick={() => setCurrentPage(page)}
+                          className={`px-3 py-1 rounded-md text-sm transition-colors ${currentPage === page ? "bg-red-600 text-white" : "border border-gray-300 text-gray-700 hover:bg-gray-50"}`}
+                        >
+                          {page}
+                        </button>
+                      );
+                    })}
+
+                    <button
+                      onClick={() =>
+                        setCurrentPage(Math.min(totalPages, currentPage + 1))
+                      }
+                      disabled={currentPage === totalPages}
+                      className="border border-gray-300 text-gray-700 px-3 py-1 rounded-md hover:bg-gray-50 transition-colors text-sm disabled:opacity-50"
+                    >
+                      Next
+                    </button>
+                  </div>
+                )}
+              </>
+            )}
+          </main>
         </div>
-      </main>
+      </div>
 
       {/* Footer */}
-      <footer className="footer">
-        <div className="footer-container">
-          <div className="footer-content">
-            <div className="footer-main">
-              <div className="footer-brand-section">
-                <div className="footer-brand-content">
-                  <a href="/" className="footer-logo-link">
-                    <img
-                      src="https://cdn.builder.io/api/v1/image/assets%2F16c4d8eebb6943b4be5a75c55b5cdffd%2F5d8fbe0d7a4c4e1a9a82d71637d82593?format=webp&width=200"
-                      alt="Catron Auto Parts"
-                      className="footer-logo"
-                    />
-                  </a>
-                  <div className="footer-brand-description">
-                    <h6 className="footer-tagline">
-                      #1 Kenya's biggest online marketplace for car spare OEM &
-                      aftermarket parts
-                    </h6>
-                    <p className="footer-disclaimer">
-                      All manufacturer names, symbols, and descriptions, used in
-                      our images and text are used solely for identification
-                      purposes only. It is neither inferred nor implied that any
-                      item sold by Catron is a product authorized by or in any
-                      way connected with any vehicle manufacturers displayed on
-                      this page.
-                    </p>
-                    <div className="footer-social">
-                      <a href="https://twitter.com/" className="social-icon">
-                        <svg
-                          width="18"
-                          height="18"
-                          viewBox="0 0 24 24"
-                          fill="none"
-                          stroke="currentColor"
-                          strokeWidth="2"
-                        >
-                          <path d="M22 4s-.7 2.1-2 3.4c1.6 10-9.4 17.3-18 11.6 2.2.1 4.4-.6 6-2C3 15.5.5 9.6 3 5c2.2 2.6 5.6 4.1 9 4-.9-4.2 4-6.6 7-3.8 1.1 0 3-1.2 3-1.2z"></path>
-                        </svg>
-                      </a>
-                      <a href="https://facebook.com/" className="social-icon">
-                        <svg
-                          width="18"
-                          height="18"
-                          viewBox="0 0 24 24"
-                          fill="none"
-                          stroke="currentColor"
-                          strokeWidth="2"
-                        >
-                          <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path>
-                        </svg>
-                      </a>
-                      <a href="https://instagram.com/" className="social-icon">
-                        <svg
-                          width="18"
-                          height="18"
-                          viewBox="0 0 24 24"
-                          fill="none"
-                          stroke="currentColor"
-                          strokeWidth="2"
-                        >
-                          <rect
-                            x="2"
-                            y="2"
-                            width="20"
-                            height="20"
-                            rx="5"
-                            ry="5"
-                          ></rect>
-                          <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
-                          <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
-                        </svg>
-                      </a>
-                      <a href="https://youtube.com/" className="social-icon">
-                        <svg
-                          width="18"
-                          height="18"
-                          viewBox="0 0 24 24"
-                          fill="none"
-                          stroke="currentColor"
-                          strokeWidth="2"
-                        >
-                          <path d="M22.54 6.42a2.78 2.78 0 0 0-1.94-2C18.88 4 12 4 12 4s-6.88 0-8.6.46a2.78 2.78 0 0 0-1.94 2A29 29 0 0 0 1 11.75a29 29 0 0 0 .46 5.33A2.78 2.78 0 0 0 3.4 19c1.72.46 8.6.46 8.6.46s6.88 0 8.6-.46a2.78 2.78 0 0 0 1.94-2 29 29 0 0 0 .46-5.25 29 29 0 0 0-.46-5.33z"></path>
-                          <polygon points="9.75,15.02 15.5,11.75 9.75,8.48"></polygon>
-                        </svg>
-                      </a>
-                    </div>
+      <footer className="bg-gray-900 text-white mt-16">
+        <div className="max-w-7xl mx-auto px-4 py-12">
+          <div className="grid md:grid-cols-3 gap-8">
+            <div>
+              <div className="flex items-center gap-3 mb-4">
+                <div className="w-10 h-10 bg-red-600 rounded-lg flex items-center justify-center text-white font-bold">
+                  B
+                </div>
+                <div>
+                  <div className="text-xl font-bold">BRATOR</div>
+                  <div className="text-xs text-gray-400">
+                    Nissan Parts Specialist
                   </div>
                 </div>
               </div>
+              <p className="text-gray-300 text-sm">
+                Kenya's premier destination for genuine Nissan OEM and
+                performance parts.
+              </p>
+            </div>
 
-              <div className="footer-links-section">
-                <div className="footer-column">
-                  <h6 className="footer-column-title">Catron's Catalog</h6>
-                  <ul className="footer-links-list">
-                    <li>
-                      <a href="#oil-filters">Oil Filters</a>
-                    </li>
-                    <li>
-                      <a href="#air-filters">Air Filters</a>
-                    </li>
-                    <li>
-                      <a href="#headlight-bulbs">Headlight Bulbs</a>
-                    </li>
-                    <li>
-                      <a href="#spark-plugs">Spark Plugs</a>
-                    </li>
-                    <li>
-                      <a href="#brake-pads">Brake Pads</a>
-                    </li>
-                  </ul>
-                </div>
-              </div>
+            <div>
+              <h3 className="font-bold mb-4">Quick Links</h3>
+              <ul className="space-y-2 text-sm text-gray-300">
+                <li>
+                  <Link href="/shop" className="hover:text-white">
+                    Shop All Parts
+                  </Link>
+                </li>
+                <li>
+                  <Link href="/support" className="hover:text-white">
+                    Fitment Guide
+                  </Link>
+                </li>
+                <li>
+                  <Link href="/about" className="hover:text-white">
+                    About Us
+                  </Link>
+                </li>
+                <li>
+                  <Link href="/contact" className="hover:text-white">
+                    Contact
+                  </Link>
+                </li>
+              </ul>
+            </div>
 
-              <div className="footer-links-section">
-                <div className="footer-column">
-                  <h6 className="footer-column-title">Information</h6>
-                  <ul className="footer-links-list">
-                    <li>
-                      <a href="/about">About Catron</a>
-                    </li>
-                    <li>
-                      <a href="/contact">Contact Us</a>
-                    </li>
-                    <li>
-                      <a href="/shipping">Shipping Info</a>
-                    </li>
-                    <li>
-                      <a href="/returns">Returns</a>
-                    </li>
-                    <li>
-                      <a href="/privacy">Privacy Policy</a>
-                    </li>
-                  </ul>
-                </div>
-              </div>
-
-              <div className="footer-links-section">
-                <div className="footer-column">
-                  <h6 className="footer-column-title">Customer Service</h6>
-                  <ul className="footer-links-list">
-                    <li>
-                      <a href="/help">Help Center</a>
-                    </li>
-                    <li>
-                      <a href="/track-order">Track Your Order</a>
-                    </li>
-                    <li>
-                      <a href="/warranty">Warranty</a>
-                    </li>
-                    <li>
-                      <a href="/installation">Installation Services</a>
-                    </li>
-                    <li>
-                      <a href="/support">Technical Support</a>
-                    </li>
-                  </ul>
-                </div>
+            <div>
+              <h3 className="font-bold mb-4">Contact Info</h3>
+              <div className="space-y-2 text-sm text-gray-300">
+                <div>📞 +254 700 000 000</div>
+                <div>✉️ info@brator.co.ke</div>
+                <div>📍 Nairobi, Kenya</div>
               </div>
             </div>
           </div>
+
+          <div className="border-t border-gray-700 mt-8 pt-6 text-center text-sm text-gray-400">
+            © 2024 Brator Auto Parts. All rights reserved.
+          </div>
         </div>
       </footer>
-
-      <style jsx>{`
-        /* Use all styles from the homepage */
-        .homepage {
-          font-family:
-            "Inter",
-            -apple-system,
-            BlinkMacSystemFont,
-            "Segoe UI",
-            Roboto,
-            sans-serif;
-          line-height: 1.5;
-          color: #333;
-        }
-
-        /* Promo Banner */
-        .promo-banner {
-          background: #333;
-          color: white;
-          padding: 8px 0;
-          font-size: 14px;
-        }
-
-        .promo-content {
-          max-width: 1320px;
-          margin: 0 auto;
-          display: flex;
-          justify-content: space-between;
-          align-items: center;
-          padding: 0 12px;
-        }
-
-        .black-friday {
-          background: rgb(247, 51, 18);
-          padding: 2px 8px;
-          border-radius: 3px;
-          font-weight: bold;
-        }
-
-        .discount {
-          color: rgb(247, 51, 18);
-          font-weight: bold;
-        }
-
-        .promo-code {
-          color: rgb(247, 51, 18);
-          font-weight: bold;
-        }
-
-        .language-selector {
-          font-size: 12px;
-        }
-
-        .current-lang {
-          font-weight: bold;
-        }
-
-        /* Header Styles */
-        .main-header {
-          background: white;
-          border-bottom: 1px solid #eee;
-          padding: 15px 0;
-        }
-
-        .header-container {
-          max-width: 1320px;
-          margin: 0 auto;
-          display: flex;
-          align-items: center;
-          gap: 30px;
-          padding: 0 12px;
-        }
-
-        .logo-image {
-          height: 45px;
-          width: auto;
-        }
-
-        .search-section {
-          flex: 1;
-          max-width: 600px;
-        }
-
-        .search-bar {
-          display: flex;
-          border: 2px solid rgb(247, 51, 18);
-          border-radius: 6px;
-          overflow: hidden;
-          background: white;
-        }
-
-        .search-category {
-          background: #f8f9fa;
-          border: none;
-          padding: 12px 15px;
-          min-width: 140px;
-          font-size: 14px;
-        }
-
-        .search-input {
-          flex: 1;
-          border: none;
-          padding: 12px 15px;
-          outline: none;
-          font-size: 14px;
-        }
-
-        .search-button {
-          background: rgb(247, 51, 18);
-          border: none;
-          padding: 12px 20px;
-          color: white;
-          cursor: pointer;
-          display: flex;
-          align-items: center;
-          justify-content: center;
-        }
-
-        .header-actions {
-          display: flex;
-          gap: 25px;
-        }
-
-        .action-item {
-          display: flex;
-          align-items: center;
-          gap: 8px;
-          cursor: pointer;
-          font-size: 14px;
-          color: #333;
-        }
-
-        .action-icon {
-          color: #666;
-        }
-
-        /* Navigation */
-        .main-navigation {
-          background: #f8f9fa;
-          border-bottom: 1px solid #ddd;
-          padding: 12px 0;
-        }
-
-        .nav-container {
-          max-width: 1320px;
-          margin: 0 auto;
-          display: flex;
-          align-items: center;
-          gap: 30px;
-          padding: 0 12px;
-        }
-
-        .categories-btn {
-          background: rgb(247, 51, 18);
-          color: white;
-          border: none;
-          padding: 10px 15px;
-          border-radius: 4px;
-          cursor: pointer;
-          display: flex;
-          align-items: center;
-          gap: 8px;
-          font-size: 14px;
-        }
-
-        .categories-dropdown-menu {
-          position: absolute;
-          top: 100%;
-          left: 0;
-          background: white;
-          border: 1px solid #ddd;
-          border-radius: 4px;
-          box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-          z-index: 1000;
-          min-width: 200px;
-        }
-
-        .dropdown-item {
-          display: block;
-          padding: 10px 15px;
-          color: #333;
-          text-decoration: none;
-          border-bottom: 1px solid #eee;
-        }
-
-        .dropdown-item:hover {
-          background: #f8f9fa;
-          color: rgb(247, 51, 18);
-        }
-
-        .nav-links {
-          display: flex;
-          gap: 30px;
-        }
-
-        .nav-link {
-          color: #333;
-          text-decoration: none;
-          font-weight: 500;
-          padding: 8px 0;
-        }
-
-        .nav-link.active,
-        .nav-link:hover {
-          color: rgb(247, 51, 18);
-        }
-
-        .nav-actions {
-          margin-left: auto;
-          display: flex;
-          gap: 20px;
-        }
-
-        .nav-action {
-          color: #666;
-          text-decoration: none;
-          font-size: 14px;
-        }
-
-        .nav-action:hover {
-          color: rgb(247, 51, 18);
-        }
-
-        /* Shop Layout */
-        .shop-main {
-          padding: 30px 0;
-        }
-
-        .shop-container {
-          max-width: 1320px;
-          margin: 0 auto;
-          padding: 0 12px;
-        }
-
-        .shop-layout {
-          display: grid;
-          grid-template-columns: 280px 1fr;
-          gap: 30px;
-        }
-
-        /* Sidebar */
-        .shop-sidebar {
-          background: #f8f9fa;
-          padding: 20px;
-          border-radius: 8px;
-          height: fit-content;
-        }
-
-        .filter-section {
-          margin-bottom: 25px;
-          padding-bottom: 20px;
-          border-bottom: 1px solid #ddd;
-        }
-
-        .filter-section:last-child {
-          border-bottom: none;
-        }
-
-        .filter-section h3 {
-          margin-bottom: 15px;
-          font-size: 16px;
-          font-weight: 600;
-          color: #333;
-        }
-
-        .filter-list {
-          max-height: 200px;
-          overflow-y: auto;
-        }
-
-        .filter-list.scrollable {
-          max-height: 150px;
-        }
-
-        .filter-item {
-          display: flex;
-          align-items: center;
-          gap: 8px;
-          margin-bottom: 8px;
-          font-size: 14px;
-          cursor: pointer;
-        }
-
-        .filter-item input {
-          margin: 0;
-        }
-
-        .price-filter {
-          padding: 10px 0;
-        }
-
-        .price-slider {
-          width: 100%;
-          margin-bottom: 10px;
-        }
-
-        .price-display {
-          text-align: center;
-          font-weight: 600;
-          color: #333;
-        }
-
-        /* Shop Content */
-        .shop-content {
-          background: white;
-        }
-
-        /* Best Sellers Section */
-        .best-sellers-section {
-          margin-bottom: 40px;
-        }
-
-        .best-sellers-container {
-          position: relative;
-        }
-
-        .best-sellers-header {
-          display: flex;
-          justify-content: space-between;
-          align-items: center;
-          margin-bottom: 25px;
-          flex-wrap: wrap;
-          gap: 20px;
-        }
-
-        .header-left {
-          display: flex;
-          align-items: center;
-          gap: 30px;
-        }
-
-        .best-sellers-title {
-          font-size: 28px;
-          font-weight: 700;
-          margin: 0;
-          color: #333;
-        }
-
-        .category-tabs {
-          display: flex;
-          gap: 15px;
-        }
-
-        .tab-link {
-          background: transparent;
-          border: 1px solid #ddd;
-          padding: 8px 16px;
-          border-radius: 4px;
-          cursor: pointer;
-          font-size: 14px;
-          color: #666;
-        }
-
-        .tab-link.active {
-          background: rgb(247, 51, 18);
-          color: white;
-          border-color: rgb(247, 51, 18);
-        }
-
-        /* Products Grid - Smaller for Shop */
-        .products-grid-container.shop-grid {
-          display: grid;
-          grid-template-columns: repeat(4, 1fr);
-          gap: 15px;
-        }
-
-        .product-card {
-          border: 1px solid #eee;
-          border-radius: 8px;
-          overflow: hidden;
-          transition:
-            transform 0.3s ease,
-            box-shadow 0.3s ease;
-          position: relative;
-          background: white;
-          height: 350px;
-          display: flex;
-          flex-direction: column;
-        }
-
-        .product-card:hover {
-          transform: translateY(-3px);
-          box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
-        }
-
-        .product-card-inner {
-          position: relative;
-          display: flex;
-          flex-direction: column;
-          height: 100%;
-        }
-
-        .product-discount-badge {
-          position: absolute;
-          top: 10px;
-          left: 10px;
-          background: rgb(247, 51, 18);
-          color: white;
-          padding: 4px 8px;
-          border-radius: 4px;
-          font-size: 11px;
-          font-weight: bold;
-          z-index: 1;
-        }
-
-        .product-image-container {
-          position: relative;
-          overflow: hidden;
-        }
-
-        .product-image {
-          width: 100%;
-          height: 140px;
-          object-fit: cover;
-          transition: transform 0.3s ease;
-        }
-
-        .product-card:hover .product-image {
-          transform: scale(1.05);
-        }
-
-        .product-info {
-          padding: 15px;
-          flex: 1;
-          display: flex;
-          flex-direction: column;
-        }
-
-        .product-category {
-          margin-bottom: 8px;
-        }
-
-        .category-link {
-          color: rgb(247, 51, 18);
-          text-decoration: none;
-          font-size: 12px;
-          font-weight: 500;
-        }
-
-        .product-name {
-          margin-bottom: 10px;
-        }
-
-        .product-name h5 {
-          margin: 0;
-          font-size: 14px;
-          font-weight: 600;
-          line-height: 1.4;
-          height: 40px;
-          overflow: hidden;
-          display: -webkit-box;
-          -webkit-line-clamp: 2;
-          -webkit-box-orient: vertical;
-        }
-
-        .product-name-link {
-          color: #333;
-          text-decoration: none;
-        }
-
-        .product-name-link:hover {
-          color: rgb(247, 51, 18);
-        }
-
-        .product-rating {
-          display: flex;
-          align-items: center;
-          gap: 8px;
-          margin-bottom: 10px;
-        }
-
-        .rating-stars {
-          display: flex;
-          align-items: center;
-        }
-
-        .star-display {
-          color: #ffc107;
-          font-size: 14px;
-        }
-
-        .reviews-count {
-          margin: 0;
-        }
-
-        .reviews-count p {
-          margin: 0;
-          font-size: 12px;
-          color: #666;
-        }
-
-        .product-price {
-          margin-bottom: 15px;
-        }
-
-        .price-container {
-          margin: 0;
-          display: flex;
-          align-items: center;
-          gap: 8px;
-          flex-wrap: wrap;
-        }
-
-        .original-price {
-          color: #999;
-          font-size: 12px;
-        }
-
-        .sale-price,
-        .regular-price {
-          color: rgb(247, 51, 18);
-          font-weight: 600;
-          font-size: 16px;
-        }
-
-        .currency {
-          font-size: 12px;
-        }
-
-        .product-actions {
-          margin-top: auto;
-        }
-
-        .add-to-cart-btn {
-          width: 100%;
-          background: rgb(247, 51, 18);
-          color: white;
-          border: none;
-          padding: 10px;
-          border-radius: 4px;
-          cursor: pointer;
-          text-decoration: none;
-          display: block;
-          text-align: center;
-          font-size: 14px;
-          font-weight: 500;
-          transition: background-color 0.3s ease;
-        }
-
-        .add-to-cart-btn:hover {
-          background: rgb(220, 45, 16);
-        }
-
-        /* All Products Section */
-        .all-products-section {
-          margin-top: 40px;
-        }
-
-        .all-products-header {
-          display: flex;
-          justify-content: space-between;
-          align-items: center;
-          margin-bottom: 25px;
-        }
-
-        .all-products-header h2 {
-          font-size: 24px;
-          font-weight: 700;
-          margin: 0;
-          color: #333;
-        }
-
-        .sort-options select {
-          padding: 8px 12px;
-          border: 1px solid #ddd;
-          border-radius: 4px;
-          background: white;
-          font-size: 14px;
-        }
-
-        /* Pagination */
-        .pagination {
-          display: flex;
-          justify-content: center;
-          gap: 10px;
-          margin-top: 30px;
-        }
-
-        .page-btn {
-          padding: 8px 12px;
-          border: 1px solid #ddd;
-          background: white;
-          cursor: pointer;
-          border-radius: 4px;
-          font-size: 14px;
-        }
-
-        .page-btn.active {
-          background: rgb(247, 51, 18);
-          color: white;
-          border-color: rgb(247, 51, 18);
-        }
-
-        .page-btn:disabled {
-          opacity: 0.5;
-          cursor: not-allowed;
-        }
-
-        .page-btn:hover:not(:disabled):not(.active) {
-          background: #f8f9fa;
-        }
-
-        /* Footer Styles */
-        .footer {
-          background: rgb(246, 247, 250);
-          padding: 50px 0 30px;
-          margin-top: 60px;
-        }
-
-        .footer-container {
-          max-width: 1320px;
-          margin: 0 auto;
-          padding: 0 12px;
-        }
-
-        .footer-main {
-          display: flex;
-          gap: 30px;
-        }
-
-        .footer-brand-section {
-          flex: 2;
-        }
-
-        .footer-brand-content {
-          padding-right: 30px;
-        }
-
-        .footer-logo {
-          height: 45px;
-          width: auto;
-          margin-bottom: 20px;
-        }
-
-        .footer-tagline {
-          font-size: 16px;
-          font-weight: 600;
-          margin-bottom: 15px;
-          color: #333;
-        }
-
-        .footer-disclaimer {
-          font-size: 14px;
-          color: #666;
-          line-height: 1.6;
-          margin-bottom: 20px;
-        }
-
-        .footer-social {
-          display: flex;
-          gap: 15px;
-        }
-
-        .social-icon {
-          color: #666;
-          text-decoration: none;
-          transition: color 0.3s ease;
-        }
-
-        .social-icon:hover {
-          color: rgb(247, 51, 18);
-        }
-
-        .footer-links-section {
-          flex: 1;
-        }
-
-        .footer-column-title {
-          font-size: 18px;
-          font-weight: 600;
-          margin-bottom: 15px;
-          color: #333;
-        }
-
-        .footer-links-list {
-          list-style: none;
-          padding: 0;
-          margin: 0;
-        }
-
-        .footer-links-list li {
-          margin-bottom: 8px;
-        }
-
-        .footer-links-list a {
-          color: #666;
-          text-decoration: none;
-          font-size: 14px;
-          transition: color 0.3s ease;
-        }
-
-        .footer-links-list a:hover {
-          color: rgb(247, 51, 18);
-        }
-
-        /* Responsive Design */
-        @media (max-width: 1024px) {
-          .shop-layout {
-            grid-template-columns: 250px 1fr;
-            gap: 20px;
-          }
-
-          .products-grid-container.shop-grid {
-            grid-template-columns: repeat(3, 1fr);
-          }
-        }
-
-        @media (max-width: 768px) {
-          .header-container {
-            flex-direction: column;
-            gap: 15px;
-          }
-
-          .search-section {
-            order: 3;
-            width: 100%;
-            max-width: none;
-          }
-
-          .nav-container {
-            flex-direction: column;
-            gap: 15px;
-          }
-
-          .shop-layout {
-            grid-template-columns: 1fr;
-          }
-
-          .shop-sidebar {
-            order: 2;
-          }
-
-          .shop-content {
-            order: 1;
-          }
-
-          .best-sellers-header {
-            flex-direction: column;
-            text-align: center;
-          }
-
-          .header-left {
-            flex-direction: column;
-            gap: 15px;
-          }
-
-          .category-tabs {
-            flex-wrap: wrap;
-            justify-content: center;
-          }
-
-          .products-grid-container.shop-grid {
-            grid-template-columns: repeat(2, 1fr);
-          }
-
-          .footer-main {
-            flex-direction: column;
-          }
-
-          .footer-brand-content {
-            padding-right: 0;
-            text-align: center;
-          }
-        }
-
-        @media (max-width: 480px) {
-          .products-grid-container.shop-grid {
-            grid-template-columns: 1fr;
-            gap: 15px;
-          }
-
-          .promo-content {
-            flex-direction: column;
-            gap: 10px;
-            text-align: center;
-          }
-        }
-      `}</style>
     </div>
   );
 }
