@@ -144,16 +144,16 @@ export default function HomePage() {
         <h3 className="font-semibold text-primary mb-2 line-clamp-2 text-sm md:text-base">
           {product.name}
         </h3>
-        <div className="text-xs text-secondary mb-2">SKU: {product.sku}</div>
+        <div className="text-xs text-primary mb-2">SKU: {product.sku}</div>
 
         <div className="flex items-center gap-2 mb-2">
           <div className="text-yellow-400 text-sm">
             {renderStars(product.rating)}
           </div>
-          <span className="text-xs text-secondary">({product.reviews})</span>
+          <span className="text-xs text-primary">({product.reviews})</span>
         </div>
 
-        <div className="text-xs text-secondary mb-3 hidden md:block">
+        <div className="text-xs text-primary mb-3 hidden md:block">
           Compatible: {product.compatibility.slice(0, 2).join(", ")}
           {product.compatibility.length > 2 &&
             ` +${product.compatibility.length - 2} more`}
@@ -173,7 +173,7 @@ export default function HomePage() {
 
         <div className="flex items-center gap-2 mb-4 mt-auto">
           {product.originalPrice && (
-            <span className="text-sm text-secondary line-through">
+            <span className="text-sm text-primary line-through">
               KES {product.originalPrice.toLocaleString()}
             </span>
           )}
@@ -245,7 +245,7 @@ export default function HomePage() {
               <form className="space-y-4">
                 <div className="grid grid-cols-2 gap-4">
                   <div>
-                    <label className="block text-sm font-medium text-secondary mb-1">
+                    <label className="block text-sm font-medium text-primary mb-1">
                       Year
                     </label>
                     <select
@@ -265,7 +265,7 @@ export default function HomePage() {
                   </div>
 
                   <div>
-                    <label className="block text-sm font-medium text-secondary mb-1">
+                    <label className="block text-sm font-medium text-primary mb-1">
                       Model
                     </label>
                     <select
@@ -284,7 +284,7 @@ export default function HomePage() {
                 </div>
 
                 <div>
-                  <label className="block text-sm font-medium text-secondary mb-1">
+                  <label className="block text-sm font-medium text-primary mb-1">
                     Engine
                   </label>
                   <select
@@ -337,8 +337,8 @@ export default function HomePage() {
                   <h3 className="text-xl font-bold text-primary group-hover:text-accent-primary transition-colors mb-2">
                     {category.name}
                   </h3>
-                  <p className="text-secondary mb-4">{category.description}</p>
-                  <div className="text-sm text-secondary mb-4">
+                  <p className="text-primary mb-4">{category.description}</p>
+                  <div className="text-sm text-primary mb-4">
                     {category.count} parts available
                   </div>
                   <div className="flex items-center justify-center text-accent-primary font-medium">
