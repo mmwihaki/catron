@@ -122,12 +122,12 @@ img {
 }
 
 /* Lazy loading optimization */
-img[loading="lazy"] {
+img[loading="lazy"]:not([data-optimized-image]) {
   opacity: 0;
   transition: opacity 0.3s ease-in-out;
 }
 
-img[loading="lazy"].loaded {
+img[loading="lazy"].loaded:not([data-optimized-image]) {
   opacity: 1;
 }
 
