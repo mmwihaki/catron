@@ -346,7 +346,11 @@ export default function HomePage() {
                     </select>
                   </div>
 
-                  <button type="button" className="btn-primary w-full py-3">
+                  <button
+                    type="button"
+                    onClick={handleVehicleSearch}
+                    className="btn-primary w-full py-3"
+                  >
                     Find Compatible Parts
                   </button>
                 </form>
