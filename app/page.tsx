@@ -624,7 +624,7 @@ export default function HomePage() {
 
                   <div className="flex items-center gap-2 mb-4">
                     {product.originalPrice && (
-                      <span className="text-sm text-secondary line-through">
+                      <span className="text-sm text-gray-500 line-through">
                         KES {product.originalPrice.toLocaleString()}
                       </span>
                     )}
