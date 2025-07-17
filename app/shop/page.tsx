@@ -950,7 +950,7 @@ export default function ShopPage() {
                       className={
                         viewMode === "grid"
                           ? "card group relative"
-                          : "bg-white rounded-lg shadow-md border border-gray-200 p-4 hover:shadow-lg transition-shadow flex gap-4 relative"
+                          : "card flex gap-4 relative"
                       }
                     >
                       {/* Product Badges */}
