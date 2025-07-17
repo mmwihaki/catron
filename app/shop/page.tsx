@@ -3,30 +3,7 @@
 import React, { useState, useEffect, useMemo } from "react";
 import Link from "next/link";
 import Header from "../components/Header";
-
-// Types
-interface Product {
-  id: number;
-  sku: string;
-  name: string;
-  category: string;
-  subcategory: string;
-  brand: string;
-  image: string;
-  price: number;
-  originalPrice?: number;
-  rating: number;
-  reviews: number;
-  compatibility: string[];
-  year: number[];
-  model: string[];
-  engine: string[];
-  inStock: boolean;
-  stockLevel: number;
-  isNew?: boolean;
-  isFeatured?: boolean;
-  tags: string[];
-}
+import { allProducts, Product } from "../data/products";
 
 interface FilterState {
   category: string[];
@@ -56,253 +33,16 @@ export default function ShopPage() {
     availability: "all",
   });
 
-  // Sample product data - would come from API/database
-  const allProducts: Product[] = [
-    {
-      id: 1,
-      sku: "NIS-OF-001",
-      name: "NISSAN OEM Oil Filter 15208-65F0C",
-      category: "Engine",
-      subcategory: "Oil Filters",
-      brand: "Nissan OEM",
-      image:
-        "https://images.unsplash.com/photo-1558618047-3c8c76ca7d13?w=400&h=300&fit=crop",
-      price: 1850,
-      originalPrice: 2200,
-      rating: 4.8,
-      reviews: 156,
-      compatibility: ["Note E12", "March K13", "Micra K13"],
-      year: [2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019],
-      model: ["Note", "March", "Micra"],
-      engine: ["1.2L DIG-S", "1.0L"],
-      inStock: true,
-      stockLevel: 45,
-      tags: ["OEM", "Genuine", "Economy"],
-    },
-    {
-      id: 2,
-      sku: "NIS-AF-002",
-      name: "NISSAN Cabin Air Filter 27277-1HM0A",
-      category: "Engine",
-      subcategory: "Air Filters",
-      brand: "Nissan OEM",
-      image:
-        "https://images.unsplash.com/photo-1619642751034-765dfdf7c58e?w=400&h=300&fit=crop",
-      price: 3200,
-      originalPrice: 3800,
-      rating: 4.7,
-      reviews: 89,
-      compatibility: ["X-Trail T32", "Qashqai J11"],
-      year: [2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021, 2022],
-      model: ["X-Trail", "Qashqai"],
-      engine: ["2.0L", "2.5L"],
-      inStock: true,
-      stockLevel: 23,
-      tags: ["OEM", "Cabin Filter"],
-    },
-    {
-      id: 3,
-      sku: "NIS-SP-003",
-      name: "NGK Spark Plug DILKAR7E11HS for DIG-S",
-      category: "Engine",
-      subcategory: "Spark Plugs",
-      brand: "NGK",
-      image:
-        "https://images.unsplash.com/photo-1580273916550-e323be2ae537?w=400&h=300&fit=crop",
-      price: 2400,
-      rating: 4.9,
-      reviews: 203,
-      compatibility: ["Note DIG-S", "March DIG-S"],
-      year: [2012, 2013, 2014, 2015, 2016, 2017],
-      model: ["Note", "March"],
-      engine: ["1.2L DIG-S"],
-      inStock: true,
-      stockLevel: 67,
-      tags: ["NGK", "Performance", "DIG-S"],
-    },
-    {
-      id: 4,
-      sku: "NIS-BP-004",
-      name: "NISSAN OEM Brake Pads Front D4060-1HM0A",
-      category: "Brakes",
-      subcategory: "Brake Pads",
-      brand: "Nissan OEM",
-      image:
-        "https://images.unsplash.com/photo-1621839673705-6617adf9e890?w=400&h=300&fit=crop",
-      price: 8500,
-      originalPrice: 9800,
-      rating: 4.6,
-      reviews: 134,
-      compatibility: ["X-Trail T32", "Qashqai J11"],
-      year: [2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021],
-      model: ["X-Trail", "Qashqai"],
-      engine: ["2.0L", "2.5L"],
-      inStock: true,
-      stockLevel: 12,
-      tags: ["OEM", "Safety", "Front"],
-    },
-    {
-      id: 5,
-      sku: "NIS-HB-005",
-      name: "OSRAM Night Breaker 200 H4 Headlight Bulb",
-      category: "Electrical",
-      subcategory: "Headlight Bulbs",
-      brand: "OSRAM",
-      image:
-        "https://images.unsplash.com/photo-1552664688-cf412ec27db2?w=400&h=300&fit=crop",
-      price: 4500,
-      rating: 4.8,
-      reviews: 67,
-      compatibility: ["Note E11/E12", "March K12/K13"],
-      year: [2006, 2007, 2008, 2009, 2010, 2011, 2012, 2013, 2014, 2015, 2016],
-      model: ["Note", "March"],
-      engine: ["1.4L", "1.5L", "1.2L"],
-      inStock: true,
-      stockLevel: 34,
-      isNew: true,
-      tags: ["OSRAM", "Performance", "Bright"],
-    },
-    {
-      id: 6,
-      sku: "NIS-SP-006",
-      name: "NISSAN Suspension Strut Front 54303-3TA0A",
-      category: "Suspension",
-      subcategory: "Struts",
-      brand: "Nissan OEM",
-      image:
-        "https://images.unsplash.com/photo-1486754735734-325b5831c3ad?w=400&h=300&fit=crop",
-      price: 12500,
-      rating: 4.7,
-      reviews: 45,
-      compatibility: ["Serena C26"],
-      year: [2010, 2011, 2012, 2013, 2014, 2015, 2016],
-      model: ["Serena"],
-      engine: ["2.0L"],
-      inStock: true,
-      stockLevel: 8,
-      isNew: true,
-      tags: ["OEM", "Comfort", "Front"],
-    },
-    {
-      id: 7,
-      sku: "NIS-EL-007",
-      name: "NISSAN Alternator 23100-3TA0B",
-      category: "Electrical",
-      subcategory: "Alternators",
-      brand: "Nissan OEM",
-      image:
-        "https://images.unsplash.com/photo-1502920917128-1aa500764cbd?w=400&h=300&fit=crop",
-      price: 18500,
-      originalPrice: 21000,
-      rating: 4.5,
-      reviews: 23,
-      compatibility: ["Serena C26", "NV200"],
-      year: [2009, 2010, 2011, 2012, 2013, 2014, 2015],
-      model: ["Serena", "NV200"],
-      engine: ["2.0L"],
-      inStock: true,
-      stockLevel: 5,
-      isNew: true,
-      tags: ["OEM", "Electrical", "Charging"],
-    },
-    {
-      id: 8,
-      sku: "NIS-BT-008",
-      name: "NISSAN Door Handle Outer Chrome 80607-1HM0A",
-      category: "Body & Trim",
-      subcategory: "Door Handles",
-      brand: "Nissan OEM",
-      image:
-        "https://images.unsplash.com/photo-1544829099-b9a0c5303bea?w=400&h=300&fit=crop",
-      price: 5800,
-      rating: 4.4,
-      reviews: 12,
-      compatibility: ["X-Trail T32"],
-      year: [2014, 2015, 2016, 2017, 2018, 2019, 2020],
-      model: ["X-Trail"],
-      engine: ["2.0L", "2.5L"],
-      inStock: true,
-      stockLevel: 15,
-      isNew: true,
-      tags: ["OEM", "Chrome", "Exterior"],
-    },
-    {
-      id: 9,
-      sku: "NIS-BP-009",
-      name: "BREMBO Performance Brake Discs Front",
-      category: "Brakes",
-      subcategory: "Brake Discs",
-      brand: "Brembo",
-      image:
-        "https://images.unsplash.com/photo-1621839673705-6617adf9e890?w=400&h=300&fit=crop",
-      price: 15500,
-      originalPrice: 18000,
-      rating: 4.9,
-      reviews: 78,
-      compatibility: ["370Z Z34", "GT-R R35"],
-      year: [
-        2009, 2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020,
-      ],
-      model: ["370Z", "GT-R"],
-      engine: ["3.7L V6", "3.8L V6 Twin Turbo"],
-      inStock: true,
-      stockLevel: 6,
-      isFeatured: true,
-      tags: ["Brembo", "Performance", "Sport"],
-    },
-    {
-      id: 10,
-      sku: "NIS-EG-010",
-      name: "NISSAN Timing Chain Kit QR25DE",
-      category: "Engine",
-      subcategory: "Timing Components",
-      brand: "Nissan OEM",
-      image:
-        "https://images.unsplash.com/photo-1487754180451-c456f719a1fc?w=400&h=300&fit=crop",
-      price: 22500,
-      rating: 4.6,
-      reviews: 34,
-      compatibility: ["Altima L33", "X-Trail T32", "Qashqai J11"],
-      year: [2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021],
-      model: ["Altima", "X-Trail", "Qashqai"],
-      engine: ["2.5L QR25DE"],
-      inStock: true,
-      stockLevel: 3,
-      tags: ["OEM", "Timing", "Engine"],
-    },
-  ];
-
-  const categories = [
-    "Engine",
-    "Brakes",
-    "Suspension",
-    "Electrical",
-    "Body & Trim",
-  ];
-  const brands = ["Nissan OEM", "NGK", "OSRAM", "Brembo", "DENSO", "Bosch"];
-  const nissanModels = [
-    "Note",
-    "March",
-    "Micra",
-    "X-Trail",
-    "Qashqai",
-    "Serena",
-    "NV200",
-    "370Z",
-    "GT-R",
-    "Altima",
-  ];
+  // Extract unique categories, brands, models, and engines from the product data
+  const categories = [...new Set(allProducts.map((p) => p.category))];
+  const brands = [...new Set(allProducts.map((p) => p.brand))];
+  const nissanModels = [...new Set(allProducts.flatMap((p) => p.model || []))];
   const engineOptions = [
-    "1.0L",
-    "1.2L DIG-S",
-    "1.4L",
-    "1.5L",
-    "2.0L",
-    "2.5L QR25DE",
-    "3.7L V6",
-    "3.8L V6 Twin Turbo",
+    ...new Set(allProducts.flatMap((p) => p.engine || [])),
   ];
-  const years = Array.from({ length: 20 }, (_, i) => 2024 - i);
+  const years = [...new Set(allProducts.flatMap((p) => p.year || []))].sort(
+    (a, b) => b - a,
+  );
 
   // Filter and search logic
   const filteredProducts = useMemo(() => {
@@ -348,20 +88,22 @@ export default function ShopPage() {
     // Year filter
     if (filters.year) {
       const year = parseInt(filters.year);
-      filtered = filtered.filter((product) => product.year.includes(year));
+      filtered = filtered.filter(
+        (product) => product.year && product.year.includes(year),
+      );
     }
 
     // Model filter
     if (filters.model) {
-      filtered = filtered.filter((product) =>
-        product.model.includes(filters.model),
+      filtered = filtered.filter(
+        (product) => product.model && product.model.includes(filters.model),
       );
     }
 
     // Engine filter
     if (filters.engine) {
-      filtered = filtered.filter((product) =>
-        product.engine.includes(filters.engine),
+      filtered = filtered.filter(
+        (product) => product.engine && product.engine.includes(filters.engine),
       );
     }
 
@@ -919,7 +661,10 @@ export default function ShopPage() {
                       {/* Product Info */}
                       <div className={`${viewMode === "grid" ? "" : "flex-1"}`}>
                         <div className="text-xs text-red-600 font-medium mb-1">
-                          {product.category} › {product.subcategory}
+                          {product.category}
+                          {product.subcategory
+                            ? ` › ${product.subcategory}`
+                            : ""}
                         </div>
 
                         <Link href={`/product/${product.sku}`}>
