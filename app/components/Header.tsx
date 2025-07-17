@@ -76,6 +76,9 @@ export default function Header({
 
   const categories = getProductCategories();
 
+  // Debug: log categories
+  console.log("Generated categories:", categories);
+
   const handleSearch = (e: React.FormEvent) => {
     e.preventDefault();
     if (searchQuery.trim()) {
