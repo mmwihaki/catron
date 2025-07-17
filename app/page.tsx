@@ -106,10 +106,10 @@ export default function HomePage() {
   };
 
   const ProductCard = ({ product }: { product: Product }) => (
-    <div className="card-white hover:shadow-xl transition-shadow group relative">
+    <div className="card-white hover:shadow-xl transition-shadow group relative h-full flex flex-col">
       {product.originalPrice && (
-        <div className="absolute top-4 left-4 z-10">
-          <div className="badge-primary">
+        <div className="absolute top-2 left-2 md:top-4 md:left-4 z-10">
+          <div className="badge-primary text-xs">
             {Math.round(
               ((product.originalPrice - product.price) /
                 product.originalPrice) *
@@ -121,77 +121,75 @@ export default function HomePage() {
       )}
 
       {product.isNew && (
-        <div className="absolute top-4 right-4 z-10">
-          <div className="badge-secondary">NEW</div>
+        <div className="absolute top-2 right-2 md:top-4 md:right-4 z-10">
+          <div className="badge-secondary text-xs">NEW</div>
         </div>
       )}
 
-      <div className="aspect-square mb-4 overflow-hidden rounded-lg bg-primary pixel-perfect">
+      <div className="aspect-square mb-3 md:mb-4 overflow-hidden rounded-lg bg-primary pixel-perfect">
         <OptimizedImage
           src={product.image}
           alt={product.name}
           width={400}
           height={400}
           className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
-          sizes="(max-width: 768px) 50vw, (max-width: 1200px) 33vw, 25vw"
+          sizes="(max-width: 768px) 80vw, (max-width: 1200px) 33vw, 25vw"
         />
       </div>
 
-      <div className="mb-2">
+      <div className="flex-1 flex flex-col">
         <div className="text-xs text-accent-primary font-medium mb-1">
           {product.category}
         </div>
-        <h3 className="font-semibold text-primary mb-2 line-clamp-2">
+        <h3 className="font-semibold text-primary mb-2 line-clamp-2 text-sm md:text-base">
           {product.name}
         </h3>
-        <div className="text-xs text-secondary mb-2">
-          SKU: {product.sku} | Brand: {product.brand}
-        </div>
+        <div className="text-xs text-secondary mb-2">SKU: {product.sku}</div>
 
-        <div className="flex items-center gap-2 mb-3">
+        <div className="flex items-center gap-2 mb-2">
           <div className="text-yellow-400 text-sm">
             {renderStars(product.rating)}
           </div>
           <span className="text-xs text-secondary">({product.reviews})</span>
         </div>
 
-        <div className="text-xs text-secondary mb-4">
+        <div className="text-xs text-secondary mb-3 hidden md:block">
           Compatible: {product.compatibility.slice(0, 2).join(", ")}
           {product.compatibility.length > 2 &&
             ` +${product.compatibility.length - 2} more`}
         </div>
 
-        <div className="flex items-center justify-between mb-4">
+        <div className="flex items-center justify-between mb-3">
           <div
             className={`text-xs px-2 py-1 rounded ${product.inStock ? "bg-green-100 text-green-800" : "bg-red-100 text-red-800"}`}
           >
             {product.inStock
               ? product.stockLevel <= 10
-                ? `Low Stock (${product.stockLevel})`
+                ? `Low Stock`
                 : "In Stock"
               : "Out of Stock"}
           </div>
         </div>
-      </div>
 
-      <div className="flex items-center gap-2 mb-4">
-        {product.originalPrice && (
-          <span className="text-sm text-secondary line-through">
-            KES {product.originalPrice.toLocaleString()}
+        <div className="flex items-center gap-2 mb-4 mt-auto">
+          {product.originalPrice && (
+            <span className="text-sm text-secondary line-through">
+              KES {product.originalPrice.toLocaleString()}
+            </span>
+          )}
+          <span className="text-lg font-bold text-accent-primary">
+            KES {product.price.toLocaleString()}
           </span>
-        )}
-        <span className="text-lg font-bold text-accent-primary">
-          KES {product.price.toLocaleString()}
-        </span>
-      </div>
+        </div>
 
-      <button
-        onClick={() => addToCart(product)}
-        disabled={!product.inStock}
-        className="btn-primary w-full text-sm disabled:bg-gray-400 disabled:cursor-not-allowed disabled:opacity-50"
-      >
-        {product.inStock ? "Add to Cart" : "Out of Stock"}
-      </button>
+        <button
+          onClick={() => addToCart(product)}
+          disabled={!product.inStock}
+          className="btn-primary w-full text-sm disabled:bg-gray-400 disabled:cursor-not-allowed disabled:opacity-50"
+        >
+          {product.inStock ? "Add to Cart" : "Out of Stock"}
+        </button>
+      </div>
     </div>
   );
 
