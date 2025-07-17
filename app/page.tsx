@@ -603,7 +603,7 @@ export default function HomePage() {
                 </div>
 
                 <div className="mb-2">
-                  <div className="text-xs text-primary font-medium mb-1">
+                  <div className="text-xs text-red-600 font-medium mb-1">
                     {product.category}
                   </div>
                   <h3
