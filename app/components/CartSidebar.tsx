@@ -115,7 +115,7 @@ Please confirm availability and payment details.`;
           </div>
 
           {/* Cart Items */}
-          <div className="flex-1 overflow-y-auto p-4">
+          <div className="flex-1 overflow-y-auto p-4 min-h-0">
             {items.length === 0 ? (
               <div className="text-center py-8">
                 <svg
