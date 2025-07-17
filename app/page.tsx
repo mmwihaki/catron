@@ -3,6 +3,7 @@
 import React, { useState } from "react";
 import Link from "next/link";
 import Header from "./components/Header";
+import OptimizedImage from "./components/OptimizedImage";
 import { allProducts, getFeaturedProducts, Product } from "./data/products";
 import {
   Filter,
@@ -135,11 +136,14 @@ export default function HomePage() {
         </div>
       )}
 
-      <div className="aspect-square mb-4 overflow-hidden rounded-lg bg-gray-100">
-        <img
+      <div className="aspect-square mb-4 overflow-hidden rounded-lg bg-gray-100 pixel-perfect">
+        <OptimizedImage
           src={product.image}
           alt={product.name}
+          width={400}
+          height={400}
           className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+          sizes="(max-width: 768px) 50vw, (max-width: 1200px) 33vw, 25vw"
         />
       </div>
 
