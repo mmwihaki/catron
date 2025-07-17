@@ -63,7 +63,9 @@ export default function HomePage() {
       setFilteredProducts(results);
       setIsSearchActive(true);
     } else if (category) {
-      const results = getProductsByCategory(category.replace("-", " "));
+      // Convert slug back to category name by replacing hyphens with spaces and capitalizing
+      const categoryName = category.replace(/-/g, " ");
+      const results = getProductsByCategory(categoryName);
       setFilteredProducts(results);
       setIsSearchActive(true);
     } else {
