@@ -15,6 +15,7 @@ import {
   MapPin,
   ChevronDown,
 } from "lucide-react";
+import { useCart } from "../context/CartContext";
 
 interface HeaderProps {
   searchQuery?: string;
@@ -28,6 +29,7 @@ export default function Header({
   currentPage,
 }: HeaderProps) {
   const [showCategories, setShowCategories] = useState(false);
+  const { getTotalItems, setIsCartOpen } = useCart();
 
   const categories = [
     {
@@ -71,30 +73,26 @@ export default function Header({
   return (
     <header className="bg-white shadow-lg">
       {/* Top Bar */}
-      <div className="bg-surface-dark text-white">
+      <div className="bg-surface-dark text-white header-top">
         <div className="max-w-7xl mx-auto px-4">
           <div className="flex justify-between items-center text-sm py-2">
             <div className="flex items-center gap-6">
-              <span className="flex items-center gap-1 text-secondary">
-                <Phone className="w-4 h-4 text-accent-primary" />
-                +254 700 000 000
+              <span className="flex items-center gap-1 header-info">
+                <Phone className="w-4 h-4 icon" />
+                0742578910
               </span>
-              <span className="flex items-center gap-1 text-secondary">
-                <Mail className="w-4 h-4 text-accent-primary" />
-                info@catron.co.ke
-              </span>
-              <span className="flex items-center gap-1 text-secondary">
-                <Clock className="w-4 h-4 text-accent-primary" />
+              <span className="flex items-center gap-1 header-info">
+                <Clock className="w-4 h-4 icon" />
                 Mon-Sat: 8AM-6PM
               </span>
             </div>
             <div className="flex items-center gap-4">
-              <span className="flex items-center gap-1 text-secondary">
-                <Globe className="w-4 h-4 text-accent-primary" />
+              <span className="flex items-center gap-1 header-info">
+                <Globe className="w-4 h-4 icon" />
                 Kenya Wide Delivery
               </span>
-              <span className="flex items-center gap-1 text-secondary">
-                <MapPin className="w-4 h-4 text-accent-primary" />
+              <span className="flex items-center gap-1 header-info">
+                <MapPin className="w-4 h-4 icon" />
                 Nairobi, Kenya
               </span>
             </div>
@@ -149,13 +147,20 @@ export default function Header({
                 <span className="hidden md:block">Wishlist</span>
               </Link>
 
-              <Link
-                href="/cart"
+              <button
+                onClick={() => setIsCartOpen(true)}
                 className="flex items-center gap-2 text-secondary hover:text-accent-secondary transition-colors relative"
               >
-                <ShoppingCart className="w-6 h-6" />
+                <div className="relative">
+                  <ShoppingCart className="w-6 h-6" />
+                  {getTotalItems() > 0 && (
+                    <span className="absolute -top-2 -right-2 bg-red-600 text-white text-xs rounded-full h-5 w-5 flex items-center justify-center font-medium">
+                      {getTotalItems()}
+                    </span>
+                  )}
+                </div>
                 <span className="hidden md:block">Cart</span>
-              </Link>
+              </button>
 
               <Link
                 href="/account"

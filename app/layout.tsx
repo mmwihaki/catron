@@ -1,5 +1,6 @@
 import "./globals.css";
 import type { Metadata } from "next";
+import { CartProvider } from "./context/CartContext";
 
 export const metadata: Metadata = {
   title: "Catron - Premium Nissan OEM & Performance Parts Kenya",
@@ -201,7 +202,7 @@ export default function RootLayout({
               logo: "https://catron.co.ke/logo.png",
               contactPoint: {
                 "@type": "ContactPoint",
-                telephone: "+254700000000",
+                telephone: "+254742578910",
                 contactType: "customer service",
                 availableLanguage: "English",
               },
@@ -217,14 +218,16 @@ export default function RootLayout({
         {/* WhatsApp Business Integration */}
         <meta
           property="business:contact_data:phone_number"
-          content="+254700000000"
+          content="+254742578910"
         />
         <meta
           property="business:contact_data:website"
           content="https://catron.co.ke"
         />
       </head>
-      <body>{children}</body>
+      <body>
+        <CartProvider>{children}</CartProvider>
+      </body>
     </html>
   );
 }

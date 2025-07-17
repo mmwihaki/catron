@@ -20,7 +20,6 @@ import {
 export default function ContactPage() {
   const [formData, setFormData] = useState({
     name: "",
-    email: "",
     phone: "",
     subject: "",
     vehicleInfo: "",
@@ -59,7 +58,7 @@ export default function ContactPage() {
       icon: Phone,
       title: "Phone Support",
       description: "Talk to our experts directly",
-      details: "+254 700 000 000",
+      details: "0742578910",
       hours: "Mon-Sat: 8AM-6PM",
       color: "bg-blue-600",
       action: "Call Now",
@@ -68,19 +67,10 @@ export default function ContactPage() {
       icon: MessageCircle,
       title: "WhatsApp Chat",
       description: "Quick questions & instant quotes",
-      details: "+254 700 000 000",
+      details: "0742578910",
       hours: "Available 24/7",
       color: "bg-green-600",
       action: "Chat Now",
-    },
-    {
-      icon: Mail,
-      title: "Email Support",
-      description: "Detailed inquiries & technical questions",
-      details: "info@catron.co.ke",
-      hours: "Response within 4 hours",
-      color: "bg-red-600",
-      action: "Send Email",
     },
   ];
 
@@ -152,7 +142,6 @@ export default function ContactPage() {
                   setSubmitted(false);
                   setFormData({
                     name: "",
-                    email: "",
                     phone: "",
                     subject: "",
                     vehicleInfo: "",
@@ -298,21 +287,6 @@ export default function ContactPage() {
                       placeholder="+254 xxx xxx xxx"
                     />
                   </div>
-                </div>
-
-                <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-2">
-                    Email Address *
-                  </label>
-                  <input
-                    type="email"
-                    name="email"
-                    required
-                    value={formData.email}
-                    onChange={handleInputChange}
-                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-red-500"
-                    placeholder="your@email.com"
-                  />
                 </div>
 
                 <div className="grid md:grid-cols-2 gap-6">

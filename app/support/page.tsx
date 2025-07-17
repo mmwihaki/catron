@@ -653,9 +653,9 @@ export default function SupportPage() {
             </p>
           </div>
 
-          <div className="grid md:grid-cols-3 gap-8">
+          <div className="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
             <a
-              href="https://wa.me/+254700000000"
+              href="https://wa.me/+254742578910"
               className="bg-green-600 hover:bg-green-700 text-white rounded-xl p-6 text-center transition-colors"
             >
               <MessageCircle className="w-12 h-12 mx-auto mb-4" />
@@ -666,18 +666,7 @@ export default function SupportPage() {
             </a>
 
             <a
-              href="mailto:info@catron.co.ke"
-              className="bg-blue-600 hover:bg-blue-700 text-white rounded-xl p-6 text-center transition-colors"
-            >
-              <Mail className="w-12 h-12 mx-auto mb-4" />
-              <h3 className="font-bold text-lg mb-2">Email Support</h3>
-              <p className="text-blue-100 text-sm">
-                Technical questions & detailed inquiries
-              </p>
-            </a>
-
-            <a
-              href="tel:+254700000000"
+              href="tel:+254742578910"
               className="bg-red-600 hover:bg-red-700 text-white rounded-xl p-6 text-center transition-colors"
             >
               <Phone className="w-12 h-12 mx-auto mb-4" />

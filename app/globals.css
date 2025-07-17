@@ -10,6 +10,10 @@
   --accent-secondary: #007bff;
   --white: #ffffff;
   --divider: #b0b0b0;
+
+  /* Enterprise-grade header styling */
+  --header-muted: #757575;
+  --header-hover: #007bff;
 }
 
 /* High-quality font rendering and crisp display optimizations */
@@ -744,4 +748,28 @@ footer,
   border-radius: 1rem;
   font-size: 0.875rem;
   font-weight: 600;
+}
+
+/* Enterprise-grade header styling */
+/* Target your top-right icons and info text */
+.header-top .icon,
+.header-top .header-info {
+  color: var(--header-muted);
+  font-weight: 500; /* Slight boost for better readability */
+  transition: color 0.2s ease; /* Smooth hover transition */
+}
+
+/* Hover / focus state for clickable elements */
+.header-top .icon:hover,
+.header-top .header-info a:hover {
+  color: var(--header-hover);
+}
+
+/* If you're using SVG fills instead of font icons */
+.header-top svg {
+  fill: var(--header-muted);
+  transition: fill 0.2s ease;
+}
+.header-top svg:hover {
+  fill: var(--header-hover);
 }

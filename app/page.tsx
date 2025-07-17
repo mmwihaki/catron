@@ -4,8 +4,10 @@ import React, { useState } from "react";
 import Link from "next/link";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
+import CartSidebar from "./components/CartSidebar";
 import OptimizedImage from "./components/OptimizedImage";
 import { allProducts, getFeaturedProducts, Product } from "./data/products";
+import { useCart } from "./context/CartContext";
 import {
   Filter,
   Wind,
@@ -25,6 +27,7 @@ export default function HomePage() {
   const [vehicleYear, setVehicleYear] = useState("");
   const [vehicleModel, setVehicleModel] = useState("");
   const [vehicleEngine, setVehicleEngine] = useState("");
+  const { addToCart } = useCart();
 
   // Get different product sets
   const featuredProducts =
@@ -98,27 +101,15 @@ export default function HomePage() {
     },
   ];
 
-  const addToWhatsAppCart = (product: Product, quantity: number = 1) => {
-    const phoneNumber = "+254700000000";
-    let message = `Hi! I'd like to order this Nissan part:\n\n`;
-    message += `• ${quantity}x ${product.name}\n`;
-    message += `• SKU: ${product.sku}\n`;
-    message += `• Price: KES ${(product.price * quantity).toLocaleString()}\n\n`;
-    message += `Please confirm availability, compatibility, and payment details.`;
-
-    const whatsappUrl = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
-    window.open(whatsappUrl, "_blank");
-  };
-
   const renderStars = (rating: number) => {
     return "★".repeat(Math.floor(rating)) + "☆".repeat(5 - Math.floor(rating));
   };
 
   const ProductCard = ({ product }: { product: Product }) => (
-    <div className="card-white hover:shadow-xl transition-shadow group relative">
+    <div className="card-white hover:shadow-xl transition-shadow group relative h-full flex flex-col">
       {product.originalPrice && (
-        <div className="absolute top-4 left-4 z-10">
-          <div className="badge-primary">
+        <div className="absolute top-2 left-2 md:top-4 md:left-4 z-10">
+          <div className="badge-primary text-xs">
             {Math.round(
               ((product.originalPrice - product.price) /
                 product.originalPrice) *
@@ -130,80 +121,75 @@ export default function HomePage() {
       )}
 
       {product.isNew && (
-        <div className="absolute top-4 right-4 z-10">
-          <div className="badge-secondary">NEW</div>
+        <div className="absolute top-2 right-2 md:top-4 md:right-4 z-10">
+          <div className="badge-secondary text-xs">NEW</div>
         </div>
       )}
 
-      <div className="aspect-square mb-4 overflow-hidden rounded-lg bg-primary pixel-perfect">
+      <div className="aspect-square mb-3 md:mb-4 overflow-hidden rounded-lg bg-primary pixel-perfect">
         <OptimizedImage
           src={product.image}
           alt={product.name}
           width={400}
           height={400}
           className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
-          sizes="(max-width: 768px) 50vw, (max-width: 1200px) 33vw, 25vw"
+          sizes="(max-width: 768px) 80vw, (max-width: 1200px) 33vw, 25vw"
         />
       </div>
 
-      <div className="mb-2">
+      <div className="flex-1 flex flex-col">
         <div className="text-xs text-accent-primary font-medium mb-1">
           {product.category}
         </div>
-        <h3 className="font-semibold text-primary mb-2 line-clamp-2">
+        <h3 className="font-semibold text-primary mb-2 line-clamp-2 text-sm md:text-base">
           {product.name}
         </h3>
-        <div className="text-xs text-secondary mb-2">
-          SKU: {product.sku} | Brand: {product.brand}
-        </div>
+        <div className="text-xs text-secondary mb-2">SKU: {product.sku}</div>
 
-        <div className="flex items-center gap-2 mb-3">
+        <div className="flex items-center gap-2 mb-2">
           <div className="text-yellow-400 text-sm">
             {renderStars(product.rating)}
           </div>
           <span className="text-xs text-secondary">({product.reviews})</span>
         </div>
 
-        <div className="text-xs text-secondary mb-4">
+        <div className="text-xs text-secondary mb-3 hidden md:block">
           Compatible: {product.compatibility.slice(0, 2).join(", ")}
           {product.compatibility.length > 2 &&
             ` +${product.compatibility.length - 2} more`}
         </div>
 
-        <div className="flex items-center justify-between mb-4">
+        <div className="flex items-center justify-between mb-3">
           <div
             className={`text-xs px-2 py-1 rounded ${product.inStock ? "bg-green-100 text-green-800" : "bg-red-100 text-red-800"}`}
           >
             {product.inStock
               ? product.stockLevel <= 10
-                ? `Low Stock (${product.stockLevel})`
+                ? `Low Stock`
                 : "In Stock"
               : "Out of Stock"}
           </div>
         </div>
-      </div>
 
-      <div className="flex items-center gap-2 mb-4">
-        {product.originalPrice && (
-          <span className="text-sm text-secondary line-through">
-            KES {product.originalPrice.toLocaleString()}
+        <div className="flex items-center gap-2 mb-4 mt-auto">
+          {product.originalPrice && (
+            <span className="text-sm text-secondary line-through">
+              KES {product.originalPrice.toLocaleString()}
+            </span>
+          )}
+          <span className="text-lg font-bold text-accent-primary">
+            KES {product.price.toLocaleString()}
           </span>
-        )}
-        <span className="text-lg font-bold text-accent-primary">
-          KES {product.price.toLocaleString()}
-        </span>
-      </div>
+        </div>
 
-      <button
-        onClick={() => {
-          // Add to cart functionality (can be expanded later)
-          console.log("Added to cart:", product.name);
-        }}
-        disabled={!product.inStock}
-        className="btn-primary w-full text-sm disabled:bg-gray-400 disabled:cursor-not-allowed disabled:opacity-50"
-      >
-        {product.inStock ? "Add to Cart" : "Out of Stock"}
-      </button>
+        <button
+          onClick={() => addToCart(product)}
+          disabled={!product.inStock}
+          className="btn-primary w-full text-sm disabled:bg-gray-400 disabled:cursor-not-allowed disabled:opacity-50"
+        >
+          {product.inStock ? "Add to Cart" : "Out of Stock"}
+        </button>
+      </div>
     </div>
   );
 
@@ -226,34 +212,33 @@ export default function HomePage() {
           }}
         ></div>
 
-        <div className="relative z-10 max-w-7xl mx-auto px-4 py-20">
-          <div className="grid lg:grid-cols-2 gap-12 items-center">
-            <div>
-              <h1 className="text-5xl lg:text-6xl font-bold mb-6 leading-tight">
-                Premium <span className="text-accent-primary">Nissan</span>{" "}
-                Parts
-              </h1>
-              <p className="text-xl mb-8 text-secondary">
-                Kenya's #1 marketplace for genuine OEM and performance parts.
-                Quality guaranteed, expert fitment support, fast delivery
-                nationwide.
-              </p>
-              <div className="flex gap-4">
-                <Link href="/shop" className="btn-primary text-lg px-8 py-4">
-                  Shop Nissan Parts
-                </Link>
-                <Link
-                  href="/support"
-                  className="btn-outline text-lg px-8 py-4 border-white text-white hover:bg-white hover:text-primary"
-                >
-                  Fitment Guide
-                </Link>
-              </div>
+        <div className="relative z-10 max-w-7xl mx-auto px-4 py-12 md:py-20">
+          <div className="text-center mb-8 md:mb-12">
+            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-4 md:mb-6 leading-tight">
+              Premium <span className="text-accent-primary">Nissan</span> Parts
+            </h1>
+            <p className="text-lg md:text-xl mb-6 md:mb-8 text-secondary max-w-3xl mx-auto">
+              Kenya's #1 marketplace for genuine OEM and performance parts.
+              Quality guaranteed, expert fitment support, fast delivery
+              nationwide.
+            </p>
+            <div className="flex flex-col sm:flex-row gap-4 justify-center mb-8 md:mb-12">
+              <Link href="/shop" className="btn-primary text-lg px-8 py-4">
+                Shop Nissan Parts
+              </Link>
+              <Link
+                href="/support"
+                className="btn-outline text-lg px-8 py-4 border-white text-white hover:bg-white hover:text-primary"
+              >
+                Fitment Guide
+              </Link>
             </div>
+          </div>
 
-            {/* Vehicle Selector */}
+          {/* Vehicle Selector - Centered */}
+          <div className="max-w-2xl mx-auto">
             <div className="card-white">
-              <h3 className="text-2xl font-bold mb-6 text-center text-primary">
+              <h3 className="text-xl md:text-2xl font-bold mb-6 text-center text-primary">
                 Find Parts for Your Nissan
               </h3>
 
@@ -337,7 +322,7 @@ export default function HomePage() {
             </p>
           </div>
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-3 gap-4 md:gap-6">
             {categories.map((category) => {
               const IconComponent = category.icon;
               return (
@@ -385,10 +370,20 @@ export default function HomePage() {
             </Link>
           </div>
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-            {bestSellers.map((product) => (
-              <ProductCard key={product.id} product={product} />
-            ))}
+          {/* Mobile: Single column with 4 products, Tablet+: Grid layout */}
+          <div className="block md:hidden">
+            <div className="space-y-4">
+              {bestSellers.slice(0, 4).map((product) => (
+                <ProductCard key={product.id} product={product} />
+              ))}
+            </div>
+          </div>
+          <div className="hidden md:block">
+            <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+              {bestSellers.map((product) => (
+                <ProductCard key={product.id} product={product} />
+              ))}
+            </div>
           </div>
         </div>
       </section>
@@ -411,10 +406,20 @@ export default function HomePage() {
             </Link>
           </div>
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-            {essentials.map((product) => (
-              <ProductCard key={product.id} product={product} />
-            ))}
+          {/* Mobile: Single column with 4 products, Tablet+: Grid layout */}
+          <div className="block md:hidden">
+            <div className="space-y-4">
+              {essentials.slice(0, 4).map((product) => (
+                <ProductCard key={product.id} product={product} />
+              ))}
+            </div>
+          </div>
+          <div className="hidden md:block">
+            <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+              {essentials.map((product) => (
+                <ProductCard key={product.id} product={product} />
+              ))}
+            </div>
           </div>
         </div>
       </section>
@@ -437,22 +442,30 @@ export default function HomePage() {
             </Link>
           </div>
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-            {newArrivals.length > 0
-              ? newArrivals.map((product) => (
+          {/* Mobile: Single column with 4 products, Tablet+: Grid layout */}
+          <div className="block md:hidden">
+            <div className="space-y-4">
+              {(newArrivals.length > 0 ? newArrivals : allProducts)
+                .slice(0, 4)
+                .map((product) => (
                   <ProductCard key={product.id} product={product} />
-                ))
-              : // Fallback to some products if no new arrivals
-                allProducts
-                  .slice(0, 4)
-                  .map((product) => (
-                    <ProductCard key={product.id} product={product} />
-                  ))}
+                ))}
+            </div>
+          </div>
+          <div className="hidden md:block">
+            <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+              {(newArrivals.length > 0 ? newArrivals : allProducts).map(
+                (product) => (
+                  <ProductCard key={product.id} product={product} />
+                ),
+              )}
+            </div>
           </div>
         </div>
       </section>
 
       <Footer />
+      <CartSidebar />
     </div>
   );
 }
