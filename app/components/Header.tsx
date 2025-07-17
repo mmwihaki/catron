@@ -2,6 +2,7 @@
 
 import React, { useState, useRef, useEffect } from "react";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import {
   Search,
   Heart,
@@ -16,6 +17,7 @@ import {
   ChevronDown,
 } from "lucide-react";
 import { useCart } from "../context/CartContext";
+import { allProducts } from "../data/products";
 
 interface HeaderProps {
   searchQuery?: string;
