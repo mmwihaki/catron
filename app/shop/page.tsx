@@ -527,11 +527,11 @@ export default function ShopPage() {
       <div className="bg-secondary py-4">
         <div className="container">
           <div className="flex items-center gap-2 text-sm text-gray-500">
-            <Link href="/" className="hover:text-red-600">
+            <Link href="/" className="text-secondary hover:text-primary">
               Home
             </Link>
             <span>›</span>
-            <span className="text-gray-900">Shop</span>
+            <span style={{ color: "var(--charcoal)" }}>Shop</span>
           </div>
         </div>
       </div>
