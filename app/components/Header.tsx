@@ -257,6 +257,9 @@ export default function Header({
                     ? "text-accent-primary"
                     : "text-primary hover:text-accent-secondary"
                 }`}
+                onClick={() => {
+                  if (setSearchQuery) setSearchQuery("");
+                }}
               >
                 Home
               </Link>
