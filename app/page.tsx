@@ -680,7 +680,7 @@ export default function HomePage() {
                 </svg>
               </div>
               <h3 className="text-xl font-bold mb-2">Quality Guaranteed</h3>
-              <p className="text-secondary">
+              <p className="text-gray-300">
                 100% genuine OEM and certified aftermarket parts
               </p>
             </div>
@@ -702,7 +702,7 @@ export default function HomePage() {
                 </svg>
               </div>
               <h3 className="text-xl font-bold mb-2">Fast Delivery</h3>
-              <p className="text-secondary">
+              <p className="text-gray-300">
                 Same day dispatch, Kenya-wide delivery
               </p>
             </div>
@@ -724,7 +724,7 @@ export default function HomePage() {
                 </svg>
               </div>
               <h3 className="text-xl font-bold mb-2">Expert Support</h3>
-              <p className="text-secondary">
+              <p className="text-gray-300">
                 Professional fitment guidance and technical support
               </p>
             </div>
@@ -740,7 +740,7 @@ export default function HomePage() {
                 </svg>
               </div>
               <h3 className="text-xl font-bold mb-2">WhatsApp Ordering</h3>
-              <p className="text-secondary">
+              <p className="text-gray-300">
                 Easy ordering via WhatsApp with instant support
               </p>
             </div>
@@ -760,12 +760,12 @@ export default function HomePage() {
                 </div>
                 <div>
                   <div className="text-2xl font-bold">BRATOR</div>
-                  <div className="text-sm text-secondary">
+                  <div className="text-sm text-gray-300">
                     Nissan Parts Specialist
                   </div>
                 </div>
               </div>
-              <p className="text-secondary mb-6 max-w-md">
+              <p className="text-gray-300 mb-6 max-w-md">
                 Kenya's premier destination for genuine Nissan OEM and
                 performance parts. We're committed to keeping your Nissan
                 running at peak performance with quality parts and expert
@@ -814,7 +814,7 @@ export default function HomePage() {
             {/* Quick Links */}
             <div>
               <h3 className="text-lg font-bold mb-4">Quick Links</h3>
-              <ul className="space-y-2 text-secondary">
+              <ul className="space-y-2 text-gray-300">
                 <li>
                   <Link
                     href="/shop"
@@ -869,7 +869,7 @@ export default function HomePage() {
             {/* Support */}
             <div>
               <h3 className="text-lg font-bold mb-4">Support</h3>
-              <ul className="space-y-2 text-secondary">
+              <ul className="space-y-2 text-gray-300">
                 <li>
                   <Link
                     href="/about"
@@ -924,10 +924,10 @@ export default function HomePage() {
 
           <div className="border-t border-charcoal-light mt-12 pt-8">
             <div className="flex flex-col md:flex-row justify-between items-center gap-4">
-              <div className="text-secondary text-sm">
+              <div className="text-gray-300 text-sm">
                 © 2024 Brator Auto Parts. All rights reserved.
               </div>
-              <div className="flex gap-6 text-sm text-secondary">
+              <div className="flex gap-6 text-sm text-gray-300">
                 <Link
                   href="/privacy"
                   className="hover:text-white transition-colors"
