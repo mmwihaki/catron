@@ -144,8 +144,8 @@ const OptimizedImage: React.FC<OptimizedImageProps> = ({
 
       <img
         ref={imgRef}
-        src={lazy && !priority && !loaded ? undefined : getOptimizedSrc(src)}
-        srcSet={lazy && !priority && !loaded ? undefined : generateSrcSet(src)}
+        src={getOptimizedSrc(src)}
+        srcSet={generateSrcSet(src)}
         sizes={sizes}
         alt={alt}
         width={width}
