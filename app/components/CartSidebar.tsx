@@ -32,7 +32,7 @@ export default function CartSidebar() {
   const handleCheckout = () => {
     if (items.length === 0) return;
 
-    const phoneNumber = "+254700000000";
+    const phoneNumber = "+254742578910";
     const itemsList = items
       .map(
         (item) =>
