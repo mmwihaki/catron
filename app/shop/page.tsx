@@ -542,7 +542,7 @@ export default function ShopPage() {
           <aside
             className={`w-80 ${showFilters ? "block" : "hidden lg:block"}`}
           >
-            <div className="bg-white rounded-lg border p-6 sticky top-4">
+            <div className="card sticky top-4">
               <div className="flex items-center justify-between mb-6">
                 <h3 className="text-lg font-bold">Filters</h3>
                 <button
