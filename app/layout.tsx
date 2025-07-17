@@ -2,9 +2,50 @@ import "./globals.css";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Catron Auto Parts - Premium Nissan Parts Kenya",
+  title: "Brator - Premium Nissan OEM & Performance Parts Kenya",
   description:
-    "Quality OEM and aftermarket parts specifically for Nissan vehicles in Kenya. Happy car ownership guaranteed.",
+    "Kenya's #1 marketplace for genuine Nissan OEM and performance parts. Quality guaranteed, fast delivery, expert fitment support. Shop engine, brakes, suspension, electrical & body parts.",
+  keywords:
+    "Nissan parts Kenya, OEM parts, performance parts, auto parts, car parts, Nairobi",
+  authors: [{ name: "Brator Auto Parts" }],
+  openGraph: {
+    title: "Brator - Premium Nissan Parts Kenya",
+    description:
+      "Quality Nissan OEM & performance parts with expert fitment support",
+    url: "https://brator.co.ke",
+    siteName: "Brator",
+    images: [
+      {
+        url: "/og-image.jpg",
+        width: 1200,
+        height: 630,
+        alt: "Brator Nissan Parts",
+      },
+    ],
+    locale: "en_KE",
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Brator - Premium Nissan Parts Kenya",
+    description:
+      "Quality Nissan OEM & performance parts with expert fitment support",
+    images: ["/og-image.jpg"],
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-video-preview": -1,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+    },
+  },
+  verification: {
+    google: "your-google-verification-code",
+  },
 };
 
 export default function RootLayout({
@@ -22,14 +63,43 @@ export default function RootLayout({
           crossOrigin="anonymous"
         />
         <link
-          href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900;1,400;1,500;1,600;1,700;1,800;1,900&family=Source+Sans+Pro:ital,wght@0,300;0,400;0,600;0,700;0,900;1,300;1,400;1,600;1,700;1,900&display=swap"
+          href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,300;1,400;1,500;1,600;1,700;1,800&display=swap"
           rel="stylesheet"
         />
-        <link
-          rel="stylesheet"
-          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
-          integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
-          crossOrigin="anonymous"
+        {/* Structured Data for Organization */}
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "Organization",
+              name: "Brator Auto Parts",
+              description:
+                "Kenya's premier Nissan OEM and performance parts supplier",
+              url: "https://brator.co.ke",
+              logo: "https://brator.co.ke/logo.png",
+              contactPoint: {
+                "@type": "ContactPoint",
+                telephone: "+254700000000",
+                contactType: "customer service",
+                availableLanguage: "English",
+              },
+              sameAs: [
+                "https://facebook.com/bratorkenya",
+                "https://instagram.com/bratorkenya",
+                "https://twitter.com/bratorkenya",
+              ],
+            }),
+          }}
+        />
+        {/* WhatsApp Business Integration */}
+        <meta
+          property="business:contact_data:phone_number"
+          content="+254700000000"
+        />
+        <meta
+          property="business:contact_data:website"
+          content="https://brator.co.ke"
         />
       </head>
       <body>{children}</body>
