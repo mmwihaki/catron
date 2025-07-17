@@ -25,7 +25,7 @@ const OptimizedImage: React.FC<OptimizedImageProps> = ({
   quality = 85,
   sizes = "100vw",
 }) => {
-  const [loaded, setLoaded] = useState(false);
+  const [loaded, setLoaded] = useState(!lazy || priority);
   const [error, setError] = useState(false);
   const imgRef = useRef<HTMLImageElement>(null);
 
