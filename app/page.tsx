@@ -115,10 +115,10 @@ export default function HomePage() {
   };
 
   const ProductCard = ({ product }: { product: Product }) => (
-    <div className="bg-white rounded-lg shadow-md border border-gray-200 p-4 hover:shadow-lg transition-shadow group relative">
+    <div className="card-white hover:shadow-xl transition-shadow group relative">
       {product.originalPrice && (
         <div className="absolute top-4 left-4 z-10">
-          <div className="bg-red-600 text-white px-2 py-1 rounded-md text-xs font-medium">
+          <div className="badge-primary">
             {Math.round(
               ((product.originalPrice - product.price) /
                 product.originalPrice) *
@@ -131,13 +131,11 @@ export default function HomePage() {
 
       {product.isNew && (
         <div className="absolute top-4 right-4 z-10">
-          <div className="bg-green-600 text-white px-2 py-1 rounded-md text-xs font-medium">
-            NEW
-          </div>
+          <div className="badge-secondary">NEW</div>
         </div>
       )}
 
-      <div className="aspect-square mb-4 overflow-hidden rounded-lg bg-gray-100 pixel-perfect">
+      <div className="aspect-square mb-4 overflow-hidden rounded-lg bg-primary pixel-perfect">
         <OptimizedImage
           src={product.image}
           alt={product.name}
@@ -149,13 +147,13 @@ export default function HomePage() {
       </div>
 
       <div className="mb-2">
-        <div className="text-xs text-red-600 font-medium mb-1">
+        <div className="text-xs text-accent-primary font-medium mb-1">
           {product.category}
         </div>
-        <h3 className="font-semibold text-gray-900 mb-2 line-clamp-2">
+        <h3 className="font-semibold text-primary mb-2 line-clamp-2">
           {product.name}
         </h3>
-        <div className="text-xs text-gray-500 mb-2">
+        <div className="text-xs text-secondary mb-2">
           SKU: {product.sku} | Brand: {product.brand}
         </div>
 
@@ -163,10 +161,10 @@ export default function HomePage() {
           <div className="text-yellow-400 text-sm">
             {renderStars(product.rating)}
           </div>
-          <span className="text-xs text-gray-500">({product.reviews})</span>
+          <span className="text-xs text-secondary">({product.reviews})</span>
         </div>
 
-        <div className="text-xs text-gray-500 mb-4">
+        <div className="text-xs text-secondary mb-4">
           Compatible: {product.compatibility.slice(0, 2).join(", ")}
           {product.compatibility.length > 2 &&
             ` +${product.compatibility.length - 2} more`}
@@ -187,11 +185,11 @@ export default function HomePage() {
 
       <div className="flex items-center gap-2 mb-4">
         {product.originalPrice && (
-          <span className="text-sm text-gray-500 line-through">
+          <span className="text-sm text-secondary line-through">
             KES {product.originalPrice.toLocaleString()}
           </span>
         )}
-        <span className="text-lg font-bold text-red-600">
+        <span className="text-lg font-bold text-accent-primary">
           KES {product.price.toLocaleString()}
         </span>
       </div>
