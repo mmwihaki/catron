@@ -466,6 +466,46 @@ export default function HomePage() {
         </div>
       </section>
 
+      {/* Search Results */}
+      {isSearchActive && (
+        <section className="py-16 bg-white">
+          <div className="max-w-7xl mx-auto px-4">
+            <div className="text-center mb-12">
+              <h2 className="text-4xl font-bold mb-4 text-primary">
+                Search Results
+              </h2>
+              <p className="text-xl text-primary">
+                Found {filteredProducts.length} products{" "}
+                {searchParams.get("search") &&
+                  `for "${searchParams.get("search")}"`}
+              </p>
+            </div>
+
+            {filteredProducts.length > 0 ? (
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                {filteredProducts.slice(0, 12).map((product) => (
+                  <ProductCard key={product.id} product={product} />
+                ))}
+              </div>
+            ) : (
+              <div className="text-center py-8">
+                <p className="text-lg text-primary">
+                  No products found. Try adjusting your search terms.
+                </p>
+              </div>
+            )}
+
+            {filteredProducts.length > 12 && (
+              <div className="text-center mt-8">
+                <Link href="/shop" className="btn-primary">
+                  View All {filteredProducts.length} Results
+                </Link>
+              </div>
+            )}
+          </div>
+        </section>
+      )}
+
       {/* Shop by Category */}
       <section className="py-16 bg-white">
         <div className="max-w-7xl mx-auto px-4">
