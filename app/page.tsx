@@ -230,8 +230,7 @@ export default function HomePage() {
               <div className="flex items-center gap-6">
                 <Link
                   href="/wishlist"
-                  className="flex items-center gap-2"
-                  style={{ color: "var(--charcoal-light)" }}
+                  className="flex items-center gap-2 text-gray-700 hover:text-red-600"
                 >
                   <svg
                     className="w-6 h-6"
