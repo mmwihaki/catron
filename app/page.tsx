@@ -231,7 +231,11 @@ export default function HomePage() {
         </div>
 
         <button
-          onClick={() => addToCart(product)}
+          onClick={(e) => {
+            e.preventDefault();
+            e.stopPropagation();
+            addToCart(product);
+          }}
           disabled={!product.inStock}
           className="btn-primary w-full text-sm disabled:bg-gray-400 disabled:cursor-not-allowed disabled:opacity-50"
         >
