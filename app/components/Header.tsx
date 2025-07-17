@@ -218,7 +218,7 @@ export default function Header({
                         <div className="font-medium text-primary">
                           {category.name}
                         </div>
-                        <div className="text-xs text-secondary">
+                        <div className="text-xs text-primary">
                           {category.count} items
                         </div>
                       </div>
