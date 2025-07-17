@@ -116,19 +116,6 @@ export default function AboutPage() {
     <div className="min-h-screen bg-white">
       <Header currentPage="about" />
 
-      {/* Breadcrumb */}
-      <div className="bg-background-gray py-4">
-        <div className="container">
-          <div className="flex items-center gap-2 text-sm text-silver">
-            <Link href="/" className="hover:text-primary">
-              Home
-            </Link>
-            <span>›</span>
-            <span className="text-charcoal">About Us</span>
-          </div>
-        </div>
-      </div>
-
       {/* Hero Section */}
       <section className="hero-section relative py-20 bg-gradient-to-r from-charcoal to-charcoal-light text-white">
         <div className="absolute inset-0 bg-black bg-opacity-50"></div>
