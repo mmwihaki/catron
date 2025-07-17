@@ -1,9 +1,8 @@
 "use client";
 
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import Link from "next/link";
 
-// Types
 interface Product {
   id: number;
   sku: string;
@@ -19,21 +18,13 @@ interface Product {
   isNew?: boolean;
 }
 
-interface CartItem {
-  product: Product;
-  quantity: number;
-}
-
-export default function NissanPartsHomepage() {
+export default function HomePage() {
   const [searchQuery, setSearchQuery] = useState("");
   const [vehicleYear, setVehicleYear] = useState("");
   const [vehicleModel, setVehicleModel] = useState("");
   const [vehicleEngine, setVehicleEngine] = useState("");
-  const [cart, setCart] = useState<CartItem[]>([]);
-  const [showMobileMenu, setShowMobileMenu] = useState(false);
   const [showCategories, setShowCategories] = useState(false);
 
-  // Sample product data
   const featuredProducts: Product[] = [
     {
       id: 1,
@@ -89,66 +80,6 @@ export default function NissanPartsHomepage() {
       reviews: 134,
       compatibility: ["X-Trail T32", "Qashqai J11"],
       inStock: true,
-    },
-  ];
-
-  const newArrivals: Product[] = [
-    {
-      id: 5,
-      sku: "NIS-HB-005",
-      name: "OSRAM Night Breaker 200 H4 Headlight Bulb",
-      category: "Headlight Bulbs",
-      image:
-        "https://images.unsplash.com/photo-1552664688-cf412ec27db2?w=400&h=300&fit=crop",
-      price: 4500,
-      rating: 4.8,
-      reviews: 67,
-      compatibility: ["Note E11/E12", "March K12/K13"],
-      inStock: true,
-      isNew: true,
-    },
-    {
-      id: 6,
-      sku: "NIS-SP-006",
-      name: "NISSAN Suspension Strut Front 54303-3TA0A",
-      category: "Suspension",
-      image:
-        "https://images.unsplash.com/photo-1486754735734-325b5831c3ad?w=400&h=300&fit=crop",
-      price: 12500,
-      rating: 4.7,
-      reviews: 45,
-      compatibility: ["Serena C26"],
-      inStock: true,
-      isNew: true,
-    },
-    {
-      id: 7,
-      sku: "NIS-EL-007",
-      name: "NISSAN Alternator 23100-3TA0B",
-      category: "Electrical",
-      image:
-        "https://images.unsplash.com/photo-1502920917128-1aa500764cbd?w=400&h=300&fit=crop",
-      price: 18500,
-      originalPrice: 21000,
-      rating: 4.5,
-      reviews: 23,
-      compatibility: ["Serena C26", "NV200"],
-      inStock: true,
-      isNew: true,
-    },
-    {
-      id: 8,
-      sku: "NIS-BT-008",
-      name: "NISSAN Door Handle Outer Chrome 80607-1HM0A",
-      category: "Body & Trim",
-      image:
-        "https://images.unsplash.com/photo-1544829099-b9a0c5303bea?w=400&h=300&fit=crop",
-      price: 5800,
-      rating: 4.4,
-      reviews: 12,
-      compatibility: ["X-Trail T32"],
-      inStock: true,
-      isNew: true,
     },
   ];
 
@@ -209,69 +140,13 @@ export default function NissanPartsHomepage() {
     },
   ];
 
-  const nissanModels = [
-    "Note",
-    "Sentra",
-    "Sylphy",
-    "Serena",
-    "X-Trail",
-    "Qashqai",
-    "March",
-    "Micra",
-    "Tiida",
-    "Juke",
-    "Murano",
-    "Pathfinder",
-    "NV200",
-    "Elgrand",
-    "Teana",
-    "Altima",
-    "370Z",
-    "GT-R",
-  ];
-
-  const engineOptions = [
-    "1.0L DIG-T",
-    "1.2L DIG-S",
-    "1.5L",
-    "1.6L",
-    "2.0L",
-    "2.5L",
-    "3.5L V6",
-    "3.7L V6",
-  ];
-
-  // WhatsApp Cart Integration
   const addToWhatsAppCart = (product: Product, quantity: number = 1) => {
-    const existingItem = cart.find((item) => item.product.id === product.id);
-    if (existingItem) {
-      setCart(
-        cart.map((item) =>
-          item.product.id === product.id
-            ? { ...item, quantity: item.quantity + quantity }
-            : item,
-        ),
-      );
-    } else {
-      setCart([...cart, { product, quantity }]);
-    }
-  };
-
-  const openWhatsAppChat = () => {
-    const phoneNumber = "+254700000000"; // Replace with actual WhatsApp Business number
-    let message = "Hi! I'd like to order the following Nissan parts:\n\n";
-
-    cart.forEach((item) => {
-      message += `• ${item.quantity}x ${item.product.name} (SKU: ${item.product.sku})\n`;
-      message += `  Price: KES ${(item.product.price * item.quantity).toLocaleString()}\n\n`;
-    });
-
-    const total = cart.reduce(
-      (sum, item) => sum + item.product.price * item.quantity,
-      0,
-    );
-    message += `Total: KES ${total.toLocaleString()}\n\n`;
-    message += "Please confirm availability & payment details.";
+    const phoneNumber = "+254700000000";
+    let message = `Hi! I'd like to order this Nissan part:\n\n`;
+    message += `• ${quantity}x ${product.name}\n`;
+    message += `• SKU: ${product.sku}\n`;
+    message += `• Price: KES ${(product.price * quantity).toLocaleString()}\n\n`;
+    message += `Please confirm availability, compatibility, and payment details.`;
 
     const whatsappUrl = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
     window.open(whatsappUrl, "_blank");
@@ -282,13 +157,13 @@ export default function NissanPartsHomepage() {
   };
 
   return (
-    <div className="nissan-homepage">
+    <div className="min-h-screen bg-white">
       {/* Header */}
-      <header className="header">
+      <header className="bg-white shadow-lg">
         {/* Top Bar */}
-        <div className="top-bar bg-dark text-white">
-          <div className="container">
-            <div className="flex justify-between items-center text-sm">
+        <div className="bg-gray-900 text-white">
+          <div className="max-w-7xl mx-auto px-4">
+            <div className="flex justify-between items-center text-sm py-2">
               <div className="flex items-center gap-6">
                 <span>📞 +254 700 000 000</span>
                 <span>✉️ info@brator.co.ke</span>
@@ -303,20 +178,20 @@ export default function NissanPartsHomepage() {
         </div>
 
         {/* Main Header */}
-        <div className="main-header bg-white shadow-md">
-          <div className="container">
+        <div className="bg-white shadow-md">
+          <div className="max-w-7xl mx-auto px-4">
             <div className="flex items-center justify-between py-4">
               {/* Logo */}
               <div className="logo">
                 <Link href="/" className="flex items-center gap-3">
-                  <div className="w-12 h-12 bg-primary rounded-lg flex items-center justify-center text-white font-bold text-xl">
+                  <div className="w-12 h-12 bg-red-600 rounded-lg flex items-center justify-center text-white font-bold text-xl">
                     B
                   </div>
                   <div>
-                    <div className="text-2xl font-bold text-charcoal">
+                    <div className="text-2xl font-bold text-gray-900">
                       BRATOR
                     </div>
-                    <div className="text-xs text-silver">
+                    <div className="text-xs text-gray-500">
                       Nissan Parts Specialist
                     </div>
                   </div>
@@ -324,8 +199,8 @@ export default function NissanPartsHomepage() {
               </div>
 
               {/* Search Bar */}
-              <div className="search-section flex-1 max-w-2xl mx-8">
-                <div className="flex border-2 border-primary rounded-lg overflow-hidden">
+              <div className="flex-1 max-w-2xl mx-8">
+                <div className="flex border-2 border-red-600 rounded-lg overflow-hidden">
                   <input
                     type="text"
                     placeholder="Search by part number, model, or keyword..."
@@ -333,7 +208,7 @@ export default function NissanPartsHomepage() {
                     value={searchQuery}
                     onChange={(e) => setSearchQuery(e.target.value)}
                   />
-                  <button className="bg-primary text-white px-6 py-3 hover:bg-red-700 transition-colors">
+                  <button className="bg-red-600 text-white px-6 py-3 hover:bg-red-700 transition-colors">
                     <svg
                       className="w-5 h-5"
                       fill="none"
@@ -355,7 +230,7 @@ export default function NissanPartsHomepage() {
               <div className="flex items-center gap-6">
                 <Link
                   href="/wishlist"
-                  className="flex items-center gap-2 text-charcoal hover:text-primary"
+                  className="flex items-center gap-2 text-gray-700 hover:text-red-600"
                 >
                   <svg
                     className="w-6 h-6"
@@ -373,9 +248,9 @@ export default function NissanPartsHomepage() {
                   <span className="hidden md:block">Wishlist</span>
                 </Link>
 
-                <button
-                  onClick={openWhatsAppChat}
-                  className="flex items-center gap-2 text-charcoal hover:text-primary relative"
+                <Link
+                  href="/cart"
+                  className="flex items-center gap-2 text-gray-700 hover:text-red-600 relative"
                 >
                   <svg
                     className="w-6 h-6"
@@ -391,16 +266,11 @@ export default function NissanPartsHomepage() {
                     />
                   </svg>
                   <span className="hidden md:block">Cart</span>
-                  {cart.length > 0 && (
-                    <span className="absolute -top-2 -right-2 bg-primary text-white text-xs rounded-full w-5 h-5 flex items-center justify-center">
-                      {cart.reduce((sum, item) => sum + item.quantity, 0)}
-                    </span>
-                  )}
-                </button>
+                </Link>
 
                 <Link
                   href="/account"
-                  className="flex items-center gap-2 text-charcoal hover:text-primary"
+                  className="flex items-center gap-2 text-gray-700 hover:text-red-600"
                 >
                   <svg
                     className="w-6 h-6"
@@ -423,13 +293,13 @@ export default function NissanPartsHomepage() {
         </div>
 
         {/* Navigation */}
-        <nav className="navigation bg-gray-50 border-b">
-          <div className="container">
+        <nav className="bg-gray-50 border-b">
+          <div className="max-w-7xl mx-auto px-4">
             <div className="flex items-center gap-8 py-3">
               <div className="relative">
                 <button
                   onClick={() => setShowCategories(!showCategories)}
-                  className="flex items-center gap-2 bg-primary text-white px-4 py-2 rounded-lg hover:bg-red-700 transition-colors"
+                  className="flex items-center gap-2 bg-red-600 text-white px-4 py-2 rounded-lg hover:bg-red-700 transition-colors"
                 >
                   <svg
                     className="w-5 h-5"
@@ -457,10 +327,10 @@ export default function NissanPartsHomepage() {
                       >
                         <span className="text-xl">{category.icon}</span>
                         <div>
-                          <div className="font-medium text-charcoal">
+                          <div className="font-medium text-gray-900">
                             {category.name}
                           </div>
-                          <div className="text-xs text-silver">
+                          <div className="text-xs text-gray-500">
                             {category.count} items
                           </div>
                         </div>
@@ -473,37 +343,37 @@ export default function NissanPartsHomepage() {
               <div className="flex items-center gap-6">
                 <Link
                   href="/"
-                  className="font-medium text-charcoal hover:text-primary"
+                  className="font-medium text-gray-700 hover:text-red-600"
                 >
                   Home
                 </Link>
                 <Link
                   href="/shop"
-                  className="font-medium text-charcoal hover:text-primary"
+                  className="font-medium text-gray-700 hover:text-red-600"
                 >
                   Shop
                 </Link>
                 <Link
                   href="/about"
-                  className="font-medium text-charcoal hover:text-primary"
+                  className="font-medium text-gray-700 hover:text-red-600"
                 >
                   About
                 </Link>
                 <Link
                   href="/support"
-                  className="font-medium text-charcoal hover:text-primary"
+                  className="font-medium text-gray-700 hover:text-red-600"
                 >
                   Support
                 </Link>
                 <Link
                   href="/contact"
-                  className="font-medium text-charcoal hover:text-primary"
+                  className="font-medium text-gray-700 hover:text-red-600"
                 >
                   Contact
                 </Link>
               </div>
 
-              <div className="ml-auto flex items-center gap-4 text-sm text-silver">
+              <div className="ml-auto flex items-center gap-4 text-sm text-gray-500">
                 <span>📦 Free shipping on orders over KES 5,000</span>
                 <span>🔧 Expert fitment support</span>
               </div>
@@ -513,7 +383,7 @@ export default function NissanPartsHomepage() {
       </header>
 
       {/* Hero Section */}
-      <section className="hero bg-gradient-to-r from-gray-900 to-gray-800 text-white relative overflow-hidden">
+      <section className="relative bg-gradient-to-r from-gray-900 to-gray-800 text-white overflow-hidden">
         <div className="absolute inset-0 bg-black bg-opacity-40"></div>
         <div
           className="absolute inset-0 bg-cover bg-center"
@@ -523,11 +393,11 @@ export default function NissanPartsHomepage() {
           }}
         ></div>
 
-        <div className="container relative z-10 py-20">
-          <div className="grid md:grid-cols-2 gap-12 items-center">
+        <div className="relative z-10 max-w-7xl mx-auto px-4 py-20">
+          <div className="grid lg:grid-cols-2 gap-12 items-center">
             <div>
-              <h1 className="text-5xl md:text-6xl font-bold mb-6 leading-tight">
-                Premium <span className="text-primary">Nissan</span> Parts
+              <h1 className="text-5xl lg:text-6xl font-bold mb-6 leading-tight">
+                Premium <span className="text-red-500">Nissan</span> Parts
               </h1>
               <p className="text-xl mb-8 text-gray-200">
                 Kenya's #1 marketplace for genuine OEM and performance parts.
@@ -535,27 +405,35 @@ export default function NissanPartsHomepage() {
                 nationwide.
               </p>
               <div className="flex gap-4">
-                <Link href="/shop" className="btn btn-primary btn-lg">
+                <Link
+                  href="/shop"
+                  className="bg-red-600 text-white px-8 py-4 rounded-lg font-semibold hover:bg-red-700 transition-colors"
+                >
                   Shop Nissan Parts
                 </Link>
-                <Link href="/support" className="btn btn-outline btn-lg">
+                <Link
+                  href="/support"
+                  className="border-2 border-white text-white px-8 py-4 rounded-lg font-semibold hover:bg-white hover:text-gray-900 transition-colors"
+                >
                   Fitment Guide
                 </Link>
               </div>
             </div>
 
             {/* Vehicle Selector */}
-            <div className="bg-white text-charcoal rounded-xl p-8 shadow-2xl">
+            <div className="bg-white text-gray-900 rounded-xl p-8 shadow-2xl">
               <h3 className="text-2xl font-bold mb-6 text-center">
                 Find Parts for Your Nissan
               </h3>
 
               <form className="space-y-4">
-                <div className="grid md:grid-cols-2 gap-4">
+                <div className="grid grid-cols-2 gap-4">
                   <div>
-                    <label className="form-label">Year</label>
+                    <label className="block text-sm font-medium text-gray-700 mb-1">
+                      Year
+                    </label>
                     <select
-                      className="form-select"
+                      className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-red-500"
                       value={vehicleYear}
                       onChange={(e) => setVehicleYear(e.target.value)}
                     >
@@ -571,39 +449,46 @@ export default function NissanPartsHomepage() {
                   </div>
 
                   <div>
-                    <label className="form-label">Model</label>
+                    <label className="block text-sm font-medium text-gray-700 mb-1">
+                      Model
+                    </label>
                     <select
-                      className="form-select"
+                      className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-red-500"
                       value={vehicleModel}
                       onChange={(e) => setVehicleModel(e.target.value)}
                     >
                       <option value="">Select Model</option>
-                      {nissanModels.map((model) => (
-                        <option key={model} value={model}>
-                          {model}
-                        </option>
-                      ))}
+                      <option value="Note">Note</option>
+                      <option value="March">March</option>
+                      <option value="X-Trail">X-Trail</option>
+                      <option value="Qashqai">Qashqai</option>
+                      <option value="Serena">Serena</option>
                     </select>
                   </div>
                 </div>
 
                 <div>
-                  <label className="form-label">Engine</label>
+                  <label className="block text-sm font-medium text-gray-700 mb-1">
+                    Engine
+                  </label>
                   <select
-                    className="form-select"
+                    className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-red-500"
                     value={vehicleEngine}
                     onChange={(e) => setVehicleEngine(e.target.value)}
                   >
                     <option value="">Select Engine</option>
-                    {engineOptions.map((engine) => (
-                      <option key={engine} value={engine}>
-                        {engine}
-                      </option>
-                    ))}
+                    <option value="1.0L">1.0L</option>
+                    <option value="1.2L DIG-S">1.2L DIG-S</option>
+                    <option value="1.5L">1.5L</option>
+                    <option value="2.0L">2.0L</option>
+                    <option value="2.5L">2.5L</option>
                   </select>
                 </div>
 
-                <button type="button" className="btn btn-primary w-full">
+                <button
+                  type="button"
+                  className="w-full bg-red-600 text-white py-3 rounded-md font-semibold hover:bg-red-700 transition-colors"
+                >
                   Find Compatible Parts
                 </button>
               </form>
@@ -613,11 +498,11 @@ export default function NissanPartsHomepage() {
       </section>
 
       {/* Category Showcase */}
-      <section className="section bg-background-gray">
-        <div className="container">
+      <section className="py-16 bg-gray-50">
+        <div className="max-w-7xl mx-auto px-4">
           <div className="text-center mb-12">
             <h2 className="text-4xl font-bold mb-4">Shop by Category</h2>
-            <p className="text-xl text-silver">
+            <p className="text-xl text-gray-600">
               Find the exact parts you need for your Nissan
             </p>
           </div>
@@ -640,18 +525,16 @@ export default function NissanPartsHomepage() {
                   <div className="flex items-center gap-3 mb-3">
                     <span className="text-3xl">{category.icon}</span>
                     <div>
-                      <h3 className="text-xl font-bold text-charcoal group-hover:text-primary transition-colors">
+                      <h3 className="text-xl font-bold text-gray-900 group-hover:text-red-600 transition-colors">
                         {category.name}
                       </h3>
-                      <div className="text-sm text-silver">
+                      <div className="text-sm text-gray-500">
                         {category.count} parts available
                       </div>
                     </div>
                   </div>
-                  <p className="text-charcoal-light mb-4">
-                    {category.description}
-                  </p>
-                  <div className="flex items-center text-primary font-medium">
+                  <p className="text-gray-600 mb-4">{category.description}</p>
+                  <div className="flex items-center text-red-600 font-medium">
                     Shop Now
                     <svg
                       className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform"
@@ -675,26 +558,32 @@ export default function NissanPartsHomepage() {
       </section>
 
       {/* Best Sellers */}
-      <section className="section">
-        <div className="container">
+      <section className="py-16">
+        <div className="max-w-7xl mx-auto px-4">
           <div className="flex justify-between items-center mb-12">
             <div>
               <h2 className="text-4xl font-bold mb-4">Best Sellers</h2>
-              <p className="text-xl text-silver">
+              <p className="text-xl text-gray-600">
                 Most popular Nissan parts this month
               </p>
             </div>
-            <Link href="/shop?sort=popular" className="btn btn-outline">
+            <Link
+              href="/shop?sort=popular"
+              className="border-2 border-gray-300 text-gray-700 px-6 py-3 rounded-lg font-medium hover:border-red-600 hover:text-red-600 transition-colors"
+            >
               View All Best Sellers
             </Link>
           </div>
 
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
             {featuredProducts.map((product) => (
-              <div key={product.id} className="card group relative">
+              <div
+                key={product.id}
+                className="bg-white rounded-lg shadow-md border border-gray-200 p-4 hover:shadow-lg transition-shadow group relative"
+              >
                 {product.originalPrice && (
                   <div className="absolute top-4 left-4 z-10">
-                    <div className="badge badge-primary">
+                    <div className="bg-red-600 text-white px-2 py-1 rounded-md text-xs font-medium">
                       {Math.round(
                         ((product.originalPrice - product.price) /
                           product.originalPrice) *
@@ -714,13 +603,13 @@ export default function NissanPartsHomepage() {
                 </div>
 
                 <div className="mb-2">
-                  <div className="text-xs text-primary font-medium mb-1">
+                  <div className="text-xs text-red-600 font-medium mb-1">
                     {product.category}
                   </div>
-                  <h3 className="font-semibold text-charcoal mb-2 line-clamp-2">
+                  <h3 className="font-semibold text-gray-900 mb-2 line-clamp-2">
                     {product.name}
                   </h3>
-                  <div className="text-xs text-silver mb-2">
+                  <div className="text-xs text-gray-500 mb-2">
                     SKU: {product.sku}
                   </div>
 
@@ -728,23 +617,23 @@ export default function NissanPartsHomepage() {
                     <div className="text-yellow-400 text-sm">
                       {renderStars(product.rating)}
                     </div>
-                    <span className="text-xs text-silver">
+                    <span className="text-xs text-gray-500">
                       ({product.reviews})
                     </span>
                   </div>
 
                   <div className="flex items-center gap-2 mb-4">
                     {product.originalPrice && (
-                      <span className="text-sm text-silver line-through">
+                      <span className="text-sm text-gray-500 line-through">
                         KES {product.originalPrice.toLocaleString()}
                       </span>
                     )}
-                    <span className="text-lg font-bold text-primary">
+                    <span className="text-lg font-bold text-red-600">
                       KES {product.price.toLocaleString()}
                     </span>
                   </div>
 
-                  <div className="text-xs text-silver mb-4">
+                  <div className="text-xs text-gray-500 mb-4">
                     Compatible: {product.compatibility.slice(0, 2).join(", ")}
                     {product.compatibility.length > 2 &&
                       ` +${product.compatibility.length - 2} more`}
@@ -753,101 +642,14 @@ export default function NissanPartsHomepage() {
 
                 <button
                   onClick={() => addToWhatsAppCart(product)}
-                  className="btn whatsapp-btn w-full text-sm"
+                  className="bg-green-500 text-white px-4 py-2 rounded-md hover:bg-green-600 transition-colors w-full text-sm flex items-center justify-center gap-2"
                 >
                   <svg
                     className="w-4 h-4"
                     fill="currentColor"
                     viewBox="0 0 24 24"
                   >
-                    <path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.095 3.2 5.076 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413z" />
-                  </svg>
-                  Add to WhatsApp Cart
-                </button>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* New Arrivals */}
-      <section className="section bg-background-gray">
-        <div className="container">
-          <div className="flex justify-between items-center mb-12">
-            <div>
-              <h2 className="text-4xl font-bold mb-4">New Arrivals</h2>
-              <p className="text-xl text-silver">
-                Latest additions to our Nissan parts catalog
-              </p>
-            </div>
-            <Link href="/shop?filter=new" className="btn btn-outline">
-              View All New Parts
-            </Link>
-          </div>
-
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-            {newArrivals.map((product) => (
-              <div key={product.id} className="card group relative">
-                <div className="absolute top-4 left-4 z-10">
-                  <div className="badge badge-success">NEW</div>
-                </div>
-
-                <div className="aspect-square mb-4 overflow-hidden rounded-lg bg-gray-100">
-                  <img
-                    src={product.image}
-                    alt={product.name}
-                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
-                  />
-                </div>
-
-                <div className="mb-2">
-                  <div className="text-xs text-primary font-medium mb-1">
-                    {product.category}
-                  </div>
-                  <h3 className="font-semibold text-charcoal mb-2 line-clamp-2">
-                    {product.name}
-                  </h3>
-                  <div className="text-xs text-silver mb-2">
-                    SKU: {product.sku}
-                  </div>
-
-                  <div className="flex items-center gap-2 mb-3">
-                    <div className="text-yellow-400 text-sm">
-                      {renderStars(product.rating)}
-                    </div>
-                    <span className="text-xs text-silver">
-                      ({product.reviews})
-                    </span>
-                  </div>
-
-                  <div className="flex items-center gap-2 mb-4">
-                    {product.originalPrice && (
-                      <span className="text-sm text-silver line-through">
-                        KES {product.originalPrice.toLocaleString()}
-                      </span>
-                    )}
-                    <span className="text-lg font-bold text-primary">
-                      KES {product.price.toLocaleString()}
-                    </span>
-                  </div>
-
-                  <div className="text-xs text-silver mb-4">
-                    Compatible: {product.compatibility.slice(0, 2).join(", ")}
-                    {product.compatibility.length > 2 &&
-                      ` +${product.compatibility.length - 2} more`}
-                  </div>
-                </div>
-
-                <button
-                  onClick={() => addToWhatsAppCart(product)}
-                  className="btn whatsapp-btn w-full text-sm"
-                >
-                  <svg
-                    className="w-4 h-4"
-                    fill="currentColor"
-                    viewBox="0 0 24 24"
-                  >
-                    <path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.095 3.2 5.076 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413z" />
+                    <path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981z" />
                   </svg>
                   Add to WhatsApp Cart
                 </button>
@@ -858,11 +660,11 @@ export default function NissanPartsHomepage() {
       </section>
 
       {/* Features Banner */}
-      <section className="section bg-charcoal text-white">
-        <div className="container">
+      <section className="py-16 bg-gray-900 text-white">
+        <div className="max-w-7xl mx-auto px-4">
           <div className="grid md:grid-cols-4 gap-8 text-center">
             <div className="flex flex-col items-center">
-              <div className="w-16 h-16 bg-primary rounded-full flex items-center justify-center mb-4">
+              <div className="w-16 h-16 bg-red-600 rounded-full flex items-center justify-center mb-4">
                 <svg
                   className="w-8 h-8"
                   fill="none"
@@ -884,7 +686,7 @@ export default function NissanPartsHomepage() {
             </div>
 
             <div className="flex flex-col items-center">
-              <div className="w-16 h-16 bg-primary rounded-full flex items-center justify-center mb-4">
+              <div className="w-16 h-16 bg-red-600 rounded-full flex items-center justify-center mb-4">
                 <svg
                   className="w-8 h-8"
                   fill="none"
@@ -906,7 +708,7 @@ export default function NissanPartsHomepage() {
             </div>
 
             <div className="flex flex-col items-center">
-              <div className="w-16 h-16 bg-primary rounded-full flex items-center justify-center mb-4">
+              <div className="w-16 h-16 bg-red-600 rounded-full flex items-center justify-center mb-4">
                 <svg
                   className="w-8 h-8"
                   fill="none"
@@ -928,7 +730,7 @@ export default function NissanPartsHomepage() {
             </div>
 
             <div className="flex flex-col items-center">
-              <div className="w-16 h-16 bg-primary rounded-full flex items-center justify-center mb-4">
+              <div className="w-16 h-16 bg-red-600 rounded-full flex items-center justify-center mb-4">
                 <svg
                   className="w-8 h-8"
                   fill="currentColor"
@@ -947,13 +749,13 @@ export default function NissanPartsHomepage() {
       </section>
 
       {/* Footer */}
-      <footer className="bg-charcoal text-white">
-        <div className="container py-16">
+      <footer className="bg-gray-900 text-white">
+        <div className="max-w-7xl mx-auto px-4 py-16">
           <div className="grid md:grid-cols-4 gap-8">
             {/* Brand Column */}
             <div className="md:col-span-2">
               <div className="flex items-center gap-3 mb-6">
-                <div className="w-12 h-12 bg-primary rounded-lg flex items-center justify-center text-white font-bold text-xl">
+                <div className="w-12 h-12 bg-red-600 rounded-lg flex items-center justify-center text-white font-bold text-xl">
                   B
                 </div>
                 <div>
@@ -972,7 +774,7 @@ export default function NissanPartsHomepage() {
               <div className="flex gap-4">
                 <a
                   href="#"
-                  className="w-10 h-10 bg-gray-700 rounded-full flex items-center justify-center hover:bg-primary transition-colors"
+                  className="w-10 h-10 bg-gray-700 rounded-full flex items-center justify-center hover:bg-red-600 transition-colors"
                 >
                   <svg
                     className="w-5 h-5"
@@ -984,7 +786,7 @@ export default function NissanPartsHomepage() {
                 </a>
                 <a
                   href="#"
-                  className="w-10 h-10 bg-gray-700 rounded-full flex items-center justify-center hover:bg-primary transition-colors"
+                  className="w-10 h-10 bg-gray-700 rounded-full flex items-center justify-center hover:bg-red-600 transition-colors"
                 >
                   <svg
                     className="w-5 h-5"
@@ -996,7 +798,7 @@ export default function NissanPartsHomepage() {
                 </a>
                 <a
                   href="#"
-                  className="w-10 h-10 bg-gray-700 rounded-full flex items-center justify-center hover:bg-primary transition-colors"
+                  className="w-10 h-10 bg-gray-700 rounded-full flex items-center justify-center hover:bg-red-600 transition-colors"
                 >
                   <svg
                     className="w-5 h-5"
