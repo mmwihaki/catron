@@ -170,7 +170,7 @@ export default function HomePage() {
                 <span>🕒 Mon-Sat: 8AM-6PM</span>
               </div>
               <div className="flex items-center gap-4">
-                <span>��� Kenya Wide Delivery</span>
+                <span>🌍 Kenya Wide Delivery</span>
                 <span>📍 Nairobi, Kenya</span>
               </div>
             </div>
@@ -512,7 +512,7 @@ export default function HomePage() {
               <Link
                 key={category.slug}
                 href={`/category/${category.slug}`}
-                className="card group relative overflow-hidden"
+                className="group relative overflow-hidden rounded-xl bg-white shadow-md hover:shadow-xl transition-all duration-300"
               >
                 <div className="aspect-video overflow-hidden">
                   <img
