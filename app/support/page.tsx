@@ -653,7 +653,7 @@ export default function SupportPage() {
             </p>
           </div>
 
-          <div className="grid md:grid-cols-3 gap-8">
+          <div className="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
             <a
               href="https://wa.me/+254742578910"
               className="bg-green-600 hover:bg-green-700 text-white rounded-xl p-6 text-center transition-colors"
