@@ -86,7 +86,12 @@ export const allProducts: Product[] = [
     carModel: "E12/K13/N17",
     brand: "STARK",
     image:
-      "https://images.unsplash.com/photo-1558618047-3c8c76ca7d13?w=400&h=300&fit=crop",
+      "https://cdn.builder.io/api/v1/image/assets%2F9067eeb573a94c11b62f6ab0ba539c7c%2F9b03d66d995f4af29d9d22f4ea1fb05d?format=webp&width=800",
+    images: [
+      "https://cdn.builder.io/api/v1/image/assets%2F9067eeb573a94c11b62f6ab0ba539c7c%2F9b03d66d995f4af29d9d22f4ea1fb05d?format=webp&width=800",
+      "https://cdn.builder.io/api/v1/image/assets%2F9067eeb573a94c11b62f6ab0ba539c7c%2Fd3ebe831b1f24a4089d2c4bfa5d52bcc?format=webp&width=800",
+      "https://cdn.builder.io/api/v1/image/assets%2F9067eeb573a94c11b62f6ab0ba539c7c%2Fa5d4564a565740e68fad3c885388caec?format=webp&width=800",
+    ],
     price: 1800,
     rating: 4.6,
     reviews: 42,
