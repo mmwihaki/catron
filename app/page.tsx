@@ -358,7 +358,7 @@ export default function HomePage() {
                   <div className="text-sm text-secondary mb-4">
                     {category.count} parts available
                   </div>
-                  <div className="flex items-center justify-center text-red-600 font-medium">
+                  <div className="flex items-center justify-center text-accent-primary font-medium">
                     Shop Now
                     <ArrowRight className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform" />
                   </div>
@@ -370,22 +370,19 @@ export default function HomePage() {
       </section>
 
       {/* Best Sellers */}
-      <section className="py-16">
+      <section className="py-16 bg-primary">
         <div className="max-w-7xl mx-auto px-4">
           <div className="flex justify-between items-center mb-12">
             <div>
-              <h2 className="text-4xl font-bold mb-4 flex items-center gap-3">
-                <TrendingUp className="w-8 h-8 text-red-600" />
+              <h2 className="text-4xl font-bold mb-4 flex items-center gap-3 text-primary">
+                <TrendingUp className="w-8 h-8 text-accent-primary" />
                 Best Sellers
               </h2>
-              <p className="text-xl text-gray-600">
+              <p className="text-xl text-secondary">
                 Most popular Nissan parts this month
               </p>
             </div>
-            <Link
-              href="/shop?sort=popular"
-              className="border-2 border-gray-300 text-gray-700 px-6 py-3 rounded-lg font-medium hover:border-red-600 hover:text-red-600 transition-colors"
-            >
+            <Link href="/shop?sort=popular" className="btn-outline">
               View All Best Sellers
             </Link>
           </div>
@@ -399,22 +396,19 @@ export default function HomePage() {
       </section>
 
       {/* Essentials for Your Car */}
-      <section className="py-16 bg-gray-50">
+      <section className="py-16 bg-white">
         <div className="max-w-7xl mx-auto px-4">
           <div className="flex justify-between items-center mb-12">
             <div>
-              <h2 className="text-4xl font-bold mb-4 flex items-center gap-3">
-                <Package className="w-8 h-8 text-blue-600" />
+              <h2 className="text-4xl font-bold mb-4 flex items-center gap-3 text-primary">
+                <Package className="w-8 h-8 text-accent-secondary" />
                 Essentials for Your Car
               </h2>
-              <p className="text-xl text-gray-600">
+              <p className="text-xl text-secondary">
                 Must-have maintenance parts for every Nissan owner
               </p>
             </div>
-            <Link
-              href="/shop?category=essentials"
-              className="border-2 border-gray-300 text-gray-700 px-6 py-3 rounded-lg font-medium hover:border-blue-600 hover:text-blue-600 transition-colors"
-            >
+            <Link href="/shop?category=essentials" className="btn-outline">
               View All Essentials
             </Link>
           </div>
@@ -428,22 +422,19 @@ export default function HomePage() {
       </section>
 
       {/* New Arrivals */}
-      <section className="py-16">
+      <section className="py-16 bg-primary">
         <div className="max-w-7xl mx-auto px-4">
           <div className="flex justify-between items-center mb-12">
             <div>
-              <h2 className="text-4xl font-bold mb-4 flex items-center gap-3">
-                <Sparkles className="w-8 h-8 text-green-600" />
+              <h2 className="text-4xl font-bold mb-4 flex items-center gap-3 text-primary">
+                <Sparkles className="w-8 h-8 text-accent-secondary" />
                 New Arrivals
               </h2>
-              <p className="text-xl text-gray-600">
+              <p className="text-xl text-secondary">
                 Latest additions to our Nissan parts catalog
               </p>
             </div>
-            <Link
-              href="/shop?filter=new"
-              className="border-2 border-gray-300 text-gray-700 px-6 py-3 rounded-lg font-medium hover:border-green-600 hover:text-green-600 transition-colors"
-            >
+            <Link href="/shop?filter=new" className="btn-outline">
               View All New Arrivals
             </Link>
           </div>
