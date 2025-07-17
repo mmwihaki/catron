@@ -151,12 +151,14 @@ export default function AboutPage() {
       </section>
 
       {/* Mission & Vision */}
-      <section className="section">
-        <div className="container">
+      <section className="py-16">
+        <div className="max-w-7xl mx-auto px-4">
           <div className="grid md:grid-cols-2 gap-12 items-center">
             <div>
-              <h2 className="text-4xl font-bold mb-6">Our Mission</h2>
-              <p className="text-xl text-charcoal-light mb-8 leading-relaxed">
+              <h2 className="text-4xl font-bold mb-6 text-gray-900">
+                Our Mission
+              </h2>
+              <p className="text-xl text-gray-600 mb-8 leading-relaxed">
                 To provide Kenya's Nissan owners with genuine, high-quality
                 automotive parts backed by expert technical support and
                 unmatched customer service. We believe every Nissan deserves
@@ -166,22 +168,22 @@ export default function AboutPage() {
 
               <div className="grid grid-cols-3 gap-6 text-center">
                 <div>
-                  <div className="text-3xl font-bold text-primary mb-2">
+                  <div className="text-3xl font-bold text-red-600 mb-2">
                     10,000+
                   </div>
-                  <div className="text-sm text-silver">Happy Customers</div>
+                  <div className="text-sm text-gray-500">Happy Customers</div>
                 </div>
                 <div>
-                  <div className="text-3xl font-bold text-primary mb-2">
+                  <div className="text-3xl font-bold text-red-600 mb-2">
                     25,000+
                   </div>
-                  <div className="text-sm text-silver">Parts Delivered</div>
+                  <div className="text-sm text-gray-500">Parts Delivered</div>
                 </div>
                 <div>
-                  <div className="text-3xl font-bold text-primary mb-2">
+                  <div className="text-3xl font-bold text-red-600 mb-2">
                     99.8%
                   </div>
-                  <div className="text-sm text-silver">
+                  <div className="text-sm text-gray-500">
                     Customer Satisfaction
                   </div>
                 </div>
@@ -194,7 +196,7 @@ export default function AboutPage() {
                 alt="Automotive parts quality"
                 className="rounded-xl shadow-lg"
               />
-              <div className="absolute -bottom-6 -left-6 bg-primary text-white p-6 rounded-xl">
+              <div className="absolute -bottom-6 -left-6 bg-red-600 text-white p-6 rounded-xl">
                 <div className="text-2xl font-bold">6+ Years</div>
                 <div className="text-sm">Industry Experience</div>
               </div>
