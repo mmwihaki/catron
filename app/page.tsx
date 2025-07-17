@@ -210,7 +210,7 @@ export default function HomePage() {
   );
 
   return (
-    <div className="min-h-screen bg-white">
+    <div className="min-h-screen bg-primary">
       <Header
         searchQuery={searchQuery}
         setSearchQuery={setSearchQuery}
@@ -218,13 +218,13 @@ export default function HomePage() {
       />
 
       {/* Hero Section */}
-      <section className="relative bg-gradient-to-r from-gray-900 to-gray-800 text-white overflow-hidden">
+      <section className="relative bg-gradient-to-r from-surface-dark to-surface-dark text-white overflow-hidden">
         <div className="absolute inset-0 bg-black bg-opacity-40"></div>
         <div
           className="absolute inset-0 bg-cover bg-center"
           style={{
             backgroundImage:
-              "url('https://images.unsplash.com/photo-1486754735734-325b5831c3ad?w=1920&h=1080&fit=crop')",
+              "url('https://images.unsplash.com/photo-1486754735734-325b5831c3ad?w=1920&h=1080&fit=crop&auto=format&q=95')",
           }}
         ></div>
 
@@ -232,23 +232,21 @@ export default function HomePage() {
           <div className="grid lg:grid-cols-2 gap-12 items-center">
             <div>
               <h1 className="text-5xl lg:text-6xl font-bold mb-6 leading-tight">
-                Premium <span className="text-red-500">Nissan</span> Parts
+                Premium <span className="text-accent-primary">Nissan</span>{" "}
+                Parts
               </h1>
-              <p className="text-xl mb-8 text-gray-200">
+              <p className="text-xl mb-8 text-secondary">
                 Kenya's #1 marketplace for genuine OEM and performance parts.
                 Quality guaranteed, expert fitment support, fast delivery
                 nationwide.
               </p>
               <div className="flex gap-4">
-                <Link
-                  href="/shop"
-                  className="bg-red-600 text-white px-8 py-4 rounded-lg font-semibold hover:bg-red-700 transition-colors"
-                >
+                <Link href="/shop" className="btn-primary text-lg px-8 py-4">
                   Shop Nissan Parts
                 </Link>
                 <Link
                   href="/support"
-                  className="border-2 border-white text-white px-8 py-4 rounded-lg font-semibold hover:bg-white hover:text-gray-900 transition-colors"
+                  className="btn-outline text-lg px-8 py-4 border-white text-white hover:bg-white hover:text-primary"
                 >
                   Fitment Guide
                 </Link>
@@ -256,7 +254,7 @@ export default function HomePage() {
             </div>
 
             {/* Vehicle Selector */}
-            <div className="bg-white text-gray-900 rounded-xl p-8 shadow-2xl">
+            <div className="card-white">
               <h3 className="text-2xl font-bold mb-6 text-center">
                 Find Parts for Your Nissan
               </h3>
