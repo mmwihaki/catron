@@ -143,7 +143,7 @@ export default function HomePage() {
   const addToWhatsAppCart = (product: Product, quantity: number = 1) => {
     const phoneNumber = "+254700000000";
     let message = `Hi! I'd like to order this Nissan part:\n\n`;
-    message += `• ${quantity}x ${product.name}\n`;
+    message += `�� ${quantity}x ${product.name}\n`;
     message += `• SKU: ${product.sku}\n`;
     message += `• Price: KES ${(product.price * quantity).toLocaleString()}\n\n`;
     message += `Please confirm availability, compatibility, and payment details.`;
@@ -628,7 +628,7 @@ export default function HomePage() {
                         KES {product.originalPrice.toLocaleString()}
                       </span>
                     )}
-                    <span className="text-lg font-bold text-primary">
+                    <span className="text-lg font-bold text-red-600">
                       KES {product.price.toLocaleString()}
                     </span>
                   </div>
