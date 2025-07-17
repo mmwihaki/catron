@@ -213,7 +213,7 @@ export default function Header({
       <nav className="bg-primary border-b border-divider">
         <div className="max-w-7xl mx-auto px-4">
           <div className="flex flex-col md:flex-row items-start md:items-center gap-4 md:gap-8 py-3">
-            <div className="relative">
+            <div className="relative" ref={categoriesRef}>
               <button
                 onClick={() => setShowCategories(!showCategories)}
                 className="btn-primary"
