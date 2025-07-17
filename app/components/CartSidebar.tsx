@@ -24,7 +24,6 @@ export default function CartSidebar() {
   const [customerDetails, setCustomerDetails] = useState<CustomerDetails>({
     name: "",
     phone: "",
-    email: "",
     address: "",
   });
 
