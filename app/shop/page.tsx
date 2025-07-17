@@ -25,6 +25,7 @@ export default function ShopPage() {
   const [currentPage, setCurrentPage] = useState(1);
   const [showFilters, setShowFilters] = useState(false);
   const itemsPerPage = 20;
+  const { addToCart } = useCart();
 
   const [filters, setFilters] = useState<FilterState>({
     category: [],
