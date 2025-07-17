@@ -454,19 +454,6 @@ export default function ShopPage() {
         currentPage="shop"
       />
 
-      {/* Breadcrumb */}
-      <div className="bg-gray-50 py-4">
-        <div className="max-w-7xl mx-auto px-4">
-          <div className="flex items-center gap-2 text-sm text-secondary">
-            <Link href="/" className="text-secondary hover:text-primary">
-              Home
-            </Link>
-            <span>›</span>
-            <span style={{ color: "var(--charcoal)" }}>Shop</span>
-          </div>
-        </div>
-      </div>
-
       <div className="max-w-7xl mx-auto px-4 py-8">
         <div className="flex gap-8">
           {/* Sidebar Filters */}
