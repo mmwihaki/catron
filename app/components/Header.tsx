@@ -207,7 +207,7 @@ export default function Header({
               </button>
 
               {showCategories && (
-                <div className="absolute top-full left-0 mt-2 w-64 bg-white shadow-xl rounded-lg border border-divider z-50">
+                <div className="absolute top-full left-0 mt-2 w-64 bg-white shadow-xl rounded-lg border border-divider z-[60]">
                   {categories.map((category) => (
                     <Link
                       key={category.slug}
