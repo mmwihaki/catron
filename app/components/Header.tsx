@@ -79,11 +79,7 @@ export default function Header({
             <div className="flex items-center gap-6">
               <span className="flex items-center gap-1 header-info">
                 <Phone className="w-4 h-4 icon" />
-                +254 700 000 000
-              </span>
-              <span className="flex items-center gap-1 header-info">
-                <Mail className="w-4 h-4 icon" />
-                info@catron.co.ke
+                0742578910
               </span>
               <span className="flex items-center gap-1 header-info">
                 <Clock className="w-4 h-4 icon" />
