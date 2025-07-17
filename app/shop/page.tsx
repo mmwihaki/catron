@@ -447,85 +447,12 @@ export default function ShopPage() {
   };
 
   return (
-        <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen bg-gray-50">
       <Header
         searchQuery={searchQuery}
         setSearchQuery={setSearchQuery}
         currentPage="shop"
       />
-        <div className="bg-gray-800 text-white">
-          <div className="max-w-7xl mx-auto px-4">
-            <div className="flex justify-between items-center text-sm py-2">
-              <div className="flex items-center gap-6">
-                <span>📞 +254 700 000 000</span>
-                <span>✉️ info@brator.co.ke</span>
-              </div>
-              <div className="flex items-center gap-4">
-                <span>🌍 Kenya Wide Delivery</span>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div className="bg-white shadow-md">
-          <div className="max-w-7xl mx-auto px-4">
-            <div className="flex items-center justify-between py-4">
-              <div className="logo">
-                <Link href="/" className="flex items-center gap-3">
-                  <div className="w-12 h-12 bg-primary rounded-lg flex items-center justify-center text-white font-bold text-xl">
-                    B
-                  </div>
-                  <div>
-                    <div
-                      className="text-2xl font-bold"
-                      style={{ color: "var(--charcoal)" }}
-                    >
-                      BRATOR
-                    </div>
-                    <div className="text-xs text-secondary">
-                      Nissan Parts Specialist
-                    </div>
-                  </div>
-                </Link>
-              </div>
-
-              <div className="flex-1 max-w-2xl mx-8">
-                <div className="flex border-2 border-primary rounded-lg overflow-hidden">
-                  <input
-                    type="text"
-                    placeholder="Search by part number, model, or keyword..."
-                    className="flex-1 px-4 py-3 outline-none form-input"
-                    value={searchQuery}
-                    onChange={(e) => setSearchQuery(e.target.value)}
-                  />
-                  <button className="bg-primary text-white px-6 py-3 btn-primary">
-                    <svg
-                      className="w-5 h-5"
-                      fill="none"
-                      stroke="currentColor"
-                      viewBox="0 0 24 24"
-                    >
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        strokeWidth={2}
-                        d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
-                      />
-                    </svg>
-                  </button>
-                </div>
-              </div>
-
-              <div className="flex items-center gap-6">
-                <Link href="/" className="text-gray-700 hover:text-red-600">
-                  Home
-                </Link>
-                <span className="text-primary font-medium">Shop</span>
-              </div>
-            </div>
-          </div>
-        </div>
-      </header>
 
       {/* Breadcrumb */}
       <div className="bg-gray-50 py-4">
