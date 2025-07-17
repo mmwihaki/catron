@@ -449,8 +449,8 @@ export default function ShopPage() {
     <div className="shop-page bg-gray-50">
       {/* Header - Same as homepage */}
       <header className="bg-white shadow-lg">
-        <div className="bg-dark text-white">
-          <div className="container">
+        <div className="bg-gray-800 text-white">
+          <div className="max-w-7xl mx-auto px-4">
             <div className="flex justify-between items-center text-sm py-2">
               <div className="flex items-center gap-6">
                 <span>📞 +254 700 000 000</span>
