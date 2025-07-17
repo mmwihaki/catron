@@ -15,6 +15,7 @@ import {
   MapPin,
   ChevronDown,
 } from "lucide-react";
+import { useCart } from "../context/CartContext";
 
 interface HeaderProps {
   searchQuery?: string;
