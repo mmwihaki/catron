@@ -3,7 +3,7 @@
 import React from "react";
 import Link from "next/link";
 import Header from "../components/Header";
-import { Target, Users, Zap, Wrench, Heart } from "lucide-react";
+import { Target, Users, Zap, Wrench, Heart, Smartphone } from "lucide-react";
 
 export default function AboutPage() {
   const teamMembers = [
@@ -111,10 +111,11 @@ export default function AboutPage() {
       color: "text-red-600",
     },
     {
-      icon: "📱",
+      icon: Smartphone,
       title: "Innovation",
       description:
         "Leveraging technology to make parts ordering simple, fast, and accessible.",
+      color: "text-blue-600",
     },
   ];
 
