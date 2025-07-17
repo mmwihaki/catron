@@ -583,7 +583,7 @@ export default function HomePage() {
               >
                 {product.originalPrice && (
                   <div className="absolute top-4 left-4 z-10">
-                    <div className="badge badge-primary">
+                    <div className="bg-red-600 text-white px-2 py-1 rounded-md text-xs font-medium">
                       {Math.round(
                         ((product.originalPrice - product.price) /
                           product.originalPrice) *
