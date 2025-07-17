@@ -609,7 +609,7 @@ export default function HomePage() {
                   <h3 className="font-semibold text-gray-900 mb-2 line-clamp-2">
                     {product.name}
                   </h3>
-                  <div className="text-xs text-secondary mb-2">
+                  <div className="text-xs text-gray-500 mb-2">
                     SKU: {product.sku}
                   </div>
 
