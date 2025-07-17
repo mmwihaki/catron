@@ -446,11 +446,11 @@ export default function ShopPage() {
   };
 
   return (
-    <div className="shop-page">
+    <div className="shop-page bg-secondary">
       {/* Header - Same as homepage */}
       <header className="bg-white shadow-lg">
-        <div className="bg-gray-900 text-white">
-          <div className="max-w-7xl mx-auto px-4">
+        <div className="bg-dark text-white">
+          <div className="container">
             <div className="flex justify-between items-center text-sm py-2">
               <div className="flex items-center gap-6">
                 <span>📞 +254 700 000 000</span>
@@ -464,18 +464,21 @@ export default function ShopPage() {
         </div>
 
         <div className="bg-white shadow-md">
-          <div className="max-w-7xl mx-auto px-4">
+          <div className="container">
             <div className="flex items-center justify-between py-4">
               <div className="logo">
                 <Link href="/" className="flex items-center gap-3">
-                  <div className="w-12 h-12 bg-red-600 rounded-lg flex items-center justify-center text-white font-bold text-xl">
+                  <div className="w-12 h-12 bg-primary rounded-lg flex items-center justify-center text-white font-bold text-xl">
                     B
                   </div>
                   <div>
-                    <div className="text-2xl font-bold text-gray-900">
+                    <div
+                      className="text-2xl font-bold"
+                      style={{ color: "var(--charcoal)" }}
+                    >
                       BRATOR
                     </div>
-                    <div className="text-xs text-gray-500">
+                    <div className="text-xs text-secondary">
                       Nissan Parts Specialist
                     </div>
                   </div>
@@ -483,15 +486,15 @@ export default function ShopPage() {
               </div>
 
               <div className="flex-1 max-w-2xl mx-8">
-                <div className="flex border-2 border-red-600 rounded-lg overflow-hidden">
+                <div className="flex border-2 border-primary rounded-lg overflow-hidden">
                   <input
                     type="text"
                     placeholder="Search by part number, model, or keyword..."
-                    className="flex-1 px-4 py-3 outline-none"
+                    className="flex-1 px-4 py-3 outline-none form-input"
                     value={searchQuery}
                     onChange={(e) => setSearchQuery(e.target.value)}
                   />
-                  <button className="bg-red-600 text-white px-6 py-3 hover:bg-red-700 transition-colors">
+                  <button className="bg-primary text-white px-6 py-3 btn-primary">
                     <svg
                       className="w-5 h-5"
                       fill="none"
