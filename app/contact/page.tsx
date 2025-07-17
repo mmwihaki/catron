@@ -20,7 +20,6 @@ import {
 export default function ContactPage() {
   const [formData, setFormData] = useState({
     name: "",
-    email: "",
     phone: "",
     subject: "",
     vehicleInfo: "",
