@@ -225,7 +225,9 @@ export default function RootLayout({
           content="https://catron.co.ke"
         />
       </head>
-      <body>{children}</body>
+      <body>
+        <CartProvider>{children}</CartProvider>
+      </body>
     </html>
   );
 }
