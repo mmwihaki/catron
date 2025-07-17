@@ -25,7 +25,7 @@ const OptimizedImage: React.FC<OptimizedImageProps> = ({
   quality = 85,
   sizes = "100vw",
 }) => {
-  const [loaded, setLoaded] = useState(false);
+  const [loaded, setLoaded] = useState(!lazy || priority);
   const [error, setError] = useState(false);
   const imgRef = useRef<HTMLImageElement>(null);
 
@@ -144,8 +144,8 @@ const OptimizedImage: React.FC<OptimizedImageProps> = ({
 
       <img
         ref={imgRef}
-        src={lazy && !priority && !loaded ? undefined : getOptimizedSrc(src)}
-        srcSet={lazy && !priority && !loaded ? undefined : generateSrcSet(src)}
+        src={getOptimizedSrc(src)}
+        srcSet={generateSrcSet(src)}
         sizes={sizes}
         alt={alt}
         width={width}
@@ -155,14 +155,12 @@ const OptimizedImage: React.FC<OptimizedImageProps> = ({
         } transition-opacity duration-300`}
         onLoad={handleLoad}
         onError={handleError}
-        loading={priority ? "eager" : "lazy"}
+        loading={priority ? "eager" : lazy ? "lazy" : "eager"}
         decoding="async"
         style={{
           imageRendering: "crisp-edges",
-          backfaceVisibility: "hidden",
-          transform: "translateZ(0)",
         }}
-        data-pixel-perfect
+        data-optimized-image
       />
     </div>
   );

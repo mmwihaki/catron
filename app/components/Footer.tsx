@@ -19,7 +19,7 @@ export default function Footer() {
       {/* Quality Guaranteed Section */}
       <div className="border-b border-divider border-opacity-30">
         <div className="max-w-7xl mx-auto px-4 py-12">
-          <div className="grid md:grid-cols-4 gap-8 text-center">
+          <div className="grid grid-cols-1 md:grid-cols-4 gap-8 text-center">
             <div className="flex flex-col items-center">
               <div className="w-16 h-16 bg-accent-primary rounded-full flex items-center justify-center mb-4">
                 <CheckCircle className="w-8 h-8 text-white" />
@@ -73,7 +73,7 @@ export default function Footer() {
 
       {/* Main Footer Content */}
       <div className="max-w-7xl mx-auto px-4 py-16">
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-8">
           {/* Company Info */}
           <div className="space-y-4">
             <h3 className="text-xl font-bold text-accent-primary">

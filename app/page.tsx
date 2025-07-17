@@ -1,12 +1,19 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Link from "next/link";
+import { useSearchParams, useRouter } from "next/navigation";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
 import CartSidebar from "./components/CartSidebar";
 import OptimizedImage from "./components/OptimizedImage";
-import { allProducts, getFeaturedProducts, Product } from "./data/products";
+import {
+  allProducts,
+  getFeaturedProducts,
+  Product,
+  searchProducts,
+  getProductsByCategory,
+} from "./data/products";
 import { useCart } from "./context/CartContext";
 import {
   Filter,
@@ -27,7 +34,45 @@ export default function HomePage() {
   const [vehicleYear, setVehicleYear] = useState("");
   const [vehicleModel, setVehicleModel] = useState("");
   const [vehicleEngine, setVehicleEngine] = useState("");
+  const [filteredProducts, setFilteredProducts] =
+    useState<Product[]>(allProducts);
+  const [isSearchActive, setIsSearchActive] = useState(false);
   const { addToCart } = useCart();
+  const searchParams = useSearchParams();
+  const router = useRouter();
+
+  const handleVehicleSearch = () => {
+    const searchTerms = [];
+    if (vehicleYear) searchTerms.push(vehicleYear);
+    if (vehicleModel) searchTerms.push(vehicleModel);
+    if (vehicleEngine) searchTerms.push(vehicleEngine);
+
+    if (searchTerms.length > 0) {
+      const searchQuery = searchTerms.join(" ");
+      router.push(`/?search=${encodeURIComponent(searchQuery)}`);
+    }
+  };
+
+  useEffect(() => {
+    const search = searchParams.get("search");
+    const category = searchParams.get("category");
+
+    if (search) {
+      setSearchQuery(search);
+      const results = searchProducts(search);
+      setFilteredProducts(results);
+      setIsSearchActive(true);
+    } else if (category) {
+      // Decode URL-encoded category name
+      const categoryName = decodeURIComponent(category);
+      const results = getProductsByCategory(categoryName);
+      setFilteredProducts(results);
+      setIsSearchActive(true);
+    } else {
+      setFilteredProducts(allProducts);
+      setIsSearchActive(false);
+    }
+  }, [searchParams]);
 
   // Get different product sets
   const featuredProducts =
@@ -106,7 +151,10 @@ export default function HomePage() {
   };
 
   const ProductCard = ({ product }: { product: Product }) => (
-    <div className="card-white hover:shadow-xl transition-shadow group relative h-full flex flex-col">
+    <Link
+      href={`/product/${product.sku}`}
+      className="card-white hover:shadow-xl transition-shadow group relative h-full flex flex-col block"
+    >
       {product.originalPrice && (
         <div className="absolute top-2 left-2 md:top-4 md:left-4 z-10">
           <div className="badge-primary text-xs">
@@ -126,7 +174,7 @@ export default function HomePage() {
         </div>
       )}
 
-      <div className="aspect-square mb-3 md:mb-4 overflow-hidden rounded-lg bg-primary pixel-perfect">
+      <div className="aspect-square mb-3 md:mb-4 overflow-hidden rounded-lg bg-primary">
         <OptimizedImage
           src={product.image}
           alt={product.name}
@@ -144,16 +192,16 @@ export default function HomePage() {
         <h3 className="font-semibold text-primary mb-2 line-clamp-2 text-sm md:text-base">
           {product.name}
         </h3>
-        <div className="text-xs text-secondary mb-2">SKU: {product.sku}</div>
+        <div className="text-xs text-primary mb-2">SKU: {product.sku}</div>
 
         <div className="flex items-center gap-2 mb-2">
           <div className="text-yellow-400 text-sm">
             {renderStars(product.rating)}
           </div>
-          <span className="text-xs text-secondary">({product.reviews})</span>
+          <span className="text-xs text-primary">({product.reviews})</span>
         </div>
 
-        <div className="text-xs text-secondary mb-3 hidden md:block">
+        <div className="text-xs text-primary mb-3 hidden md:block">
           Compatible: {product.compatibility.slice(0, 2).join(", ")}
           {product.compatibility.length > 2 &&
             ` +${product.compatibility.length - 2} more`}
@@ -173,7 +221,7 @@ export default function HomePage() {
 
         <div className="flex items-center gap-2 mb-4 mt-auto">
           {product.originalPrice && (
-            <span className="text-sm text-secondary line-through">
+            <span className="text-sm text-primary line-through">
               KES {product.originalPrice.toLocaleString()}
             </span>
           )}
@@ -183,14 +231,18 @@ export default function HomePage() {
         </div>
 
         <button
-          onClick={() => addToCart(product)}
+          onClick={(e) => {
+            e.preventDefault();
+            e.stopPropagation();
+            addToCart(product);
+          }}
           disabled={!product.inStock}
           className="btn-primary w-full text-sm disabled:bg-gray-400 disabled:cursor-not-allowed disabled:opacity-50"
         >
           {product.inStock ? "Add to Cart" : "Out of Stock"}
         </button>
       </div>
-    </div>
+    </Link>
   );
 
   return (
@@ -213,102 +265,255 @@ export default function HomePage() {
         ></div>
 
         <div className="relative z-10 max-w-7xl mx-auto px-4 py-12 md:py-20">
-          <div className="text-center mb-8 md:mb-12">
-            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-4 md:mb-6 leading-tight">
-              Premium <span className="text-accent-primary">Nissan</span> Parts
-            </h1>
-            <p className="text-lg md:text-xl mb-6 md:mb-8 text-secondary max-w-3xl mx-auto">
-              Kenya's #1 marketplace for genuine OEM and performance parts.
-              Quality guaranteed, expert fitment support, fast delivery
-              nationwide.
-            </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center mb-8 md:mb-12">
-              <Link href="/shop" className="btn-primary text-lg px-8 py-4">
-                Shop Nissan Parts
-              </Link>
-              <Link
-                href="/support"
-                className="btn-outline text-lg px-8 py-4 border-white text-white hover:bg-white hover:text-primary"
-              >
-                Fitment Guide
-              </Link>
+          {/* Mobile Layout - Centered */}
+          <div className="block lg:hidden">
+            <div className="text-center mb-8 md:mb-12">
+              <h1 className="text-4xl md:text-5xl font-bold mb-4 md:mb-6 leading-tight">
+                Premium <span className="text-accent-primary">Nissan</span>{" "}
+                Parts
+              </h1>
+              <p className="text-lg md:text-xl mb-6 md:mb-8 text-white max-w-3xl mx-auto">
+                Kenya's #1 marketplace for genuine OEM and performance parts.
+                Quality guaranteed, expert fitment support, fast delivery
+                nationwide.
+              </p>
+              <div className="flex flex-col sm:flex-row gap-4 justify-center mb-8 md:mb-12">
+                <Link href="/shop" className="btn-primary text-lg px-8 py-4">
+                  Shop Nissan Parts
+                </Link>
+                <Link
+                  href="/support"
+                  className="btn-outline text-lg px-8 py-4 border-white text-white hover:bg-white hover:text-primary"
+                >
+                  Fitment Guide
+                </Link>
+              </div>
+            </div>
+
+            <div className="max-w-2xl mx-auto">
+              <div className="card-white">
+                <h3 className="text-xl md:text-2xl font-bold mb-6 text-center text-primary">
+                  Find Parts for Your Nissan
+                </h3>
+
+                <form className="space-y-4">
+                  <div className="grid grid-cols-2 gap-4">
+                    <div>
+                      <label className="block text-sm font-medium text-primary mb-1">
+                        Year
+                      </label>
+                      <select
+                        className="form-input w-full"
+                        value={vehicleYear}
+                        onChange={(e) => setVehicleYear(e.target.value)}
+                      >
+                        <option value="">Select Year</option>
+                        {Array.from({ length: 15 }, (_, i) => 2024 - i).map(
+                          (year) => (
+                            <option key={year} value={year}>
+                              {year}
+                            </option>
+                          ),
+                        )}
+                      </select>
+                    </div>
+
+                    <div>
+                      <label className="block text-sm font-medium text-primary mb-1">
+                        Model
+                      </label>
+                      <select
+                        className="form-input w-full"
+                        value={vehicleModel}
+                        onChange={(e) => setVehicleModel(e.target.value)}
+                      >
+                        <option value="">Select Model</option>
+                        <option value="Note">Note</option>
+                        <option value="March">March</option>
+                        <option value="X-Trail">X-Trail</option>
+                        <option value="Qashqai">Qashqai</option>
+                        <option value="Serena">Serena</option>
+                      </select>
+                    </div>
+                  </div>
+
+                  <div>
+                    <label className="block text-sm font-medium text-primary mb-1">
+                      Engine
+                    </label>
+                    <select
+                      className="form-input w-full"
+                      value={vehicleEngine}
+                      onChange={(e) => setVehicleEngine(e.target.value)}
+                    >
+                      <option value="">Select Engine</option>
+                      <option value="1.0L">1.0L</option>
+                      <option value="1.2L DIG-S">1.2L DIG-S</option>
+                      <option value="1.5L">1.5L</option>
+                      <option value="2.0L">2.0L</option>
+                      <option value="2.5L">2.5L</option>
+                    </select>
+                  </div>
+
+                  <button
+                    type="button"
+                    onClick={handleVehicleSearch}
+                    className="btn-primary w-full py-3"
+                  >
+                    Find Compatible Parts
+                  </button>
+                </form>
+              </div>
             </div>
           </div>
 
-          {/* Vehicle Selector - Centered */}
-          <div className="max-w-2xl mx-auto">
-            <div className="card-white">
-              <h3 className="text-xl md:text-2xl font-bold mb-6 text-center text-primary">
-                Find Parts for Your Nissan
-              </h3>
-
-              <form className="space-y-4">
-                <div className="grid grid-cols-2 gap-4">
-                  <div>
-                    <label className="block text-sm font-medium text-secondary mb-1">
-                      Year
-                    </label>
-                    <select
-                      className="form-input w-full"
-                      value={vehicleYear}
-                      onChange={(e) => setVehicleYear(e.target.value)}
-                    >
-                      <option value="">Select Year</option>
-                      {Array.from({ length: 15 }, (_, i) => 2024 - i).map(
-                        (year) => (
-                          <option key={year} value={year}>
-                            {year}
-                          </option>
-                        ),
-                      )}
-                    </select>
-                  </div>
-
-                  <div>
-                    <label className="block text-sm font-medium text-secondary mb-1">
-                      Model
-                    </label>
-                    <select
-                      className="form-input w-full"
-                      value={vehicleModel}
-                      onChange={(e) => setVehicleModel(e.target.value)}
-                    >
-                      <option value="">Select Model</option>
-                      <option value="Note">Note</option>
-                      <option value="March">March</option>
-                      <option value="X-Trail">X-Trail</option>
-                      <option value="Qashqai">Qashqai</option>
-                      <option value="Serena">Serena</option>
-                    </select>
-                  </div>
-                </div>
-
-                <div>
-                  <label className="block text-sm font-medium text-secondary mb-1">
-                    Engine
-                  </label>
-                  <select
-                    className="form-input w-full"
-                    value={vehicleEngine}
-                    onChange={(e) => setVehicleEngine(e.target.value)}
+          {/* Desktop Layout - Left/Right Split */}
+          <div className="hidden lg:block">
+            <div className="grid lg:grid-cols-2 gap-12 items-center">
+              {/* Left Content */}
+              <div className="text-left">
+                <h1 className="text-5xl lg:text-6xl font-bold mb-6 leading-tight">
+                  Premium <span className="text-accent-primary">Nissan</span>{" "}
+                  Parts
+                </h1>
+                <p className="text-xl mb-8 text-white">
+                  Kenya's #1 marketplace for genuine OEM and performance parts.
+                  Quality guaranteed, expert fitment support, fast delivery
+                  nationwide.
+                </p>
+                <div className="flex gap-4">
+                  <Link href="/shop" className="btn-primary text-lg px-8 py-4">
+                    Shop Nissan Parts
+                  </Link>
+                  <Link
+                    href="/support"
+                    className="btn-outline text-lg px-8 py-4 border-white text-white hover:bg-white hover:text-primary"
                   >
-                    <option value="">Select Engine</option>
-                    <option value="1.0L">1.0L</option>
-                    <option value="1.2L DIG-S">1.2L DIG-S</option>
-                    <option value="1.5L">1.5L</option>
-                    <option value="2.0L">2.0L</option>
-                    <option value="2.5L">2.5L</option>
-                  </select>
+                    Fitment Guide
+                  </Link>
                 </div>
+              </div>
 
-                <button type="button" className="btn-primary w-full py-3">
-                  Find Compatible Parts
-                </button>
-              </form>
+              {/* Right Form */}
+              <div>
+                <div className="card-white">
+                  <h3 className="text-xl md:text-2xl font-bold mb-6 text-center text-primary">
+                    Find Parts for Your Nissan
+                  </h3>
+
+                  <form className="space-y-4">
+                    <div className="grid grid-cols-2 gap-4">
+                      <div>
+                        <label className="block text-sm font-medium text-primary mb-1">
+                          Year
+                        </label>
+                        <select
+                          className="form-input w-full"
+                          value={vehicleYear}
+                          onChange={(e) => setVehicleYear(e.target.value)}
+                        >
+                          <option value="">Select Year</option>
+                          {Array.from({ length: 15 }, (_, i) => 2024 - i).map(
+                            (year) => (
+                              <option key={year} value={year}>
+                                {year}
+                              </option>
+                            ),
+                          )}
+                        </select>
+                      </div>
+
+                      <div>
+                        <label className="block text-sm font-medium text-primary mb-1">
+                          Model
+                        </label>
+                        <select
+                          className="form-input w-full"
+                          value={vehicleModel}
+                          onChange={(e) => setVehicleModel(e.target.value)}
+                        >
+                          <option value="">Select Model</option>
+                          <option value="Note">Note</option>
+                          <option value="March">March</option>
+                          <option value="X-Trail">X-Trail</option>
+                          <option value="Qashqai">Qashqai</option>
+                          <option value="Serena">Serena</option>
+                        </select>
+                      </div>
+                    </div>
+
+                    <div>
+                      <label className="block text-sm font-medium text-primary mb-1">
+                        Engine
+                      </label>
+                      <select
+                        className="form-input w-full"
+                        value={vehicleEngine}
+                        onChange={(e) => setVehicleEngine(e.target.value)}
+                      >
+                        <option value="">Select Engine</option>
+                        <option value="1.0L">1.0L</option>
+                        <option value="1.2L DIG-S">1.2L DIG-S</option>
+                        <option value="1.5L">1.5L</option>
+                        <option value="2.0L">2.0L</option>
+                        <option value="2.5L">2.5L</option>
+                      </select>
+                    </div>
+
+                    <button
+                      type="button"
+                      onClick={handleVehicleSearch}
+                      className="btn-primary w-full py-3"
+                    >
+                      Find Compatible Parts
+                    </button>
+                  </form>
+                </div>
+              </div>
             </div>
           </div>
         </div>
       </section>
+
+      {/* Search Results */}
+      {isSearchActive && (
+        <section className="py-16 bg-white">
+          <div className="max-w-7xl mx-auto px-4">
+            <div className="text-center mb-12">
+              <h2 className="text-4xl font-bold mb-4 text-primary">
+                Search Results
+              </h2>
+              <p className="text-xl text-primary">
+                Found {filteredProducts.length} products{" "}
+                {searchParams.get("search") &&
+                  `for "${searchParams.get("search")}"`}
+              </p>
+            </div>
+
+            {filteredProducts.length > 0 ? (
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                {filteredProducts.slice(0, 12).map((product) => (
+                  <ProductCard key={product.id} product={product} />
+                ))}
+              </div>
+            ) : (
+              <div className="text-center py-8">
+                <p className="text-lg text-primary">
+                  No products found. Try adjusting your search terms.
+                </p>
+              </div>
+            )}
+
+            {filteredProducts.length > 12 && (
+              <div className="text-center mt-8">
+                <Link href="/shop" className="btn-primary">
+                  View All {filteredProducts.length} Results
+                </Link>
+              </div>
+            )}
+          </div>
+        </section>
+      )}
 
       {/* Shop by Category */}
       <section className="py-16 bg-white">
@@ -337,8 +542,8 @@ export default function HomePage() {
                   <h3 className="text-xl font-bold text-primary group-hover:text-accent-primary transition-colors mb-2">
                     {category.name}
                   </h3>
-                  <p className="text-secondary mb-4">{category.description}</p>
-                  <div className="text-sm text-secondary mb-4">
+                  <p className="text-primary mb-4">{category.description}</p>
+                  <div className="text-sm text-primary mb-4">
                     {category.count} parts available
                   </div>
                   <div className="flex items-center justify-center text-accent-primary font-medium">

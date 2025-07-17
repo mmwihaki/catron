@@ -7,6 +7,7 @@ export interface Product {
   carModel: string;
   brand: string;
   image: string;
+  images?: string[];
   price: number;
   originalPrice?: number;
   rating: number;
@@ -34,7 +35,7 @@ export const allProducts: Product[] = [
     carModel: "E12/K13/N17",
     brand: "RIDEX",
     image:
-      "https://images.unsplash.com/photo-1558618047-3c8c76ca7d13?w=400&h=300&fit=crop",
+      "https://cdn.builder.io/api/v1/image/assets%2F9067eeb573a94c11b62f6ab0ba539c7c%2Ff092631ae6914a5f8b8fd5171b6689a5?format=webp&width=800",
     price: 1300,
     rating: 4.7,
     reviews: 89,
@@ -58,7 +59,11 @@ export const allProducts: Product[] = [
     carModel: "E12/K13/N17",
     brand: "Ridex Plus",
     image:
-      "https://images.unsplash.com/photo-1558618047-3c8c76ca7d13?w=400&h=300&fit=crop",
+      "https://cdn.builder.io/api/v1/image/assets%2F9067eeb573a94c11b62f6ab0ba539c7c%2Fc17721f3d91d4e33a6b8eade39abad37?format=webp&width=800",
+    images: [
+      "https://cdn.builder.io/api/v1/image/assets%2F9067eeb573a94c11b62f6ab0ba539c7c%2Fc17721f3d91d4e33a6b8eade39abad37?format=webp&width=800",
+      "https://cdn.builder.io/api/v1/image/assets%2F9067eeb573a94c11b62f6ab0ba539c7c%2F73765e7657e44cc2a9529e38089d5bd7?format=webp&width=800",
+    ],
     price: 1800,
     rating: 4.8,
     reviews: 65,
@@ -81,7 +86,12 @@ export const allProducts: Product[] = [
     carModel: "E12/K13/N17",
     brand: "STARK",
     image:
-      "https://images.unsplash.com/photo-1558618047-3c8c76ca7d13?w=400&h=300&fit=crop",
+      "https://cdn.builder.io/api/v1/image/assets%2F9067eeb573a94c11b62f6ab0ba539c7c%2F9b03d66d995f4af29d9d22f4ea1fb05d?format=webp&width=800",
+    images: [
+      "https://cdn.builder.io/api/v1/image/assets%2F9067eeb573a94c11b62f6ab0ba539c7c%2F9b03d66d995f4af29d9d22f4ea1fb05d?format=webp&width=800",
+      "https://cdn.builder.io/api/v1/image/assets%2F9067eeb573a94c11b62f6ab0ba539c7c%2Fd3ebe831b1f24a4089d2c4bfa5d52bcc?format=webp&width=800",
+      "https://cdn.builder.io/api/v1/image/assets%2F9067eeb573a94c11b62f6ab0ba539c7c%2Fa5d4564a565740e68fad3c885388caec?format=webp&width=800",
+    ],
     price: 1800,
     rating: 4.6,
     reviews: 42,
@@ -106,7 +116,12 @@ export const allProducts: Product[] = [
     carModel: "Teana L33 QR25de",
     brand: "KAVO",
     image:
-      "https://images.unsplash.com/photo-1619642751034-765dfdf7c58e?w=400&h=300&fit=crop",
+      "https://cdn.builder.io/api/v1/image/assets%2F9067eeb573a94c11b62f6ab0ba539c7c%2F2482361750974583acdd1c52e22ea06a?format=webp&width=800",
+    images: [
+      "https://cdn.builder.io/api/v1/image/assets%2F9067eeb573a94c11b62f6ab0ba539c7c%2F2482361750974583acdd1c52e22ea06a?format=webp&width=800",
+      "https://cdn.builder.io/api/v1/image/assets%2F9067eeb573a94c11b62f6ab0ba539c7c%2F0d78dabb42ee4fe88b079832a69e83e9?format=webp&width=800",
+      "https://cdn.builder.io/api/v1/image/assets%2F9067eeb573a94c11b62f6ab0ba539c7c%2F7977b4d840d54ef18cedcbbd32b5162e?format=webp&width=800",
+    ],
     price: 4500,
     rating: 4.7,
     reviews: 78,
@@ -246,7 +261,11 @@ export const allProducts: Product[] = [
     carModel: "Teana L33 QR25de",
     brand: "KAVO",
     image:
-      "https://images.unsplash.com/photo-1619642751034-765dfdf7c58e?w=400&h=300&fit=crop",
+      "https://cdn.builder.io/api/v1/image/assets%2F9067eeb573a94c11b62f6ab0ba539c7c%2F4f708519aa574b72840ccbf786e00a36?format=webp&width=800",
+    images: [
+      "https://cdn.builder.io/api/v1/image/assets%2F9067eeb573a94c11b62f6ab0ba539c7c%2F4f708519aa574b72840ccbf786e00a36?format=webp&width=800",
+      "https://cdn.builder.io/api/v1/image/assets%2F9067eeb573a94c11b62f6ab0ba539c7c%2Ffa041b36e7354dbfa57df34b49735105?format=webp&width=800",
+    ],
     price: 4000,
     rating: 4.6,
     reviews: 45,
@@ -1318,9 +1337,21 @@ export const allProducts: Product[] = [
 
 // Helper functions for filtering and searching
 export const getProductsByCategory = (category: string): Product[] => {
-  return allProducts.filter((product) =>
-    product.category.toLowerCase().includes(category.toLowerCase()),
-  );
+  return allProducts.filter((product) => {
+    const productCategory = product.category.toLowerCase();
+    const searchCategory = category.toLowerCase();
+
+    // Try exact match first
+    if (productCategory === searchCategory) {
+      return true;
+    }
+
+    // Try partial match
+    return (
+      productCategory.includes(searchCategory) ||
+      searchCategory.includes(productCategory)
+    );
+  });
 };
 
 export const getProductsBySKU = (sku: string): Product | undefined => {
