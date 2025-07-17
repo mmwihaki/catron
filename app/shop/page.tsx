@@ -391,7 +391,7 @@ export default function ShopPage() {
               <div className="flex items-center gap-4">
                 <button
                   onClick={() => setShowFilters(!showFilters)}
-                  className="lg:hidden px-4 py-2 border border-gray-300 rounded-md text-gray-700 hover:bg-gray-50"
+                  className="lg:hidden px-4 py-2 border border-gray-300 rounded-md text-gray-700 hover:bg-gray-50 text-sm"
                 >
                   <svg
                     className="w-4 h-4 mr-2"
