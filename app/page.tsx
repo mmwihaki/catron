@@ -577,7 +577,10 @@ export default function HomePage() {
 
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
             {featuredProducts.map((product) => (
-              <div key={product.id} className="card group relative">
+              <div
+                key={product.id}
+                className="bg-white rounded-lg shadow-md border border-gray-200 p-4 hover:shadow-lg transition-shadow group relative"
+              >
                 {product.originalPrice && (
                   <div className="absolute top-4 left-4 z-10">
                     <div className="badge badge-primary">
