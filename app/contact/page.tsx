@@ -231,28 +231,35 @@ ${formData.message}
           </div>
 
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 mb-16">
-            {contactMethods.map((method, index) => (
-              <a
-                key={index}
-                href={method.link}
-                className="card text-center hover:shadow-lg transition-all duration-300 group"
-              >
-                <div className="text-4xl mb-4">{method.icon}</div>
-                <h3 className="text-xl font-bold mb-2 group-hover:text-primary transition-colors">
-                  {method.title}
-                </h3>
-                <p className="text-charcoal-light mb-3">{method.description}</p>
-                <div className="font-medium text-charcoal mb-2">
-                  {method.details}
-                </div>
-                <div className="text-sm text-silver mb-4">
-                  {method.available}
-                </div>
-                <div className="btn btn-outline btn-sm group-hover:btn-primary transition-all">
-                  {method.action}
-                </div>
-              </a>
-            ))}
+            {contactMethods.map((method, index) => {
+              const IconComponent = method.icon;
+              return (
+                <a
+                  key={index}
+                  href={method.link}
+                  className="bg-white rounded-lg shadow-md border p-6 text-center hover:shadow-lg transition-all duration-300 group"
+                >
+                  <div
+                    className={`inline-flex items-center justify-center w-16 h-16 rounded-full bg-gray-100 mb-4 ${method.color}`}
+                  >
+                    <IconComponent className="w-8 h-8" />
+                  </div>
+                  <h3 className="text-xl font-bold mb-2 group-hover:text-red-600 transition-colors">
+                    {method.title}
+                  </h3>
+                  <p className="text-gray-600 mb-3">{method.description}</p>
+                  <div className="font-medium text-gray-800 mb-2">
+                    {method.details}
+                  </div>
+                  <div className="text-sm text-gray-500 mb-4">
+                    {method.available}
+                  </div>
+                  <div className="inline-block border-2 border-gray-300 text-gray-700 px-4 py-2 rounded-lg font-medium hover:border-red-600 hover:text-red-600 transition-colors">
+                    {method.action}
+                  </div>
+                </a>
+              );
+            })}
           </div>
         </div>
       </section>
