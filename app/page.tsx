@@ -39,6 +39,19 @@ export default function HomePage() {
   const [isSearchActive, setIsSearchActive] = useState(false);
   const { addToCart } = useCart();
   const searchParams = useSearchParams();
+  const router = useRouter();
+
+  const handleVehicleSearch = () => {
+    const searchTerms = [];
+    if (vehicleYear) searchTerms.push(vehicleYear);
+    if (vehicleModel) searchTerms.push(vehicleModel);
+    if (vehicleEngine) searchTerms.push(vehicleEngine);
+
+    if (searchTerms.length > 0) {
+      const searchQuery = searchTerms.join(" ");
+      router.push(`/?search=${encodeURIComponent(searchQuery)}`);
+    }
+  };
 
   useEffect(() => {
     const search = searchParams.get("search");
