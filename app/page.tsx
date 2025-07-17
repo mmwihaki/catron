@@ -617,7 +617,7 @@ export default function HomePage() {
                     <div className="text-yellow-400 text-sm">
                       {renderStars(product.rating)}
                     </div>
-                    <span className="text-xs text-secondary">
+                    <span className="text-xs text-gray-500">
                       ({product.reviews})
                     </span>
                   </div>
