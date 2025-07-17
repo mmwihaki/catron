@@ -33,6 +33,7 @@ export default function Header({
   const [showCategories, setShowCategories] = useState(false);
   const { getTotalItems, setIsCartOpen } = useCart();
   const categoriesRef = useRef<HTMLDivElement>(null);
+  const router = useRouter();
 
   useEffect(() => {
     function handleClickOutside(event: MouseEvent) {
@@ -50,44 +51,34 @@ export default function Header({
     };
   }, []);
 
-  const categories = [
-    {
-      name: "Engine",
-      description: "Oil filters, air filters, spark plugs, timing belts",
-      slug: "engine",
-      count: 1247,
-    },
-    {
-      name: "Brakes",
-      description: "Brake pads, discs, calipers, brake fluid",
-      slug: "brakes",
-      count: 856,
-    },
-    {
-      name: "Suspension",
-      description: "Struts, shocks, springs, bushings",
-      slug: "suspension",
-      count: 634,
-    },
-    {
-      name: "Electrical",
-      description: "Alternators, starters, sensors, lighting",
-      slug: "electrical",
-      count: 923,
-    },
-    {
-      name: "Body & Trim",
-      description: "Panels, bumpers, mirrors, handles",
-      slug: "body-trim",
-      count: 1456,
-    },
-    {
-      name: "Interior",
-      description: "Seats, dashboard, air conditioning",
-      slug: "interior",
-      count: 445,
-    },
-  ];
+  // Get actual categories from products data
+  const getProductCategories = () => {
+    const categoryMap = new Map();
+
+    allProducts.forEach((product) => {
+      const category = product.category;
+      if (categoryMap.has(category)) {
+        categoryMap.set(category, categoryMap.get(category) + 1);
+      } else {
+        categoryMap.set(category, 1);
+      }
+    });
+
+    return Array.from(categoryMap.entries()).map(([name, count]) => ({
+      name,
+      slug: name.toLowerCase().replace(/\s+/g, "-"),
+      count,
+    }));
+  };
+
+  const categories = getProductCategories();
+
+  const handleSearch = (e: React.FormEvent) => {
+    e.preventDefault();
+    if (searchQuery.trim()) {
+      router.push(`/?search=${encodeURIComponent(searchQuery.trim())}`);
+    }
+  };
 
   return (
     <header className="bg-white shadow-lg">
