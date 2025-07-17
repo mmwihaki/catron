@@ -151,13 +151,20 @@ export default function Header({
                 <span className="hidden md:block">Wishlist</span>
               </Link>
 
-              <Link
-                href="/cart"
+              <button
+                onClick={() => setIsCartOpen(true)}
                 className="flex items-center gap-2 text-secondary hover:text-accent-secondary transition-colors relative"
               >
-                <ShoppingCart className="w-6 h-6" />
+                <div className="relative">
+                  <ShoppingCart className="w-6 h-6" />
+                  {getTotalItems() > 0 && (
+                    <span className="absolute -top-2 -right-2 bg-red-600 text-white text-xs rounded-full h-5 w-5 flex items-center justify-center font-medium">
+                      {getTotalItems()}
+                    </span>
+                  )}
+                </div>
                 <span className="hidden md:block">Cart</span>
-              </Link>
+              </button>
 
               <Link
                 href="/account"
