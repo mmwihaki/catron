@@ -175,19 +175,6 @@ ${formData.message}
     <div className="min-h-screen bg-white">
       <Header currentPage="contact" />
 
-      {/* Breadcrumb */}
-      <div className="bg-gray-50 py-4">
-        <div className="max-w-7xl mx-auto px-4">
-          <div className="flex items-center gap-2 text-sm text-gray-500">
-            <Link href="/" className="hover:text-red-600">
-              Home
-            </Link>
-            <span>›</span>
-            <span className="text-gray-900">Contact Us</span>
-          </div>
-        </div>
-      </div>
-
       {/* Hero Section */}
       <section className="hero-section py-16 bg-gradient-to-r from-charcoal to-charcoal-light text-white">
         <div className="container text-center">
