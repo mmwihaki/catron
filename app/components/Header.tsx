@@ -109,12 +109,14 @@ export default function Header({
             {/* Logo */}
             <div className="logo">
               <Link href="/" className="flex items-center gap-3">
-                <div className="w-12 h-12 bg-red-600 rounded-lg flex items-center justify-center text-white font-bold text-xl">
+                <div className="w-12 h-12 bg-red-600 rounded-lg flex items-center justify-center text-white font-bold text-xl shadow-sm">
                   C
                 </div>
                 <div>
-                  <div className="text-2xl font-bold text-gray-800">CATRON</div>
-                  <div className="text-xs text-gray-500">
+                  <div className="text-2xl font-bold text-gray-800 tracking-tight">
+                    CATRON
+                  </div>
+                  <div className="text-xs text-gray-500 font-medium tracking-wide">
                     Nissan Parts Specialist
                   </div>
                 </div>
