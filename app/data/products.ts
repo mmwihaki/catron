@@ -7,6 +7,7 @@ export interface Product {
   carModel: string;
   brand: string;
   image: string;
+  images?: string[];
   price: number;
   originalPrice?: number;
   rating: number;
