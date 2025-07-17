@@ -990,7 +990,7 @@ export default function ShopPage() {
 
                       {/* Product Info */}
                       <div className={`${viewMode === "grid" ? "" : "flex-1"}`}>
-                        <div className="text-xs text-red-600 font-medium mb-1">
+                        <div className="text-xs text-primary font-medium mb-1">
                           {product.category} › {product.subcategory}
                         </div>
 
