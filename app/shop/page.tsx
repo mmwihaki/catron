@@ -516,7 +516,7 @@ export default function ShopPage() {
                 <Link href="/" className="text-gray-700 hover:text-red-600">
                   Home
                 </Link>
-                <span className="text-red-600 font-medium">Shop</span>
+                <span className="text-primary font-medium">Shop</span>
               </div>
             </div>
           </div>
