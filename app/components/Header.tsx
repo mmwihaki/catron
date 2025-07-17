@@ -71,30 +71,30 @@ export default function Header({
   return (
     <header className="bg-white shadow-lg">
       {/* Top Bar */}
-      <div className="bg-gray-800 text-white">
+      <div className="bg-surface-dark text-white">
         <div className="max-w-7xl mx-auto px-4">
           <div className="flex justify-between items-center text-sm py-2">
             <div className="flex items-center gap-6">
-              <span className="flex items-center gap-1">
-                <Phone className="w-4 h-4" />
+              <span className="flex items-center gap-1 text-secondary">
+                <Phone className="w-4 h-4 text-accent-primary" />
                 +254 700 000 000
               </span>
-              <span className="flex items-center gap-1">
-                <Mail className="w-4 h-4" />
-                info@brator.co.ke
+              <span className="flex items-center gap-1 text-secondary">
+                <Mail className="w-4 h-4 text-accent-primary" />
+                info@catron.co.ke
               </span>
-              <span className="flex items-center gap-1">
-                <Clock className="w-4 h-4" />
+              <span className="flex items-center gap-1 text-secondary">
+                <Clock className="w-4 h-4 text-accent-primary" />
                 Mon-Sat: 8AM-6PM
               </span>
             </div>
             <div className="flex items-center gap-4">
-              <span className="flex items-center gap-1">
-                <Globe className="w-4 h-4" />
+              <span className="flex items-center gap-1 text-secondary">
+                <Globe className="w-4 h-4 text-accent-primary" />
                 Kenya Wide Delivery
               </span>
-              <span className="flex items-center gap-1">
-                <MapPin className="w-4 h-4" />
+              <span className="flex items-center gap-1 text-secondary">
+                <MapPin className="w-4 h-4 text-accent-primary" />
                 Nairobi, Kenya
               </span>
             </div>
@@ -109,12 +109,14 @@ export default function Header({
             {/* Logo */}
             <div className="logo">
               <Link href="/" className="flex items-center gap-3">
-                <div className="w-12 h-12 bg-red-600 rounded-lg flex items-center justify-center text-white font-bold text-xl">
-                  B
+                <div className="w-12 h-12 bg-accent-primary rounded-lg flex items-center justify-center text-white font-bold text-xl shadow-sm">
+                  C
                 </div>
                 <div>
-                  <div className="text-2xl font-bold text-gray-800">BRATOR</div>
-                  <div className="text-xs text-gray-500">
+                  <div className="text-2xl font-bold text-primary tracking-tight">
+                    CATRON
+                  </div>
+                  <div className="text-xs text-secondary font-medium tracking-wide">
                     Nissan Parts Specialist
                   </div>
                 </div>
@@ -123,15 +125,15 @@ export default function Header({
 
             {/* Search Bar */}
             <div className="flex-1 max-w-2xl mx-8">
-              <div className="flex border-2 border-red-600 rounded-lg overflow-hidden">
+              <div className="flex border-2 border-accent-primary rounded-lg overflow-hidden">
                 <input
                   type="text"
                   placeholder="Search by part number, model, or keyword..."
-                  className="flex-1 px-4 py-3 outline-none"
+                  className="flex-1 px-4 py-3 outline-none form-input"
                   value={searchQuery}
                   onChange={(e) => setSearchQuery?.(e.target.value)}
                 />
-                <button className="bg-red-600 text-white px-6 py-3 hover:bg-red-700 transition-colors">
+                <button className="bg-accent-primary text-white px-6 py-3 hover:bg-accent-primary hover:opacity-90 transition-all">
                   <Search className="w-5 h-5" />
                 </button>
               </div>
@@ -141,7 +143,7 @@ export default function Header({
             <div className="flex items-center gap-6">
               <Link
                 href="/wishlist"
-                className="flex items-center gap-2 text-gray-700 hover:text-red-600"
+                className="flex items-center gap-2 text-secondary hover:text-accent-secondary transition-colors"
               >
                 <Heart className="w-6 h-6" />
                 <span className="hidden md:block">Wishlist</span>
@@ -149,7 +151,7 @@ export default function Header({
 
               <Link
                 href="/cart"
-                className="flex items-center gap-2 text-gray-700 hover:text-red-600 relative"
+                className="flex items-center gap-2 text-secondary hover:text-accent-secondary transition-colors relative"
               >
                 <ShoppingCart className="w-6 h-6" />
                 <span className="hidden md:block">Cart</span>
@@ -157,7 +159,7 @@ export default function Header({
 
               <Link
                 href="/account"
-                className="flex items-center gap-2 text-gray-700 hover:text-red-600"
+                className="flex items-center gap-2 text-secondary hover:text-accent-secondary transition-colors"
               >
                 <User className="w-6 h-6" />
                 <span className="hidden md:block">Account</span>
@@ -168,13 +170,13 @@ export default function Header({
       </div>
 
       {/* Navigation */}
-      <nav className="bg-gray-50 border-b">
+      <nav className="bg-primary border-b border-divider">
         <div className="max-w-7xl mx-auto px-4">
           <div className="flex items-center gap-8 py-3">
             <div className="relative">
               <button
                 onClick={() => setShowCategories(!showCategories)}
-                className="flex items-center gap-2 bg-red-600 text-white px-4 py-2 rounded-lg hover:bg-red-700 transition-colors"
+                className="btn-primary"
               >
                 <Menu className="w-5 h-5" />
                 All Categories
@@ -182,18 +184,18 @@ export default function Header({
               </button>
 
               {showCategories && (
-                <div className="absolute top-full left-0 mt-2 w-64 bg-white shadow-xl rounded-lg border z-50">
+                <div className="absolute top-full left-0 mt-2 w-64 bg-white shadow-xl rounded-lg border border-divider z-50">
                   {categories.map((category) => (
                     <Link
                       key={category.slug}
                       href={`/category/${category.slug}`}
-                      className="flex items-center gap-3 px-4 py-3 hover:bg-gray-50 border-b last:border-b-0"
+                      className="flex items-center gap-3 px-4 py-3 hover:bg-primary border-b border-divider last:border-b-0 transition-colors"
                     >
                       <div>
-                        <div className="font-medium text-gray-900">
+                        <div className="font-medium text-primary">
                           {category.name}
                         </div>
-                        <div className="text-xs text-gray-500">
+                        <div className="text-xs text-secondary">
                           {category.count} items
                         </div>
                       </div>
@@ -208,8 +210,8 @@ export default function Header({
                 href="/"
                 className={`font-medium transition-colors ${
                   currentPage === "home"
-                    ? "text-red-600"
-                    : "text-gray-700 hover:text-red-600"
+                    ? "text-accent-primary"
+                    : "text-primary hover:text-accent-secondary"
                 }`}
               >
                 Home
@@ -218,8 +220,8 @@ export default function Header({
                 href="/shop"
                 className={`font-medium transition-colors ${
                   currentPage === "shop"
-                    ? "text-red-600"
-                    : "text-gray-700 hover:text-red-600"
+                    ? "text-accent-primary"
+                    : "text-primary hover:text-accent-secondary"
                 }`}
               >
                 Shop
@@ -228,8 +230,8 @@ export default function Header({
                 href="/about"
                 className={`font-medium transition-colors ${
                   currentPage === "about"
-                    ? "text-red-600"
-                    : "text-gray-700 hover:text-red-600"
+                    ? "text-accent-primary"
+                    : "text-primary hover:text-accent-secondary"
                 }`}
               >
                 About
@@ -238,8 +240,8 @@ export default function Header({
                 href="/support"
                 className={`font-medium transition-colors ${
                   currentPage === "support"
-                    ? "text-red-600"
-                    : "text-gray-700 hover:text-red-600"
+                    ? "text-accent-primary"
+                    : "text-primary hover:text-accent-secondary"
                 }`}
               >
                 Support
@@ -248,21 +250,21 @@ export default function Header({
                 href="/contact"
                 className={`font-medium transition-colors ${
                   currentPage === "contact"
-                    ? "text-red-600"
-                    : "text-gray-700 hover:text-red-600"
+                    ? "text-accent-primary"
+                    : "text-primary hover:text-accent-secondary"
                 }`}
               >
                 Contact
               </Link>
             </div>
 
-            <div className="ml-auto flex items-center gap-4 text-sm text-gray-500">
+            <div className="ml-auto flex items-center gap-4 text-sm text-secondary">
               <span className="flex items-center gap-1">
-                <ShoppingCart className="w-4 h-4" />
+                <ShoppingCart className="w-4 h-4 text-accent-secondary" />
                 Free shipping on orders over KES 5,000
               </span>
               <span className="flex items-center gap-1">
-                <User className="w-4 h-4" />
+                <User className="w-4 h-4 text-accent-secondary" />
                 Expert fitment support
               </span>
             </div>

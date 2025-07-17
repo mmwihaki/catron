@@ -3,248 +3,98 @@
 import React, { useState } from "react";
 import Link from "next/link";
 import Header from "./components/Header";
-
-interface Product {
-  id: number;
-  sku: string;
-  name: string;
-  category: string;
-  image: string;
-  price: number;
-  originalPrice?: number;
-  rating: number;
-  reviews: number;
-  compatibility: string[];
-  inStock: boolean;
-  isNew?: boolean;
-}
+import Footer from "./components/Footer";
+import OptimizedImage from "./components/OptimizedImage";
+import { allProducts, getFeaturedProducts, Product } from "./data/products";
+import {
+  Filter,
+  Wind,
+  Disc,
+  Zap,
+  AirVent,
+  Wrench,
+  ArrowRight,
+  Star,
+  TrendingUp,
+  Package,
+  Sparkles,
+} from "lucide-react";
 
 export default function HomePage() {
   const [searchQuery, setSearchQuery] = useState("");
   const [vehicleYear, setVehicleYear] = useState("");
   const [vehicleModel, setVehicleModel] = useState("");
   const [vehicleEngine, setVehicleEngine] = useState("");
-  const [showCategories, setShowCategories] = useState(false);
 
-  const featuredProducts: Product[] = [
-    {
-      id: 1,
-      sku: "7O0026",
-      name: "RIDEX Oil Filter",
-      category: "Oil Filter",
-      image:
-        "https://images.unsplash.com/photo-1558618047-3c8c76ca7d13?w=400&h=300&fit=crop",
-      price: 1300,
-      rating: 4.7,
-      reviews: 89,
-      compatibility: ["Note E12", "March K13", "Latio N17"],
-      inStock: true,
-    },
-    {
-      id: 2,
-      sku: "97439",
-      name: "NGK Spark Plug DILKAR7E11HS",
-      category: "Spark Plugs",
-      image:
-        "https://images.unsplash.com/photo-1580273916550-e323be2ae537?w=400&h=300&fit=crop",
-      price: 4600,
-      rating: 4.9,
-      reviews: 203,
-      compatibility: ["Note E12 DIG-S"],
-      inStock: true,
-    },
-    {
-      id: 3,
-      sku: "402B0234",
-      name: "RIDEX Brake Pads",
-      category: "Brake Pads",
-      image:
-        "https://images.unsplash.com/photo-1621839673705-6617adf9e890?w=400&h=300&fit=crop",
-      price: 4000,
-      rating: 4.6,
-      reviews: 134,
-      compatibility: ["Note E12", "March K13", "Latio N17"],
-      inStock: true,
-    },
-    {
-      id: 4,
-      sku: "8A0074",
-      name: "RIDEX Air Filter",
-      category: "Air Filter",
-      image:
-        "https://images.unsplash.com/photo-1619642751034-765dfdf7c58e?w=400&h=300&fit=crop",
-      price: 2200,
-      rating: 4.5,
-      reviews: 78,
-      compatibility: ["Puredrive Models"],
-      inStock: true,
-    },
-    {
-      id: 5,
-      sku: "424I0259",
-      name: "RIDEX HEPA Cabin Filter",
-      category: "Cabin Filter",
-      image:
-        "https://images.unsplash.com/photo-1619642751034-765dfdf7c58e?w=400&h=300&fit=crop",
-      price: 1200,
-      rating: 4.4,
-      reviews: 56,
-      compatibility: ["Note E12", "March K13", "Latio N17"],
-      inStock: true,
-    },
-    {
-      id: 6,
-      sku: "305P0095",
-      name: "RIDEX V-belt Alternator 6PK2080",
-      category: "V-belt",
-      image:
-        "https://images.unsplash.com/photo-1487754180451-c456f719a1fc?w=400&h=300&fit=crop",
-      price: 3200,
-      rating: 4.6,
-      reviews: 92,
-      compatibility: ["DIG-S Models"],
-      inStock: true,
-    },
-    {
-      id: 7,
-      sku: "3229S0117",
-      name: "RIDEX Stabilizer Links",
-      category: "Stabilizer Links",
-      image:
-        "https://images.unsplash.com/photo-1486754735734-325b5831c3ad?w=400&h=300&fit=crop",
-      price: 3800,
-      rating: 4.7,
-      reviews: 67,
-      compatibility: ["Teana L33 QR25de"],
-      inStock: true,
-    },
-    {
-      id: 8,
-      sku: "NB200H4",
-      name: "OSRAM Headlight Bulbs H4",
-      category: "Headlight Bulbs",
-      image:
-        "https://images.unsplash.com/photo-1502920917128-1aa500764cbd?w=400&h=300&fit=crop",
-      price: 7500,
-      rating: 4.8,
-      reviews: 45,
-      compatibility: ["H4 Models"],
-      inStock: false,
-    },
-    {
-      id: 9,
-      sku: "701527",
-      name: "TOPRAN Air Filter",
-      category: "Air Filter",
-      image:
-        "https://images.unsplash.com/photo-1619642751034-765dfdf7c58e?w=400&h=300&fit=crop",
-      price: 2950,
-      rating: 4.5,
-      reviews: 123,
-      compatibility: ["DIG-S Models"],
-      inStock: true,
-    },
-    {
-      id: 10,
-      sku: "S 56 510",
-      name: "Brembo Brake Shoes Rear",
-      category: "Brake Shoes",
-      image:
-        "https://images.unsplash.com/photo-1621839673705-6617adf9e890?w=400&h=300&fit=crop",
-      price: 5950,
-      rating: 4.8,
-      reviews: 89,
-      compatibility: ["Note E12", "March K13", "Latio N17"],
-      inStock: true,
-    },
-    {
-      id: 11,
-      sku: "9029",
-      name: "NGK Spark Plug DILKAR6A11",
-      category: "Spark Plugs",
-      image:
-        "https://images.unsplash.com/photo-1580273916550-e323be2ae537?w=400&h=300&fit=crop",
-      price: 4250,
-      rating: 4.7,
-      reviews: 156,
-      compatibility: [
-        "Note E12 Puredrive",
-        "March K13",
-        "Latio N17",
-        "X-Trail T30",
-        "Dualis J10",
-      ],
-      inStock: true,
-    },
-    {
-      id: 12,
-      sku: "100207A0002",
-      name: "RIDEX Glasses Holder",
-      category: "Accessories",
-      image:
-        "https://images.unsplash.com/photo-1544829099-b9a0c5303bea?w=400&h=300&fit=crop",
-      price: 850,
-      rating: 4.3,
-      reviews: 234,
-      compatibility: ["All Models"],
-      inStock: true,
-    },
-  ];
+  // Get different product sets
+  const featuredProducts =
+    getFeaturedProducts().length > 0
+      ? getFeaturedProducts().slice(0, 4)
+      : allProducts.slice(0, 4);
+
+  // Best sellers - products with highest rating and reviews
+  const bestSellers = [...allProducts]
+    .sort((a, b) => b.rating * b.reviews - a.rating * a.reviews)
+    .slice(0, 4);
+
+  // Essentials - common maintenance items
+  const essentials = allProducts
+    .filter(
+      (product) =>
+        product.category === "Oil Filter" ||
+        product.category === "Air Filter" ||
+        product.category === "Cabin Filter" ||
+        product.category === "Spark Plugs",
+    )
+    .slice(0, 4);
+
+  // New arrivals - products marked as new or recently added
+  const newArrivals = allProducts
+    .filter((product) => product.isNew)
+    .slice(0, 4);
 
   const categories = [
     {
-      name: "Engine",
-      description: "Oil filters, air filters, spark plugs, timing belts",
-      icon: "🔧",
-      image:
-        "https://images.unsplash.com/photo-1487754180451-c456f719a1fc?w=300&h=200&fit=crop",
-      slug: "engine",
-      count: 1247,
+      name: "Oil Filters",
+      description: "Engine oil filtration systems",
+      icon: Filter,
+      slug: "oil-filter",
+      count: allProducts.filter((p) => p.category === "Oil Filter").length,
     },
     {
-      name: "Brakes",
-      description: "Brake pads, discs, calipers, brake fluid",
-      icon: "🛑",
-      image:
-        "https://images.unsplash.com/photo-1621839673705-6617adf9e890?w=300&h=200&fit=crop",
-      slug: "brakes",
-      count: 856,
+      name: "Air Filters",
+      description: "Air intake filtration",
+      icon: Wind,
+      slug: "air-filter",
+      count: allProducts.filter((p) => p.category === "Air Filter").length,
     },
     {
-      name: "Suspension",
-      description: "Struts, shocks, springs, bushings",
-      icon: "⚙️",
-      image:
-        "https://images.unsplash.com/photo-1486754735734-325b5831c3ad?w=300&h=200&fit=crop",
-      slug: "suspension",
-      count: 634,
+      name: "Brake Pads",
+      description: "Brake system components",
+      icon: Disc,
+      slug: "brake-pads",
+      count: allProducts.filter((p) => p.category === "Brake Pads").length,
     },
     {
-      name: "Electrical",
-      description: "Alternators, starters, sensors, lighting",
-      icon: "⚡",
-      image:
-        "https://images.unsplash.com/photo-1502920917128-1aa500764cbd?w=300&h=200&fit=crop",
-      slug: "electrical",
-      count: 923,
+      name: "Spark Plugs",
+      description: "Ignition system parts",
+      icon: Zap,
+      slug: "spark-plugs",
+      count: allProducts.filter((p) => p.category === "Spark Plugs").length,
     },
     {
-      name: "Body & Trim",
-      description: "Panels, bumpers, mirrors, handles",
-      icon: "🚗",
-      image:
-        "https://images.unsplash.com/photo-1544829099-b9a0c5303bea?w=300&h=200&fit=crop",
-      slug: "body-trim",
-      count: 1456,
+      name: "Cabin Filters",
+      description: "Interior air quality",
+      icon: AirVent,
+      slug: "cabin-filter",
+      count: allProducts.filter((p) => p.category === "Cabin Filter").length,
     },
     {
-      name: "Interior",
-      description: "Seats, dashboard, air conditioning",
-      icon: "🪑",
-      image:
-        "https://images.unsplash.com/photo-1449824913935-59a10b8d2000?w=300&h=200&fit=crop",
-      slug: "interior",
-      count: 445,
+      name: "Accessories",
+      description: "Various auto accessories",
+      icon: Wrench,
+      slug: "accessories",
+      count: allProducts.filter((p) => p.category === "Accessories").length,
     },
   ];
 
@@ -264,8 +114,101 @@ export default function HomePage() {
     return "★".repeat(Math.floor(rating)) + "☆".repeat(5 - Math.floor(rating));
   };
 
+  const ProductCard = ({ product }: { product: Product }) => (
+    <div className="card-white hover:shadow-xl transition-shadow group relative">
+      {product.originalPrice && (
+        <div className="absolute top-4 left-4 z-10">
+          <div className="badge-primary">
+            {Math.round(
+              ((product.originalPrice - product.price) /
+                product.originalPrice) *
+                100,
+            )}
+            % OFF
+          </div>
+        </div>
+      )}
+
+      {product.isNew && (
+        <div className="absolute top-4 right-4 z-10">
+          <div className="badge-secondary">NEW</div>
+        </div>
+      )}
+
+      <div className="aspect-square mb-4 overflow-hidden rounded-lg bg-primary pixel-perfect">
+        <OptimizedImage
+          src={product.image}
+          alt={product.name}
+          width={400}
+          height={400}
+          className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+          sizes="(max-width: 768px) 50vw, (max-width: 1200px) 33vw, 25vw"
+        />
+      </div>
+
+      <div className="mb-2">
+        <div className="text-xs text-accent-primary font-medium mb-1">
+          {product.category}
+        </div>
+        <h3 className="font-semibold text-primary mb-2 line-clamp-2">
+          {product.name}
+        </h3>
+        <div className="text-xs text-secondary mb-2">
+          SKU: {product.sku} | Brand: {product.brand}
+        </div>
+
+        <div className="flex items-center gap-2 mb-3">
+          <div className="text-yellow-400 text-sm">
+            {renderStars(product.rating)}
+          </div>
+          <span className="text-xs text-secondary">({product.reviews})</span>
+        </div>
+
+        <div className="text-xs text-secondary mb-4">
+          Compatible: {product.compatibility.slice(0, 2).join(", ")}
+          {product.compatibility.length > 2 &&
+            ` +${product.compatibility.length - 2} more`}
+        </div>
+
+        <div className="flex items-center justify-between mb-4">
+          <div
+            className={`text-xs px-2 py-1 rounded ${product.inStock ? "bg-green-100 text-green-800" : "bg-red-100 text-red-800"}`}
+          >
+            {product.inStock
+              ? product.stockLevel <= 10
+                ? `Low Stock (${product.stockLevel})`
+                : "In Stock"
+              : "Out of Stock"}
+          </div>
+        </div>
+      </div>
+
+      <div className="flex items-center gap-2 mb-4">
+        {product.originalPrice && (
+          <span className="text-sm text-secondary line-through">
+            KES {product.originalPrice.toLocaleString()}
+          </span>
+        )}
+        <span className="text-lg font-bold text-accent-primary">
+          KES {product.price.toLocaleString()}
+        </span>
+      </div>
+
+      <button
+        onClick={() => {
+          // Add to cart functionality (can be expanded later)
+          console.log("Added to cart:", product.name);
+        }}
+        disabled={!product.inStock}
+        className="btn-primary w-full text-sm disabled:bg-gray-400 disabled:cursor-not-allowed disabled:opacity-50"
+      >
+        {product.inStock ? "Add to Cart" : "Out of Stock"}
+      </button>
+    </div>
+  );
+
   return (
-    <div className="min-h-screen bg-white">
+    <div className="min-h-screen bg-primary">
       <Header
         searchQuery={searchQuery}
         setSearchQuery={setSearchQuery}
@@ -273,13 +216,13 @@ export default function HomePage() {
       />
 
       {/* Hero Section */}
-      <section className="relative bg-gradient-to-r from-gray-900 to-gray-800 text-white overflow-hidden">
+      <section className="relative bg-gradient-to-r from-surface-dark to-surface-dark text-white overflow-hidden">
         <div className="absolute inset-0 bg-black bg-opacity-40"></div>
         <div
           className="absolute inset-0 bg-cover bg-center"
           style={{
             backgroundImage:
-              "url('https://images.unsplash.com/photo-1486754735734-325b5831c3ad?w=1920&h=1080&fit=crop')",
+              "url('https://images.unsplash.com/photo-1486754735734-325b5831c3ad?w=1920&h=1080&fit=crop&auto=format&q=95')",
           }}
         ></div>
 
@@ -287,23 +230,21 @@ export default function HomePage() {
           <div className="grid lg:grid-cols-2 gap-12 items-center">
             <div>
               <h1 className="text-5xl lg:text-6xl font-bold mb-6 leading-tight">
-                Premium <span className="text-red-500">Nissan</span> Parts
+                Premium <span className="text-accent-primary">Nissan</span>{" "}
+                Parts
               </h1>
-              <p className="text-xl mb-8 text-gray-200">
+              <p className="text-xl mb-8 text-secondary">
                 Kenya's #1 marketplace for genuine OEM and performance parts.
                 Quality guaranteed, expert fitment support, fast delivery
                 nationwide.
               </p>
               <div className="flex gap-4">
-                <Link
-                  href="/shop"
-                  className="bg-red-600 text-white px-8 py-4 rounded-lg font-semibold hover:bg-red-700 transition-colors"
-                >
+                <Link href="/shop" className="btn-primary text-lg px-8 py-4">
                   Shop Nissan Parts
                 </Link>
                 <Link
                   href="/support"
-                  className="border-2 border-white text-white px-8 py-4 rounded-lg font-semibold hover:bg-white hover:text-gray-900 transition-colors"
+                  className="btn-outline text-lg px-8 py-4 border-white text-white hover:bg-white hover:text-primary"
                 >
                   Fitment Guide
                 </Link>
@@ -311,19 +252,19 @@ export default function HomePage() {
             </div>
 
             {/* Vehicle Selector */}
-            <div className="bg-white text-gray-900 rounded-xl p-8 shadow-2xl">
-              <h3 className="text-2xl font-bold mb-6 text-center">
+            <div className="card-white">
+              <h3 className="text-2xl font-bold mb-6 text-center text-primary">
                 Find Parts for Your Nissan
               </h3>
 
               <form className="space-y-4">
                 <div className="grid grid-cols-2 gap-4">
                   <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-1">
+                    <label className="block text-sm font-medium text-secondary mb-1">
                       Year
                     </label>
                     <select
-                      className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-red-500"
+                      className="form-input w-full"
                       value={vehicleYear}
                       onChange={(e) => setVehicleYear(e.target.value)}
                     >
@@ -339,11 +280,11 @@ export default function HomePage() {
                   </div>
 
                   <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-1">
+                    <label className="block text-sm font-medium text-secondary mb-1">
                       Model
                     </label>
                     <select
-                      className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-red-500"
+                      className="form-input w-full"
                       value={vehicleModel}
                       onChange={(e) => setVehicleModel(e.target.value)}
                     >
@@ -358,11 +299,11 @@ export default function HomePage() {
                 </div>
 
                 <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-1">
+                  <label className="block text-sm font-medium text-secondary mb-1">
                     Engine
                   </label>
                   <select
-                    className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-red-500"
+                    className="form-input w-full"
                     value={vehicleEngine}
                     onChange={(e) => setVehicleEngine(e.target.value)}
                   >
@@ -375,10 +316,7 @@ export default function HomePage() {
                   </select>
                 </div>
 
-                <button
-                  type="button"
-                  className="w-full bg-red-600 text-white py-3 rounded-md font-semibold hover:bg-red-700 transition-colors"
-                >
+                <button type="button" className="btn-primary w-full py-3">
                   Find Compatible Parts
                 </button>
               </form>
@@ -387,460 +325,134 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* Category Showcase */}
-      <section className="py-16 bg-gray-50">
+      {/* Shop by Category */}
+      <section className="py-16 bg-white">
         <div className="max-w-7xl mx-auto px-4">
           <div className="text-center mb-12">
-            <h2 className="text-4xl font-bold mb-4">Shop by Category</h2>
-            <p className="text-xl text-gray-600">
+            <h2 className="text-4xl font-bold mb-4 text-primary">
+              Shop by Category
+            </h2>
+            <p className="text-xl text-secondary">
               Find the exact parts you need for your Nissan
             </p>
           </div>
 
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {categories.map((category) => (
-              <Link
-                key={category.slug}
-                href={`/category/${category.slug}`}
-                className="group relative overflow-hidden rounded-xl bg-white shadow-md hover:shadow-xl transition-all duration-300"
-              >
-                <div className="aspect-video overflow-hidden">
-                  <img
-                    src={category.image}
-                    alt={category.name}
-                    className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300"
-                  />
-                </div>
-                <div className="p-6">
-                  <div className="flex items-center gap-3 mb-3">
-                    <span className="text-3xl">{category.icon}</span>
-                    <div>
-                      <h3 className="text-xl font-bold text-gray-900 group-hover:text-red-600 transition-colors">
-                        {category.name}
-                      </h3>
-                      <div className="text-sm text-gray-500">
-                        {category.count} parts available
-                      </div>
-                    </div>
+            {categories.map((category) => {
+              const IconComponent = category.icon;
+              return (
+                <Link
+                  key={category.slug}
+                  href={`/category/${category.slug}`}
+                  className="group card-white hover:shadow-xl transition-all duration-300 text-center"
+                >
+                  <div className="w-16 h-16 bg-primary bg-opacity-10 text-accent-primary rounded-full flex items-center justify-center mx-auto mb-4 group-hover:bg-accent-primary group-hover:text-white transition-colors">
+                    <IconComponent className="w-8 h-8" />
                   </div>
-                  <p className="text-gray-600 mb-4">{category.description}</p>
-                  <div className="flex items-center text-red-600 font-medium">
+                  <h3 className="text-xl font-bold text-primary group-hover:text-accent-primary transition-colors mb-2">
+                    {category.name}
+                  </h3>
+                  <p className="text-secondary mb-4">{category.description}</p>
+                  <div className="text-sm text-secondary mb-4">
+                    {category.count} parts available
+                  </div>
+                  <div className="flex items-center justify-center text-accent-primary font-medium">
                     Shop Now
-                    <svg
-                      className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform"
-                      fill="none"
-                      stroke="currentColor"
-                      viewBox="0 0 24 24"
-                    >
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        strokeWidth={2}
-                        d="M9 5l7 7-7 7"
-                      />
-                    </svg>
+                    <ArrowRight className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform" />
                   </div>
-                </div>
-              </Link>
-            ))}
+                </Link>
+              );
+            })}
           </div>
         </div>
       </section>
 
       {/* Best Sellers */}
-      <section className="py-16">
+      <section className="py-16 bg-primary">
         <div className="max-w-7xl mx-auto px-4">
           <div className="flex justify-between items-center mb-12">
             <div>
-              <h2 className="text-4xl font-bold mb-4">Best Sellers</h2>
-              <p className="text-xl text-gray-600">
+              <h2 className="text-4xl font-bold mb-4 flex items-center gap-3 text-primary">
+                <TrendingUp className="w-8 h-8 text-accent-primary" />
+                Best Sellers
+              </h2>
+              <p className="text-xl text-secondary">
                 Most popular Nissan parts this month
               </p>
             </div>
-            <Link
-              href="/shop?sort=popular"
-              className="border-2 border-gray-300 text-gray-700 px-6 py-3 rounded-lg font-medium hover:border-red-600 hover:text-red-600 transition-colors"
-            >
+            <Link href="/shop?sort=popular" className="btn-outline">
               View All Best Sellers
             </Link>
           </div>
 
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-            {featuredProducts.map((product) => (
-              <div
-                key={product.id}
-                className="bg-white rounded-lg shadow-md border border-gray-200 p-4 hover:shadow-lg transition-shadow group relative"
-              >
-                {product.originalPrice && (
-                  <div className="absolute top-4 left-4 z-10">
-                    <div className="bg-red-600 text-white px-2 py-1 rounded-md text-xs font-medium">
-                      {Math.round(
-                        ((product.originalPrice - product.price) /
-                          product.originalPrice) *
-                          100,
-                      )}
-                      % OFF
-                    </div>
-                  </div>
-                )}
-
-                <div className="aspect-square mb-4 overflow-hidden rounded-lg bg-gray-100">
-                  <img
-                    src={product.image}
-                    alt={product.name}
-                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
-                  />
-                </div>
-
-                <div className="mb-2">
-                  <div className="text-xs text-red-600 font-medium mb-1">
-                    {product.category}
-                  </div>
-                  <h3 className="font-semibold text-gray-900 mb-2 line-clamp-2">
-                    {product.name}
-                  </h3>
-                  <div className="text-xs text-gray-500 mb-2">
-                    SKU: {product.sku}
-                  </div>
-
-                  <div className="flex items-center gap-2 mb-3">
-                    <div className="text-yellow-400 text-sm">
-                      {renderStars(product.rating)}
-                    </div>
-                    <span className="text-xs text-gray-500">
-                      ({product.reviews})
-                    </span>
-                  </div>
-
-                  <div className="flex items-center gap-2 mb-4">
-                    {product.originalPrice && (
-                      <span className="text-sm text-gray-500 line-through">
-                        KES {product.originalPrice.toLocaleString()}
-                      </span>
-                    )}
-                    <span className="text-lg font-bold text-red-600">
-                      KES {product.price.toLocaleString()}
-                    </span>
-                  </div>
-
-                  <div className="text-xs text-gray-500 mb-4">
-                    Compatible: {product.compatibility.slice(0, 2).join(", ")}
-                    {product.compatibility.length > 2 &&
-                      ` +${product.compatibility.length - 2} more`}
-                  </div>
-                </div>
-
-                <button
-                  onClick={() => addToWhatsAppCart(product)}
-                  className="bg-green-500 text-white px-4 py-2 rounded-md hover:bg-green-600 transition-colors w-full text-sm flex items-center justify-center gap-2"
-                >
-                  <svg
-                    className="w-4 h-4"
-                    fill="currentColor"
-                    viewBox="0 0 24 24"
-                  >
-                    <path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981z" />
-                  </svg>
-                  Add to WhatsApp Cart
-                </button>
-              </div>
+            {bestSellers.map((product) => (
+              <ProductCard key={product.id} product={product} />
             ))}
           </div>
         </div>
       </section>
 
-      {/* Features Banner */}
-      <section className="py-16 bg-gray-900 text-white">
+      {/* Essentials for Your Car */}
+      <section className="py-16 bg-white">
         <div className="max-w-7xl mx-auto px-4">
-          <div className="grid md:grid-cols-4 gap-8 text-center">
-            <div className="flex flex-col items-center">
-              <div className="w-16 h-16 bg-red-600 rounded-full flex items-center justify-center mb-4">
-                <svg
-                  className="w-8 h-8"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2}
-                    d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"
-                  />
-                </svg>
-              </div>
-              <h3 className="text-xl font-bold mb-2">Quality Guaranteed</h3>
-              <p className="text-gray-300">
-                100% genuine OEM and certified aftermarket parts
+          <div className="flex justify-between items-center mb-12">
+            <div>
+              <h2 className="text-4xl font-bold mb-4 flex items-center gap-3 text-primary">
+                <Package className="w-8 h-8 text-accent-secondary" />
+                Essentials for Your Car
+              </h2>
+              <p className="text-xl text-secondary">
+                Must-have maintenance parts for every Nissan owner
               </p>
             </div>
+            <Link href="/shop?category=essentials" className="btn-outline">
+              View All Essentials
+            </Link>
+          </div>
 
-            <div className="flex flex-col items-center">
-              <div className="w-16 h-16 bg-red-600 rounded-full flex items-center justify-center mb-4">
-                <svg
-                  className="w-8 h-8"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2}
-                    d="M13 10V3L4 14h7v7l9-11h-7z"
-                  />
-                </svg>
-              </div>
-              <h3 className="text-xl font-bold mb-2">Fast Delivery</h3>
-              <p className="text-gray-300">
-                Same day dispatch, Kenya-wide delivery
-              </p>
-            </div>
-
-            <div className="flex flex-col items-center">
-              <div className="w-16 h-16 bg-red-600 rounded-full flex items-center justify-center mb-4">
-                <svg
-                  className="w-8 h-8"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2}
-                    d="M18.364 5.636l-3.536 3.536m0 5.656l3.536 3.536M9.172 9.172L5.636 5.636m3.536 9.192L5.636 18.364M12 12h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
-                  />
-                </svg>
-              </div>
-              <h3 className="text-xl font-bold mb-2">Expert Support</h3>
-              <p className="text-gray-300">
-                Professional fitment guidance and technical support
-              </p>
-            </div>
-
-            <div className="flex flex-col items-center">
-              <div className="w-16 h-16 bg-red-600 rounded-full flex items-center justify-center mb-4">
-                <svg
-                  className="w-8 h-8"
-                  fill="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981z" />
-                </svg>
-              </div>
-              <h3 className="text-xl font-bold mb-2">WhatsApp Ordering</h3>
-              <p className="text-gray-300">
-                Easy ordering via WhatsApp with instant support
-              </p>
-            </div>
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+            {essentials.map((product) => (
+              <ProductCard key={product.id} product={product} />
+            ))}
           </div>
         </div>
       </section>
 
-      {/* Footer */}
-      <footer className="bg-gray-900 text-white">
-        <div className="max-w-7xl mx-auto px-4 py-16">
-          <div className="grid md:grid-cols-4 gap-8">
-            {/* Brand Column */}
-            <div className="md:col-span-2">
-              <div className="flex items-center gap-3 mb-6">
-                <div className="w-12 h-12 bg-primary rounded-lg flex items-center justify-center text-white font-bold text-xl">
-                  B
-                </div>
-                <div>
-                  <div className="text-2xl font-bold">BRATOR</div>
-                  <div className="text-sm text-gray-300">
-                    Nissan Parts Specialist
-                  </div>
-                </div>
-              </div>
-              <p className="text-gray-300 mb-6 max-w-md">
-                Kenya's premier destination for genuine Nissan OEM and
-                performance parts. We're committed to keeping your Nissan
-                running at peak performance with quality parts and expert
-                support.
+      {/* New Arrivals */}
+      <section className="py-16 bg-primary">
+        <div className="max-w-7xl mx-auto px-4">
+          <div className="flex justify-between items-center mb-12">
+            <div>
+              <h2 className="text-4xl font-bold mb-4 flex items-center gap-3 text-primary">
+                <Sparkles className="w-8 h-8 text-accent-secondary" />
+                New Arrivals
+              </h2>
+              <p className="text-xl text-secondary">
+                Latest additions to our Nissan parts catalog
               </p>
-              <div className="flex gap-4">
-                <a
-                  href="#"
-                  className="w-10 h-10 bg-charcoal-light rounded-full flex items-center justify-center hover:bg-primary transition-colors"
-                >
-                  <svg
-                    className="w-5 h-5"
-                    fill="currentColor"
-                    viewBox="0 0 24 24"
-                  >
-                    <path d="M24 4.557c-.883.392-1.832.656-2.828.775 1.017-.609 1.798-1.574 2.165-2.724-.951.564-2.005.974-3.127 1.195-.897-.957-2.178-1.555-3.594-1.555-3.179 0-5.515 2.966-4.797 6.045-4.091-.205-7.719-2.165-10.148-5.144-1.29 2.213-.669 5.108 1.523 6.574-.806-.026-1.566-.247-2.229-.616-.054 2.281 1.581 4.415 3.949 4.89-.693.188-1.452.232-2.224.084.626 1.956 2.444 3.379 4.6 3.419-2.07 1.623-4.678 2.348-7.29 2.04 2.179 1.397 4.768 2.212 7.548 2.212 9.142 0 14.307-7.721 13.995-14.646.962-.695 1.797-1.562 2.457-2.549z" />
-                  </svg>
-                </a>
-                <a
-                  href="#"
-                  className="w-10 h-10 bg-charcoal-light rounded-full flex items-center justify-center hover:bg-primary transition-colors"
-                >
-                  <svg
-                    className="w-5 h-5"
-                    fill="currentColor"
-                    viewBox="0 0 24 24"
-                  >
-                    <path d="M22.46 6c-.77.35-1.6.58-2.46.69.88-.53 1.56-1.37 1.88-2.38-.83.5-1.75.85-2.72 1.05C18.37 4.5 17.26 4 16 4c-2.35 0-4.27 1.92-4.27 4.29 0 .34.04.67.11.98C8.28 9.09 5.11 7.38 3 4.79c-.37.63-.58 1.37-.58 2.15 0 1.49.75 2.81 1.91 3.56-.71 0-1.37-.2-1.95-.5v.03c0 2.08 1.48 3.82 3.44 4.21a4.22 4.22 0 0 1-1.93.07 4.28 4.28 0 0 0 4 2.98 8.521 8.521 0 0 1-5.33 1.84c-.34 0-.68-.02-1.02-.06C3.44 20.29 5.7 21 8.12 21 16 21 20.33 14.46 20.33 8.79c0-.19 0-.37-.01-.56.84-.6 1.56-1.36 2.14-2.23z" />
-                  </svg>
-                </a>
-                <a
-                  href="#"
-                  className="w-10 h-10 bg-charcoal-light rounded-full flex items-center justify-center hover:bg-primary transition-colors"
-                >
-                  <svg
-                    className="w-5 h-5"
-                    fill="currentColor"
-                    viewBox="0 0 24 24"
-                  >
-                    <path d="M12.017 0C5.396 0 .029 5.367.029 11.987c0 5.079 3.158 9.417 7.618 11.174-.105-.949-.199-2.403.041-3.439.219-.937 1.406-5.957 1.406-5.957s-.359-.72-.359-1.781c0-1.663.967-2.911 2.168-2.911 1.024 0 1.518.769 1.518 1.688 0 1.029-.653 2.567-.992 3.992-.285 1.193.6 2.165 1.775 2.165 2.128 0 3.768-2.245 3.768-5.487 0-2.861-2.063-4.869-5.008-4.869-3.41 0-5.409 2.562-5.409 5.199 0 1.033.394 2.143.889 2.741.099.12.112.225.085.347-.09.375-.293 1.199-.334 1.363-.053.225-.172.271-.402.165-1.495-.69-2.433-2.878-2.433-4.646 0-3.776 2.748-7.252 7.92-7.252 4.158 0 7.392 2.967 7.392 6.923 0 4.135-2.607 7.462-6.233 7.462-1.214 0-2.357-.629-2.756-1.378l-.748 2.853c-.271 1.043-1.002 2.35-1.492 3.146C9.57 23.812 10.763 24.009 12.017 24.009c6.624 0 11.99-5.367 11.99-11.988C24.007 5.367 18.641.001.012.017z.001" />
-                  </svg>
-                </a>
-              </div>
             </div>
-
-            {/* Quick Links */}
-            <div>
-              <h3 className="text-lg font-bold mb-4">Quick Links</h3>
-              <ul className="space-y-2 text-gray-300">
-                <li>
-                  <Link
-                    href="/shop"
-                    className="hover:text-white transition-colors"
-                  >
-                    Shop All Parts
-                  </Link>
-                </li>
-                <li>
-                  <Link
-                    href="/category/engine"
-                    className="hover:text-white transition-colors"
-                  >
-                    Engine Parts
-                  </Link>
-                </li>
-                <li>
-                  <Link
-                    href="/category/brakes"
-                    className="hover:text-white transition-colors"
-                  >
-                    Brake System
-                  </Link>
-                </li>
-                <li>
-                  <Link
-                    href="/category/suspension"
-                    className="hover:text-white transition-colors"
-                  >
-                    Suspension
-                  </Link>
-                </li>
-                <li>
-                  <Link
-                    href="/category/electrical"
-                    className="hover:text-white transition-colors"
-                  >
-                    Electrical
-                  </Link>
-                </li>
-                <li>
-                  <Link
-                    href="/category/body-trim"
-                    className="hover:text-white transition-colors"
-                  >
-                    Body & Trim
-                  </Link>
-                </li>
-              </ul>
-            </div>
-
-            {/* Support */}
-            <div>
-              <h3 className="text-lg font-bold mb-4">Support</h3>
-              <ul className="space-y-2 text-gray-300">
-                <li>
-                  <Link
-                    href="/about"
-                    className="hover:text-white transition-colors"
-                  >
-                    About Us
-                  </Link>
-                </li>
-                <li>
-                  <Link
-                    href="/support"
-                    className="hover:text-white transition-colors"
-                  >
-                    Fitment Guide
-                  </Link>
-                </li>
-                <li>
-                  <Link
-                    href="/contact"
-                    className="hover:text-white transition-colors"
-                  >
-                    Contact Us
-                  </Link>
-                </li>
-                <li>
-                  <Link
-                    href="/warranty"
-                    className="hover:text-white transition-colors"
-                  >
-                    Warranty Info
-                  </Link>
-                </li>
-                <li>
-                  <Link
-                    href="/returns"
-                    className="hover:text-white transition-colors"
-                  >
-                    Returns
-                  </Link>
-                </li>
-                <li>
-                  <Link
-                    href="/faq"
-                    className="hover:text-white transition-colors"
-                  >
-                    FAQ
-                  </Link>
-                </li>
-              </ul>
-            </div>
+            <Link href="/shop?filter=new" className="btn-outline">
+              View All New Arrivals
+            </Link>
           </div>
 
-          <div className="border-t border-charcoal-light mt-12 pt-8">
-            <div className="flex flex-col md:flex-row justify-between items-center gap-4">
-              <div className="text-gray-300 text-sm">
-                © 2024 Brator Auto Parts. All rights reserved.
-              </div>
-              <div className="flex gap-6 text-sm text-gray-300">
-                <Link
-                  href="/privacy"
-                  className="hover:text-white transition-colors"
-                >
-                  Privacy Policy
-                </Link>
-                <Link
-                  href="/terms"
-                  className="hover:text-white transition-colors"
-                >
-                  Terms of Service
-                </Link>
-                <Link
-                  href="/shipping"
-                  className="hover:text-white transition-colors"
-                >
-                  Shipping Policy
-                </Link>
-              </div>
-            </div>
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+            {newArrivals.length > 0
+              ? newArrivals.map((product) => (
+                  <ProductCard key={product.id} product={product} />
+                ))
+              : // Fallback to some products if no new arrivals
+                allProducts
+                  .slice(0, 4)
+                  .map((product) => (
+                    <ProductCard key={product.id} product={product} />
+                  ))}
           </div>
         </div>
-      </footer>
+      </section>
+
+      <Footer />
     </div>
   );
 }

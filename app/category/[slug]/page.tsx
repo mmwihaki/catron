@@ -3,6 +3,8 @@
 import React, { useState } from "react";
 import Link from "next/link";
 import { useParams } from "next/navigation";
+import Header from "../../components/Header";
+import Footer from "../../components/Footer";
 
 interface Product {
   id: number;
@@ -122,50 +124,7 @@ export default function CategoryPage() {
 
   return (
     <div className="category-page">
-      {/* Header */}
-      <header className="header bg-white shadow-md">
-        <div className="container">
-          <div className="flex items-center justify-between py-4">
-            <div className="logo">
-              <Link href="/" className="flex items-center gap-3">
-                <div className="w-12 h-12 bg-primary rounded-lg flex items-center justify-center text-white font-bold text-xl">
-                  B
-                </div>
-                <div>
-                  <div className="text-2xl font-bold text-charcoal">BRATOR</div>
-                  <div className="text-xs text-silver">
-                    Nissan Parts Specialist
-                  </div>
-                </div>
-              </Link>
-            </div>
-
-            <nav className="hidden md:flex items-center gap-6">
-              <Link href="/" className="text-charcoal hover:text-primary">
-                Home
-              </Link>
-              <Link href="/shop" className="text-charcoal hover:text-primary">
-                Shop
-              </Link>
-              <Link href="/about" className="text-charcoal hover:text-primary">
-                About
-              </Link>
-              <Link
-                href="/support"
-                className="text-charcoal hover:text-primary"
-              >
-                Support
-              </Link>
-              <Link
-                href="/contact"
-                className="text-charcoal hover:text-primary"
-              >
-                Contact
-              </Link>
-            </nav>
-          </div>
-        </div>
-      </header>
+      <Header />
 
       {/* Breadcrumb */}
       <div className="bg-background-gray py-4">
@@ -401,75 +360,7 @@ export default function CategoryPage() {
         </div>
       </div>
 
-      {/* Footer */}
-      <footer className="bg-charcoal text-white mt-16">
-        <div className="container py-12">
-          <div className="grid md:grid-cols-3 gap-8">
-            <div>
-              <div className="flex items-center gap-3 mb-4">
-                <div className="w-10 h-10 bg-primary rounded-lg flex items-center justify-center text-white font-bold">
-                  B
-                </div>
-                <div>
-                  <div className="text-xl font-bold">BRATOR</div>
-                  <div className="text-xs text-gray-400">
-                    Nissan Parts Specialist
-                  </div>
-                </div>
-              </div>
-              <p className="text-gray-300 text-sm">
-                Kenya's premier destination for genuine Nissan OEM and
-                performance parts.
-              </p>
-            </div>
-
-            <div>
-              <h3 className="font-bold mb-4">Categories</h3>
-              <ul className="space-y-2 text-sm text-gray-300">
-                <li>
-                  <Link href="/category/engine" className="hover:text-white">
-                    Engine Parts
-                  </Link>
-                </li>
-                <li>
-                  <Link href="/category/brakes" className="hover:text-white">
-                    Brake System
-                  </Link>
-                </li>
-                <li>
-                  <Link
-                    href="/category/suspension"
-                    className="hover:text-white"
-                  >
-                    Suspension
-                  </Link>
-                </li>
-                <li>
-                  <Link
-                    href="/category/electrical"
-                    className="hover:text-white"
-                  >
-                    Electrical
-                  </Link>
-                </li>
-              </ul>
-            </div>
-
-            <div>
-              <h3 className="font-bold mb-4">Contact Info</h3>
-              <div className="space-y-2 text-sm text-gray-300">
-                <div>📞 +254 700 000 000</div>
-                <div>✉️ info@brator.co.ke</div>
-                <div>📍 Nairobi, Kenya</div>
-              </div>
-            </div>
-          </div>
-
-          <div className="border-t border-gray-700 mt-8 pt-6 text-center text-sm text-gray-400">
-            © 2024 Brator Auto Parts. All rights reserved.
-          </div>
-        </div>
-      </footer>
+      <Footer />
     </div>
   );
 }
