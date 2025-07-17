@@ -168,56 +168,18 @@ ${formData.message}
   ];
 
   return (
-    <div className="contact-page">
-      {/* Header */}
-      <header className="header bg-white shadow-md">
-        <div className="container">
-          <div className="flex items-center justify-between py-4">
-            <div className="logo">
-              <Link href="/" className="flex items-center gap-3">
-                <div className="w-12 h-12 bg-primary rounded-lg flex items-center justify-center text-white font-bold text-xl">
-                  B
-                </div>
-                <div>
-                  <div className="text-2xl font-bold text-charcoal">BRATOR</div>
-                  <div className="text-xs text-silver">
-                    Nissan Parts Specialist
-                  </div>
-                </div>
-              </Link>
-            </div>
-
-            <nav className="flex items-center gap-6">
-              <Link href="/" className="text-charcoal hover:text-primary">
-                Home
-              </Link>
-              <Link href="/shop" className="text-charcoal hover:text-primary">
-                Shop
-              </Link>
-              <Link href="/about" className="text-charcoal hover:text-primary">
-                About
-              </Link>
-              <Link
-                href="/support"
-                className="text-charcoal hover:text-primary"
-              >
-                Support
-              </Link>
-              <span className="text-primary font-medium">Contact</span>
-            </nav>
-          </div>
-        </div>
-      </header>
+    <div className="min-h-screen bg-white">
+      <Header currentPage="contact" />
 
       {/* Breadcrumb */}
-      <div className="bg-background-gray py-4">
-        <div className="container">
-          <div className="flex items-center gap-2 text-sm text-silver">
-            <Link href="/" className="hover:text-primary">
+      <div className="bg-gray-50 py-4">
+        <div className="max-w-7xl mx-auto px-4">
+          <div className="flex items-center gap-2 text-sm text-gray-500">
+            <Link href="/" className="hover:text-red-600">
               Home
             </Link>
             <span>›</span>
-            <span className="text-charcoal">Contact Us</span>
+            <span className="text-gray-900">Contact Us</span>
           </div>
         </div>
       </div>
