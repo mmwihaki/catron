@@ -77,16 +77,16 @@ export default function Header({
         <div className="max-w-7xl mx-auto px-4">
           <div className="flex justify-between items-center text-sm py-2">
             <div className="flex items-center gap-6">
-              <span className="flex items-center gap-1 text-secondary">
-                <Phone className="w-4 h-4 text-accent-primary" />
+              <span className="flex items-center gap-1 header-info">
+                <Phone className="w-4 h-4 icon" />
                 +254 700 000 000
               </span>
-              <span className="flex items-center gap-1 text-secondary">
-                <Mail className="w-4 h-4 text-accent-primary" />
+              <span className="flex items-center gap-1 header-info">
+                <Mail className="w-4 h-4 icon" />
                 info@catron.co.ke
               </span>
-              <span className="flex items-center gap-1 text-secondary">
-                <Clock className="w-4 h-4 text-accent-primary" />
+              <span className="flex items-center gap-1 header-info">
+                <Clock className="w-4 h-4 icon" />
                 Mon-Sat: 8AM-6PM
               </span>
             </div>
