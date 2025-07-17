@@ -150,8 +150,8 @@ export default function HomePage() {
     return "★".repeat(Math.floor(rating)) + "☆".repeat(5 - Math.floor(rating));
   };
 
-  const ProductCard = ({ product }: { product: Product }) => (
-    <div className="card-white hover:shadow-xl transition-shadow group relative h-full flex flex-col">
+    const ProductCard = ({ product }: { product: Product }) => (
+    <Link href={`/product/${product.sku}`} className="card-white hover:shadow-xl transition-shadow group relative h-full flex flex-col block">
       {product.originalPrice && (
         <div className="absolute top-2 left-2 md:top-4 md:left-4 z-10">
           <div className="badge-primary text-xs">
