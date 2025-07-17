@@ -161,6 +161,7 @@ const OptimizedImage: React.FC<OptimizedImageProps> = ({
           imageRendering: "crisp-edges",
           backfaceVisibility: "hidden",
           transform: "translateZ(0)",
+          ...(lazy && !priority && !loaded ? { width: 0, height: 0 } : {}),
         }}
         data-pixel-perfect
       />
