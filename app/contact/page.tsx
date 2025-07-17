@@ -252,12 +252,14 @@ ${formData.message}
       </section>
 
       {/* Contact Form & Info */}
-      <section className="section bg-background-gray">
-        <div className="container">
+      <section className="py-16 bg-gray-50">
+        <div className="max-w-7xl mx-auto px-4">
           <div className="grid lg:grid-cols-2 gap-12">
             {/* Contact Form */}
-            <div className="card">
-              <h2 className="text-3xl font-bold mb-6">Send Us a Message</h2>
+            <div className="bg-white rounded-lg shadow-md border border-gray-200 p-6">
+              <h2 className="text-3xl font-bold mb-6 text-gray-900">
+                Send Us a Message
+              </h2>
 
               {submitStatus === "success" && (
                 <div className="bg-green-50 border border-green-200 rounded-lg p-4 mb-6">
