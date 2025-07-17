@@ -526,7 +526,7 @@ export default function ShopPage() {
       {/* Breadcrumb */}
       <div className="bg-secondary py-4">
         <div className="container">
-          <div className="flex items-center gap-2 text-sm text-gray-500">
+          <div className="flex items-center gap-2 text-sm text-secondary">
             <Link href="/" className="text-secondary hover:text-primary">
               Home
             </Link>
