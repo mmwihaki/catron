@@ -516,7 +516,7 @@ export default function ShopPage() {
                 <Link href="/" className="text-gray-700 hover:text-red-600">
                   Home
                 </Link>
-                <span className="text-primary font-medium">Shop</span>
+                                <span className="text-primary font-medium">Shop</span>
               </div>
             </div>
           </div>
@@ -542,7 +542,7 @@ export default function ShopPage() {
           <aside
             className={`w-80 ${showFilters ? "block" : "hidden lg:block"}`}
           >
-            <div className="card sticky top-4">
+                        <div className="card sticky top-4">
               <div className="flex items-center justify-between mb-6">
                 <h3 className="text-lg font-bold">Filters</h3>
                 <button
@@ -554,10 +554,10 @@ export default function ShopPage() {
               </div>
 
               {/* Vehicle Selector */}
-              <div className="mb-6 p-4 bg-light rounded-lg">
+                            <div className="mb-6 p-4 bg-light rounded-lg">
                 <h4 className="font-medium mb-3">Find Parts By Vehicle</h4>
                 <div className="space-y-3">
-                  <select
+                                    <select
                     className="form-select"
                     value={filters.year}
                     onChange={(e) => updateFilter("year", e.target.value)}
@@ -570,7 +570,7 @@ export default function ShopPage() {
                     ))}
                   </select>
 
-                  <select
+                                    <select
                     className="form-select"
                     value={filters.model}
                     onChange={(e) => updateFilter("model", e.target.value)}
@@ -583,7 +583,7 @@ export default function ShopPage() {
                     ))}
                   </select>
 
-                  <select
+                                    <select
                     className="form-select"
                     value={filters.engine}
                     onChange={(e) => updateFilter("engine", e.target.value)}
@@ -949,14 +949,16 @@ export default function ShopPage() {
                       key={product.id}
                       className={
                         viewMode === "grid"
-                          ? "card group relative"
-                          : "card flex gap-4 relative"
+                                                    ? "card group relative"
+                                                    : "card flex gap-4 relative"
                       }
                     >
                       {/* Product Badges */}
                       <div className="absolute top-4 left-4 z-10 flex gap-2">
                         {product.isNew && (
-                          <div className="badge badge-success">NEW</div>
+                                                    <div className="badge badge-success">
+                            NEW
+                          </div>
                         )}
                         {product.isFeatured && (
                           <div className="bg-yellow-500 text-white px-2 py-1 rounded-md text-xs font-medium">
@@ -964,7 +966,7 @@ export default function ShopPage() {
                           </div>
                         )}
                         {product.originalPrice && (
-                          <div className="badge badge-primary">
+                                                    <div className="badge badge-primary">
                             {Math.round(
                               ((product.originalPrice - product.price) /
                                 product.originalPrice) *
@@ -990,12 +992,12 @@ export default function ShopPage() {
 
                       {/* Product Info */}
                       <div className={`${viewMode === "grid" ? "" : "flex-1"}`}>
-                        <div className="text-xs text-primary font-medium mb-1">
+                                                <div className="text-xs text-primary font-medium mb-1">
                           {product.category} › {product.subcategory}
                         </div>
 
                         <Link href={`/product/${product.sku}`}>
-                          <h3 className="font-semibold text-gray-900 mb-2 hover:text-red-600 transition-colors line-clamp-2">
+                                                    <h3 className=\"font-semibold mb-2 hover:text-primary transition-colors line-clamp-2\" style={{color: 'var(--charcoal)'}}>
                             {product.name}
                           </h3>
                         </Link>
@@ -1049,7 +1051,7 @@ export default function ShopPage() {
                           <button
                             onClick={() => addToWhatsAppCart(product)}
                             disabled={!product.inStock}
-                            className="whatsapp-btn w-full text-sm disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2"
+                                                        className="whatsapp-btn w-full text-sm disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2"
                           >
                             <svg
                               className="w-4 h-4"
