@@ -126,7 +126,7 @@ export default function HomePage() {
         </div>
       )}
 
-      <div className="aspect-square mb-3 md:mb-4 overflow-hidden rounded-lg bg-primary pixel-perfect">
+      <div className="aspect-square mb-3 md:mb-4 overflow-hidden rounded-lg bg-primary">
         <OptimizedImage
           src={product.image}
           alt={product.name}
