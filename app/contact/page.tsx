@@ -142,7 +142,6 @@ export default function ContactPage() {
                   setSubmitted(false);
                   setFormData({
                     name: "",
-                    email: "",
                     phone: "",
                     subject: "",
                     vehicleInfo: "",
