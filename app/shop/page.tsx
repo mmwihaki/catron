@@ -574,10 +574,13 @@ export default function ShopPage() {
 
               {/* Brands */}
               <div className="mb-6">
-                <h4 className="font-medium mb-3">Brands</h4>
+                <h4 className="font-medium mb-3 text-gray-800">Brands</h4>
                 <div className="space-y-2">
                   {brands.map((brand) => (
-                    <label key={brand} className="flex items-center gap-2">
+                    <label
+                      key={brand}
+                      className="flex items-center gap-2 cursor-pointer hover:bg-gray-50 p-2 rounded"
+                    >
                       <input
                         type="checkbox"
                         checked={filters.brand.includes(brand)}
@@ -593,8 +596,8 @@ export default function ShopPage() {
                         }}
                         className="rounded border-gray-300 text-red-600 focus:ring-red-500"
                       />
-                      <span className="text-sm">{brand}</span>
-                      <span className="text-xs text-gray-400 ml-auto">
+                      <span className="text-sm text-gray-700">{brand}</span>
+                      <span className="text-xs text-gray-500 ml-auto">
                         ({allProducts.filter((p) => p.brand === brand).length})
                       </span>
                     </label>
@@ -604,7 +607,7 @@ export default function ShopPage() {
 
               {/* Price Range */}
               <div className="mb-6">
-                <h4 className="font-medium mb-3">Price Range</h4>
+                <h4 className="font-medium mb-3 text-gray-800">Price Range</h4>
                 <div className="space-y-3">
                   <input
                     type="range"
@@ -615,9 +618,9 @@ export default function ShopPage() {
                     onChange={(e) =>
                       updateFilter("priceRange", [0, parseInt(e.target.value)])
                     }
-                    className="w-full"
+                    className="w-full accent-red-600"
                   />
-                  <div className="flex justify-between text-sm text-silver">
+                  <div className="flex justify-between text-sm text-gray-500">
                     <span>KES 0</span>
                     <span>KES {filters.priceRange[1].toLocaleString()}</span>
                   </div>
