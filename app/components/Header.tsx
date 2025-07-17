@@ -133,7 +133,10 @@ export default function Header({
 
             {/* Search Bar */}
             <div className="flex-1 max-w-2xl mx-4 md:mx-8 hidden md:block">
-              <div className="flex border-2 border-accent-primary rounded-lg overflow-hidden">
+              <form
+                onSubmit={handleSearch}
+                className="flex border-2 border-accent-primary rounded-lg overflow-hidden"
+              >
                 <input
                   type="text"
                   placeholder="Search by part number, model, or keyword..."
@@ -141,10 +144,13 @@ export default function Header({
                   value={searchQuery}
                   onChange={(e) => setSearchQuery?.(e.target.value)}
                 />
-                <button className="bg-accent-primary text-white px-6 py-3 hover:bg-accent-primary hover:opacity-90 transition-all">
+                <button
+                  type="submit"
+                  className="bg-accent-primary text-white px-6 py-3 hover:bg-accent-primary hover:opacity-90 transition-all"
+                >
                   <Search className="w-5 h-5" />
                 </button>
-              </div>
+              </form>
             </div>
 
             {/* Actions */}
