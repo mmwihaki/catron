@@ -81,7 +81,7 @@ export default function Header({
               </span>
               <span className="flex items-center gap-1">
                 <Mail className="w-4 h-4" />
-                info@brator.co.ke
+                info@catron.co.ke
               </span>
               <span className="flex items-center gap-1">
                 <Clock className="w-4 h-4" />
@@ -110,10 +110,10 @@ export default function Header({
             <div className="logo">
               <Link href="/" className="flex items-center gap-3">
                 <div className="w-12 h-12 bg-red-600 rounded-lg flex items-center justify-center text-white font-bold text-xl">
-                  B
+                  C
                 </div>
                 <div>
-                  <div className="text-2xl font-bold text-gray-800">BRATOR</div>
+                  <div className="text-2xl font-bold text-gray-800">CATRON</div>
                   <div className="text-xs text-gray-500">
                     Nissan Parts Specialist
                   </div>
