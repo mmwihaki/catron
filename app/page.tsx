@@ -161,8 +161,8 @@ export default function HomePage() {
       {/* Header */}
       <header className="bg-white shadow-lg">
         {/* Top Bar */}
-        <div className="bg-gray-900 text-white">
-          <div className="max-w-7xl mx-auto px-4">
+        <div className="bg-dark text-white">
+          <div className="container">
             <div className="flex justify-between items-center text-sm py-2">
               <div className="flex items-center gap-6">
                 <span>📞 +254 700 000 000</span>
@@ -179,19 +179,22 @@ export default function HomePage() {
 
         {/* Main Header */}
         <div className="bg-white shadow-md">
-          <div className="max-w-7xl mx-auto px-4">
+          <div className="container">
             <div className="flex items-center justify-between py-4">
               {/* Logo */}
               <div className="logo">
                 <Link href="/" className="flex items-center gap-3">
-                  <div className="w-12 h-12 bg-red-600 rounded-lg flex items-center justify-center text-white font-bold text-xl">
+                  <div className="w-12 h-12 bg-primary rounded-lg flex items-center justify-center text-white font-bold text-xl">
                     B
                   </div>
                   <div>
-                    <div className="text-2xl font-bold text-gray-900">
+                    <div
+                      className="text-2xl font-bold"
+                      style={{ color: "var(--charcoal)" }}
+                    >
                       BRATOR
                     </div>
-                    <div className="text-xs text-gray-500">
+                    <div className="text-xs text-secondary">
                       Nissan Parts Specialist
                     </div>
                   </div>
@@ -200,7 +203,7 @@ export default function HomePage() {
 
               {/* Search Bar */}
               <div className="flex-1 max-w-2xl mx-8">
-                <div className="flex border-2 border-red-600 rounded-lg overflow-hidden">
+                <div className="flex border-2 border-primary rounded-lg overflow-hidden">
                   <input
                     type="text"
                     placeholder="Search by part number, model, or keyword..."
@@ -208,7 +211,7 @@ export default function HomePage() {
                     value={searchQuery}
                     onChange={(e) => setSearchQuery(e.target.value)}
                   />
-                  <button className="bg-red-600 text-white px-6 py-3 hover:bg-red-700 transition-colors">
+                  <button className="bg-primary text-white px-6 py-3 btn-primary">
                     <svg
                       className="w-5 h-5"
                       fill="none"
@@ -230,7 +233,8 @@ export default function HomePage() {
               <div className="flex items-center gap-6">
                 <Link
                   href="/wishlist"
-                  className="flex items-center gap-2 text-gray-700 hover:text-red-600"
+                  className="flex items-center gap-2"
+                  style={{ color: "var(--charcoal-light)" }}
                 >
                   <svg
                     className="w-6 h-6"
@@ -270,7 +274,8 @@ export default function HomePage() {
 
                 <Link
                   href="/account"
-                  className="flex items-center gap-2 text-gray-700 hover:text-red-600"
+                  className="flex items-center gap-2"
+                  style={{ color: "var(--charcoal-light)" }}
                 >
                   <svg
                     className="w-6 h-6"
@@ -293,13 +298,13 @@ export default function HomePage() {
         </div>
 
         {/* Navigation */}
-        <nav className="bg-gray-50 border-b">
-          <div className="max-w-7xl mx-auto px-4">
+        <nav className="bg-secondary border-b">
+          <div className="container">
             <div className="flex items-center gap-8 py-3">
               <div className="relative">
                 <button
                   onClick={() => setShowCategories(!showCategories)}
-                  className="flex items-center gap-2 bg-red-600 text-white px-4 py-2 rounded-lg hover:bg-red-700 transition-colors"
+                  className="btn btn-primary"
                 >
                   <svg
                     className="w-5 h-5"
@@ -341,34 +346,19 @@ export default function HomePage() {
               </div>
 
               <div className="flex items-center gap-6">
-                <Link
-                  href="/"
-                  className="font-medium text-gray-700 hover:text-red-600"
-                >
+                <Link href="/" className="font-medium text-muted">
                   Home
                 </Link>
-                <Link
-                  href="/shop"
-                  className="font-medium text-gray-700 hover:text-red-600"
-                >
+                <Link href="/shop" className="font-medium text-muted">
                   Shop
                 </Link>
-                <Link
-                  href="/about"
-                  className="font-medium text-gray-700 hover:text-red-600"
-                >
+                <Link href="/about" className="font-medium text-muted">
                   About
                 </Link>
-                <Link
-                  href="/support"
-                  className="font-medium text-gray-700 hover:text-red-600"
-                >
+                <Link href="/support" className="font-medium text-muted">
                   Support
                 </Link>
-                <Link
-                  href="/contact"
-                  className="font-medium text-gray-700 hover:text-red-600"
-                >
+                <Link href="/contact" className="font-medium text-muted">
                   Contact
                 </Link>
               </div>
@@ -383,7 +373,7 @@ export default function HomePage() {
       </header>
 
       {/* Hero Section */}
-      <section className="relative bg-gradient-to-r from-gray-900 to-gray-800 text-white overflow-hidden">
+      <section className="relative bg-dark text-white overflow-hidden">
         <div className="absolute inset-0 bg-black bg-opacity-40"></div>
         <div
           className="absolute inset-0 bg-cover bg-center"
@@ -393,11 +383,11 @@ export default function HomePage() {
           }}
         ></div>
 
-        <div className="relative z-10 max-w-7xl mx-auto px-4 py-20">
+        <div className="relative z-10 container py-20">
           <div className="grid lg:grid-cols-2 gap-12 items-center">
             <div>
               <h1 className="text-5xl lg:text-6xl font-bold mb-6 leading-tight">
-                Premium <span className="text-red-500">Nissan</span> Parts
+                Premium <span className="text-primary">Nissan</span> Parts
               </h1>
               <p className="text-xl mb-8 text-gray-200">
                 Kenya's #1 marketplace for genuine OEM and performance parts.
@@ -405,15 +395,13 @@ export default function HomePage() {
                 nationwide.
               </p>
               <div className="flex gap-4">
-                <Link
-                  href="/shop"
-                  className="bg-red-600 text-white px-8 py-4 rounded-lg font-semibold hover:bg-red-700 transition-colors"
-                >
+                <Link href="/shop" className="btn btn-primary btn-lg">
                   Shop Nissan Parts
                 </Link>
                 <Link
                   href="/support"
-                  className="border-2 border-white text-white px-8 py-4 rounded-lg font-semibold hover:bg-white hover:text-gray-900 transition-colors"
+                  className="btn btn-secondary btn-lg"
+                  style={{ borderColor: "white", color: "white" }}
                 >
                   Fitment Guide
                 </Link>
@@ -433,7 +421,7 @@ export default function HomePage() {
                       Year
                     </label>
                     <select
-                      className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-red-500"
+                      className="form-select"
                       value={vehicleYear}
                       onChange={(e) => setVehicleYear(e.target.value)}
                     >
@@ -453,7 +441,7 @@ export default function HomePage() {
                       Model
                     </label>
                     <select
-                      className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-red-500"
+                      className="form-select"
                       value={vehicleModel}
                       onChange={(e) => setVehicleModel(e.target.value)}
                     >
@@ -487,7 +475,8 @@ export default function HomePage() {
 
                 <button
                   type="button"
-                  className="w-full bg-red-600 text-white py-3 rounded-md font-semibold hover:bg-red-700 transition-colors"
+                  className="btn btn-primary"
+                  style={{ width: "100%" }}
                 >
                   Find Compatible Parts
                 </button>
@@ -498,8 +487,8 @@ export default function HomePage() {
       </section>
 
       {/* Category Showcase */}
-      <section className="py-16 bg-gray-50">
-        <div className="max-w-7xl mx-auto px-4">
+      <section className="section bg-secondary">
+        <div className="container">
           <div className="text-center mb-12">
             <h2 className="text-4xl font-bold mb-4">Shop by Category</h2>
             <p className="text-xl text-gray-600">
@@ -512,7 +501,7 @@ export default function HomePage() {
               <Link
                 key={category.slug}
                 href={`/category/${category.slug}`}
-                className="group relative overflow-hidden rounded-xl bg-white shadow-md hover:shadow-xl transition-all duration-300"
+                className="card group relative overflow-hidden"
               >
                 <div className="aspect-video overflow-hidden">
                   <img
@@ -525,16 +514,19 @@ export default function HomePage() {
                   <div className="flex items-center gap-3 mb-3">
                     <span className="text-3xl">{category.icon}</span>
                     <div>
-                      <h3 className="text-xl font-bold text-gray-900 group-hover:text-red-600 transition-colors">
+                      <h3
+                        className="text-xl font-bold group-hover:text-primary transition-colors"
+                        style={{ color: "var(--charcoal)" }}
+                      >
                         {category.name}
                       </h3>
-                      <div className="text-sm text-gray-500">
+                      <div className="text-sm text-secondary">
                         {category.count} parts available
                       </div>
                     </div>
                   </div>
-                  <p className="text-gray-600 mb-4">{category.description}</p>
-                  <div className="flex items-center text-red-600 font-medium">
+                  <p className="text-muted mb-4">{category.description}</p>
+                  <div className="flex items-center text-primary font-medium">
                     Shop Now
                     <svg
                       className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform"
@@ -558,8 +550,8 @@ export default function HomePage() {
       </section>
 
       {/* Best Sellers */}
-      <section className="py-16">
-        <div className="max-w-7xl mx-auto px-4">
+      <section className="section">
+        <div className="container">
           <div className="flex justify-between items-center mb-12">
             <div>
               <h2 className="text-4xl font-bold mb-4">Best Sellers</h2>
@@ -567,23 +559,17 @@ export default function HomePage() {
                 Most popular Nissan parts this month
               </p>
             </div>
-            <Link
-              href="/shop?sort=popular"
-              className="border-2 border-gray-300 text-gray-700 px-6 py-3 rounded-lg font-medium hover:border-red-600 hover:text-red-600 transition-colors"
-            >
+            <Link href="/shop?sort=popular" className="btn btn-outline">
               View All Best Sellers
             </Link>
           </div>
 
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
             {featuredProducts.map((product) => (
-              <div
-                key={product.id}
-                className="bg-white rounded-lg shadow-md border border-gray-200 p-4 hover:shadow-lg transition-shadow group relative"
-              >
+              <div key={product.id} className="card group relative">
                 {product.originalPrice && (
                   <div className="absolute top-4 left-4 z-10">
-                    <div className="bg-red-600 text-white px-2 py-1 rounded-md text-xs font-medium">
+                    <div className="badge badge-primary">
                       {Math.round(
                         ((product.originalPrice - product.price) /
                           product.originalPrice) *
@@ -603,13 +589,16 @@ export default function HomePage() {
                 </div>
 
                 <div className="mb-2">
-                  <div className="text-xs text-red-600 font-medium mb-1">
+                  <div className="text-xs text-primary font-medium mb-1">
                     {product.category}
                   </div>
-                  <h3 className="font-semibold text-gray-900 mb-2 line-clamp-2">
+                  <h3
+                    className="font-semibold mb-2 line-clamp-2"
+                    style={{ color: "var(--charcoal)" }}
+                  >
                     {product.name}
                   </h3>
-                  <div className="text-xs text-gray-500 mb-2">
+                  <div className="text-xs text-secondary mb-2">
                     SKU: {product.sku}
                   </div>
 
@@ -617,23 +606,23 @@ export default function HomePage() {
                     <div className="text-yellow-400 text-sm">
                       {renderStars(product.rating)}
                     </div>
-                    <span className="text-xs text-gray-500">
+                    <span className="text-xs text-secondary">
                       ({product.reviews})
                     </span>
                   </div>
 
                   <div className="flex items-center gap-2 mb-4">
                     {product.originalPrice && (
-                      <span className="text-sm text-gray-500 line-through">
+                      <span className="text-sm text-secondary line-through">
                         KES {product.originalPrice.toLocaleString()}
                       </span>
                     )}
-                    <span className="text-lg font-bold text-red-600">
+                    <span className="text-lg font-bold text-primary">
                       KES {product.price.toLocaleString()}
                     </span>
                   </div>
 
-                  <div className="text-xs text-gray-500 mb-4">
+                  <div className="text-xs text-secondary mb-4">
                     Compatible: {product.compatibility.slice(0, 2).join(", ")}
                     {product.compatibility.length > 2 &&
                       ` +${product.compatibility.length - 2} more`}
@@ -642,7 +631,7 @@ export default function HomePage() {
 
                 <button
                   onClick={() => addToWhatsAppCart(product)}
-                  className="bg-green-500 text-white px-4 py-2 rounded-md hover:bg-green-600 transition-colors w-full text-sm flex items-center justify-center gap-2"
+                  className="whatsapp-btn w-full text-sm flex items-center justify-center gap-2"
                 >
                   <svg
                     className="w-4 h-4"
@@ -660,11 +649,11 @@ export default function HomePage() {
       </section>
 
       {/* Features Banner */}
-      <section className="py-16 bg-gray-900 text-white">
-        <div className="max-w-7xl mx-auto px-4">
+      <section className="section bg-dark text-white">
+        <div className="container">
           <div className="grid md:grid-cols-4 gap-8 text-center">
             <div className="flex flex-col items-center">
-              <div className="w-16 h-16 bg-red-600 rounded-full flex items-center justify-center mb-4">
+              <div className="w-16 h-16 bg-primary rounded-full flex items-center justify-center mb-4">
                 <svg
                   className="w-8 h-8"
                   fill="none"
@@ -680,13 +669,13 @@ export default function HomePage() {
                 </svg>
               </div>
               <h3 className="text-xl font-bold mb-2">Quality Guaranteed</h3>
-              <p className="text-gray-300">
+              <p className="text-secondary">
                 100% genuine OEM and certified aftermarket parts
               </p>
             </div>
 
             <div className="flex flex-col items-center">
-              <div className="w-16 h-16 bg-red-600 rounded-full flex items-center justify-center mb-4">
+              <div className="w-16 h-16 bg-primary rounded-full flex items-center justify-center mb-4">
                 <svg
                   className="w-8 h-8"
                   fill="none"
@@ -702,13 +691,13 @@ export default function HomePage() {
                 </svg>
               </div>
               <h3 className="text-xl font-bold mb-2">Fast Delivery</h3>
-              <p className="text-gray-300">
+              <p className="text-secondary">
                 Same day dispatch, Kenya-wide delivery
               </p>
             </div>
 
             <div className="flex flex-col items-center">
-              <div className="w-16 h-16 bg-red-600 rounded-full flex items-center justify-center mb-4">
+              <div className="w-16 h-16 bg-primary rounded-full flex items-center justify-center mb-4">
                 <svg
                   className="w-8 h-8"
                   fill="none"
@@ -724,13 +713,13 @@ export default function HomePage() {
                 </svg>
               </div>
               <h3 className="text-xl font-bold mb-2">Expert Support</h3>
-              <p className="text-gray-300">
+              <p className="text-secondary">
                 Professional fitment guidance and technical support
               </p>
             </div>
 
             <div className="flex flex-col items-center">
-              <div className="w-16 h-16 bg-red-600 rounded-full flex items-center justify-center mb-4">
+              <div className="w-16 h-16 bg-primary rounded-full flex items-center justify-center mb-4">
                 <svg
                   className="w-8 h-8"
                   fill="currentColor"
@@ -740,7 +729,7 @@ export default function HomePage() {
                 </svg>
               </div>
               <h3 className="text-xl font-bold mb-2">WhatsApp Ordering</h3>
-              <p className="text-gray-300">
+              <p className="text-secondary">
                 Easy ordering via WhatsApp with instant support
               </p>
             </div>
@@ -749,23 +738,23 @@ export default function HomePage() {
       </section>
 
       {/* Footer */}
-      <footer className="bg-gray-900 text-white">
-        <div className="max-w-7xl mx-auto px-4 py-16">
+      <footer className="bg-dark text-white">
+        <div className="container py-16">
           <div className="grid md:grid-cols-4 gap-8">
             {/* Brand Column */}
             <div className="md:col-span-2">
               <div className="flex items-center gap-3 mb-6">
-                <div className="w-12 h-12 bg-red-600 rounded-lg flex items-center justify-center text-white font-bold text-xl">
+                <div className="w-12 h-12 bg-primary rounded-lg flex items-center justify-center text-white font-bold text-xl">
                   B
                 </div>
                 <div>
                   <div className="text-2xl font-bold">BRATOR</div>
-                  <div className="text-sm text-gray-400">
+                  <div className="text-sm text-secondary">
                     Nissan Parts Specialist
                   </div>
                 </div>
               </div>
-              <p className="text-gray-300 mb-6 max-w-md">
+              <p className="text-secondary mb-6 max-w-md">
                 Kenya's premier destination for genuine Nissan OEM and
                 performance parts. We're committed to keeping your Nissan
                 running at peak performance with quality parts and expert
@@ -774,7 +763,7 @@ export default function HomePage() {
               <div className="flex gap-4">
                 <a
                   href="#"
-                  className="w-10 h-10 bg-gray-700 rounded-full flex items-center justify-center hover:bg-red-600 transition-colors"
+                  className="w-10 h-10 bg-charcoal-light rounded-full flex items-center justify-center hover:bg-primary transition-colors"
                 >
                   <svg
                     className="w-5 h-5"
@@ -786,7 +775,7 @@ export default function HomePage() {
                 </a>
                 <a
                   href="#"
-                  className="w-10 h-10 bg-gray-700 rounded-full flex items-center justify-center hover:bg-red-600 transition-colors"
+                  className="w-10 h-10 bg-charcoal-light rounded-full flex items-center justify-center hover:bg-primary transition-colors"
                 >
                   <svg
                     className="w-5 h-5"
@@ -798,7 +787,7 @@ export default function HomePage() {
                 </a>
                 <a
                   href="#"
-                  className="w-10 h-10 bg-gray-700 rounded-full flex items-center justify-center hover:bg-red-600 transition-colors"
+                  className="w-10 h-10 bg-charcoal-light rounded-full flex items-center justify-center hover:bg-primary transition-colors"
                 >
                   <svg
                     className="w-5 h-5"
@@ -814,7 +803,7 @@ export default function HomePage() {
             {/* Quick Links */}
             <div>
               <h3 className="text-lg font-bold mb-4">Quick Links</h3>
-              <ul className="space-y-2 text-gray-300">
+              <ul className="space-y-2 text-secondary">
                 <li>
                   <Link
                     href="/shop"
@@ -869,7 +858,7 @@ export default function HomePage() {
             {/* Support */}
             <div>
               <h3 className="text-lg font-bold mb-4">Support</h3>
-              <ul className="space-y-2 text-gray-300">
+              <ul className="space-y-2 text-secondary">
                 <li>
                   <Link
                     href="/about"
@@ -922,12 +911,12 @@ export default function HomePage() {
             </div>
           </div>
 
-          <div className="border-t border-gray-700 mt-12 pt-8">
+          <div className="border-t border-charcoal-light mt-12 pt-8">
             <div className="flex flex-col md:flex-row justify-between items-center gap-4">
-              <div className="text-gray-400 text-sm">
+              <div className="text-secondary text-sm">
                 © 2024 Brator Auto Parts. All rights reserved.
               </div>
-              <div className="flex gap-6 text-sm text-gray-400">
+              <div className="flex gap-6 text-sm text-secondary">
                 <Link
                   href="/privacy"
                   className="hover:text-white transition-colors"
