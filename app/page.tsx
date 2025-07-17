@@ -660,8 +660,8 @@ export default function HomePage() {
       </section>
 
       {/* Features Banner */}
-      <section className="section bg-dark text-white">
-        <div className="container">
+      <section className="py-16 bg-gray-900 text-white">
+        <div className="max-w-7xl mx-auto px-4">
           <div className="grid md:grid-cols-4 gap-8 text-center">
             <div className="flex flex-col items-center">
               <div className="w-16 h-16 bg-primary rounded-full flex items-center justify-center mb-4">
