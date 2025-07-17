@@ -223,17 +223,11 @@ export default function Header({
           <div className="flex flex-col md:flex-row items-start md:items-center gap-4 md:gap-8 py-3">
             <div className="relative" ref={categoriesRef}>
               <button
-                onClick={() => {
-                  console.log(
-                    "Categories button clicked, current state:",
-                    showCategories,
-                  );
-                  setShowCategories(!showCategories);
-                }}
+                onClick={() => setShowCategories(!showCategories)}
                 className="btn-primary"
               >
                 <Menu className="w-5 h-5" />
-                All Categories ({categories.length})
+                All Categories
                 <ChevronDown className="w-4 h-4" />
               </button>
 
