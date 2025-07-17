@@ -200,7 +200,7 @@ export default function HomePage() {
 
               {/* Search Bar */}
               <div className="flex-1 max-w-2xl mx-8">
-                <div className="flex border-2 border-primary rounded-lg overflow-hidden">
+                <div className="flex border-2 border-red-600 rounded-lg overflow-hidden">
                   <input
                     type="text"
                     placeholder="Search by part number, model, or keyword..."
