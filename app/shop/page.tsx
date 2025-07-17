@@ -746,7 +746,7 @@ export default function ShopPage() {
 
                 <div className="text-lg">
                   <span className="font-bold">{sortedProducts.length}</span>
-                  <span className="text-gray-500 ml-1">parts found</span>
+                  <span className="text-secondary ml-1">parts found</span>
                   {searchQuery && (
                     <span className="text-sm text-gray-500 ml-2">
                       for "{searchQuery}"
