@@ -34,7 +34,7 @@ export const allProducts: Product[] = [
     carModel: "E12/K13/N17",
     brand: "RIDEX",
     image:
-      "https://images.unsplash.com/photo-1558618047-3c8c76ca7d13?w=400&h=300&fit=crop",
+      "https://cdn.builder.io/api/v1/image/assets%2F9067eeb573a94c11b62f6ab0ba539c7c%2Ff092631ae6914a5f8b8fd5171b6689a5?format=webp&width=800",
     price: 1300,
     rating: 4.7,
     reviews: 89,
