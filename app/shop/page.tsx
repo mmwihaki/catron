@@ -1029,7 +1029,7 @@ export default function ShopPage() {
                               KES {product.originalPrice.toLocaleString()}
                             </span>
                           )}
-                          <span className="text-lg font-bold text-red-600">
+                          <span className="text-lg font-bold text-primary">
                             KES {product.price.toLocaleString()}
                           </span>
                         </div>
