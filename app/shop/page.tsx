@@ -473,23 +473,25 @@ export default function ShopPage() {
           <aside
             className={`w-80 ${showFilters ? "block" : "hidden lg:block"}`}
           >
-            <div className="card sticky top-4">
+            <div className="bg-white rounded-lg shadow-md border border-gray-200 p-6 sticky top-4">
               <div className="flex items-center justify-between mb-6">
-                <h3 className="text-lg font-bold">Filters</h3>
+                <h3 className="text-lg font-bold text-gray-900">Filters</h3>
                 <button
                   onClick={clearFilters}
-                  className="text-sm text-primary hover:underline"
+                  className="text-sm text-red-600 hover:underline"
                 >
                   Clear All
                 </button>
               </div>
 
               {/* Vehicle Selector */}
-              <div className="mb-6 p-4 bg-light rounded-lg">
-                <h4 className="font-medium mb-3">Find Parts By Vehicle</h4>
+              <div className="mb-6 p-4 bg-gray-50 rounded-lg">
+                <h4 className="font-medium mb-3 text-gray-800">
+                  Find Parts By Vehicle
+                </h4>
                 <div className="space-y-3">
                   <select
-                    className="form-select"
+                    className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-red-500"
                     value={filters.year}
                     onChange={(e) => updateFilter("year", e.target.value)}
                   >
