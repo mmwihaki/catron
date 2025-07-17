@@ -928,15 +928,12 @@ export default function ShopPage() {
                         </div>
 
                         <Link href={`/product/${product.sku}`}>
-                          <h3
-                            className="font-semibold mb-2 hover:text-primary transition-colors line-clamp-2"
-                            style={{ color: "var(--charcoal)" }}
-                          >
+                          <h3 className="font-semibold text-gray-900 mb-2 hover:text-red-600 transition-colors line-clamp-2">
                             {product.name}
                           </h3>
                         </Link>
 
-                        <div className="text-xs text-secondary mb-2">
+                        <div className="text-xs text-gray-500 mb-2">
                           SKU: {product.sku} | Brand: {product.brand}
                         </div>
 
@@ -944,12 +941,12 @@ export default function ShopPage() {
                           <div className="text-yellow-400 text-sm">
                             {renderStars(product.rating)}
                           </div>
-                          <span className="text-xs text-secondary">
+                          <span className="text-xs text-gray-500">
                             ({product.reviews} reviews)
                           </span>
                         </div>
 
-                        <div className="text-xs text-secondary mb-3">
+                        <div className="text-xs text-gray-500 mb-3">
                           <strong>Compatible:</strong>{" "}
                           {product.compatibility.slice(0, 2).join(", ")}
                           {product.compatibility.length > 2 &&
@@ -958,11 +955,11 @@ export default function ShopPage() {
 
                         <div className="flex items-center gap-2 mb-4">
                           {product.originalPrice && (
-                            <span className="text-sm text-secondary line-through">
+                            <span className="text-sm text-gray-500 line-through">
                               KES {product.originalPrice.toLocaleString()}
                             </span>
                           )}
-                          <span className="text-lg font-bold text-primary">
+                          <span className="text-lg font-bold text-red-600">
                             KES {product.price.toLocaleString()}
                           </span>
                         </div>
