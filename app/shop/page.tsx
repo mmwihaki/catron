@@ -1003,7 +1003,7 @@ export default function ShopPage() {
                           </h3>
                         </Link>
 
-                        <div className="text-xs text-gray-500 mb-2">
+                        <div className="text-xs text-secondary mb-2">
                           SKU: {product.sku} | Brand: {product.brand}
                         </div>
 
