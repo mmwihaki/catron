@@ -114,7 +114,7 @@ export default function Header({
                   <div className="text-2xl font-bold text-primary tracking-tight">
                     CATRON
                   </div>
-                  <div className="text-xs text-secondary font-medium tracking-wide">
+                  <div className="text-xs text-primary font-medium tracking-wide">
                     Nissan Parts Specialist
                   </div>
                 </div>
