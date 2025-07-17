@@ -558,8 +558,8 @@ export default function HomePage() {
       </section>
 
       {/* Best Sellers */}
-      <section className="section">
-        <div className="container">
+      <section className="py-16">
+        <div className="max-w-7xl mx-auto px-4">
           <div className="flex justify-between items-center mb-12">
             <div>
               <h2 className="text-4xl font-bold mb-4">Best Sellers</h2>
