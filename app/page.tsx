@@ -606,10 +606,7 @@ export default function HomePage() {
                   <div className="text-xs text-red-600 font-medium mb-1">
                     {product.category}
                   </div>
-                  <h3
-                    className="font-semibold mb-2 line-clamp-2"
-                    style={{ color: "var(--charcoal)" }}
-                  >
+                  <h3 className="font-semibold text-gray-900 mb-2 line-clamp-2">
                     {product.name}
                   </h3>
                   <div className="text-xs text-secondary mb-2">
