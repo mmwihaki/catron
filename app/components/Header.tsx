@@ -29,6 +29,7 @@ export default function Header({
   currentPage,
 }: HeaderProps) {
   const [showCategories, setShowCategories] = useState(false);
+  const { getTotalItems, setIsCartOpen } = useCart();
 
   const categories = [
     {
