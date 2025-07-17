@@ -143,7 +143,7 @@ export default function HomePage() {
   const addToWhatsAppCart = (product: Product, quantity: number = 1) => {
     const phoneNumber = "+254700000000";
     let message = `Hi! I'd like to order this Nissan part:\n\n`;
-    message += `�� ${quantity}x ${product.name}\n`;
+    message += `• ${quantity}x ${product.name}\n`;
     message += `• SKU: ${product.sku}\n`;
     message += `• Price: KES ${(product.price * quantity).toLocaleString()}\n\n`;
     message += `Please confirm availability, compatibility, and payment details.`;
@@ -633,7 +633,7 @@ export default function HomePage() {
                     </span>
                   </div>
 
-                  <div className="text-xs text-secondary mb-4">
+                  <div className="text-xs text-gray-500 mb-4">
                     Compatible: {product.compatibility.slice(0, 2).join(", ")}
                     {product.compatibility.length > 2 &&
                       ` +${product.compatibility.length - 2} more`}
