@@ -664,7 +664,7 @@ export default function HomePage() {
         <div className="max-w-7xl mx-auto px-4">
           <div className="grid md:grid-cols-4 gap-8 text-center">
             <div className="flex flex-col items-center">
-              <div className="w-16 h-16 bg-primary rounded-full flex items-center justify-center mb-4">
+              <div className="w-16 h-16 bg-red-600 rounded-full flex items-center justify-center mb-4">
                 <svg
                   className="w-8 h-8"
                   fill="none"
@@ -686,7 +686,7 @@ export default function HomePage() {
             </div>
 
             <div className="flex flex-col items-center">
-              <div className="w-16 h-16 bg-primary rounded-full flex items-center justify-center mb-4">
+              <div className="w-16 h-16 bg-red-600 rounded-full flex items-center justify-center mb-4">
                 <svg
                   className="w-8 h-8"
                   fill="none"
@@ -708,7 +708,7 @@ export default function HomePage() {
             </div>
 
             <div className="flex flex-col items-center">
-              <div className="w-16 h-16 bg-primary rounded-full flex items-center justify-center mb-4">
+              <div className="w-16 h-16 bg-red-600 rounded-full flex items-center justify-center mb-4">
                 <svg
                   className="w-8 h-8"
                   fill="none"
@@ -730,7 +730,7 @@ export default function HomePage() {
             </div>
 
             <div className="flex flex-col items-center">
-              <div className="w-16 h-16 bg-primary rounded-full flex items-center justify-center mb-4">
+              <div className="w-16 h-16 bg-red-600 rounded-full flex items-center justify-center mb-4">
                 <svg
                   className="w-8 h-8"
                   fill="currentColor"
