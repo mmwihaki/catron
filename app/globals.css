@@ -328,3 +328,166 @@ html {
   scrollbar-width: thin;
   scrollbar-color: #cbd5e1 #f1f5f9;
 }
+
+/* Pixel-perfect layout enforcement */
+.pixel-perfect {
+  transform: translateZ(0);
+  backface-visibility: hidden;
+  /* Force integer pixel boundaries */
+  position: relative;
+}
+
+.pixel-perfect::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  transform: translateZ(0);
+}
+
+/* Prevent fractional scaling */
+.no-fractional {
+  width: calc(100% + 0.5px);
+  margin-left: -0.25px;
+}
+
+/* High-DPI media query optimizations */
+@media (-webkit-min-device-pixel-ratio: 1.5), (min-resolution: 144dpi) {
+  .border {
+    border-width: 0.5px;
+  }
+}
+
+@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+  /* Force crisp 1px borders on retina */
+  .border {
+    border-width: 0.5px;
+  }
+
+  /* Optimize text for retina */
+  body {
+    -webkit-font-smoothing: subpixel-antialiased;
+  }
+}
+
+@media (-webkit-min-device-pixel-ratio: 3), (min-resolution: 288dpi) {
+  .border {
+    border-width: 0.33px;
+  }
+}
+
+/* Canvas DPI optimization */
+canvas {
+  image-rendering: pixelated;
+  image-rendering: -moz-crisp-edges;
+  image-rendering: crisp-edges;
+  /* Ensure canvas respects device pixel ratio */
+  image-rendering: optimizeSpeed;
+}
+
+/* Prevent sub-pixel gaps in grid layouts */
+.grid {
+  display: grid;
+  /* Force integer grid tracks */
+  grid-template-columns: repeat(auto-fit, minmax(0, 1fr));
+}
+
+/* Crisp card borders */
+.card,
+.rounded-lg,
+.rounded-xl {
+  /* Ensure crisp borders on all DPI */
+  border: 1px solid rgba(229, 231, 235, 1);
+  /* Prevent border anti-aliasing blur */
+  outline: 1px solid transparent;
+}
+
+/* Button pixel-perfect styling */
+button,
+.btn {
+  /* Crisp button rendering */
+  border: 1px solid transparent;
+  outline: 1px solid transparent;
+  /* Prevent button text blur */
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Form element crispness */
+input,
+textarea,
+select {
+  /* Crisp form field borders */
+  border: 1px solid #d1d5db;
+  outline: 1px solid transparent;
+  /* Sharp text rendering in form fields */
+  -webkit-font-smoothing: antialiased;
+  font-smooth: always;
+}
+
+/* Prevent icon blur in SVG */
+svg {
+  /* Ensure SVG icons are pixel-perfect */
+  shape-rendering: geometricPrecision;
+  text-rendering: geometricPrecision;
+  /* Prevent anti-aliasing on simple shapes */
+  shape-rendering: crispEdges;
+}
+
+/* Icon-specific optimizations */
+.lucide {
+  stroke-width: 1.5;
+  /* Ensure consistent icon rendering */
+  vector-effect: non-scaling-stroke;
+}
+
+/* Text selection crispness */
+::selection {
+  background-color: #ef4444;
+  color: #ffffff;
+  text-shadow: none;
+  /* Crisp selection rendering */
+  -webkit-text-stroke: 0;
+}
+
+/* Link underline precision */
+a {
+  text-decoration-thickness: 1px;
+  text-underline-offset: 2px;
+  text-decoration-skip-ink: none;
+}
+
+/* Table border crispness */
+table {
+  border-collapse: separate;
+  border-spacing: 0;
+}
+
+table td,
+table th {
+  border: 1px solid #e5e7eb;
+  border-right-width: 0;
+  border-bottom-width: 0;
+}
+
+table td:last-child,
+table th:last-child {
+  border-right-width: 1px;
+}
+
+table tr:last-child td {
+  border-bottom-width: 1px;
+}
+
+/* Modal and overlay crispness */
+.modal,
+.overlay {
+  /* Ensure modals render without blur */
+  backface-visibility: hidden;
+  transform: translateZ(0);
+  /* Crisp backdrop filters */
+  backdrop-filter: blur(8px) saturate(180%);
+  -webkit-backdrop-filter: blur(8px) saturate(180%);
+}
