@@ -66,7 +66,10 @@ export default function Header({
 
     return Array.from(categoryMap.entries()).map(([name, count]) => ({
       name,
-      slug: name.toLowerCase().replace(/\s+/g, "-"),
+      slug: name
+        .toLowerCase()
+        .replace(/\s+/g, "-")
+        .replace(/[^a-z0-9-]/g, ""),
       count,
     }));
   };
