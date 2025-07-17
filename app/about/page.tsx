@@ -3,6 +3,7 @@
 import React from "react";
 import Link from "next/link";
 import Header from "../components/Header";
+import Footer from "../components/Footer";
 import { Target, Users, Zap, Wrench, Heart, Smartphone } from "lucide-react";
 
 export default function AboutPage() {
@@ -369,7 +370,7 @@ export default function AboutPage() {
             <div>
               <h3 className="text-lg font-bold mb-4">Contact Info</h3>
               <div className="space-y-2 text-gray-300">
-                <div>��� +254 700 000 000</div>
+                <div>📞 +254 700 000 000</div>
                 <div>✉️ info@catron.co.ke</div>
                 <div>📍 Nairobi, Kenya</div>
               </div>
