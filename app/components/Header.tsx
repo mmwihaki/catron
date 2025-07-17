@@ -91,12 +91,12 @@ export default function Header({
               </span>
             </div>
             <div className="flex items-center gap-4">
-              <span className="flex items-center gap-1 text-secondary">
-                <Globe className="w-4 h-4 text-accent-primary" />
+              <span className="flex items-center gap-1 header-info">
+                <Globe className="w-4 h-4 icon" />
                 Kenya Wide Delivery
               </span>
-              <span className="flex items-center gap-1 text-secondary">
-                <MapPin className="w-4 h-4 text-accent-primary" />
+              <span className="flex items-center gap-1 header-info">
+                <MapPin className="w-4 h-4 icon" />
                 Nairobi, Kenya
               </span>
             </div>
