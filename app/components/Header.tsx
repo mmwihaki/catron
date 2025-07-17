@@ -233,16 +233,15 @@ export default function Header({
                   {categories.map((category) => (
                     <Link
                       key={category.slug}
-                      href={`/category/${category.slug}`}
-                      className="flex items-center gap-3 px-4 py-3 hover:bg-primary border-b border-divider last:border-b-0 transition-colors"
+                      href={`/?category=${category.slug}`}
+                      className="flex items-center justify-between px-4 py-3 hover:bg-primary border-b border-divider last:border-b-0 transition-colors"
+                      onClick={() => setShowCategories(false)}
                     >
-                      <div>
-                        <div className="font-medium text-primary">
-                          {category.name}
-                        </div>
-                        <div className="text-xs text-primary">
-                          {category.count} items
-                        </div>
+                      <div className="font-medium text-primary">
+                        {category.name}
+                      </div>
+                      <div className="text-xs text-primary">
+                        {category.count} items
                       </div>
                     </Link>
                   ))}
