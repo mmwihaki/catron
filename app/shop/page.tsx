@@ -880,14 +880,16 @@ export default function ShopPage() {
                       key={product.id}
                       className={
                         viewMode === "grid"
-                          ? "card group relative"
-                          : "card flex gap-4 relative"
+                          ? "bg-white rounded-lg shadow-md border border-gray-200 p-4 hover:shadow-lg transition-all duration-300 group relative"
+                          : "bg-white rounded-lg shadow-md border border-gray-200 p-4 hover:shadow-lg transition-all duration-300 group relative flex gap-4"
                       }
                     >
                       {/* Product Badges */}
                       <div className="absolute top-4 left-4 z-10 flex gap-2">
                         {product.isNew && (
-                          <div className="badge badge-success">NEW</div>
+                          <div className="bg-green-600 text-white px-2 py-1 rounded-md text-xs font-medium">
+                            NEW
+                          </div>
                         )}
                         {product.isFeatured && (
                           <div className="bg-yellow-500 text-white px-2 py-1 rounded-md text-xs font-medium">
@@ -895,7 +897,7 @@ export default function ShopPage() {
                           </div>
                         )}
                         {product.originalPrice && (
-                          <div className="badge badge-primary">
+                          <div className="bg-red-600 text-white px-2 py-1 rounded-md text-xs font-medium">
                             {Math.round(
                               ((product.originalPrice - product.price) /
                                 product.originalPrice) *
@@ -921,7 +923,7 @@ export default function ShopPage() {
 
                       {/* Product Info */}
                       <div className={`${viewMode === "grid" ? "" : "flex-1"}`}>
-                        <div className="text-xs text-primary font-medium mb-1">
+                        <div className="text-xs text-red-600 font-medium mb-1">
                           {product.category} › {product.subcategory}
                         </div>
 
