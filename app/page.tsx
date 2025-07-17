@@ -3,21 +3,7 @@
 import React, { useState } from "react";
 import Link from "next/link";
 import Header from "./components/Header";
-
-interface Product {
-  id: number;
-  sku: string;
-  name: string;
-  category: string;
-  image: string;
-  price: number;
-  originalPrice?: number;
-  rating: number;
-  reviews: number;
-  compatibility: string[];
-  inStock: boolean;
-  isNew?: boolean;
-}
+import { allProducts, getFeaturedProducts, Product } from "./data/products";
 
 export default function HomePage() {
   const [searchQuery, setSearchQuery] = useState("");
@@ -26,225 +12,66 @@ export default function HomePage() {
   const [vehicleEngine, setVehicleEngine] = useState("");
   const [showCategories, setShowCategories] = useState(false);
 
-  const featuredProducts: Product[] = [
-    {
-      id: 1,
-      sku: "7O0026",
-      name: "RIDEX Oil Filter",
-      category: "Oil Filter",
-      image:
-        "https://images.unsplash.com/photo-1558618047-3c8c76ca7d13?w=400&h=300&fit=crop",
-      price: 1300,
-      rating: 4.7,
-      reviews: 89,
-      compatibility: ["Note E12", "March K13", "Latio N17"],
-      inStock: true,
-    },
-    {
-      id: 2,
-      sku: "97439",
-      name: "NGK Spark Plug DILKAR7E11HS",
-      category: "Spark Plugs",
-      image:
-        "https://images.unsplash.com/photo-1580273916550-e323be2ae537?w=400&h=300&fit=crop",
-      price: 4600,
-      rating: 4.9,
-      reviews: 203,
-      compatibility: ["Note E12 DIG-S"],
-      inStock: true,
-    },
-    {
-      id: 3,
-      sku: "402B0234",
-      name: "RIDEX Brake Pads",
-      category: "Brake Pads",
-      image:
-        "https://images.unsplash.com/photo-1621839673705-6617adf9e890?w=400&h=300&fit=crop",
-      price: 4000,
-      rating: 4.6,
-      reviews: 134,
-      compatibility: ["Note E12", "March K13", "Latio N17"],
-      inStock: true,
-    },
-    {
-      id: 4,
-      sku: "8A0074",
-      name: "RIDEX Air Filter",
-      category: "Air Filter",
-      image:
-        "https://images.unsplash.com/photo-1619642751034-765dfdf7c58e?w=400&h=300&fit=crop",
-      price: 2200,
-      rating: 4.5,
-      reviews: 78,
-      compatibility: ["Puredrive Models"],
-      inStock: true,
-    },
-    {
-      id: 5,
-      sku: "424I0259",
-      name: "RIDEX HEPA Cabin Filter",
-      category: "Cabin Filter",
-      image:
-        "https://images.unsplash.com/photo-1619642751034-765dfdf7c58e?w=400&h=300&fit=crop",
-      price: 1200,
-      rating: 4.4,
-      reviews: 56,
-      compatibility: ["Note E12", "March K13", "Latio N17"],
-      inStock: true,
-    },
-    {
-      id: 6,
-      sku: "305P0095",
-      name: "RIDEX V-belt Alternator 6PK2080",
-      category: "V-belt",
-      image:
-        "https://images.unsplash.com/photo-1487754180451-c456f719a1fc?w=400&h=300&fit=crop",
-      price: 3200,
-      rating: 4.6,
-      reviews: 92,
-      compatibility: ["DIG-S Models"],
-      inStock: true,
-    },
-    {
-      id: 7,
-      sku: "3229S0117",
-      name: "RIDEX Stabilizer Links",
-      category: "Stabilizer Links",
-      image:
-        "https://images.unsplash.com/photo-1486754735734-325b5831c3ad?w=400&h=300&fit=crop",
-      price: 3800,
-      rating: 4.7,
-      reviews: 67,
-      compatibility: ["Teana L33 QR25de"],
-      inStock: true,
-    },
-    {
-      id: 8,
-      sku: "NB200H4",
-      name: "OSRAM Headlight Bulbs H4",
-      category: "Headlight Bulbs",
-      image:
-        "https://images.unsplash.com/photo-1502920917128-1aa500764cbd?w=400&h=300&fit=crop",
-      price: 7500,
-      rating: 4.8,
-      reviews: 45,
-      compatibility: ["H4 Models"],
-      inStock: false,
-    },
-    {
-      id: 9,
-      sku: "701527",
-      name: "TOPRAN Air Filter",
-      category: "Air Filter",
-      image:
-        "https://images.unsplash.com/photo-1619642751034-765dfdf7c58e?w=400&h=300&fit=crop",
-      price: 2950,
-      rating: 4.5,
-      reviews: 123,
-      compatibility: ["DIG-S Models"],
-      inStock: true,
-    },
-    {
-      id: 10,
-      sku: "S 56 510",
-      name: "Brembo Brake Shoes Rear",
-      category: "Brake Shoes",
-      image:
-        "https://images.unsplash.com/photo-1621839673705-6617adf9e890?w=400&h=300&fit=crop",
-      price: 5950,
-      rating: 4.8,
-      reviews: 89,
-      compatibility: ["Note E12", "March K13", "Latio N17"],
-      inStock: true,
-    },
-    {
-      id: 11,
-      sku: "9029",
-      name: "NGK Spark Plug DILKAR6A11",
-      category: "Spark Plugs",
-      image:
-        "https://images.unsplash.com/photo-1580273916550-e323be2ae537?w=400&h=300&fit=crop",
-      price: 4250,
-      rating: 4.7,
-      reviews: 156,
-      compatibility: [
-        "Note E12 Puredrive",
-        "March K13",
-        "Latio N17",
-        "X-Trail T30",
-        "Dualis J10",
-      ],
-      inStock: true,
-    },
-    {
-      id: 12,
-      sku: "100207A0002",
-      name: "RIDEX Glasses Holder",
-      category: "Accessories",
-      image:
-        "https://images.unsplash.com/photo-1544829099-b9a0c5303bea?w=400&h=300&fit=crop",
-      price: 850,
-      rating: 4.3,
-      reviews: 234,
-      compatibility: ["All Models"],
-      inStock: true,
-    },
-  ];
+  // Get featured products and fallback to first 12 products if none are featured
+  const featuredProducts =
+    getFeaturedProducts().length > 0
+      ? getFeaturedProducts().slice(0, 12)
+      : allProducts.slice(0, 12);
 
   const categories = [
     {
-      name: "Engine",
-      description: "Oil filters, air filters, spark plugs, timing belts",
-      icon: "🔧",
+      name: "Oil Filter",
+      description: "Oil filters for engine maintenance and protection",
+      icon: "🛢️",
       image:
-        "https://images.unsplash.com/photo-1487754180451-c456f719a1fc?w=300&h=200&fit=crop",
-      slug: "engine",
-      count: 1247,
+        "https://images.unsplash.com/photo-1558618047-3c8c76ca7d13?w=300&h=200&fit=crop",
+      slug: "oil-filter",
+      count: allProducts.filter((p) => p.category === "Oil Filter").length,
     },
     {
-      name: "Brakes",
-      description: "Brake pads, discs, calipers, brake fluid",
+      name: "Air Filter",
+      description: "Air filters for optimal engine performance",
+      icon: "💨",
+      image:
+        "https://images.unsplash.com/photo-1619642751034-765dfdf7c58e?w=300&h=200&fit=crop",
+      slug: "air-filter",
+      count: allProducts.filter((p) => p.category === "Air Filter").length,
+    },
+    {
+      name: "Brake Pads",
+      description: "Brake pads and brake system components",
       icon: "🛑",
       image:
         "https://images.unsplash.com/photo-1621839673705-6617adf9e890?w=300&h=200&fit=crop",
-      slug: "brakes",
-      count: 856,
+      slug: "brake-pads",
+      count: allProducts.filter((p) => p.category === "Brake Pads").length,
     },
     {
-      name: "Suspension",
-      description: "Struts, shocks, springs, bushings",
-      icon: "⚙️",
-      image:
-        "https://images.unsplash.com/photo-1486754735734-325b5831c3ad?w=300&h=200&fit=crop",
-      slug: "suspension",
-      count: 634,
-    },
-    {
-      name: "Electrical",
-      description: "Alternators, starters, sensors, lighting",
+      name: "Spark Plugs",
+      description: "Spark plugs for ignition and engine performance",
       icon: "⚡",
       image:
-        "https://images.unsplash.com/photo-1502920917128-1aa500764cbd?w=300&h=200&fit=crop",
-      slug: "electrical",
-      count: 923,
+        "https://images.unsplash.com/photo-1580273916550-e323be2ae537?w=300&h=200&fit=crop",
+      slug: "spark-plugs",
+      count: allProducts.filter((p) => p.category === "Spark Plugs").length,
     },
     {
-      name: "Body & Trim",
-      description: "Panels, bumpers, mirrors, handles",
-      icon: "🚗",
+      name: "Cabin Filter",
+      description: "Cabin filters for interior air quality",
+      icon: "🌬️",
+      image:
+        "https://images.unsplash.com/photo-1619642751034-765dfdf7c58e?w=300&h=200&fit=crop",
+      slug: "cabin-filter",
+      count: allProducts.filter((p) => p.category === "Cabin Filter").length,
+    },
+    {
+      name: "Accessories",
+      description: "Various automotive accessories",
+      icon: "🔧",
       image:
         "https://images.unsplash.com/photo-1544829099-b9a0c5303bea?w=300&h=200&fit=crop",
-      slug: "body-trim",
-      count: 1456,
-    },
-    {
-      name: "Interior",
-      description: "Seats, dashboard, air conditioning",
-      icon: "🪑",
-      image:
-        "https://images.unsplash.com/photo-1449824913935-59a10b8d2000?w=300&h=200&fit=crop",
-      slug: "interior",
-      count: 445,
+      slug: "accessories",
+      count: allProducts.filter((p) => p.category === "Accessories").length,
     },
   ];
 
@@ -500,7 +327,7 @@ export default function HomePage() {
                     {product.name}
                   </h3>
                   <div className="text-xs text-gray-500 mb-2">
-                    SKU: {product.sku}
+                    SKU: {product.sku} | Brand: {product.brand}
                   </div>
 
                   <div className="flex items-center gap-2 mb-3">
@@ -528,11 +355,24 @@ export default function HomePage() {
                     {product.compatibility.length > 2 &&
                       ` +${product.compatibility.length - 2} more`}
                   </div>
+
+                  <div className="flex items-center justify-between mb-4">
+                    <div
+                      className={`text-xs px-2 py-1 rounded ${product.inStock ? "bg-green-100 text-green-800" : "bg-red-100 text-red-800"}`}
+                    >
+                      {product.inStock
+                        ? product.stockLevel <= 10
+                          ? `Low Stock (${product.stockLevel})`
+                          : "In Stock"
+                        : "Out of Stock"}
+                    </div>
+                  </div>
                 </div>
 
                 <button
                   onClick={() => addToWhatsAppCart(product)}
-                  className="bg-green-500 text-white px-4 py-2 rounded-md hover:bg-green-600 transition-colors w-full text-sm flex items-center justify-center gap-2"
+                  disabled={!product.inStock}
+                  className="bg-green-500 text-white px-4 py-2 rounded-md hover:bg-green-600 disabled:bg-gray-400 disabled:cursor-not-allowed transition-colors w-full text-sm flex items-center justify-center gap-2"
                 >
                   <svg
                     className="w-4 h-4"
@@ -541,7 +381,7 @@ export default function HomePage() {
                   >
                     <path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981z" />
                   </svg>
-                  Add to WhatsApp Cart
+                  {product.inStock ? "Add to WhatsApp Cart" : "Out of Stock"}
                 </button>
               </div>
             ))}
