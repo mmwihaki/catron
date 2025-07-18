@@ -818,8 +818,7 @@ export const allProducts: Product[] = [
     subcategory: "Engine",
     carModel: "Note E12 DIG-S",
     brand: "NGK",
-    image:
-      "https://images.unsplash.com/photo-1580273916550-e323be2ae537?w=400&h=300&fit=crop",
+    image: "https://www.sparkplugs.co.uk/ngk-spark-plug-dilkar7e11hs-97439",
     price: 4600,
     rating: 4.9,
     reviews: 203,
@@ -842,8 +841,7 @@ export const allProducts: Product[] = [
     subcategory: "Engine",
     carModel: "Note E12 Puredrive/March K13/Latio N17/X-Trail T30/Dualis J10",
     brand: "NGK",
-    image:
-      "https://images.unsplash.com/photo-1580273916550-e323be2ae537?w=400&h=300&fit=crop",
+    image: "https://www.sparkplugs.co.uk/ngk-spark-plug-dilkar6a11-9029-5",
     price: 4250,
     rating: 4.8,
     reviews: 156,
@@ -871,8 +869,7 @@ export const allProducts: Product[] = [
     subcategory: "Engine",
     carModel: "Note E11 1.5L/Tiida C11/SC11/AD/Wingroad/Teana L33",
     brand: "NGK",
-    image:
-      "https://images.unsplash.com/photo-1580273916550-e323be2ae537?w=400&h=300&fit=crop",
+    image: "https://www.sparkplugs.co.uk/ngk-spark-plug-dilzkar6a11-91691-5",
     price: 3450,
     rating: 4.7,
     reviews: 134,
@@ -902,8 +899,7 @@ export const allProducts: Product[] = [
     subcategory: "Engine",
     carModel: "E-power",
     brand: "NGK",
-    image:
-      "https://images.unsplash.com/photo-1580273916550-e323be2ae537?w=400&h=300&fit=crop",
+    image: "https://www.sparkplugs.co.uk/ngk-spark-plug-lzkar6ap-11-6643-5",
     price: 4250,
     rating: 4.8,
     reviews: 67,
@@ -925,8 +921,7 @@ export const allProducts: Product[] = [
     subcategory: "Engine",
     carModel: "Mazda Skyactive",
     brand: "NGK",
-    image:
-      "https://images.unsplash.com/photo-1580273916550-e323be2ae537?w=400&h=300&fit=crop",
+    image: "https://www.sparkplugs.co.uk/ngk-spark-plug-ilkar7l11-94124-5",
     price: 4650,
     rating: 4.7,
     reviews: 89,
@@ -947,8 +942,7 @@ export const allProducts: Product[] = [
     subcategory: "Engine",
     carModel: "Mercedes Benz",
     brand: "NGK",
-    image:
-      "https://images.unsplash.com/photo-1580273916550-e323be2ae537?w=400&h=300&fit=crop",
+    image: "https://www.sparkplugs.co.uk/ngk-spark-plug-silzkfr8e7s-90654-5",
     price: 2750,
     rating: 4.6,
     reviews: 45,
@@ -969,8 +963,7 @@ export const allProducts: Product[] = [
     subcategory: "Engine",
     carModel: "Xtrail T30/B15/WingRoad Y11",
     brand: "NGK",
-    image:
-      "https://images.unsplash.com/photo-1580273916550-e323be2ae537?w=400&h=300&fit=crop",
+    image: "https://www.sparkplugs.co.uk/ngk-spark-plug-lfr5a-11-6376-5",
     price: 1850,
     rating: 4.4,
     reviews: 78,
@@ -994,8 +987,7 @@ export const allProducts: Product[] = [
     subcategory: "Engine",
     carModel: "X-trail T32",
     brand: "NGK",
-    image:
-      "https://images.unsplash.com/photo-1580273916550-e323be2ae537?w=400&h=300&fit=crop",
+    image: "https://www.sparkplugs.co.uk/ngk-spark-plug-90565-5",
     price: 4500,
     rating: 4.8,
     reviews: 56,
