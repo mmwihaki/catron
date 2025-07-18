@@ -659,11 +659,11 @@ export default function HomePage() {
           </div>
           <div className="hidden md:block">
             <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-              {(newArrivals.length > 0 ? newArrivals : allProducts).map(
-                (product) => (
+              {(newArrivals.length > 0 ? newArrivals : allProducts)
+                .slice(0, 4)
+                .map((product) => (
                   <ProductCard key={product.id} product={product} />
-                ),
-              )}
+                ))}
             </div>
           </div>
         </div>
