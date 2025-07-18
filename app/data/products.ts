@@ -1037,7 +1037,7 @@ export const allProducts: Product[] = [
     carModel: "H4 models",
     brand: "OSRAM",
     image:
-      "https://images.unsplash.com/photo-1552664688-cf412ec27db2?w=400&h=300&fit=crop",
+      "https://www.osram.com/ecat/NIGHT%20BREAKER%20200-Halogen%20headlight%20lamps-Car%20lighting-Automotive/com/en/GPS01_3495633/ZMP_4062357/",
     price: 7500,
     rating: 4.8,
     reviews: 145,
@@ -1063,7 +1063,7 @@ export const allProducts: Product[] = [
     carModel: "H4 models",
     brand: "OSRAM",
     image:
-      "https://images.unsplash.com/photo-1552664688-cf412ec27db2?w=400&h=300&fit=crop",
+      "https://www.osram.com/ecat/COOL%20BLUE%20INTENSE%20(NEXT%20GEN)-Halogen%20headlight%20lamps-Car%20lighting-Automotive/com/en/GPS01_3570150/",
     price: 5500,
     rating: 4.6,
     reviews: 89,
@@ -1089,7 +1089,7 @@ export const allProducts: Product[] = [
     carModel: "H4 models",
     brand: "OSRAM",
     image:
-      "https://images.unsplash.com/photo-1552664688-cf412ec27db2?w=400&h=300&fit=crop",
+      "https://www.osram.com/ecat/NIGHT%20BREAKER%20220-Halogen%20headlight%20lamps-Car%20lighting-Automotive/com/en/GPS01_4099561/",
     price: 8500,
     rating: 4.9,
     reviews: 67,
@@ -1117,7 +1117,7 @@ export const allProducts: Product[] = [
     carModel: "H4 models",
     brand: "OSRAM",
     image:
-      "https://images.unsplash.com/photo-1552664688-cf412ec27db2?w=400&h=300&fit=crop",
+      "https://dammedia.osram.info/media/resource/900/osram-dam-20577281/COOL%20BLUE%20INTENSE%20W5W%202825CBN-02B.jpg",
     price: 2500,
     rating: 4.4,
     reviews: 123,
@@ -1217,8 +1217,7 @@ export const allProducts: Product[] = [
     subcategory: "Interior",
     carModel: "All",
     brand: "RIDEX",
-    image:
-      "https://images.unsplash.com/photo-1544829099-b9a0c5303bea?w=400&h=300&fit=crop",
+    image: "https://en.ridex.eu/product/17152690",
     price: 850,
     rating: 4.3,
     reviews: 234,
@@ -1244,8 +1243,7 @@ export const allProducts: Product[] = [
     subcategory: "Interior",
     carModel: "All",
     brand: "RIDEX",
-    image:
-      "https://images.unsplash.com/photo-1544829099-b9a0c5303bea?w=400&h=300&fit=crop",
+    image: "https://en.ridex.eu/product/17371417",
     price: 850,
     rating: 4.2,
     reviews: 156,
