@@ -15,237 +15,88 @@ import Link from "next/link";
 
 export default function Footer() {
   return (
-    <footer className="bg-surface-dark text-white">
-      {/* Quality Guaranteed Section */}
-      <div className="border-b border-divider border-opacity-30">
-        <div className="max-w-7xl mx-auto px-4 py-12">
-          <div className="grid grid-cols-1 md:grid-cols-4 gap-8 text-center">
-            <div className="flex flex-col items-center">
-              <div className="w-16 h-16 bg-accent-primary rounded-full flex items-center justify-center mb-4">
-                <CheckCircle className="w-8 h-8 text-white" />
-              </div>
-              <h3 className="text-xl font-bold mb-2 text-white">
-                Quality Guaranteed
-              </h3>
-              <p className="text-secondary">
-                100% genuine OEM and certified aftermarket parts
-              </p>
-            </div>
-
-            <div className="flex flex-col items-center">
-              <div className="w-16 h-16 bg-accent-primary rounded-full flex items-center justify-center mb-4">
-                <Zap className="w-8 h-8 text-white" />
-              </div>
-              <h3 className="text-xl font-bold mb-2 text-white">
-                Fast Delivery
-              </h3>
-              <p className="text-secondary">
-                Same day dispatch, Kenya-wide delivery
-              </p>
-            </div>
-
-            <div className="flex flex-col items-center">
-              <div className="w-16 h-16 bg-accent-primary rounded-full flex items-center justify-center mb-4">
-                <Settings className="w-8 h-8 text-white" />
-              </div>
-              <h3 className="text-xl font-bold mb-2 text-white">
-                Expert Support
-              </h3>
-              <p className="text-secondary">
-                Professional fitment guidance and technical support
-              </p>
-            </div>
-
-            <div className="flex flex-col items-center">
-              <div className="w-16 h-16 bg-accent-primary rounded-full flex items-center justify-center mb-4">
-                <MessageCircle className="w-8 h-8 text-white" />
-              </div>
-              <h3 className="text-xl font-bold mb-2 text-white">
-                WhatsApp Ordering
-              </h3>
-              <p className="text-secondary">
-                Easy ordering via WhatsApp with instant support
-              </p>
-            </div>
+    <footer className="footer">
+      <div className="container">
+        {/* Features */}
+        <div className="grid grid-4 gap-6 mb-6">
+          <div className="text-center">
+            <CheckCircle size={32} className="mx-auto mb-3 text-green" />
+            <h4 className="font-semibold mb-2 text-white">Quality Guaranteed</h4>
+            <p className="text-sm">100% genuine OEM and certified aftermarket parts</p>
+          </div>
+          <div className="text-center">
+            <Zap size={32} className="mx-auto mb-3 text-green" />
+            <h4 className="font-semibold mb-2 text-white">Fast Delivery</h4>
+            <p className="text-sm">Same day dispatch, Kenya-wide delivery</p>
+          </div>
+          <div className="text-center">
+            <Settings size={32} className="mx-auto mb-3 text-green" />
+            <h4 className="font-semibold mb-2 text-white">Expert Support</h4>
+            <p className="text-sm">Professional fitment guidance and technical support</p>
+          </div>
+          <div className="text-center">
+            <MessageCircle size={32} className="mx-auto mb-3 text-green" />
+            <h4 className="font-semibold mb-2 text-white">WhatsApp Ordering</h4>
+            <p className="text-sm">Easy ordering via WhatsApp with instant support</p>
           </div>
         </div>
-      </div>
 
-      {/* Main Footer Content */}
-      <div className="max-w-7xl mx-auto px-4 py-16">
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-8">
+        <div className="grid grid-4 gap-6">
           {/* Company Info */}
-          <div className="space-y-4">
-            <h3 className="text-xl font-bold text-accent-primary">
-              CATRON AUTO PARTS
-            </h3>
-            <p className="text-secondary">
+          <div className="footer-section">
+            <h3 className="footer-title">CATRON AUTO PARTS</h3>
+            <p className="mb-4">
               Your trusted partner for quality automotive parts and exceptional
               service across Kenya.
             </p>
-            <div className="flex space-x-4">
-              <Link
-                href="#"
-                className="text-secondary hover:text-accent-secondary transition-colors"
-              >
-                <Facebook className="h-5 w-5" />
-              </Link>
-              <Link
-                href="#"
-                className="text-secondary hover:text-accent-secondary transition-colors"
-              >
-                <Twitter className="h-5 w-5" />
-              </Link>
-              <Link
-                href="#"
-                className="text-secondary hover:text-accent-secondary transition-colors"
-              >
-                <Instagram className="h-5 w-5" />
-              </Link>
-              <Link
-                href="#"
-                className="text-secondary hover:text-accent-secondary transition-colors"
-              >
-                <Linkedin className="h-5 w-5" />
-              </Link>
-            </div>
           </div>
 
           {/* Quick Links */}
-          <div className="space-y-4">
-            <h4 className="text-lg font-semibold text-white">Quick Links</h4>
-            <ul className="space-y-2">
-              <li>
-                <Link
-                  href="/"
-                  className="text-secondary hover:text-accent-secondary transition-colors"
-                >
-                  Home
-                </Link>
-              </li>
-              <li>
-                <Link
-                  href="/shop"
-                  className="text-secondary hover:text-accent-secondary transition-colors"
-                >
-                  Shop
-                </Link>
-              </li>
-              <li>
-                <Link
-                  href="/about"
-                  className="text-secondary hover:text-accent-secondary transition-colors"
-                >
-                  About Us
-                </Link>
-              </li>
-              <li>
-                <Link
-                  href="/contact"
-                  className="text-secondary hover:text-accent-secondary transition-colors"
-                >
-                  Contact
-                </Link>
-              </li>
-              <li>
-                <Link
-                  href="/support"
-                  className="text-secondary hover:text-accent-secondary transition-colors"
-                >
-                  Support
-                </Link>
-              </li>
-            </ul>
+          <div className="footer-section">
+            <h3 className="footer-title">Quick Links</h3>
+            <div>
+              <Link href="/" className="footer-link">Home</Link>
+              <Link href="/shop" className="footer-link">Shop</Link>
+              <Link href="/about" className="footer-link">About Us</Link>
+              <Link href="/contact" className="footer-link">Contact</Link>
+              <Link href="/support" className="footer-link">Support</Link>
+            </div>
           </div>
 
-          {/* Product Categories */}
-          <div className="space-y-4">
-            <h4 className="text-lg font-semibold text-white">Categories</h4>
-            <ul className="space-y-2">
-              <li>
-                <Link
-                  href="/category/filters"
-                  className="text-secondary hover:text-accent-secondary transition-colors"
-                >
-                  Filters
-                </Link>
-              </li>
-              <li>
-                <Link
-                  href="/category/brakes"
-                  className="text-secondary hover:text-accent-secondary transition-colors"
-                >
-                  Brake Parts
-                </Link>
-              </li>
-              <li>
-                <Link
-                  href="/category/belts"
-                  className="text-secondary hover:text-accent-secondary transition-colors"
-                >
-                  Belts
-                </Link>
-              </li>
-              <li>
-                <Link
-                  href="/category/lighting"
-                  className="text-secondary hover:text-accent-secondary transition-colors"
-                >
-                  Lighting
-                </Link>
-              </li>
-              <li>
-                <Link
-                  href="/category/suspension"
-                  className="text-secondary hover:text-accent-secondary transition-colors"
-                >
-                  Suspension
-                </Link>
-              </li>
-            </ul>
+          {/* Categories */}
+          <div className="footer-section">
+            <h3 className="footer-title">Categories</h3>
+            <div>
+              <Link href="/category/filters" className="footer-link">Filters</Link>
+              <Link href="/category/brake-parts" className="footer-link">Brake Parts</Link>
+              <Link href="/category/belts" className="footer-link">Belts</Link>
+              <Link href="/category/lighting" className="footer-link">Lighting</Link>
+              <Link href="/category/suspension" className="footer-link">Suspension</Link>
+            </div>
           </div>
 
           {/* Contact Info */}
-          <div className="space-y-4">
-            <h4 className="text-lg font-semibold text-white">Contact Info</h4>
-            <div className="space-y-3">
-              <div className="flex items-center space-x-3">
-                <Phone className="h-5 w-5 text-accent-primary" />
-                <span className="text-secondary">0742578910</span>
-              </div>
-              <div className="flex items-center space-x-3">
-                <MapPin className="h-5 w-5 text-accent-primary" />
-                <span className="text-secondary">Nairobi, Kenya</span>
-              </div>
+          <div className="footer-section">
+            <h3 className="footer-title">Contact Info</h3>
+            <div className="flex gap-2 mb-2">
+              <Phone size={16} />
+              <span>0742578910</span>
+            </div>
+            <div className="flex gap-2 mb-4">
+              <MapPin size={16} />
+              <span>Nairobi, Kenya</span>
             </div>
           </div>
         </div>
 
         {/* Bottom Bar */}
-        <div className="border-t border-divider border-opacity-30 mt-12 pt-8">
-          <div className="flex flex-col md:flex-row justify-between items-center">
-            <p className="text-secondary text-sm">
-              &copy; 2024 Catron Auto Parts. All rights reserved.
-            </p>
-            <div className="flex space-x-6 mt-4 md:mt-0">
-              <Link
-                href="#"
-                className="text-secondary hover:text-accent-secondary text-sm transition-colors"
-              >
-                Privacy Policy
-              </Link>
-              <Link
-                href="#"
-                className="text-secondary hover:text-accent-secondary text-sm transition-colors"
-              >
-                Terms of Service
-              </Link>
-              <Link
-                href="#"
-                className="text-secondary hover:text-accent-secondary text-sm transition-colors"
-              >
-                Warranty
-              </Link>
+        <div className="border-t border-gray-600 pt-4 mt-6">
+          <div className="flex flex-between text-sm">
+            <p>&copy; 2024 Catron Auto Parts. All rights reserved.</p>
+            <div className="flex gap-4">
+              <Link href="/privacy" className="footer-link">Privacy Policy</Link>
+              <Link href="/terms" className="footer-link">Terms of Service</Link>
+              <Link href="/warranty" className="footer-link">Warranty</Link>
             </div>
           </div>
         </div>
