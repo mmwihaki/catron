@@ -360,6 +360,68 @@ export default function HomePage() {
               </div>
             </div>
           </section>
+
+          {/* Essentials */}
+          <section className="section">
+            <div className="container">
+              <div className="flex flex-between mb-6">
+                <div>
+                  <h2>Essentials for Your Car</h2>
+                  <p className="text-gray">Must-have maintenance parts for every Nissan owner</p>
+                </div>
+                <Link href="/shop" className="btn btn-outline">
+                  View All Essentials
+                </Link>
+              </div>
+              <div className="grid grid-4 gap-6">
+                {essentials.slice(0, 4).map((product) => (
+                  <ProductCard key={product.id} product={product} />
+                ))}
+              </div>
+            </div>
+          </section>
+
+          {/* New Arrivals */}
+          <section className="section section-light">
+            <div className="container">
+              <div className="flex flex-between mb-6">
+                <div>
+                  <h2>New Arrivals</h2>
+                  <p className="text-gray">Latest additions to our Nissan parts catalog</p>
+                </div>
+                <Link href="/shop" className="btn btn-outline">
+                  View All New Arrivals
+                </Link>
+              </div>
+              <div className="grid grid-4 gap-6">
+                {(newArrivals.length > 0 ? newArrivals : allProducts)
+                  .slice(0, 4)
+                  .map((product) => (
+                    <ProductCard key={product.id} product={product} />
+                  ))}
+              </div>
+            </div>
+          </section>
+
+          {/* Featured Products */}
+          <section className="section">
+            <div className="container">
+              <div className="flex flex-between mb-6">
+                <div>
+                  <h2>Featured Products</h2>
+                  <p className="text-gray">Hand-picked quality parts for your Nissan</p>
+                </div>
+                <Link href="/shop" className="btn btn-outline">
+                  View All Featured
+                </Link>
+              </div>
+              <div className="grid grid-4 gap-6">
+                {featuredProducts.map((product) => (
+                  <ProductCard key={product.id} product={product} />
+                ))}
+              </div>
+            </div>
+          </section>
         </>
       )}
 
