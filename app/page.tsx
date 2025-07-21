@@ -37,7 +37,14 @@ export default function HomePage() {
   const [filteredProducts, setFilteredProducts] =
     useState<Product[]>(allProducts);
   const [isSearchActive, setIsSearchActive] = useState(false);
-  const { addToCart } = useCart();
+    const [isMounted, setIsMounted] = useState(false);
+  const cart = useCart();
+
+  useEffect(() => {
+    setIsMounted(true);
+  }, []);
+
+  const { addToCart } = cart;
   const searchParams = useSearchParams();
   const router = useRouter();
 
