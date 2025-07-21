@@ -26,17 +26,25 @@ export function CartProvider({ children }: { children: React.ReactNode }) {
   const [items, setItems] = useState<CartItem[]>([]);
   const [isCartOpen, setIsCartOpen] = useState(false);
 
-  // Load cart from localStorage on mount
+    // Load cart from localStorage on mount
   useEffect(() => {
-    const savedCart = localStorage.getItem("brator-cart");
-    if (savedCart) {
-      setItems(JSON.parse(savedCart));
+    if (typeof window !== "undefined") {
+      const savedCart = localStorage.getItem("brator-cart");
+      if (savedCart) {
+        try {
+          setItems(JSON.parse(savedCart));
+        } catch (error) {
+          console.error("Failed to parse cart from localStorage:", error);
+        }
+      }
     }
   }, []);
 
   // Save cart to localStorage whenever items change
   useEffect(() => {
-    localStorage.setItem("brator-cart", JSON.stringify(items));
+    if (typeof window !== "undefined") {
+      localStorage.setItem("brator-cart", JSON.stringify(items));
+    }
   }, [items]);
 
   const addToCart = (product: Product) => {
