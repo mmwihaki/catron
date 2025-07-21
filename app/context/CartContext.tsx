@@ -26,17 +26,25 @@ export function CartProvider({ children }: { children: React.ReactNode }) {
   const [items, setItems] = useState<CartItem[]>([]);
   const [isCartOpen, setIsCartOpen] = useState(false);
 
-  // Load cart from localStorage on mount
+    // Load cart from localStorage on mount
   useEffect(() => {
-    const savedCart = localStorage.getItem("brator-cart");
-    if (savedCart) {
-      setItems(JSON.parse(savedCart));
+    if (typeof window !== "undefined") {
+      const savedCart = localStorage.getItem("brator-cart");
+      if (savedCart) {
+        try {
+          setItems(JSON.parse(savedCart));
+        } catch (error) {
+          console.error("Failed to parse cart from localStorage:", error);
+        }
+      }
     }
   }, []);
 
   // Save cart to localStorage whenever items change
   useEffect(() => {
-    localStorage.setItem("brator-cart", JSON.stringify(items));
+    if (typeof window !== "undefined") {
+      localStorage.setItem("brator-cart", JSON.stringify(items));
+    }
   }, [items]);
 
   const addToCart = (product: Product) => {
@@ -110,6 +118,20 @@ export function CartProvider({ children }: { children: React.ReactNode }) {
 export function useCart() {
   const context = useContext(CartContext);
   if (context === undefined) {
+    // During SSR or if context is not available, return a fallback
+    if (typeof window === "undefined") {
+      return {
+        items: [],
+        addToCart: () => {},
+        removeFromCart: () => {},
+        updateQuantity: () => {},
+        clearCart: () => {},
+        getTotalItems: () => 0,
+        getTotalPrice: () => 0,
+        isCartOpen: false,
+        setIsCartOpen: () => {},
+      };
+    }
     throw new Error("useCart must be used within a CartProvider");
   }
   return context;

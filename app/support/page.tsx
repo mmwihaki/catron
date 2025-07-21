@@ -19,6 +19,9 @@ import {
   Clock,
   Truck,
   CheckCircle,
+  Download,
+  PlayCircle,
+  FileText,
 } from "lucide-react";
 
 export default function SupportPage() {
@@ -49,7 +52,7 @@ export default function SupportPage() {
       id: "returns",
       title: "Returns Policy",
       icon: RotateCcw,
-      description: "Return and exchange process",
+      description: "Return and exchange information",
     },
     {
       id: "faq",
@@ -59,64 +62,22 @@ export default function SupportPage() {
     },
   ];
 
-  const fitmentSteps = [
-    {
-      step: 1,
-      title: "Identify Your Vehicle",
-      description:
-        "Locate your VIN number (usually on the dashboard or door frame) or know your vehicle's year, model, and engine specifications.",
-    },
-    {
-      step: 2,
-      title: "Search Our Catalog",
-      description:
-        "Use our advanced search filters or enter your part number to find compatible components.",
-    },
-    {
-      step: 3,
-      title: "Verify Compatibility",
-      description:
-        "Double-check the part specifications against your vehicle's requirements before ordering.",
-    },
-    {
-      step: 4,
-      title: "Get Expert Advice",
-      description:
-        "Contact our technical team if you need assistance with part selection or compatibility verification.",
-    },
-  ];
-
   const installationGuides = [
     {
       title: "Oil Filter Replacement",
       difficulty: "Easy",
       time: "15 minutes",
-      tools: ["Oil filter wrench", "Drain pan", "Funnel"],
+      tools: ["Oil drain pan", "Socket wrench", "New oil filter"],
       steps: [
-        "⚠️ WARNING: Professional installation recommended",
-        "Safely raise and secure vehicle",
-        "Locate and drain engine oil",
+        "Warm up engine to operating temperature",
+        "Raise vehicle and locate oil drain plug",
+        "Drain old oil completely",
         "Remove old oil filter using filter wrench",
         "Apply thin layer of oil to new filter gasket",
         "Install new filter hand-tight plus 3/4 turn",
-        "Refill with appropriate oil quantity",
-        "Check for leaks and proper oil pressure",
-      ],
-    },
-    {
-      title: "Brake Pad Replacement",
-      difficulty: "Advanced",
-      time: "45 minutes",
-      tools: ["Jack", "Lug wrench", "C-clamp", "Brake cleaner"],
-      steps: [
-        "⚠️ WARNING: Professional installation recommended",
-        "Safely lift vehicle and remove wheel",
-        "Remove brake caliper bolts",
-        "Carefully remove old brake pads",
-        "Compress caliper piston with C-clamp",
-        "Install new brake pads",
-        "Reinstall caliper and tighten bolts to spec",
-        "Test brake pedal feel before driving",
+        "Replace drain plug with new washer",
+        "Refill with recommended oil grade",
+        "⚠️ Always dispose of old oil and filter properly",
       ],
     },
     {
@@ -125,47 +86,71 @@ export default function SupportPage() {
       time: "10 minutes",
       tools: ["None required"],
       steps: [
-        "Locate air filter housing",
-        "Release housing clips or screws",
-        "Remove old filter element",
-        "Clean housing interior if needed",
-        "Install new filter (note airflow direction)",
-        "Secure housing clips or screws",
-        "Start engine and check for proper operation",
+        "Locate air filter housing near engine",
+        "Unclip or unscrew housing cover",
+        "Remove old air filter",
+        "Clean housing interior with damp cloth",
+        "Install new filter ensuring proper fitment",
+        "Replace housing cover securely",
+        "⚠️ Check filter orientation matches original",
+      ],
+    },
+    {
+      title: "Brake Pad Replacement",
+      difficulty: "Advanced",
+      time: "45 minutes",
+      tools: [
+        "Jack and stands",
+        "Socket set",
+        "C-clamp",
+        "Brake cleaner",
+        "New brake pads",
+      ],
+      steps: [
+        "⚠️ This is an advanced procedure - seek professional help if unsure",
+        "Raise vehicle and remove wheels",
+        "Remove brake caliper mounting bolts",
+        "Carefully remove caliper without damaging brake line",
+        "Remove old brake pads",
+        "Compress caliper piston using C-clamp",
+        "Install new brake pads",
+        "Reinstall caliper and tighten to specification",
+        "Pump brake pedal several times before driving",
+        "⚠️ Test brakes at low speed before normal driving",
       ],
     },
   ];
 
   const faqs = [
     {
-      question: "How do I know if a part is compatible with my Nissan?",
+      question: "How do I know if a part fits my Nissan?",
       answer:
-        "Use our VIN lookup tool or vehicle selector on each product page. You can also contact our technical support team with your vehicle details for expert assistance.",
+        "Use our compatibility checker on each product page, or contact our fitment specialists. We verify compatibility by year, model, engine size, and specific trim level to ensure perfect fitment.",
     },
     {
       question: "What's the difference between OEM and aftermarket parts?",
       answer:
-        "OEM parts are made by the original manufacturer to exact specifications. Aftermarket parts are made by third parties but meet or exceed OEM standards. Both come with warranties.",
+        "OEM (Original Equipment Manufacturer) parts are made by the same companies that supplied parts for your vehicle's original assembly. Aftermarket parts are made by third-party companies but meet or exceed OEM specifications. Both come with warranties.",
     },
     {
-      question: "How long does shipping take?",
+      question: "How long is shipping to Nairobi?",
       answer:
-        "Most orders ship within 24 hours. Delivery times vary: Nairobi (1-2 days), major cities (2-3 days), remote areas (3-5 days). Express shipping available.",
+        "Orders placed before 2 PM are processed same day. Nairobi delivery typically takes 1-2 business days. Nationwide shipping takes 2-5 business days depending on location. Express options available.",
     },
     {
       question: "Do you offer installation services?",
       answer:
-        "We don't provide installation services directly, but we can recommend certified Nissan mechanics in your area. All parts come with detailed installation guides.",
+        "While we don't provide direct installation, we partner with certified mechanics across Kenya. We can recommend trusted professionals in your area and provide detailed installation guides for DIY enthusiasts.",
     },
     {
       question: "What if I receive the wrong part?",
       answer:
-        "We'll arrange immediate replacement at no cost to you. Contact us within 24 hours of delivery with your order number and photos of the incorrect part.",
+        "If you receive an incorrect part due to our error, we'll arrange immediate exchange at no cost. Contact us within 24 hours of delivery with your order number and photos of the received item.",
     },
     {
-      question: "Can I return a part if it doesn't fit?",
+      question: "Can I return opened parts?",
       answer:
-        "Yes, unused parts in original packaging can be returned within 30 days. Custom orders and electrical components may have different return policies.",
+        "Unopened parts can be returned within 30 days. Opened parts are accepted for return only if they're defective or if we shipped the wrong item. Electronic components and filters cannot be returned once opened unless defective.",
     },
   ];
 
@@ -174,56 +159,58 @@ export default function SupportPage() {
       case "fitment":
         return (
           <div className="space-y-8">
-            <div className="bg-blue-50 border border-blue-200 rounded-lg p-6">
-              <h3 className="text-xl font-bold mb-4 text-blue-900">
-                🎯 Finding the Right Part
+            <div className="card-premium">
+              <h3 className="text-2xl font-bold mb-6 text-gray-900">
+                Part Fitment Guide
               </h3>
-              <p className="text-blue-800 mb-4">
-                Getting the correct part is crucial for your Nissan's
-                performance and safety. Follow these steps to ensure perfect
-                fitment.
-              </p>
-            </div>
-
-            <div className="grid md:grid-cols-2 gap-8">
-              {fitmentSteps.map((step, index) => (
-                <div
-                  key={index}
-                  className="bg-white rounded-lg shadow-md border border-gray-200 p-6"
-                >
-                  <div className="flex items-center gap-4 mb-4">
-                    <div className="w-12 h-12 bg-red-600 text-white rounded-full flex items-center justify-center font-bold text-lg">
-                      {step.step}
-                    </div>
-                    <h3 className="text-xl font-bold text-gray-900">
-                      {step.title}
-                    </h3>
-                  </div>
-                  <p className="text-gray-600 leading-relaxed">
-                    {step.description}
-                  </p>
+              <div className="grid md:grid-cols-2 gap-8">
+                <div>
+                  <h4 className="font-semibold mb-4 text-gray-900">
+                    Before You Order:
+                  </h4>
+                  <ul className="space-y-3">
+                    <li className="flex items-start gap-3">
+                      <CheckCircle className="w-5 h-5 text-green-600 mt-1 flex-shrink-0" />
+                      <span>Verify your vehicle's year, model, and engine size</span>
+                    </li>
+                    <li className="flex items-start gap-3">
+                      <CheckCircle className="w-5 h-5 text-green-600 mt-1 flex-shrink-0" />
+                      <span>Check your current part number if replacing</span>
+                    </li>
+                    <li className="flex items-start gap-3">
+                      <CheckCircle className="w-5 h-5 text-green-600 mt-1 flex-shrink-0" />
+                      <span>Note any specific trim level or options</span>
+                    </li>
+                    <li className="flex items-start gap-3">
+                      <CheckCircle className="w-5 h-5 text-green-600 mt-1 flex-shrink-0" />
+                      <span>Contact us if you're unsure about compatibility</span>
+                    </li>
+                  </ul>
                 </div>
-              ))}
-            </div>
-
-            <div className="bg-green-50 border border-green-200 rounded-lg p-6">
-              <h3 className="text-xl font-bold mb-4 text-green-900">
-                💡 Pro Tips
-              </h3>
-              <ul className="space-y-2 text-green-800">
-                <li>
-                  • Always verify part numbers against your vehicle's service
-                  manual
-                </li>
-                <li>
-                  • Keep a record of your vehicle's specifications for future
-                  reference
-                </li>
-                <li>• When in doubt, contact our technical support team</li>
-                <li>
-                  • Consider upgrading to premium parts for enhanced performance
-                </li>
-              </ul>
+                <div>
+                  <h4 className="font-semibold mb-4 text-gray-900">
+                    How to Find Part Numbers:
+                  </h4>
+                  <ul className="space-y-3">
+                    <li className="flex items-start gap-3">
+                      <FileText className="w-5 h-5 text-blue-600 mt-1 flex-shrink-0" />
+                      <span>Check your vehicle's service manual</span>
+                    </li>
+                    <li className="flex items-start gap-3">
+                      <FileText className="w-5 h-5 text-blue-600 mt-1 flex-shrink-0" />
+                      <span>Look for numbers stamped on existing parts</span>
+                    </li>
+                    <li className="flex items-start gap-3">
+                      <FileText className="w-5 h-5 text-blue-600 mt-1 flex-shrink-0" />
+                      <span>Use our online compatibility tool</span>
+                    </li>
+                    <li className="flex items-start gap-3">
+                      <FileText className="w-5 h-5 text-blue-600 mt-1 flex-shrink-0" />
+                      <span>Contact our technical support team</span>
+                    </li>
+                  </ul>
+                </div>
+              </div>
             </div>
           </div>
         );
@@ -231,88 +218,63 @@ export default function SupportPage() {
       case "installation":
         return (
           <div className="space-y-8">
-            <div className="bg-yellow-50 border border-yellow-200 rounded-lg p-6">
-              <h3 className="text-xl font-bold mb-4 text-yellow-900">
-                ⚠️ Safety First
-              </h3>
-              <p className="text-yellow-800">
-                Professional installation is recommended for most automotive
-                parts. These guides are for educational purposes. Always consult
-                a qualified mechanic.
-              </p>
-            </div>
-
-            <div className="grid gap-8">
-              {installationGuides.map((guide, index) => (
-                <div
-                  key={index}
-                  className="bg-white rounded-lg shadow-lg border border-gray-200 p-6"
-                >
-                  <div className="flex flex-wrap items-center justify-between mb-6">
-                    <h3 className="text-2xl font-bold text-gray-900">
-                      {guide.title}
-                    </h3>
-                    <div className="flex gap-4 text-sm">
-                      <span
-                        className={`px-3 py-1 rounded-full ${
-                          guide.difficulty === "Easy"
-                            ? "bg-green-100 text-green-800"
-                            : guide.difficulty === "Advanced"
-                              ? "bg-red-100 text-red-800"
-                              : "bg-yellow-100 text-yellow-800"
-                        }`}
-                      >
+            {installationGuides.map((guide, index) => (
+              <div key={index} className="card-premium">
+                <div className="flex items-center gap-4 mb-6">
+                  <div className="w-12 h-12 bg-red-100 text-red-600 rounded-full flex items-center justify-center">
+                    <Settings className="w-6 h-6" />
+                  </div>
+                  <div>
+                    <h3 className="text-xl font-bold text-gray-900">{guide.title}</h3>
+                    <div className="flex items-center gap-4 text-sm text-gray-600 mt-1">
+                      <span className={`px-3 py-1 rounded-full text-xs font-medium ${
+                        guide.difficulty === "Easy" ? "bg-green-100 text-green-800" :
+                        guide.difficulty === "Medium" ? "bg-yellow-100 text-yellow-800" :
+                        "bg-red-100 text-red-800"
+                      }`}>
                         {guide.difficulty}
                       </span>
-                      <span className="flex items-center gap-1 text-gray-600">
+                      <div className="flex items-center gap-1">
                         <Clock className="w-4 h-4" />
                         {guide.time}
-                      </span>
+                      </div>
                     </div>
-                  </div>
-
-                  <div className="mb-6">
-                    <h4 className="font-semibold mb-2 text-gray-900">
-                      Required Tools:
-                    </h4>
-                    <div className="flex flex-wrap gap-2">
-                      {guide.tools.map((tool, idx) => (
-                        <span
-                          key={idx}
-                          className="bg-gray-100 text-gray-700 px-3 py-1 rounded-full text-sm"
-                        >
-                          {tool}
-                        </span>
-                      ))}
-                    </div>
-                  </div>
-
-                  <div>
-                    <h4 className="font-semibold mb-4 text-gray-900">
-                      Installation Steps:
-                    </h4>
-                    <ol className="space-y-3">
-                      {guide.steps.map((step, idx) => (
-                        <li key={idx} className="flex items-start gap-3">
-                          <span className="flex-shrink-0 w-6 h-6 bg-red-600 text-white rounded-full text-sm flex items-center justify-center font-medium">
-                            {idx + 1}
-                          </span>
-                          <span
-                            className={
-                              step.startsWith("⚠️")
-                                ? "text-red-600 font-medium"
-                                : "text-gray-700"
-                            }
-                          >
-                            {step}
-                          </span>
-                        </li>
-                      ))}
-                    </ol>
                   </div>
                 </div>
-              ))}
-            </div>
+
+                <div className="mb-6">
+                  <h4 className="font-semibold mb-3 text-gray-900">Required Tools:</h4>
+                  <div className="flex flex-wrap gap-2">
+                    {guide.tools.map((tool, idx) => (
+                      <span
+                        key={idx}
+                        className="bg-gray-100 text-gray-700 px-3 py-1 rounded-full text-sm font-medium"
+                      >
+                        {tool}
+                      </span>
+                    ))}
+                  </div>
+                </div>
+
+                <div>
+                  <h4 className="font-semibold mb-4 text-gray-900">Installation Steps:</h4>
+                  <ol className="space-y-3">
+                    {guide.steps.map((step, idx) => (
+                      <li key={idx} className="flex items-start gap-3">
+                        <span className="flex-shrink-0 w-6 h-6 bg-red-600 text-white rounded-full text-sm flex items-center justify-center font-medium">
+                          {idx + 1}
+                        </span>
+                        <span
+                          className={step.startsWith("⚠️") ? "text-orange-700 font-medium" : "text-gray-700"}
+                        >
+                          {step}
+                        </span>
+                      </li>
+                    ))}
+                  </ol>
+                </div>
+              </div>
+            ))}
           </div>
         );
 
@@ -320,98 +282,94 @@ export default function SupportPage() {
         return (
           <div className="space-y-8">
             <div className="grid md:grid-cols-2 gap-8">
-              <div className="bg-white rounded-lg shadow-lg border border-gray-200 p-8">
+              <div className="card-premium">
                 <h3 className="text-2xl font-bold mb-6 text-gray-900 flex items-center gap-3">
                   <Shield className="w-8 h-8 text-green-600" />
                   OEM Parts Warranty
                 </h3>
                 <div className="space-y-4">
                   <div className="flex items-start gap-3">
-                    <CheckCircle className="w-5 h-5 text-green-600 mt-1" />
+                    <CheckCircle className="w-5 h-5 text-green-600 mt-1 flex-shrink-0" />
                     <div>
-                      <p className="font-semibold text-gray-900">
-                        12 months / 20,000 km
-                      </p>
-                      <p className="text-gray-600 text-sm">
-                        Manufacturer warranty coverage
-                      </p>
+                      <p className="font-semibold text-gray-900">12 months / 20,000 km</p>
+                      <p className="text-gray-600 text-sm">Manufacturer warranty coverage</p>
                     </div>
                   </div>
                   <div className="flex items-start gap-3">
-                    <CheckCircle className="w-5 h-5 text-green-600 mt-1" />
+                    <CheckCircle className="w-5 h-5 text-green-600 mt-1 flex-shrink-0" />
                     <div>
-                      <p className="font-semibold text-gray-900">
-                        Defects & Materials
-                      </p>
-                      <p className="text-gray-600 text-sm">
-                        Coverage for manufacturing defects
-                      </p>
+                      <p className="font-semibold text-gray-900">Defects & Materials</p>
+                      <p className="text-gray-600 text-sm">Coverage for manufacturing defects</p>
                     </div>
                   </div>
                   <div className="flex items-start gap-3">
-                    <CheckCircle className="w-5 h-5 text-green-600 mt-1" />
+                    <CheckCircle className="w-5 h-5 text-green-600 mt-1 flex-shrink-0" />
                     <div>
-                      <p className="font-semibold text-gray-900">
-                        Nationwide Support
-                      </p>
-                      <p className="text-gray-600 text-sm">
-                        Valid at any authorized service center
-                      </p>
+                      <p className="font-semibold text-gray-900">Nationwide Support</p>
+                      <p className="text-gray-600 text-sm">Valid at any authorized service center</p>
                     </div>
                   </div>
                 </div>
               </div>
 
-              <div className="bg-white rounded-lg shadow-lg border border-gray-200 p-8">
+              <div className="card-premium">
                 <h3 className="text-2xl font-bold mb-6 text-gray-900 flex items-center gap-3">
                   <Settings className="w-8 h-8 text-blue-600" />
                   Aftermarket Parts Warranty
                 </h3>
                 <div className="space-y-4">
                   <div className="flex items-start gap-3">
-                    <CheckCircle className="w-5 h-5 text-blue-600 mt-1" />
+                    <CheckCircle className="w-5 h-5 text-blue-600 mt-1 flex-shrink-0" />
                     <div>
                       <p className="font-semibold text-gray-900">6-24 months</p>
-                      <p className="text-gray-600 text-sm">
-                        Varies by manufacturer and part type
-                      </p>
+                      <p className="text-gray-600 text-sm">Varies by manufacturer and part type</p>
                     </div>
                   </div>
                   <div className="flex items-start gap-3">
-                    <CheckCircle className="w-5 h-5 text-blue-600 mt-1" />
+                    <CheckCircle className="w-5 h-5 text-blue-600 mt-1 flex-shrink-0" />
                     <div>
-                      <p className="font-semibold text-gray-900">
-                        Quality Guarantee
-                      </p>
-                      <p className="text-gray-600 text-sm">
-                        Meet or exceed OEM specifications
-                      </p>
+                      <p className="font-semibold text-gray-900">Quality Guarantee</p>
+                      <p className="text-gray-600 text-sm">Meet or exceed OEM specifications</p>
                     </div>
                   </div>
                   <div className="flex items-start gap-3">
-                    <CheckCircle className="w-5 h-5 text-blue-600 mt-1" />
+                    <CheckCircle className="w-5 h-5 text-blue-600 mt-1 flex-shrink-0" />
                     <div>
                       <p className="font-semibold text-gray-900">Easy Claims</p>
-                      <p className="text-gray-600 text-sm">
-                        Simple warranty claim process
-                      </p>
+                      <p className="text-gray-600 text-sm">Simple warranty claim process</p>
                     </div>
                   </div>
                 </div>
               </div>
             </div>
 
-            <div className="bg-gray-50 rounded-lg p-6">
-              <h4 className="text-lg font-bold mb-4 text-gray-900">
-                Warranty Exclusions
-              </h4>
-              <ul className="grid md:grid-cols-2 gap-2 text-gray-700 text-sm">
-                <li>• Normal wear and tear</li>
-                <li>• Damage from accidents or misuse</li>
-                <li>• Improper installation</li>
-                <li>• Environmental damage</li>
-                <li>• Racing or competition use</li>
-                <li>• Parts over warranty period</li>
+            <div className="card bg-gray-50">
+              <h4 className="text-lg font-bold mb-4 text-gray-900">Warranty Exclusions</h4>
+              <ul className="grid md:grid-cols-2 gap-3 text-gray-700 text-sm">
+                <li className="flex items-center gap-2">
+                  <span className="w-2 h-2 bg-gray-400 rounded-full"></span>
+                  Normal wear and tear
+                </li>
+                <li className="flex items-center gap-2">
+                  <span className="w-2 h-2 bg-gray-400 rounded-full"></span>
+                  Improper installation
+                </li>
+                <li className="flex items-center gap-2">
+                  <span className="w-2 h-2 bg-gray-400 rounded-full"></span>
+                  Accident or collision damage
+                </li>
+                <li className="flex items-center gap-2">
+                  <span className="w-2 h-2 bg-gray-400 rounded-full"></span>
+                  Environmental damage
+                </li>
+                <li className="flex items-center gap-2">
+                  <span className="w-2 h-2 bg-gray-400 rounded-full"></span>
+                  Modifications or alterations
+                </li>
+                <li className="flex items-center gap-2">
+                  <span className="w-2 h-2 bg-gray-400 rounded-full"></span>
+                  Commercial or racing use
+                </li>
               </ul>
             </div>
           </div>
@@ -420,10 +378,8 @@ export default function SupportPage() {
       case "returns":
         return (
           <div className="space-y-8">
-            <div className="bg-white rounded-lg shadow-lg border border-gray-200 p-8">
-              <h3 className="text-2xl font-bold mb-6 text-gray-900">
-                Return Policy
-              </h3>
+            <div className="card-premium">
+              <h3 className="text-2xl font-bold mb-6 text-gray-900">Return Policy</h3>
 
               <div className="grid md:grid-cols-3 gap-6 mb-8">
                 <div className="text-center">
@@ -431,18 +387,14 @@ export default function SupportPage() {
                     <Clock className="w-8 h-8" />
                   </div>
                   <h4 className="font-bold text-gray-900 mb-2">30 Days</h4>
-                  <p className="text-gray-600 text-sm">
-                    Return window for most items
-                  </p>
+                  <p className="text-gray-600 text-sm">Return window for most items</p>
                 </div>
                 <div className="text-center">
                   <div className="w-16 h-16 bg-blue-100 text-blue-600 rounded-full flex items-center justify-center mx-auto mb-4">
                     <Truck className="w-8 h-8" />
                   </div>
                   <h4 className="font-bold text-gray-900 mb-2">Free Returns</h4>
-                  <p className="text-gray-600 text-sm">
-                    On orders over KES 5,000
-                  </p>
+                  <p className="text-gray-600 text-sm">On orders over KES 5,000</p>
                 </div>
                 <div className="text-center">
                   <div className="w-16 h-16 bg-purple-100 text-purple-600 rounded-full flex items-center justify-center mx-auto mb-4">
@@ -455,65 +407,45 @@ export default function SupportPage() {
 
               <div className="space-y-6">
                 <div>
-                  <h4 className="text-lg font-bold mb-3 text-gray-900">
-                    Return Requirements
-                  </h4>
-                  <ul className="space-y-2 text-gray-700">
-                    <li className="flex items-start gap-2">
-                      <CheckCircle className="w-5 h-5 text-green-600 mt-0.5" />
+                  <h4 className="text-lg font-bold mb-3 text-gray-900">Return Requirements</h4>
+                  <ul className="space-y-3 text-gray-700">
+                    <li className="flex items-start gap-3">
+                      <CheckCircle className="w-5 h-5 text-green-600 mt-0.5 flex-shrink-0" />
                       Items must be unused and in original packaging
                     </li>
-                    <li className="flex items-start gap-2">
-                      <CheckCircle className="w-5 h-5 text-green-600 mt-0.5" />
+                    <li className="flex items-start gap-3">
+                      <CheckCircle className="w-5 h-5 text-green-600 mt-0.5 flex-shrink-0" />
                       Include original receipt or order confirmation
                     </li>
-                    <li className="flex items-start gap-2">
-                      <CheckCircle className="w-5 h-5 text-green-600 mt-0.5" />
+                    <li className="flex items-start gap-3">
+                      <CheckCircle className="w-5 h-5 text-green-600 mt-0.5 flex-shrink-0" />
                       Return within 30 days of purchase
                     </li>
-                    <li className="flex items-start gap-2">
-                      <CheckCircle className="w-5 h-5 text-green-600 mt-0.5" />
+                    <li className="flex items-start gap-3">
+                      <CheckCircle className="w-5 h-5 text-green-600 mt-0.5 flex-shrink-0" />
                       Contact us before returning special orders
                     </li>
                   </ul>
                 </div>
 
                 <div>
-                  <h4 className="text-lg font-bold mb-3 text-gray-900">
-                    How to Return
-                  </h4>
+                  <h4 className="text-lg font-bold mb-3 text-gray-900">How to Return</h4>
                   <ol className="space-y-3">
                     <li className="flex gap-3">
-                      <span className="flex-shrink-0 w-6 h-6 bg-red-600 text-white rounded-full text-sm flex items-center justify-center font-medium">
-                        1
-                      </span>
-                      <span className="text-gray-700">
-                        Contact our support team to initiate return
-                      </span>
+                      <span className="flex-shrink-0 w-6 h-6 bg-red-600 text-white rounded-full text-sm flex items-center justify-center font-medium">1</span>
+                      <span className="text-gray-700">Contact our support team to initiate return</span>
                     </li>
                     <li className="flex gap-3">
-                      <span className="flex-shrink-0 w-6 h-6 bg-red-600 text-white rounded-full text-sm flex items-center justify-center font-medium">
-                        2
-                      </span>
-                      <span className="text-gray-700">
-                        Receive return authorization and shipping label
-                      </span>
+                      <span className="flex-shrink-0 w-6 h-6 bg-red-600 text-white rounded-full text-sm flex items-center justify-center font-medium">2</span>
+                      <span className="text-gray-700">Receive return authorization and shipping label</span>
                     </li>
                     <li className="flex gap-3">
-                      <span className="flex-shrink-0 w-6 h-6 bg-red-600 text-white rounded-full text-sm flex items-center justify-center font-medium">
-                        3
-                      </span>
-                      <span className="text-gray-700">
-                        Package item securely and attach return label
-                      </span>
+                      <span className="flex-shrink-0 w-6 h-6 bg-red-600 text-white rounded-full text-sm flex items-center justify-center font-medium">3</span>
+                      <span className="text-gray-700">Package item securely and attach return label</span>
                     </li>
                     <li className="flex gap-3">
-                      <span className="flex-shrink-0 w-6 h-6 bg-red-600 text-white rounded-full text-sm flex items-center justify-center font-medium">
-                        4
-                      </span>
-                      <span className="text-gray-700">
-                        Drop off at specified courier location
-                      </span>
+                      <span className="flex-shrink-0 w-6 h-6 bg-red-600 text-white rounded-full text-sm flex items-center justify-center font-medium">4</span>
+                      <span className="text-gray-700">Drop off at specified courier location</span>
                     </li>
                   </ol>
                 </div>
@@ -532,7 +464,7 @@ export default function SupportPage() {
                   <input
                     type="text"
                     placeholder="Search frequently asked questions..."
-                    className="w-full pl-10 pr-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-red-500"
+                    className="input search-input"
                     value={searchQuery}
                     onChange={(e) => setSearchQuery(e.target.value)}
                   />
@@ -542,40 +474,32 @@ export default function SupportPage() {
 
             <div className="space-y-4">
               {faqs
-                .filter(
-                  (faq) =>
-                    faq.question
-                      .toLowerCase()
-                      .includes(searchQuery.toLowerCase()) ||
-                    faq.answer
-                      .toLowerCase()
-                      .includes(searchQuery.toLowerCase()),
+                .filter((faq) =>
+                  faq.question.toLowerCase().includes(searchQuery.toLowerCase()) ||
+                  faq.answer.toLowerCase().includes(searchQuery.toLowerCase())
                 )
                 .map((faq, index) => (
                   <div
                     key={index}
-                    className="bg-white rounded-lg shadow-md border border-gray-200"
+                    className="card border border-gray-200"
                   >
                     <button
-                      onClick={() =>
-                        setExpandedFAQ(expandedFAQ === index ? null : index)
-                      }
-                      className="w-full px-6 py-4 text-left flex items-center justify-between hover:bg-gray-50"
+                      onClick={() => {
+                        setExpandedFAQ(expandedFAQ === index ? null : index);
+                      }}
+                      className="w-full px-6 py-4 text-left flex items-center justify-between hover:bg-gray-50 transition-colors"
+                      aria-expanded={expandedFAQ === index}
                     >
-                      <h3 className="font-semibold text-gray-900">
-                        {faq.question}
-                      </h3>
+                      <h3 className="font-semibold text-gray-900">{faq.question}</h3>
                       {expandedFAQ === index ? (
-                        <ChevronUp className="w-5 h-5 text-gray-500" />
+                        <ChevronUp className="w-5 h-5 text-gray-500 flex-shrink-0" />
                       ) : (
-                        <ChevronDown className="w-5 h-5 text-gray-500" />
+                        <ChevronDown className="w-5 h-5 text-gray-500 flex-shrink-0" />
                       )}
                     </button>
                     {expandedFAQ === index && (
                       <div className="px-6 pb-4">
-                        <p className="text-gray-700 leading-relaxed">
-                          {faq.answer}
-                        </p>
+                        <p className="text-gray-700 leading-relaxed">{faq.answer}</p>
                       </div>
                     )}
                   </div>
@@ -590,25 +514,23 @@ export default function SupportPage() {
   };
 
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div>
+      <a href="#main-content" className="skip-link">Skip to main content</a>
       <Header searchQuery="" setSearchQuery={() => {}} currentPage="support" />
 
       {/* Hero Section */}
-      <section className="bg-gradient-to-r from-red-600 to-red-800 text-white py-16">
-        <div className="max-w-7xl mx-auto px-4 text-center">
-          <h1 className="text-4xl lg:text-5xl font-bold mb-6">
-            Support & Resources
-          </h1>
-          <p className="text-xl mb-8 text-red-100 max-w-2xl mx-auto">
-            Get expert help with part selection, installation guides, and
-            technical support for your Nissan
+      <section className="section-hero">
+        <div className="container text-center">
+          <h1 className="mb-4">Support & Resources</h1>
+          <p className="text-xl mb-8 opacity-90 max-w-2xl mx-auto">
+            Get expert help with part selection, installation guides, and technical support for your Nissan
           </p>
         </div>
       </section>
 
       {/* Support Categories */}
-      <section className="py-16">
-        <div className="max-w-7xl mx-auto px-4">
+      <main id="main-content" className="section">
+        <div className="container">
           <div className="grid md:grid-cols-5 gap-4 mb-12">
             {supportCategories.map((category) => {
               const IconComponent = category.icon;
@@ -618,15 +540,14 @@ export default function SupportPage() {
                   onClick={() => setActiveTab(category.id)}
                   className={`p-6 rounded-xl text-center transition-all duration-300 ${
                     activeTab === category.id
-                      ? "bg-red-600 text-white shadow-lg"
-                      : "bg-white text-gray-700 hover:shadow-md border border-gray-200"
+                      ? "bg-red-600 text-white shadow-lg transform -translate-y-1"
+                      : "bg-white text-gray-700 hover:bg-gray-50 border border-gray-200"
                   }`}
+                  aria-pressed={activeTab === category.id}
                 >
                   <IconComponent className="w-8 h-8 mx-auto mb-3" />
                   <h3 className="font-bold mb-2">{category.title}</h3>
-                  <p
-                    className={`text-sm ${activeTab === category.id ? "text-red-100" : "text-gray-600"}`}
-                  >
+                  <p className={`text-sm ${activeTab === category.id ? "text-red-100" : "text-gray-600"}`}>
                     {category.description}
                   </p>
                 </button>
@@ -635,43 +556,45 @@ export default function SupportPage() {
           </div>
 
           {/* Tab Content */}
-          <div className="bg-white rounded-xl shadow-lg border border-gray-200 p-8">
+          <div className="card-premium">
             {renderTabContent()}
           </div>
         </div>
-      </section>
+      </main>
 
       {/* Contact Support */}
-      <section className="py-16 bg-gray-100">
-        <div className="max-w-7xl mx-auto px-4">
+      <section className="section-premium">
+        <div className="container">
           <div className="text-center mb-12">
-            <h2 className="text-3xl font-bold mb-4 text-gray-900">
-              Need More Help?
-            </h2>
-            <p className="text-xl text-gray-600">
-              Our expert team is here to assist you with any questions
+            <h2 className="mb-4">Need More Help?</h2>
+            <p className="text-xl text-gray-600 max-w-2xl mx-auto">
+              Our expert team is here to assist you with any questions or technical support you need
             </p>
           </div>
 
           <div className="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
             <a
               href="https://wa.me/+254742578910"
-              className="bg-green-600 hover:bg-green-700 text-white rounded-xl p-6 text-center transition-colors"
+              className="card-premium text-center group hover:shadow-xl transition-all duration-300"
             >
-              <MessageCircle className="w-12 h-12 mx-auto mb-4" />
-              <h3 className="font-bold text-lg mb-2">WhatsApp Support</h3>
-              <p className="text-green-100 text-sm">
-                Instant help via WhatsApp
-              </p>
+              <div className="w-16 h-16 bg-green-100 text-green-600 rounded-full flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform">
+                <MessageCircle className="w-8 h-8" />
+              </div>
+              <h3 className="font-bold text-lg mb-2 text-gray-900">WhatsApp Support</h3>
+              <p className="text-gray-600 mb-4">Instant help via WhatsApp</p>
+              <span className="btn btn-primary">Chat Now</span>
             </a>
 
             <a
               href="tel:+254742578910"
-              className="bg-red-600 hover:bg-red-700 text-white rounded-xl p-6 text-center transition-colors"
+              className="card-premium text-center group hover:shadow-xl transition-all duration-300"
             >
-              <Phone className="w-12 h-12 mx-auto mb-4" />
-              <h3 className="font-bold text-lg mb-2">Phone Support</h3>
-              <p className="text-red-100 text-sm">Mon-Sat: 8AM-6PM</p>
+              <div className="w-16 h-16 bg-red-100 text-red-600 rounded-full flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform">
+                <Phone className="w-8 h-8" />
+              </div>
+              <h3 className="font-bold text-lg mb-2 text-gray-900">Phone Support</h3>
+              <p className="text-gray-600 mb-4">Mon-Sat: 8AM-6PM</p>
+              <span className="btn btn-primary">Call Now</span>
             </a>
           </div>
         </div>

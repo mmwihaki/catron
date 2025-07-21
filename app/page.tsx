@@ -1,5 +1,7 @@
 "use client";
 
+export const dynamic = 'force-dynamic';
+
 import React, { useState, useEffect } from "react";
 import Link from "next/link";
 import { useSearchParams, useRouter } from "next/navigation";
@@ -34,10 +36,16 @@ export default function HomePage() {
   const [vehicleYear, setVehicleYear] = useState("");
   const [vehicleModel, setVehicleModel] = useState("");
   const [vehicleEngine, setVehicleEngine] = useState("");
-  const [filteredProducts, setFilteredProducts] =
-    useState<Product[]>(allProducts);
+  const [filteredProducts, setFilteredProducts] = useState<Product[]>(allProducts);
   const [isSearchActive, setIsSearchActive] = useState(false);
-  const { addToCart } = useCart();
+  const [isMounted, setIsMounted] = useState(false);
+  const cart = useCart();
+
+  useEffect(() => {
+    setIsMounted(true);
+  }, []);
+
+  const { addToCart } = cart;
   const searchParams = useSearchParams();
   const router = useRouter();
 
@@ -63,7 +71,6 @@ export default function HomePage() {
       setFilteredProducts(results);
       setIsSearchActive(true);
     } else if (category) {
-      // Decode URL-encoded category name
       const categoryName = decodeURIComponent(category);
       const results = getProductsByCategory(categoryName);
       setFilteredProducts(results);
@@ -74,18 +81,15 @@ export default function HomePage() {
     }
   }, [searchParams]);
 
-  // Get different product sets
   const featuredProducts =
     getFeaturedProducts().length > 0
       ? getFeaturedProducts().slice(0, 4)
       : allProducts.slice(0, 4);
 
-  // Best sellers - products with highest rating and reviews
   const bestSellers = [...allProducts]
     .sort((a, b) => b.rating * b.reviews - a.rating * a.reviews)
     .slice(0, 4);
 
-  // Essentials - common maintenance items
   const essentials = allProducts
     .filter(
       (product) =>
@@ -96,7 +100,6 @@ export default function HomePage() {
     )
     .slice(0, 4);
 
-  // New arrivals - products marked as new or recently added
   const newArrivals = allProducts
     .filter((product) => product.isNew)
     .slice(0, 4);
@@ -151,85 +154,61 @@ export default function HomePage() {
   };
 
   const ProductCard = ({ product }: { product: Product }) => (
-    <Link
-      href={`/product/${product.sku}`}
-      className="card-white hover:shadow-xl transition-shadow group relative h-full flex flex-col block"
-    >
-      {product.originalPrice && (
-        <div className="absolute top-2 left-2 md:top-4 md:left-4 z-10">
-          <div className="badge-primary text-xs">
-            {Math.round(
-              ((product.originalPrice - product.price) /
-                product.originalPrice) *
-                100,
-            )}
-            % OFF
-          </div>
-        </div>
-      )}
-
-      {product.isNew && (
-        <div className="absolute top-2 right-2 md:top-4 md:right-4 z-10">
-          <div className="badge-secondary text-xs">NEW</div>
-        </div>
-      )}
-
-      <div className="aspect-square mb-3 md:mb-4 overflow-hidden rounded-lg bg-primary">
-        <OptimizedImage
-          src={product.image}
-          alt={product.name}
-          width={400}
-          height={400}
-          className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
-          sizes="(max-width: 768px) 80vw, (max-width: 1200px) 33vw, 25vw"
-        />
-      </div>
-
-      <div className="flex-1 flex flex-col">
-        <div className="text-xs text-accent-primary font-medium mb-1">
-          {product.category}
-        </div>
-        <h3 className="font-semibold text-primary mb-2 line-clamp-2 text-sm md:text-base">
-          {product.name}
-        </h3>
-        <div className="text-xs text-primary mb-2">SKU: {product.sku}</div>
-
-        <div className="flex items-center gap-2 mb-2">
-          <div className="text-yellow-400 text-sm">
-            {renderStars(product.rating)}
-          </div>
-          <span className="text-xs text-primary">({product.reviews})</span>
-        </div>
-
-        <div className="text-xs text-primary mb-3 hidden md:block">
-          Compatible: {product.compatibility.slice(0, 2).join(", ")}
-          {product.compatibility.length > 2 &&
-            ` +${product.compatibility.length - 2} more`}
-        </div>
-
-        <div className="flex items-center justify-between mb-3">
-          <div
-            className={`text-xs px-2 py-1 rounded ${product.inStock ? "bg-green-100 text-green-800" : "bg-red-100 text-red-800"}`}
-          >
-            {product.inStock
-              ? product.stockLevel <= 10
-                ? `Low Stock`
-                : "In Stock"
-              : "Out of Stock"}
-          </div>
-        </div>
-
-        <div className="flex items-center gap-2 mb-4 mt-auto">
+    <div className="card card-product">
+      <Link href={`/product/${product.sku}`}>
+        <div style={{position: 'relative'}}>
+          <OptimizedImage
+            src={product.image}
+            alt={product.name}
+            width={300}
+            height={200}
+            style={{width: '100%', height: '200px', objectFit: 'cover', borderRadius: '0.375rem'}}
+          />
           {product.originalPrice && (
-            <span className="text-sm text-primary line-through">
-              KES {product.originalPrice.toLocaleString()}
+            <span className="badge" style={{position: 'absolute', top: '0.5rem', left: '0.5rem', backgroundColor: '#dc2626', color: 'white', padding: '0.25rem 0.5rem', borderRadius: '0.25rem', fontSize: '0.75rem', fontWeight: '600'}}>
+              {Math.round(
+                ((product.originalPrice - product.price) /
+                  product.originalPrice) *
+                  100,
+              )}
+              % OFF
             </span>
           )}
-          <span className="text-lg font-bold text-accent-primary">
-            KES {product.price.toLocaleString()}
-          </span>
+          {product.isNew && (
+            <span className="badge" style={{position: 'absolute', top: '0.5rem', right: '0.5rem', backgroundColor: '#059669', color: 'white', padding: '0.25rem 0.5rem', borderRadius: '0.25rem', fontSize: '0.75rem', fontWeight: '600'}}>
+              NEW
+            </span>
+          )}
         </div>
-
+        <div className="p-4">
+          <div className="text-sm text-gray mb-1">{product.category}</div>
+          <h3 className="font-semibold mb-2" style={{lineHeight: '1.4'}}>{product.name}</h3>
+          <div className="text-sm text-gray mb-2">SKU: {product.sku}</div>
+          <div className="mb-2">
+            <span style={{color: '#fbbf24'}}>{renderStars(product.rating)}</span>
+            <span className="text-sm text-gray ml-1">({product.reviews})</span>
+          </div>
+          <div className="text-sm text-gray mb-3">
+            Compatible: {product.compatibility.slice(0, 2).join(", ")}
+            {product.compatibility.length > 2 &&
+              ` +${product.compatibility.length - 2} more`}
+          </div>
+          <div className="mb-3">
+            <span className={`stock-badge ${product.inStock ? 'stock-in' : 'stock-out'}`}>
+              {product.inStock
+                ? `${product.stockLevel} in stock`
+                : "Out of stock"}
+            </span>
+          </div>
+          <div className="flex flex-between mb-3">
+            {product.originalPrice && (
+              <span className="price-original">KES {product.originalPrice.toLocaleString()}</span>
+            )}
+            <span className="price">KES {product.price.toLocaleString()}</span>
+          </div>
+        </div>
+      </Link>
+      <div className="p-4" style={{paddingTop: 0}}>
         <button
           onClick={(e) => {
             e.preventDefault();
@@ -237,114 +216,88 @@ export default function HomePage() {
             addToCart(product);
           }}
           disabled={!product.inStock}
-          className="btn-primary w-full text-sm disabled:bg-gray-400 disabled:cursor-not-allowed disabled:opacity-50"
+          className={`btn ${product.inStock ? 'btn-primary' : 'btn-secondary'}`}
+          style={{width: '100%'}}
         >
           {product.inStock ? "Add to Cart" : "Out of Stock"}
         </button>
       </div>
-    </Link>
+    </div>
   );
 
   return (
-    <div className="min-h-screen bg-primary">
-      <Header
-        searchQuery={searchQuery}
-        setSearchQuery={setSearchQuery}
-        currentPage="home"
-      />
+    <div>
+      <Header searchQuery={searchQuery} setSearchQuery={setSearchQuery} />
+      <CartSidebar />
 
-      {/* Hero Section */}
-      <section className="relative bg-gradient-to-r from-surface-dark to-surface-dark text-white overflow-hidden">
-        <div className="absolute inset-0 bg-black bg-opacity-40"></div>
-        <div
-          className="absolute inset-0 bg-cover bg-center"
-          style={{
-            backgroundImage:
-              "url('https://images.unsplash.com/photo-1486754735734-325b5831c3ad?w=1920&h=1080&fit=crop&auto=format&q=95')",
-          }}
-        ></div>
-
-        <div className="relative z-10 max-w-7xl mx-auto px-4 py-12 md:py-20">
-          {/* Mobile Layout - Centered */}
-          <div className="block lg:hidden">
-            <div className="text-center mb-8 md:mb-12">
-              <h1 className="text-4xl md:text-5xl font-bold mb-4 md:mb-6 leading-tight">
-                Premium <span className="text-accent-primary">Nissan</span>{" "}
-                Parts
-              </h1>
-              <p className="text-lg md:text-xl mb-6 md:mb-8 text-white max-w-3xl mx-auto">
+      {!isSearchActive && (
+        <>
+          {/* Hero Section */}
+          <section className="section-hero">
+            <div className="container text-center">
+              <h1 className="mb-4">Premium Nissan Parts</h1>
+              <p className="text-xl mb-6">
                 Kenya's #1 marketplace for genuine OEM and performance parts.
                 Quality guaranteed, expert fitment support, fast delivery
                 nationwide.
               </p>
-              <div className="flex flex-col sm:flex-row gap-4 justify-center mb-8 md:mb-12">
-                <Link href="/shop" className="btn-primary text-lg px-8 py-4">
+              <div className="flex gap-4 justify-center">
+                <Link href="/shop" className="btn btn-primary btn-large">
                   Shop Nissan Parts
                 </Link>
-                <Link
-                  href="/support"
-                  className="btn-outline text-lg px-8 py-4 border-white text-white hover:bg-white hover:text-primary"
-                >
+                <Link href="/support" className="btn btn-outline btn-large">
                   Fitment Guide
                 </Link>
               </div>
             </div>
+          </section>
 
-            <div className="max-w-2xl mx-auto">
-              <div className="card-white">
-                <h3 className="text-xl md:text-2xl font-bold mb-6 text-center text-primary">
-                  Find Parts for Your Nissan
-                </h3>
-
-                <form className="space-y-4">
-                  <div className="grid grid-cols-2 gap-4">
-                    <div>
-                      <label className="block text-sm font-medium text-primary mb-1">
-                        Year
-                      </label>
-                      <select
-                        className="form-input w-full"
-                        value={vehicleYear}
-                        onChange={(e) => setVehicleYear(e.target.value)}
-                      >
-                        <option value="">Select Year</option>
-                        {Array.from({ length: 15 }, (_, i) => 2024 - i).map(
-                          (year) => (
-                            <option key={year} value={year}>
-                              {year}
-                            </option>
-                          ),
-                        )}
-                      </select>
-                    </div>
-
-                    <div>
-                      <label className="block text-sm font-medium text-primary mb-1">
-                        Model
-                      </label>
-                      <select
-                        className="form-input w-full"
-                        value={vehicleModel}
-                        onChange={(e) => setVehicleModel(e.target.value)}
-                      >
-                        <option value="">Select Model</option>
-                        <option value="Note">Note</option>
-                        <option value="March">March</option>
-                        <option value="X-Trail">X-Trail</option>
-                        <option value="Qashqai">Qashqai</option>
-                        <option value="Serena">Serena</option>
-                      </select>
-                    </div>
-                  </div>
-
+          {/* Vehicle Search */}
+          <section className="section section-light">
+            <div className="container">
+              <div className="text-center mb-6">
+                <h2>Find Parts for Your Nissan</h2>
+              </div>
+              <div className="card" style={{maxWidth: '800px', margin: '0 auto'}}>
+                <div className="grid grid-3 gap-4 mb-4">
                   <div>
-                    <label className="block text-sm font-medium text-primary mb-1">
-                      Engine
-                    </label>
+                    <label className="block mb-2 font-medium">Year</label>
                     <select
-                      className="form-input w-full"
+                      value={vehicleYear}
+                      onChange={(e) => setVehicleYear(e.target.value)}
+                      className="input"
+                    >
+                      <option value="">Select Year</option>
+                      {Array.from({ length: 15 }, (_, i) => 2024 - i).map(
+                        (year) => (
+                          <option key={year} value={year}>
+                            {year}
+                          </option>
+                        ),
+                      )}
+                    </select>
+                  </div>
+                  <div>
+                    <label className="block mb-2 font-medium">Model</label>
+                    <select
+                      value={vehicleModel}
+                      onChange={(e) => setVehicleModel(e.target.value)}
+                      className="input"
+                    >
+                      <option value="">Select Model</option>
+                      <option value="Note">Note</option>
+                      <option value="March">March</option>
+                      <option value="X-Trail">X-Trail</option>
+                      <option value="Qashqai">Qashqai</option>
+                      <option value="Serena">Serena</option>
+                    </select>
+                  </div>
+                  <div>
+                    <label className="block mb-2 font-medium">Engine</label>
+                    <select
                       value={vehicleEngine}
                       onChange={(e) => setVehicleEngine(e.target.value)}
+                      className="input"
                     >
                       <option value="">Select Engine</option>
                       <option value="1.0L">1.0L</option>
@@ -354,159 +307,150 @@ export default function HomePage() {
                       <option value="2.5L">2.5L</option>
                     </select>
                   </div>
-
-                  <button
-                    type="button"
-                    onClick={handleVehicleSearch}
-                    className="btn-primary w-full py-3"
-                  >
-                    Find Compatible Parts
-                  </button>
-                </form>
+                </div>
+                <button onClick={handleVehicleSearch} className="btn btn-primary" style={{width: '100%'}}>
+                  Find Compatible Parts
+                </button>
               </div>
             </div>
-          </div>
+          </section>
 
-          {/* Desktop Layout - Left/Right Split */}
-          <div className="hidden lg:block">
-            <div className="grid lg:grid-cols-2 gap-12 items-center">
-              {/* Left Content */}
-              <div className="text-left">
-                <h1 className="text-5xl lg:text-6xl font-bold mb-6 leading-tight">
-                  Premium <span className="text-accent-primary">Nissan</span>{" "}
-                  Parts
-                </h1>
-                <p className="text-xl mb-8 text-white">
-                  Kenya's #1 marketplace for genuine OEM and performance parts.
-                  Quality guaranteed, expert fitment support, fast delivery
-                  nationwide.
-                </p>
-                <div className="flex gap-4">
-                  <Link href="/shop" className="btn-primary text-lg px-8 py-4">
-                    Shop Nissan Parts
-                  </Link>
-                  <Link
-                    href="/support"
-                    className="btn-outline text-lg px-8 py-4 border-white text-white hover:bg-white hover:text-primary"
-                  >
-                    Fitment Guide
-                  </Link>
-                </div>
+          {/* Categories */}
+          <section className="section">
+            <div className="container">
+              <div className="text-center mb-6">
+                <h2>Shop by Category</h2>
+                <p className="text-lg text-gray">Find the exact parts you need for your Nissan</p>
               </div>
-
-              {/* Right Form */}
-              <div>
-                <div className="card-white">
-                  <h3 className="text-xl md:text-2xl font-bold mb-6 text-center text-primary">
-                    Find Parts for Your Nissan
-                  </h3>
-
-                  <form className="space-y-4">
-                    <div className="grid grid-cols-2 gap-4">
-                      <div>
-                        <label className="block text-sm font-medium text-primary mb-1">
-                          Year
-                        </label>
-                        <select
-                          className="form-input w-full"
-                          value={vehicleYear}
-                          onChange={(e) => setVehicleYear(e.target.value)}
-                        >
-                          <option value="">Select Year</option>
-                          {Array.from({ length: 15 }, (_, i) => 2024 - i).map(
-                            (year) => (
-                              <option key={year} value={year}>
-                                {year}
-                              </option>
-                            ),
-                          )}
-                        </select>
+              <div className="grid grid-3 gap-6">
+                {categories.map((category) => {
+                  const IconComponent = category.icon;
+                  return (
+                    <Link key={category.slug} href={`/category/${category.slug}`} className="card text-center">
+                      <IconComponent size={48} className="mx-auto mb-4 text-red" />
+                      <h3 className="font-semibold mb-2">{category.name}</h3>
+                      <p className="text-gray mb-2">{category.description}</p>
+                      <p className="text-sm font-medium">{category.count} parts available</p>
+                      <div className="mt-4">
+                        <span className="btn btn-outline btn-small">Shop Now</span>
                       </div>
-
-                      <div>
-                        <label className="block text-sm font-medium text-primary mb-1">
-                          Model
-                        </label>
-                        <select
-                          className="form-input w-full"
-                          value={vehicleModel}
-                          onChange={(e) => setVehicleModel(e.target.value)}
-                        >
-                          <option value="">Select Model</option>
-                          <option value="Note">Note</option>
-                          <option value="March">March</option>
-                          <option value="X-Trail">X-Trail</option>
-                          <option value="Qashqai">Qashqai</option>
-                          <option value="Serena">Serena</option>
-                        </select>
-                      </div>
-                    </div>
-
-                    <div>
-                      <label className="block text-sm font-medium text-primary mb-1">
-                        Engine
-                      </label>
-                      <select
-                        className="form-input w-full"
-                        value={vehicleEngine}
-                        onChange={(e) => setVehicleEngine(e.target.value)}
-                      >
-                        <option value="">Select Engine</option>
-                        <option value="1.0L">1.0L</option>
-                        <option value="1.2L DIG-S">1.2L DIG-S</option>
-                        <option value="1.5L">1.5L</option>
-                        <option value="2.0L">2.0L</option>
-                        <option value="2.5L">2.5L</option>
-                      </select>
-                    </div>
-
-                    <button
-                      type="button"
-                      onClick={handleVehicleSearch}
-                      className="btn-primary w-full py-3"
-                    >
-                      Find Compatible Parts
-                    </button>
-                  </form>
-                </div>
+                    </Link>
+                  );
+                })}
               </div>
             </div>
-          </div>
-        </div>
-      </section>
+          </section>
 
-      {/* Search Results */}
+          {/* Best Sellers */}
+          <section className="section section-light">
+            <div className="container">
+              <div className="flex flex-between mb-6">
+                <div>
+                  <h2>Best Sellers</h2>
+                  <p className="text-gray">Most popular Nissan parts this month</p>
+                </div>
+                <Link href="/shop" className="btn btn-outline">
+                  View All Best Sellers
+                </Link>
+              </div>
+              <div className="grid grid-4 gap-6">
+                {bestSellers.slice(0, 4).map((product) => (
+                  <ProductCard key={product.id} product={product} />
+                ))}
+              </div>
+            </div>
+          </section>
+
+          {/* Essentials */}
+          <section className="section">
+            <div className="container">
+              <div className="flex flex-between mb-6">
+                <div>
+                  <h2>Essentials for Your Car</h2>
+                  <p className="text-gray">Must-have maintenance parts for every Nissan owner</p>
+                </div>
+                <Link href="/shop" className="btn btn-outline">
+                  View All Essentials
+                </Link>
+              </div>
+              <div className="grid grid-4 gap-6">
+                {essentials.slice(0, 4).map((product) => (
+                  <ProductCard key={product.id} product={product} />
+                ))}
+              </div>
+            </div>
+          </section>
+
+          {/* New Arrivals */}
+          <section className="section section-light">
+            <div className="container">
+              <div className="flex flex-between mb-6">
+                <div>
+                  <h2>New Arrivals</h2>
+                  <p className="text-gray">Latest additions to our Nissan parts catalog</p>
+                </div>
+                <Link href="/shop" className="btn btn-outline">
+                  View All New Arrivals
+                </Link>
+              </div>
+              <div className="grid grid-4 gap-6">
+                {(newArrivals.length > 0 ? newArrivals : allProducts)
+                  .slice(0, 4)
+                  .map((product) => (
+                    <ProductCard key={product.id} product={product} />
+                  ))}
+              </div>
+            </div>
+          </section>
+
+          {/* Featured Products */}
+          <section className="section">
+            <div className="container">
+              <div className="flex flex-between mb-6">
+                <div>
+                  <h2>Featured Products</h2>
+                  <p className="text-gray">Hand-picked quality parts for your Nissan</p>
+                </div>
+                <Link href="/shop" className="btn btn-outline">
+                  View All Featured
+                </Link>
+              </div>
+              <div className="grid grid-4 gap-6">
+                {featuredProducts.map((product) => (
+                  <ProductCard key={product.id} product={product} />
+                ))}
+              </div>
+            </div>
+          </section>
+        </>
+      )}
+
       {isSearchActive && (
-        <section className="py-16 bg-white">
-          <div className="max-w-7xl mx-auto px-4">
-            <div className="text-center mb-12">
-              <h2 className="text-4xl font-bold mb-4 text-primary">
-                Search Results
-              </h2>
-              <p className="text-xl text-primary">
+        <section className="section">
+          <div className="container">
+            <div className="mb-6">
+              <h2>Search Results</h2>
+              <p className="text-gray">
                 Found {filteredProducts.length} products{" "}
                 {searchParams.get("search") &&
                   `for "${searchParams.get("search")}"`}
               </p>
             </div>
-
             {filteredProducts.length > 0 ? (
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+              <div className="grid grid-4 gap-6">
                 {filteredProducts.slice(0, 12).map((product) => (
                   <ProductCard key={product.id} product={product} />
                 ))}
               </div>
             ) : (
-              <div className="text-center py-8">
-                <p className="text-lg text-primary">
-                  No products found. Try adjusting your search terms.
-                </p>
+              <div className="text-center p-6">
+                <p className="text-gray">No products found. Try adjusting your search terms.</p>
               </div>
             )}
 
             {filteredProducts.length > 12 && (
-              <div className="text-center mt-8">
-                <Link href="/shop" className="btn-primary">
+              <div className="text-center mt-6">
+                <Link href="/shop" className="btn btn-primary">
                   View All {filteredProducts.length} Results
                 </Link>
               </div>
@@ -515,162 +459,7 @@ export default function HomePage() {
         </section>
       )}
 
-      {/* Shop by Category */}
-      <section className="py-16 bg-white">
-        <div className="max-w-7xl mx-auto px-4">
-          <div className="text-center mb-12">
-            <h2 className="text-4xl font-bold mb-4 text-primary">
-              Shop by Category
-            </h2>
-            <p className="text-xl text-secondary">
-              Find the exact parts you need for your Nissan
-            </p>
-          </div>
-
-          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-3 gap-4 md:gap-6">
-            {categories.map((category) => {
-              const IconComponent = category.icon;
-              return (
-                <Link
-                  key={category.slug}
-                  href={`/category/${category.slug}`}
-                  className="group card-white hover:shadow-xl transition-all duration-300 text-center"
-                >
-                  <div className="w-16 h-16 bg-primary bg-opacity-10 text-accent-primary rounded-full flex items-center justify-center mx-auto mb-4 group-hover:bg-accent-primary group-hover:text-white transition-colors">
-                    <IconComponent className="w-8 h-8" />
-                  </div>
-                  <h3 className="text-xl font-bold text-primary group-hover:text-accent-primary transition-colors mb-2">
-                    {category.name}
-                  </h3>
-                  <p className="text-primary mb-4">{category.description}</p>
-                  <div className="text-sm text-primary mb-4">
-                    {category.count} parts available
-                  </div>
-                  <div className="flex items-center justify-center text-accent-primary font-medium">
-                    Shop Now
-                    <ArrowRight className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform" />
-                  </div>
-                </Link>
-              );
-            })}
-          </div>
-        </div>
-      </section>
-
-      {/* Best Sellers */}
-      <section className="py-16 bg-primary">
-        <div className="max-w-7xl mx-auto px-4">
-          <div className="flex justify-between items-center mb-12">
-            <div>
-              <h2 className="text-4xl font-bold mb-4 flex items-center gap-3 text-primary">
-                <TrendingUp className="w-8 h-8 text-accent-primary" />
-                Best Sellers
-              </h2>
-              <p className="text-xl text-secondary">
-                Most popular Nissan parts this month
-              </p>
-            </div>
-            <Link href="/shop?sort=popular" className="btn-outline">
-              View All Best Sellers
-            </Link>
-          </div>
-
-          {/* Mobile: Single column with 4 products, Tablet+: Grid layout */}
-          <div className="block md:hidden">
-            <div className="space-y-4">
-              {bestSellers.slice(0, 4).map((product) => (
-                <ProductCard key={product.id} product={product} />
-              ))}
-            </div>
-          </div>
-          <div className="hidden md:block">
-            <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-              {bestSellers.map((product) => (
-                <ProductCard key={product.id} product={product} />
-              ))}
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Essentials for Your Car */}
-      <section className="py-16 bg-white">
-        <div className="max-w-7xl mx-auto px-4">
-          <div className="flex justify-between items-center mb-12">
-            <div>
-              <h2 className="text-4xl font-bold mb-4 flex items-center gap-3 text-primary">
-                <Package className="w-8 h-8 text-accent-secondary" />
-                Essentials for Your Car
-              </h2>
-              <p className="text-xl text-secondary">
-                Must-have maintenance parts for every Nissan owner
-              </p>
-            </div>
-            <Link href="/shop?category=essentials" className="btn-outline">
-              View All Essentials
-            </Link>
-          </div>
-
-          {/* Mobile: Single column with 4 products, Tablet+: Grid layout */}
-          <div className="block md:hidden">
-            <div className="space-y-4">
-              {essentials.slice(0, 4).map((product) => (
-                <ProductCard key={product.id} product={product} />
-              ))}
-            </div>
-          </div>
-          <div className="hidden md:block">
-            <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-              {essentials.map((product) => (
-                <ProductCard key={product.id} product={product} />
-              ))}
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* New Arrivals */}
-      <section className="py-16 bg-primary">
-        <div className="max-w-7xl mx-auto px-4">
-          <div className="flex justify-between items-center mb-12">
-            <div>
-              <h2 className="text-4xl font-bold mb-4 flex items-center gap-3 text-primary">
-                <Sparkles className="w-8 h-8 text-accent-secondary" />
-                New Arrivals
-              </h2>
-              <p className="text-xl text-secondary">
-                Latest additions to our Nissan parts catalog
-              </p>
-            </div>
-            <Link href="/shop?filter=new" className="btn-outline">
-              View All New Arrivals
-            </Link>
-          </div>
-
-          {/* Mobile: Single column with 4 products, Tablet+: Grid layout */}
-          <div className="block md:hidden">
-            <div className="space-y-4">
-              {(newArrivals.length > 0 ? newArrivals : allProducts)
-                .slice(0, 4)
-                .map((product) => (
-                  <ProductCard key={product.id} product={product} />
-                ))}
-            </div>
-          </div>
-          <div className="hidden md:block">
-            <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-              {(newArrivals.length > 0 ? newArrivals : allProducts)
-                .slice(0, 4)
-                .map((product) => (
-                  <ProductCard key={product.id} product={product} />
-                ))}
-            </div>
-          </div>
-        </div>
-      </section>
-
       <Footer />
-      <CartSidebar />
     </div>
   );
 }
