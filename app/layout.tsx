@@ -186,7 +186,7 @@ export default function RootLayout({
           }}
         />
 
-        <script src="https://cdn.tailwindcss.com"></script>
+        
 
         {/* Structured Data for Organization */}
         <script
