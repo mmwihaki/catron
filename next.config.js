@@ -11,6 +11,18 @@ const nextConfig = {
     ],
     unoptimized: true,
   },
+  experimental: {
+    appDir: true,
+  },
+  typescript: {
+    ignoreBuildErrors: false,
+  },
+  eslint: {
+    ignoreDuringBuilds: false,
+  },
+  env: {
+    NODE_ENV: process.env.NODE_ENV || 'production',
+  },
 };
 
 module.exports = nextConfig;
