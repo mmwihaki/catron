@@ -3,6 +3,7 @@ import type { Metadata } from "next";
 import { CartProvider } from "./context/CartContext";
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://catron.co.ke"),
   title: "Catron - Premium Nissan OEM & Performance Parts Kenya",
   description:
     "Kenya's #1 marketplace for genuine Nissan OEM and performance parts. Quality guaranteed, fast delivery, expert fitment support. Shop engine, brakes, suspension, electrical & body parts.",
