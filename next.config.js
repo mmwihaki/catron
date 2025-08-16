@@ -11,17 +11,23 @@ const nextConfig = {
     ],
     unoptimized: true,
   },
-  experimental: {
-    appDir: true,
-  },
-  typescript: {
-    ignoreBuildErrors: false,
-  },
-  eslint: {
-    ignoreDuringBuilds: false,
-  },
-  env: {
-    NODE_ENV: process.env.NODE_ENV || 'production',
+  pageExtensions: ['tsx', 'ts', 'jsx', 'js'],
+  webpack: (config, { isServer }) => {
+    // Ignore scripts directory during build
+    config.watchOptions = {
+      ...config.watchOptions,
+      ignored: ['**/scripts/**', '**/product-images/**']
+    };
+
+    if (!isServer) {
+      config.resolve.fallback = {
+        ...config.resolve.fallback,
+        fs: false,
+        path: false,
+      };
+    }
+
+    return config;
   },
 };
 
